@@ -1,0 +1,22 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+	http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+<!-- 	<import resource="classpath:META-INF/cxf/cxf.xml" />
+	<import resource="classpath:META-INF/cxf/cxf-extension-soap.xml" />
+	<import resource="classpath:META-INF/cxf/cxf-servlet.xml" />
+
+	<jaxws:client id="gestionCaisse"
+		serviceClass="com.webcaisse.ws.client.CaisseManagerService" address="http://localhost:7777/caisse_ws/gestionCaisse" />
+ -->
+ 
+ <bean name="logginfInterceptor" class="org.apache.cxf.interceptor.LoggingInInterceptor"/>
+ 
+ 
+ <!-- <bean id="factory" class="org.apache.cxf.jaxws.JaxWsProxyFactoryBean">
+ 	<property name="address" value="http://localhost:7777/caisse_ws/gestionCaisse?wsdl"/>
+ 	<property name="serviceClass" value="com.webcaisse.ws.client.CaisseManagerService"></property>
+ </bean>
+  -->
+ </beans>
