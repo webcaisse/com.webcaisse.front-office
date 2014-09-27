@@ -25,12 +25,6 @@
 		<property name="suffix" value=".ftl" />
 	</bean>
 
-	<bean class="org.apache.cxf.jaxws.JaxWsProxyFactoryBean" autowire="byType" id="caisseFactory">
-		<property name="serviceClass" value="com.webcaisse.ws.CaisseManagerService" />
-		<property name="address"
-			value="http://localhost:7777/caisse_ws/gestionCaisse" />
-	</bean>
-
 
 	<context:component-scan base-package="com.webcaisse.mvc.controller" />
 
