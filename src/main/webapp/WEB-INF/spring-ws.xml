@@ -1,15 +1,20 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://www.springframework.org/schema/beans 
-	http://www.springframework.org/schema/beans/spring-beans.xsd">
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:jaxws="http://cxf.apache.org/jaxws"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans.xsd
+	http://cxf.apache.org/jaxws http://cxf.apache.org/schemas/jaxws.xsd
+		http://www.springframework.org/schema/context 
+	http://www.springframework.org/schema/context/spring-context.xsd">
 
-<!-- 	<import resource="classpath:META-INF/cxf/cxf.xml" />
+ 	<import resource="classpath:META-INF/cxf/cxf.xml" />
 	<import resource="classpath:META-INF/cxf/cxf-extension-soap.xml" />
 	<import resource="classpath:META-INF/cxf/cxf-servlet.xml" />
 
 	<jaxws:client id="gestionCaisse"
-		serviceClass="com.webcaisse.ws.client.CaisseManagerService" address="http://localhost:7777/caisse_ws/gestionCaisse" />
- -->
+		serviceClass="com.webcaisse.ws.interfaces.CaisseManagerService"
+		 address="http://localhost:8080/caisse_ws/gestionCaisse" />
+
  
  <bean name="logginfInterceptor" class="org.apache.cxf.interceptor.LoggingInInterceptor"/>
  
