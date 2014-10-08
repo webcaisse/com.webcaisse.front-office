@@ -8,9 +8,7 @@
 		<artifactId>webCaisseParent</artifactId>
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
-	<groupId>com.webcaisse</groupId>
 	<artifactId>webCaisse</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
 	<packaging>war</packaging>
 	<name>webCaisse Maven Webapp</name>
 	<url>http://maven.apache.org</url>
@@ -111,11 +109,17 @@
 			<version>${cxf.version}</version>
 		</dependency>
 
+<!-- 		<dependency> -->
+<!-- 			<groupId>com.webcaisse</groupId> -->
+<!-- 			<artifactId>webCaisseParent</artifactId> -->
+<!-- 			<version>0.0.1-SNAPSHOT</version> -->
+<!-- 		</dependency> -->
 		<dependency>
 			<groupId>com.webcaisse.model</groupId>
 			<artifactId>com.webcaisse.ws.model</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
+
 
 		<dependency>
 			<groupId>com.webcaisse.dao.hibernate</groupId>

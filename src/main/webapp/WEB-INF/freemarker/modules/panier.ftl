@@ -2,7 +2,7 @@
 <!-- Use the class js-tabs to enable JS tabs script -->
 <ul class="tabs js-tabs same-height">
     <li class="current"><a href="#tab-liste">Liste des achats</a></li>
-    <li id="li-infos" style="display: none;"><a href="#tab-infos">Informations</a></li>
+           <li> <a href="#tab-infos">Informations</a></li>
         	<li><a href="#tab-options">Options</a></li>
         <li id="li-paiement"><a href="#tab-paiements">Paiement</a></li>
 </ul>
@@ -246,7 +246,7 @@
 									<a class="paiement" href="javascript:;" title="Virement">VIR</a>
 									<a class="paiement" href="javascript:;" title="Débiteur">DEB</a>
 									<a class="paiement" href="javascript:;" title="carte de fidélité">FID</a>
-					        </div>
+		        </div>
 	        <div class="grid_6">
 				<table class="table" cellspacing="0" width="100%">
 					<thead>
@@ -262,7 +262,7 @@
 					</thead>
 
 					<tbody>
-											</tbody>
+					</tbody>
 				</table>
 				<table class="table" cellspacing="0" width="100%">
 					<tbody>
@@ -280,7 +280,7 @@
 				<br><br><br>
 			 	<button id="terminer" class="float-right"><img src="images/icons/fugue/tick-circle.png"> Terminer</button>
 			 				 		<button class="saveDevis float-right red" style="margin-right: 30px;">Devis</button>
-			 		        </div>
+			</div>
 	    </div>
     </div>
  	<div class="clearfix"></div>

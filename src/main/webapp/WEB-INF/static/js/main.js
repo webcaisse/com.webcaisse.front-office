@@ -1,10 +1,14 @@
-function loadFamilly () {
+function loadFamilly() {
 	$.get("loginSuccess", function(data) {
-		 location.reload();
+		location.reload();
 	});
 }
-function loadProduct () {
-	$.get("ajax/loadProduct", function(data) {
+function loadProduct(famillyId) {
+	$.get("ajax/loadProduct/" + famillyId, function(data) {
 		$("#productFinder").html(data);
 	});
+}
+
+function pop() {
+	window.open('pop', 'height=x,width=y,top=z,left=t,resible=no');
 }
