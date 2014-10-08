@@ -10,7 +10,8 @@
 	<title>Mag Marine </title>
 	<meta name="description" content="">
 	<meta name="author" content="David Grill">
-
+	
+	<link rel="stylesheet" type="text/css" href="<@spring.url '/css/style.min.css' />">
 	<link rel="stylesheet" type="text/css" href="<@spring.url '/css/reset.css' />">
 	
 	<link rel="stylesheet" type="text/css" href="<@spring.url '/css/common.css' />">
@@ -22,6 +23,8 @@
 	<link rel="stylesheet" type="text/css" href="<@spring.url '/css/redmond.datepick.css' />">
 	<link rel="stylesheet" type="text/css" href="<@spring.url '/css/table.css' />">
 	<link rel="stylesheet" type="text/css" href="<@spring.url '/css/960.gs.fluid.css' />">
+	
+	
 	<!-- Favicon -->
 	<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
 
@@ -231,14 +234,26 @@
 		</div>
 
 	</footer>
-
-<!--	<script type="text/javascript">var nbLignes = 100;var defaultTva = 9</script>-->
-
-<!--	<script type="text/javascript" src="/min/?f=/1.2.0/js/libs/jquery-1.8.3.min.js,/1.2.0/js/fullcalendar/jquery-ui-1.8.23.custom.min.js,/1.2.0/js/libs/jquery.hashchange.js,/1.2.0/js/jquery.accessibleList.js,/1.2.0/js/searchField.js,/1.2.0/js/common.js,/1.2.0/js/standard.js,/1.2.0/js/jquery.tip.js,/1.2.0/js/jquery.contextMenu.js,/1.2.0/js/jquery.modal.js,/1.2.0/js/list.js,/1.2.0/js/libs/jquery.datepick/jquery.datepick.min.js,/1.2.0/js/libs/jquery.dataTables.min.js,/1.2.0/js/functions.js,/1.2.0/js/libs/jquery-ui-1.8.19.custom.min.js,/1.2.0/js/clients/voirclient.js,/1.2.0/js/clients/addclient.js,/1.2.0/js/clients/editclient.js,/1.2.0/js/googlemap.js,/1.2.0/js/caisse/editcaisse.js,/1.2.0/js/clients/commentaires.js,/1.2.0/js/index/caisse.js,/1.2.0/js/caisse/relevecaisse.js&version=1.2.0.15"></script>-->
+	
+	<div id="popup" style="left: 433px; position: absolute; top: 302px; z-index: 9999; opacity: 1; display: none;">
+        <span class="button b-close"><span>X</span></span>
+        If you can't get it up use<br><span class="logo">bPopup</span>
+    </div>
 	
 	  <script src="//code.jquery.com/jquery-1.10.2.js"></script>
 	  <script src="//code.jquery.com/ui/1.11.1/jquery-ui.js"></script>
       <script type="text/javascript" src="<@spring.url '/js/main.js' />"></script>
-	  
+      <script type="text/javascript" src="<@spring.url '/js/jquery.bpopup.min.js' />"></script>
+	  <script> 
+	   
+	   // voici le code de chargement de popup
+	   // on se base sur le div#Id=popup
+	   $('#popup').bPopup({
+		    easing: 'easeOutBack', //uses jQuery easing plugin
+	        speed: 450,
+	        transition: 'slideDown'
+        });
+        
+	  </script>
 </body>
 </html>
