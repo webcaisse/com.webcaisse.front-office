@@ -12,7 +12,7 @@
 	      <#if produits ?? >
 			<#list produits as produit>
 			<li class="product">
-				<a href="javascript:window.open('consult2.php?id_fiche=$row[0]','popup','width=200,height=400,left=50,top=50,scrollbars=1')" class="selectProduit"  rel="4060" prix="1" type="1" libre="1" remise="0%" style="display: block; margin: -10px; padding: 10px; cursor: pointer;">
+				<a href="javascript:loadProductDetails(${produit.id});" class="selectProduit"  rel="4060" prix="1" type="1" libre="1" remise="0%" style="display: block; margin: -10px; padding: 10px; cursor: pointer;">
 		           	<p class="grid-name" style="width: 131px;">${produit.libelle} </p>
 		           
 		     

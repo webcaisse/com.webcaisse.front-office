@@ -5,11 +5,13 @@
 			</a>
 			<input type="text" id="produitFiltre" class="width-tip" title="Filtrer la liste des produits" value="" style="height: 2em; width: 50px;">
 							<input type="text" id="barcodeSearch" class="width-tip" title="Recherche code barre" placeholder="Code barre" value="" style="height: 2em; width: 100px;">
-				    </div>
-    	    		<div id="abonnementsFinder">
-</div>
-    	    	<div id="productFinder">	<h1 style="font-size: 20px;">Choisissez une catégorie</h1>
-	<div class="clearfix"></div>
+		 </div>
+    	 <div id="abonnementsFinder">
+         </div>
+    	 <div id="productFinder">	
+    	    <h1 style="font-size: 20px;">Choisissez une catégorie</h1>
+	        <div class="clearfix">
+	        </div>
 
 	<ul class="grid dark-grey-gradient" style="height: 400px; overflow: auto; position: relative;">
 		<#list familles as famille>
@@ -22,6 +24,7 @@
 	    </#list>
 	</ul>
 
-	</div>
-   	<div class="clearfix"></div><br>
+	       </div>
+   	           <div class="clearfix">
+   	           </div><br>
     </div>

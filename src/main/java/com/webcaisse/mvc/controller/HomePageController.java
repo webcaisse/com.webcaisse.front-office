@@ -64,4 +64,21 @@ public class HomePageController {
 
 		return "modules/familleDetails";
 	}
+	
+	
+	@RequestMapping("ajax/product/details/{produitId}")
+	public String loadProductDetails(ModelMap model,@PathVariable Long produitId){
+		
+		//CaisseManagerService caisseManagerService = (CaisseManagerService) factory.create();
+		System.out.println("caisseManagerService " +caisseManagerService);
+		
+		ProduitOut produit = caisseManagerService.loadProductById(produitId);
+		System.out.println("produits" +produit);
+		model.put("produit", produit);
+		
+
+		return "modules/ProduitsDetails";
+	}
+	
+	
 }

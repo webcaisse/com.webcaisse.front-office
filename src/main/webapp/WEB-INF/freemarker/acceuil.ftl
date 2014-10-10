@@ -232,28 +232,17 @@
 			<a href="http://caisseenligne.fr/about" target="_blank" class="button">About</a>
 			<a href="#top" class="button"><img src="images/icons/fugue/navigation-090.png" width="16" height="16"> Page top</a>
 		</div>
+		
+		<div id="popup" style="left: 433px; position: absolute; top: 302px; z-index: 9999; opacity: 1; display: none;">
+		
+		</div>
 
 	</footer>
-	
-	<div id="popup" style="left: 433px; position: absolute; top: 302px; z-index: 9999; opacity: 1; display: none;">
-        <span class="button b-close"><span>X</span></span>
-        If you can't get it up use<br><span class="logo">bPopup</span>
-    </div>
-	
 	  <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+		
 	  <script src="//code.jquery.com/ui/1.11.1/jquery-ui.js"></script>
-      <script type="text/javascript" src="<@spring.url '/js/main.js' />"></script>
       <script type="text/javascript" src="<@spring.url '/js/jquery.bpopup.min.js' />"></script>
-	  <script> 
-	   
-	   // voici le code de chargement de popup
-	   // on se base sur le div#Id=popup
-	   $('#popup').bPopup({
-		    easing: 'easeOutBack', //uses jQuery easing plugin
-	        speed: 450,
-	        transition: 'slideDown'
-        });
-        
-	  </script>
+      <script type="text/javascript" src="<@spring.url '/js/main.js' />"></script>
+      
 </body>
 </html>

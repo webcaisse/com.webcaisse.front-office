@@ -1,4 +1,4 @@
-    <div class="grid_7" id="facture">
+   <div class="grid_7" id="facture">
 <!-- Use the class js-tabs to enable JS tabs script -->
 <ul class="tabs js-tabs same-height">
     <li class="current"><a href="#tab-liste">Liste des achats</a></li>
