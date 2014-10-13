@@ -27,6 +27,14 @@
 	
 	<!-- Favicon -->
 	<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+	<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+	
+		
+	  <script src="//code.jquery.com/ui/1.11.1/jquery-ui.js"></script>
+      <script type="text/javascript" src="<@spring.url '/js/jquery.bpopup.min.js' />"></script>
+      <script type="text/javascript" src="<@spring.url '/js/main.js' />"></script>
+      
+  
 
 	<!-- script src="/js/libs/modernizr.custom.min.js"></script-->
 
@@ -233,16 +241,10 @@
 			<a href="#top" class="button"><img src="images/icons/fugue/navigation-090.png" width="16" height="16"> Page top</a>
 		</div>
 		
-		<div id="popup" style="left: 433px; position: absolute; top: 302px; z-index: 9999; opacity: 1; display: none;">
 		
-		</div>
-
+	<#include "modules/popup.ftl"/>
+		
 	</footer>
-	  <script src="//code.jquery.com/jquery-1.10.2.js"></script>
-		
-	  <script src="//code.jquery.com/ui/1.11.1/jquery-ui.js"></script>
-      <script type="text/javascript" src="<@spring.url '/js/jquery.bpopup.min.js' />"></script>
-      <script type="text/javascript" src="<@spring.url '/js/main.js' />"></script>
-      
+
 </body>
 </html>

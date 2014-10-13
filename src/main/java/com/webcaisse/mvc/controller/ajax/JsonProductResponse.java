@@ -1,0 +1,28 @@
+package com.webcaisse.mvc.controller.ajax;
+
+import com.webcaisse.ws.model.ProduitOut;
+
+public class JsonProductResponse {
+
+	private Integer nbResult ;
+	
+	private ProduitOut produitOut;
+
+	public Integer getNbResult() {
+		return nbResult;
+	}
+
+	public void setNbResult(Integer nbResult) {
+		this.nbResult = nbResult;
+	}
+
+	public ProduitOut getProduitOut() {
+		return produitOut;
+	}
+
+	public void setProduitOut(ProduitOut produitOut) {
+		this.produitOut = produitOut;
+	}
+	
+	
+}
