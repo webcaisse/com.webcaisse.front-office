@@ -19,21 +19,29 @@ function loadProductDetails(produitId) {
 	
 			// je vide le popup
 			$("#popup ul").empty();
-			
+
+
+		     ajouterAuPanier(produitOut.id, prix);
 			$.each(produitOut.prixOut, function() {
-				/*var li =
+				var li =
 					'<li class="product">'
 						+'<a href="javascript:;" class="selectProduit"  rel="4060" prix="1" type="1" libre="1" remise="0%" style="display: block; margin: -10px; padding: 10px; cursor: pointer;">'
 							+'<p class="grid-name productLabel" style="width: 131px;">'+produitOut.libelle+'</p>'
 							+'<p class="grid-name productPrice" style="width: 131px;">'+this.valeur+'</p>'
 	           		+'</li>' ;
-						+'</a>'*/
-				var li0 = $('#popup ul').first();
-				//$('#popup ul').append($('#popup ul li').first().clone());
-				$("#popup ul li:last").after(li0);
+						+'</a>' ;
+			
+				$('#popup ul').append(li);
+						
+						
+				
+						
+						
+				
 				
 			});
 			
+	
 			//
 			// construire le popup
 			// display popup
@@ -43,15 +51,19 @@ function loadProductDetails(produitId) {
 		        transition: 'slideDown'
 			});
 		
-		}else if (product.nbResult ===1){
+			
+			
+			
+		
+		}else {
 			// direct add produit au panier 
 			//alert(1) ;
 			var produitOut = product.produitOut;
 			
-			var prix = 0;
-			if (produitOut.prixOut!=null && produitOut.prixOut.length>0){
-				prix = produitOut.prixOut[0].valeur;
-			}
+		
+		     var prix = produitOut.prixOut[0].valeur;
+			
+		     ajouterAuPanier(produitOut.id, prix);
 			
 			var tr =
 			'<tr>'+
@@ -91,3 +103,16 @@ function loadProductDetails(produitId) {
 		
 	});
 }
+
+function ajouterAuPanier(productId, price){
+	
+	$.ajax({
+		  type: "POST",
+		  url: "ajax/product/ajouterAuPanier",
+		  data: { idProduit: productId, remise: 0, qte:1, prix :price }
+		})
+		  .done(function( msg ) {
+		    alert( "Data Saved: " + msg );
+		  });
+}
+

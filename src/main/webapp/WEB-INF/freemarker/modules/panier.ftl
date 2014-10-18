@@ -18,7 +18,7 @@
 	    <div id="tab-liste">
 	    
 	    <#include "ligneCommande.ftl" />
-        <table class="table sortable" cellspacing="0" width="100%">
+      <!--  <table class="table sortable" cellspacing="0" width="100%">
 			<thead>
 				<tr>
 					<th scope="col">
@@ -38,7 +38,7 @@
 					</th>
 					<th scope="col">
 						TVA
-					</th-->
+					</th>
 					<th scope="col" style="width: 120px;">
 						Remise
 					</th>
@@ -51,7 +51,7 @@
 
 			<tbody>
 																							</tbody>
-		</table>
+		</table>-->
 		<table class="table" cellspacing="0" width="100%">
 			<tbody>
 									<tr>
