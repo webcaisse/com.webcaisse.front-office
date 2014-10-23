@@ -1,4 +1,3 @@
-<div id="productFinder">
 	<h1 style="font-size: 20px;">Menu MAXI best-of </h1>
 <div class="clearfix"></div>
 	<ul class="grid dark-grey-gradient">
@@ -14,12 +13,9 @@
 			<li class="product">
 				<a href="javascript:loadProductDetails(${produit.id});" class="selectProduit"  rel="4060" prix="1" type="1" libre="1" remise="0%" style="display: block; margin: -10px; padding: 10px; cursor: pointer;">
 		           	<p class="grid-name" style="width: 131px;">${produit.libelle} </p>
-		           
-		     
 			    </a>
 			 </li>
 			 </#list>
 		 </#if>
 		
 	</ul>
-</div>

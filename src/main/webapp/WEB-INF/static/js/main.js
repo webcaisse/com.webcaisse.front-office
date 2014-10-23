@@ -1,6 +1,21 @@
 function loadFamilly() {
-	$.get("loginSuccess", function(data) {
-		location.reload();
+	$.get("ajax/product/loadFamillies", function(familles) {
+		//alert (familles);
+		$('#productFinder ul:first').remove();
+		$('#productFinder h1').html("Choisissez une catégorie");
+		
+		$('#productFinder ul:last').empty();
+		$.each(familles.famillesOut,
+				function() {
+					var li = '<li class="product">'
+								+'<a href="javascript:loadProduct('+this.id+');" class="remise" style="display: block; margin: -10px; padding: 10px; cursor: pointer;">'
+								+'<p class="grid-name" style="width: 136px;">'+this.libelle+'</p>'
+								+'</a>'
+							  +'</li>';
+
+					$('#productFinder ul').append(li);
+
+				});
 	});
 }
 
@@ -11,108 +26,126 @@ function loadProduct(famillyId) {
 }
 
 function loadProductDetails(produitId) {
-	$.get("ajax/product/details/"+ produitId, function(product) {
-		
-		// parsing json object 
-		if (product.nbResult>1){
-			var produitOut = product.produitOut;
-	
-			// je vide le popup
-			$("#popup ul").empty();
+	$.get(
+					"ajax/product/details/" + produitId,
+					function(product) {
 
+						// parsing json object
+						if (product.nbResult > 1) {
+							var produitOut = product.produitOut;
 
-		     ajouterAuPanier(produitOut.id, prix);
-			$.each(produitOut.prixOut, function() {
-				var li =
-					'<li class="product">'
-						+'<a href="javascript:;" class="selectProduit"  rel="4060" prix="1" type="1" libre="1" remise="0%" style="display: block; margin: -10px; padding: 10px; cursor: pointer;">'
-							+'<p class="grid-name productLabel" style="width: 131px;">'+produitOut.libelle+'</p>'
-							+'<p class="grid-name productPrice" style="width: 131px;">'+this.valeur+'</p>'
-	           		+'</li>' ;
-						+'</a>' ;
-			
-				$('#popup ul').append(li);
-						
-						
-				
-						
-						
-				
-				
-			});
-			
-	
-			//
-			// construire le popup
-			// display popup
-			$('#popup').bPopup({
-			    easing: 'easeOutBack', //uses jQuery easing plugin
-		        speed: 450,
-		        transition: 'slideDown'
-			});
-		
-			
-			
-			
-		
-		}else {
-			// direct add produit au panier 
-			//alert(1) ;
-			var produitOut = product.produitOut;
-			
-		
-		     var prix = produitOut.prixOut[0].valeur;
-			
-		     ajouterAuPanier(produitOut.id, prix);
-			
-			var tr =
-			'<tr>'+
-			      '<td>'+ produitOut.libelle+'<img src="/images/icons/fugue/pencil.png" width="16" height="16" style="cursor: pointer;" class="commentProduit" prix="2" idproduit="4083" comment="">'
-			      +'</td>'
-			      +'<td class="editProduit" style="cursor: pointer;" rel="4083" prix="2" type="1" libre="1" taux="20" nb="1" remise="0%">'
-					+'<a href="javascript:;" class="button">'+prix+'</a>'
-			      +'</td>'+
-			        +'<td style="white-space: nowrap;">'
-					   +'<a href="javascript:;" title="Enlever" class="with-tip button deleteProduit" rel="4083" prix="2" type="1" libre="1" taux="20" nb="-1" style="width: 10px; text-align: center;">-</a>'
-					   +'<a href="javascript:;" class="editNbProduit button" style="cursor: pointer;" rel="4083" prix="2" type="1" libre="1" taux="20" nb="1" remise="0%">1</a>'
-					   +'<a href="javascript:;" title="Ajouter" class="with-tip button deleteProduit" rel="4083" prix="2" type="1" libre="1" taux="20" nb="1" style="width: 10px; text-align: center;">+</a>'
-			      '</td>'+
-			
-			       +'<td>'
-				    +'<a href="javascript:;" class="button editRemiseProduit" rel="4083" prix="2" type="1" libre="1" taux="20" nb="1" remise="0%" style="cursor: pointer;">'
-																	+'Remise '+
-					'</a>'
-				+'</td>'
-				+'<td>'
-					+'2'	
-				+'</td>'+
-			+'</td>'
-			+'<td>'
-				
-					+'<a href="javascript:;" title="Supprimer" class="with-tip button deleteProduit" rel="4083" prix="2" type="1" libre="1" taux="20" nb="-1" style="margin-left: 5px;"><img src="/images/icons/fugue/trash.png" width="16" height="16"></a>'
-			+'</td>'
-		+'</tr>' ;
-			
-			
-			
-			$("#kk").find('tbody').append(tr) ;
-			
-	
+							// je vide le popup
+							$("#popup ul").empty();
+
+							ajouterAuPanier(produitOut.id, prix);
+							$.each(produitOut.prixOut,
+											function() {
+												var li = '<li class="product">'
+														+ '<a href="javascript:;" class="selectProduit"  rel="4060" prix="1" type="1" libre="1" remise="0%" style="display: block; margin: -10px; padding: 10px; cursor: pointer;">'
+														+ '<p class="grid-name productLabel" style="width: 131px;">'
+														+ produitOut.libelle
+														+ '</p>'
+														+ '<p class="grid-name productPrice" style="width: 131px;">'
+														+ this.valeur + '</p>'
+														+ '</li>';
+												+'</a>';
+
+												$('#popup ul').append(li);
+
+											});
+
+							//
+							// construire le popup
+							// display popup
+							$('#popup').bPopup({
+								easing : 'easeOutBack', // uses jQuery easing
+														// plugin
+								speed : 450,
+								transition : 'slideDown'
+							});
+
+						} else {
+							// direct add produit au panier
+							var produitOut = product.produitOut;
+							var prix = produitOut.prixOut[0].valeur;
+
+							ajouterAuPanier(produitOut.id, prix);
+
+						}
+
+					});
+}
+
+function ajouterAuPanier(productId, price) {
+
+	$.ajax({
+		type : "GET",
+		url : "ajax/product/ajouterAuPanier",
+		data : {
+			idProduit : productId,
+			remise : 0,
+			qte : 1,
+			prix : price
 		}
-		
-		
+	}).done(function(msg) {
+		$("#kk").find('tbody').append(msg);
 	});
 }
 
-function ajouterAuPanier(productId, price){
+function deleteFromCart(idLignePanier) {
+	/*
+	 * $(function(){ alert('Ete vous sur de supprimer la ligne de Panier ?');
+	 * });
+	 */
+
 	
-	$.ajax({
-		  type: "POST",
-		  url: "ajax/product/ajouterAuPanier",
-		  data: { idProduit: productId, remise: 0, qte:1, prix :price }
-		})
-		  .done(function( msg ) {
-		    alert( "Data Saved: " + msg );
-		  });
+	$.get("ajax/product/supprimerDuPanier/"+idLignePanier, function(data) {
+		
+		//var rows = $("#kk").find('tr') ;
+		$('#kk tr:eq('+ idLignePanier-1+')').remove();
+		//alert(rows) ;
+		//rows.eq(idLignePanier).remove();
+		
+		
+		
+		//$("#kk").find('tbody').append(msg);
+		//$("#productFinder").html(data);
+		//alert("ok") ;
+	});
+	
+	/*$.ajax({
+		type : "GET",
+		url : "ajax/product/supprimerDuPanier/"+idLignePanier
+	}, function(data) {
+		alert ("OK");
+	});*/
 }
 
+
+
+
+$(function() {
+
+	//  $(".numbers-row").append('<div class="inc button">+</div> <div class="dec button">-</div>');
+
+	  $(".button").on("click", function() {
+
+	    var $button = $(this);
+	    var oldValue = $button.parent().find("input").val();
+
+	    if ($button.text() == "+") {
+	  	  var newVal = parseFloat(oldValue) + 1;
+	  	} else {
+		   // Don't allow decrementing below zero
+	      if (oldValue > 0) {
+	        var newVal = parseFloat(oldValue) - 1;
+		    } else {
+	        newVal = 0;
+	      }
+		  }
+
+	    $button.parent().find("input").val(newVal);
+
+	  });
+
+	});

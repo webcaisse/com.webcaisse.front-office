@@ -54,9 +54,9 @@
 		</table>-->
 		<table class="table" cellspacing="0" width="100%">
 			<tbody>
-									<tr>
+					<tr>
 						<td style="text-align: right; width: 80%;"><b>Total Ht</b></td>
-						<td>0 (E)</td>
+						<td>0 &euro;</td>
 					</tr>
 					<tr>
 						<td style="text-align: right;"><b>Tva</b></td>
@@ -66,7 +66,7 @@
 						<td style="text-align: right;"><b>Total Ttc</b></td>
 						<td id="totalTtc">0 (E)</td>
 					</tr>
-							</tbody>
+			</tbody>
 		</table>
 		<input type="hidden" id="nbProduits" value="0">
 
