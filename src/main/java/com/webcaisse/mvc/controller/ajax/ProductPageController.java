@@ -1,9 +1,11 @@
 package com.webcaisse.mvc.controller.ajax;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -27,12 +29,13 @@ public class ProductPageController {
 
 	@Autowired
 	Panier panier;
-	
+
 	@RequestMapping("loadFamillies")
 	@ResponseBody
-	public JsonFamillyResponse loadFamillies (){
-		
-		return new JsonFamillyResponse(caisseManagerService.getFamillesActivees());
+	public JsonFamillyResponse loadFamillies() {
+
+		return new JsonFamillyResponse(
+				caisseManagerService.getFamillesActivees());
 	}
 
 	@RequestMapping("/details/{produitId}")
@@ -59,42 +62,49 @@ public class ProductPageController {
 	}
 
 	@RequestMapping(value = "/ajouterAuPanier", method = RequestMethod.GET)
-	public String ajouterAuPanier(
-			@ModelAttribute("lignePanier") LignePanier LignePanier,
-			ModelMap model) {
+	public String ajouterAuPanier(@ModelAttribute("lignePanier") LignePanier LignePanier, ModelMap model) {
 
 		if (LignePanier.getIdProduit() != null) {
 
-			ProduitOut produit = caisseManagerService
-					.loadProductById(LignePanier.getIdProduit());
+			ProduitOut produit = caisseManagerService.loadProductById(LignePanier.getIdProduit());
 
 			if (produit != null) {
+				
+				// nombre de ligne dans le panier 
+				Integer nbLignes  = this.panier.getLignesPanier().size();
+				
 				// j'ajoute ce produit dans le panier
 				panier.addProduct(LignePanier);
-
+				
 				model.put("productName", produit.getLibelle());
 				model.put("productPrice", LignePanier.getPrix());
-				model.put("lignePanierIndex",panier.getLignesPanier().size());
+				model.put("lignePanierIndex", nbLignes);
 			}
 
 		}
 		return "modules/product/lignePanier";
 	}
 
+
 	@RequestMapping(value = "/supprimerDuPanier/{index}", method = RequestMethod.GET)
 	@ResponseBody
-	public Integer SupprimerDuPanier(@PathVariable(value = "index") Integer index) {
-
-	
-		if (index != null) {
+	public void SupprimerDuPanier(@PathVariable("index") Integer index) {
+		
+		if (index != null && index>=0) {
 			panier.supprimerDePanier(index);
-		    
 		}
-		
-		return index ;
-		
-
 	}
-	
-	
+
+	@RequestMapping(value = "/calculerPrixPanier", method = RequestMethod.GET)
+	@ResponseBody
+	public String calculerPrixPanier() {
+		return panier.getPrixttc().toString();
+	}
+
+	@RequestMapping(value = "/viderPanier", method = RequestMethod.GET)
+	@ResponseBody
+	public void viderPanier() {
+		panier.empty();
+	}
+
 }

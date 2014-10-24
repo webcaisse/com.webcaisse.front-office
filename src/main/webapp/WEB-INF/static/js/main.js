@@ -89,63 +89,38 @@ function ajouterAuPanier(productId, price) {
 		}
 	}).done(function(msg) {
 		$("#kk").find('tbody').append(msg);
+		
+		calculerPrixPanier();
 	});
 }
 
-function deleteFromCart(idLignePanier) {
-	/*
-	 * $(function(){ alert('Ete vous sur de supprimer la ligne de Panier ?');
-	 * });
-	 */
 
+
+function deleteFromCart(idLignePanier) {
 	
 	$.get("ajax/product/supprimerDuPanier/"+idLignePanier, function(data) {
 		
-		//var rows = $("#kk").find('tr') ;
-		$('#kk tr:eq('+ idLignePanier-1+')').remove();
-		//alert(rows) ;
-		//rows.eq(idLignePanier).remove();
+		$('#kk tr:eq('+ idLignePanier+')').remove();
 		
-		
-		
-		//$("#kk").find('tbody').append(msg);
-		//$("#productFinder").html(data);
-		//alert("ok") ;
+		calculerPrixPanier();
+
 	});
-	
-	/*$.ajax({
-		type : "GET",
-		url : "ajax/product/supprimerDuPanier/"+idLignePanier
-	}, function(data) {
-		alert ("OK");
-	});*/
 }
 
 
 
 
-$(function() {
+function calculerPrixPanier() {
 
-	//  $(".numbers-row").append('<div class="inc button">+</div> <div class="dec button">-</div>');
-
-	  $(".button").on("click", function() {
-
-	    var $button = $(this);
-	    var oldValue = $button.parent().find("input").val();
-
-	    if ($button.text() == "+") {
-	  	  var newVal = parseFloat(oldValue) + 1;
-	  	} else {
-		   // Don't allow decrementing below zero
-	      if (oldValue > 0) {
-	        var newVal = parseFloat(oldValue) - 1;
-		    } else {
-	        newVal = 0;
-	      }
-		  }
-
-	    $button.parent().find("input").val(newVal);
-
-	  });
-
+	$.get("ajax/product/calculerPrixPanier", function(data) {
+		$(".panierPrix").html(data);
 	});
+
+}
+
+function viderPanier (){
+	$.get("ajax/product/viderPanier");
+}
+$( document ).ready(function() {
+	viderPanier();  
+});

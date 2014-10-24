@@ -52,11 +52,12 @@
 			<tbody>
 																							</tbody>
 		</table>-->
+		<div id="panier_ttc">
 		<table class="table" cellspacing="0" width="100%">
 			<tbody>
 					<tr>
 						<td style="text-align: right; width: 80%;"><b>Total Ht</b></td>
-						<td>0 &euro;</td>
+						<td> <div class="panierPrix">0</div>&euro;</td>
 					</tr>
 					<tr>
 						<td style="text-align: right;"><b>Tva</b></td>
@@ -68,6 +69,7 @@
 					</tr>
 			</tbody>
 		</table>
+		</div>
 		<input type="hidden" id="nbProduits" value="0">
 
 		<div class="form container_12">

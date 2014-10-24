@@ -1,4 +1,4 @@
-<script src="js/main.js"></script>
+
 	<tr>
 		  <td> ${productName}<img src="images/icons/fugue/pencil.png" width="16" height="16" style="cursor: pointer;" class="commentProduit" prix="2" idproduit="4083" comment="">
 		  </td>
