@@ -63,18 +63,11 @@ public class ProductPageController {
 			ProduitOut produit = caisseManagerService.loadProductById(LignePanier.getIdProduit());
 
 			if (produit != null) {
-				
-				// nombre de ligne dans le panier 
-				Integer nbLignes  = this.panier.getLignesPanier().size();
-				
 				// j'ajoute ce produit dans le panier
 				panier.addProduct(LignePanier);
-				
 				model.put("productName", produit.getLibelle());
 				model.put("productPrice", LignePanier.getPrix());
-				model.put("lignePanierIndex", nbLignes);
 			}
-
 		}
 		return "modules/product/lignePanier";
 	}
@@ -84,15 +77,29 @@ public class ProductPageController {
 	@ResponseBody
 	public void SupprimerDuPanier(@PathVariable("index") Integer index) {
 		
-		if (index != null && index>0) {
+		if (index != null && index>=0) {
 			panier.supprimerDePanier(index);
 		}
 	}
 
 	@RequestMapping(value = "/calculerPrixPanier", method = RequestMethod.GET)
 	@ResponseBody
-	public String calculerPrixPanier() {
-		return panier.getPrixttc().toString();
+	public JsonPrixPanier calculerPrixPanier() {
+		JsonPrixPanier jsonPrixPanier = new JsonPrixPanier();
+		Double prixHt = 0D;
+		Double prixTtc = 0D;
+		for (LignePanier lignePanier : panier.getLignesPanier()) {
+			prixTtc += lignePanier.getQuantite() * lignePanier.getPrix();
+			if (lignePanier.getRemise()>0){
+				prixTtc -=prixTtc * lignePanier.getRemise();
+			}
+			prixHt = prixTtc ;//- prixTtc * lignePanier.get
+		}
+		jsonPrixPanier.setPrixHt(prixHt);
+		jsonPrixPanier.setPrixTtc(prixTtc);
+		jsonPrixPanier.setDevise(EURO);
+		panier.updatePrice(prixHt, prixTtc);
+		return jsonPrixPanier;
 	}
 
 	@RequestMapping(value = "/viderPanier", method = RequestMethod.GET)

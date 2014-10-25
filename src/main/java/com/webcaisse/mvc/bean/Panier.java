@@ -13,76 +13,67 @@ public class Panier {
 	 */
 	private List<LignePanier> lignesPanier = new ArrayList<LignePanier>();
 
-	private Double prixttc =0D;
+	private Double prixTtc = 0D;
 
-	public Double getPrixttc() {
-		return prixttc;
+	private Double prixHt = 0D;
+
+	public Double getPrixTtc() {
+		return prixTtc;
 	}
 
-	public void setPrixttc(Double prixttc) {
-		this.prixttc = prixttc;
+	private void setPrixTtc(Double prixTtc) {
+		this.prixTtc = prixTtc;
 	}
 
+	public Double getPrixHt() {
+		return prixHt;
+	}
+
+	private void setPrixHt(Double prixHt) {
+		this.prixHt = prixHt;
+	}
 
 	public List<LignePanier> getLignesPanier() {
 		return lignesPanier;
 	}
 
-	
 	public void setLignesPanier(List<LignePanier> lignesPanier) {
 		this.lignesPanier = lignesPanier;
 	}
 
 	public void addProduct(LignePanier lignePanier) {
 		if (lignePanier.getIdProduit() != null) {
-			
-			// prix avant 
-			Double prixAvant = this.getPrixttc();
-			
 			// on ajoute le LP
 			this.getLignesPanier().add(lignePanier);
-			
-			// prix après 
-			Double prixApres = prixAvant +  lignePanier.getPrix();
-			
-			// maj prix
-			this.setPrixttc(prixApres);
-			
 		}
 	}
 
-	
 	/**
 	 * l'index commence par 0
+	 * 
 	 * @param index
 	 */
 	public void supprimerDePanier(Integer index) {
 
-		//lignesPanier.remove(index);
-		if (index<this.getLignesPanier().size()){
-			
-			// recuperation de ligne panier par son index
-			LignePanier  lignePanier  = this.getLignesPanier().get(index);
+		// lignesPanier.remove(index);
+		if (index < this.getLignesPanier().size()) {
 
-			// calcul de prix de lignePanier
-			Double prixLignePanier  = lignePanier.getPrix();
-			
+			// recuperation de ligne panier par son index
+			LignePanier lignePanier = this.getLignesPanier().get(index);
 			// suppression de ligne panier
 			this.getLignesPanier().remove(lignePanier);
-	
-			// maj prix ligne panier
-			Double prixPanierActuel  =this.getPrixttc()-prixLignePanier;
-			if (prixPanierActuel<0){
-				prixPanierActuel = 0D;
-			}
-			this.setPrixttc(prixPanierActuel);
 		}
-		
+
 	}
-	
-	public void empty (){
-		setPrixttc(0D);
+
+	public void empty() {
+		updatePrice(0D, 0D);
 		setLignesPanier(new ArrayList<LignePanier>());
 	}
 	
+	public void updatePrice (Double prixHt, Double prixTtc){
+		setPrixHt(prixHt);
+		setPrixTtc(prixTtc);
+	}
+
 }

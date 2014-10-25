@@ -10,7 +10,7 @@ $(document).ready(function() {
 		var prodObj = {
 			idProduit : productId,
 			remise : 0,
-			qte : 1,
+			quantite : 1,
 			prix : productPrice 
 		};
 		$.ajax({
@@ -33,17 +33,21 @@ $(document).ready(function() {
 		if (index<0){
 			return ;
 		}
-		$.get("ajax/product/supprimerDuPanier/" + index,
-			function(data) {
-				$('.table.sortable tbody tr:eq(' + index + ')').remove();
-				calculerPrixPanier();
-			});
+		 $.ajax({
+		       url : 'ajax/product/supprimerDuPanier/'+index,
+		       type : 'GET',
+		       success : function(data){
+					$('.table.sortable tbody tr:eq(' + index + ')').remove();
+					calculerPrixPanier();		           
+		       }
+		 });
 	};
 
 	
 	calculerPrixPanier = function() {
 		$.get("ajax/product/calculerPrixPanier", function(data) {
-			$(".panierPrix").html(data);
+			$('#totalTtc').html(data.prixTtc + ' ' + data.devise);
+			$('#totalHt').html(data.prixHt + ' ' + data.devise);
 		});
 	};
 

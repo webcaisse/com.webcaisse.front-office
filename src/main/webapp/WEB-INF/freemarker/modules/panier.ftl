@@ -57,15 +57,15 @@
 			<tbody>
 					<tr>
 						<td style="text-align: right; width: 80%;"><b>Total Ht</b></td>
-						<td> <div class="panierPrix">0</div>&euro;</td>
+						<td id="totalHt">0 EUR</td>
 					</tr>
 					<tr>
 						<td style="text-align: right;"><b>Tva</b></td>
-						<td>0 (E)</td>
+						<td>0 EUR</td>
 					</tr>
 					<tr>
 						<td style="text-align: right;"><b>Total Ttc</b></td>
-						<td id="totalTtc">0 (E)</td>
+						<td id="totalTtc">0 EUR</td>
 					</tr>
 			</tbody>
 		</table>
