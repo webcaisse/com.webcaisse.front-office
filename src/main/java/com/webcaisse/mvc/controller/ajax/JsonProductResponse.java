@@ -6,6 +6,8 @@ public class JsonProductResponse {
 
 	private Integer nbResult ;
 	
+	private String devise ;
+	
 	private ProduitOut produitOut;
 
 	public Integer getNbResult() {
@@ -23,6 +25,13 @@ public class JsonProductResponse {
 	public void setProduitOut(ProduitOut produitOut) {
 		this.produitOut = produitOut;
 	}
-	
+
+	public String getDevise() {
+		return devise;
+	}
+
+	public void setDevise(String devise) {
+		this.devise = devise;
+	}
 	
 }

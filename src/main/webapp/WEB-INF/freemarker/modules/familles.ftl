@@ -15,8 +15,8 @@
 
 	<ul class="grid dark-grey-gradient" style="height: 400px; overflow: auto; position: relative;">
 		<#list familles as famille>
-			<li class="product">
-				<a href="javascript:loadProduct(${famille.id});" class="remise" style="display: block; margin: -10px; padding: 10px; cursor: pointer;">
+			<li class="famille" data-famille-id=${famille.id}>
+				<a href="javascript:;" class="remise" style="display: block; margin: -10px; padding: 10px; cursor: pointer;">
 	            	<p class="grid-name" style="width: 136px;">${famille.libelle}</p>
 	            	
 	    		</a>

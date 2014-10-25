@@ -5802,7 +5802,8 @@ ul.grid>li .grid-name {
 	color: #373737;
 	font-weight: bold;
 	font-size: 0, 9em;
-	margin-bottom: 0.25em
+	margin-bottom: 0.25em;
+	display : inline-block;
 }
 
 ul.grid>li .grid-details {

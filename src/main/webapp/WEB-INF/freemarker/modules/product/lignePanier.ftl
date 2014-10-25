@@ -23,6 +23,6 @@
 			</td>
 			
 			<td>				
-				<a href="javascript:deleteFromCart(${lignePanierIndex});" title="Supprimer" class="with-tip button deleteProduit" rel="4083" prix="2" type="1" libre="1" taux="20" nb="-1" style="margin-left: 5px;"><img src="images/icons/fugue/trash.png" width="16"></a>
+				<a href="javascript:;" title="Supprimer" class="with-tip button deleteProduit" rel="4083" prix="2" type="1" libre="1" taux="20" nb="-1" style="margin-left: 5px;"><img src="images/icons/fugue/trash.png" width="16"></a>
 			</td>
 	</tr>
