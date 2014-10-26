@@ -51,33 +51,15 @@ public class HomePageController {
 
 		model.put("familles", familles);
 	
-	return "modules/familles";
+		return "modules/familles";
 	}
 	
-	
-
 	@RequestMapping("ajax/loadProduct/{fammillyId}")
 	public String loadProduct(ModelMap model,@PathVariable Long fammillyId){
 		
-		//CaisseManagerService caisseManagerService = (CaisseManagerService) factory.create();
-		System.out.println("caisseManagerService " +caisseManagerService);
-		
 		List<ProduitOut> produits = caisseManagerService.getProductsByFamilly(fammillyId);
-		System.out.println("produits" +produits);
 		model.put("produits", produits);
-		
-
 		return "modules/familleDetails";
 	}
 	
-	/*@RequestMapping(value = "/calculerPrixPanier", method = RequestMethod.GET)
-	public String calculerPrixPanier(Model model) {
-Panier panier = new Panier() ;
-	
-		model.addAttribute("prixPanier", panier.calculTTCPanier()) ;
-		    
-       return "modules/panier" ;
-	}
-	*/
-		
 }

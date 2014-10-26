@@ -2,18 +2,14 @@ $(document).ready(
 		function() {
 
 			chargerFamilles = function () {
-				$.get("ajax/product/loadFamillies", function(familles) {
-
-					$('#productFinder ul:first').remove();
-					$('#productFinder h1').html("Choisissez une catégorie");
-					$('#productFinder ul:last').empty();
-
-				});
+				$("#productFinderFamilles").show();
+				$("#productFinderProducts").empty();
 			};
 
 			loadProduct = function (famillyId) {
 				$.get("ajax/loadProduct/" + famillyId, function(data) {
-					$("#productFinder").html(data);
+					$("#productFinderFamilles").hide();
+					$("#productFinderProducts").html(data);
 				});
 			};
 
@@ -73,4 +69,9 @@ $(document).ready(
 				ajouterAuPanier($(this).data('product-id'), $(this).data('product-price'));
 				//closePopup();
 			});
+			
+			$( document ).on( "click", '.inCategorie',function() {
+				chargerFamilles();
+			});
+
 		});

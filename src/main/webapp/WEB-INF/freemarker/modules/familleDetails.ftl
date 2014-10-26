@@ -2,7 +2,7 @@
 <div class="clearfix"></div>
 	<ul class="grid dark-grey-gradient">
 		<li style="height: 2em; width: 50px;">
-			<a href="javascript:chargerFamilles();" class="inCategorie" rel="0" style="display: block; height: 2em; cursor: pointer;">
+			<a href="javascript:;" class="inCategorie" rel="0" style="display: block; height: 2em; cursor: pointer;">
 	            <p class="grid-name" style="height: 2em; width: 0px;"><img src="images/icons/web-app/24/Back.png" width="50" height="50" style="vertical-align: middle;"></p>
 	    	</a>
 	    </li>

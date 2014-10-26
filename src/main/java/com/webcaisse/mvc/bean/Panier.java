@@ -41,10 +41,25 @@ public class Panier {
 		this.lignesPanier = lignesPanier;
 	}
 
-	public void addProduct(LignePanier lignePanier) {
+	public void addLine(LignePanier lignePanier) {
 		if (lignePanier.getIdProduit() != null) {
-			// on ajoute le LP
-			this.getLignesPanier().add(lignePanier);
+			// je verifie que ce produit est ajouté deja dans le panier
+			boolean produitDejaPresent = false;
+			Integer indexLigne =0;
+			for (LignePanier lp : lignesPanier) {
+				if (lp!=null && lp.getIdProduit() !=null && lp.getIdProduit().equals(lignePanier.getIdProduit())){
+					produitDejaPresent = true;
+					indexLigne = lignesPanier.indexOf(lp);
+					break;
+				}
+			}
+			if (produitDejaPresent){
+				LignePanier lp  = lignesPanier.get(indexLigne);
+				lp.setQuantite(lp.getQuantite()+lignePanier.getQuantite());
+			}else{
+				// on ajoute le LP
+				lignesPanier.add(lignePanier);				
+			}
 		}
 	}
 
@@ -66,14 +81,36 @@ public class Panier {
 
 	}
 
+	/**
+	 * 
+	 */
 	public void empty() {
 		updatePrice(0D, 0D);
 		setLignesPanier(new ArrayList<LignePanier>());
 	}
 	
+	/**
+	 * 
+	 * @param prixHt
+	 * @param prixTtc
+	 */
 	public void updatePrice (Double prixHt, Double prixTtc){
 		setPrixHt(prixHt);
 		setPrixTtc(prixTtc);
+	}
+	
+	/**
+	 * 
+	 * @param productId
+	 * @return
+	 */
+	public LignePanier getLignePanierByProductId(Long productId){
+		for (LignePanier lignePanier : this.lignesPanier) {
+			if (lignePanier.getIdProduit()!=null && lignePanier.getIdProduit().equals(productId)){
+				return lignePanier;
+			}
+		}
+		return null;
 	}
 
 }

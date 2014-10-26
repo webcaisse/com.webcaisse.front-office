@@ -245,7 +245,7 @@
 		
 		
 	<#include "modules/popup.ftl"/>
-		
+	<#include "modules/product/remise.ftl"/>	
 	</footer>
 
 </body>

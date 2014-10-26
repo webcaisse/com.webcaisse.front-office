@@ -56,17 +56,17 @@ public class ProductPageController {
 	}
 
 	@RequestMapping(value = "/ajouterAuPanier", method = RequestMethod.GET)
-	public String ajouterAuPanier(@ModelAttribute("lignePanier") LignePanier LignePanier, ModelMap model) {
+	public String ajouterAuPanier(@ModelAttribute("lignePanier") LignePanier lignePanier, ModelMap model) {
 
-		if (LignePanier.getIdProduit() != null) {
+		if (lignePanier.getIdProduit() != null) {
 
-			ProduitOut produit = caisseManagerService.loadProductById(LignePanier.getIdProduit());
+			ProduitOut produit = caisseManagerService.loadProductById(lignePanier.getIdProduit());
 
 			if (produit != null) {
 				// j'ajoute ce produit dans le panier
-				panier.addProduct(LignePanier);
+				panier.addLine(lignePanier);
 				model.put("productName", produit.getLibelle());
-				model.put("productPrice", LignePanier.getPrix());
+				model.put("lignePanier", panier.getLignePanierByProductId(produit.getId()));
 			}
 		}
 		return "modules/product/lignePanier";
@@ -108,4 +108,24 @@ public class ProductPageController {
 		panier.empty();
 	}
 
+	@RequestMapping(value = "/incDec", method = RequestMethod.GET)
+	public String incrementerDecrementer(Integer indexLignePanier, Integer quantite, ModelMap model) {
+		
+		if (indexLignePanier>=0 && indexLignePanier<panier.getLignesPanier().size()){
+			LignePanier lignePanier = panier.getLignesPanier().get(indexLignePanier);
+			
+			Integer quantiteFinal  = lignePanier.getQuantite() + quantite;
+			if (quantiteFinal<1){
+				quantiteFinal = 1;
+			}
+			lignePanier.setQuantite(quantiteFinal);
+			
+			ProduitOut produit = caisseManagerService.loadProductById(lignePanier.getIdProduit());
+
+			model.put("productName", produit.getLibelle());
+			model.put("lignePanier", lignePanier);
+
+		}
+		return "modules/product/lignePanier";
+	}
 }
