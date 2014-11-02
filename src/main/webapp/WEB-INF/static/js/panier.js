@@ -70,6 +70,7 @@ $(document).ready(function() {
 			$('#totalTtc').html(data.prixTtc + ' ' + data.devise);
 			$('#totalHt').html(data.prixHt + ' ' + data.devise);
 			$('#total').html(data.prixTtc + ' ' + data.devise);
+			$('#total1').html(data.prixTtc + ' ' + data.devise);
 		});
 	};
 

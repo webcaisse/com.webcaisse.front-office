@@ -238,7 +238,7 @@
 			</form>
 	    </div>
 	
-    <div id="tab-paiements" style="display: none;">
+    <div id="tab-paiements" style="display: block;">
     	<div class="container_12">
 	        <div class="grid_6">
 									<a class="paiement" href="javascript:;" title="Chèque">CHQ</a>
@@ -271,10 +271,10 @@
 						<tr>
 							<td style="text-align: right;">
 								<b>
-									Solde
+									Solde 
 								</b>
 							</td>
-							<td style="width: 111px;" id="resteAPayer" rel="0">0 (E)</td>
+							<td style="width: 111px;" id="resteAPayer" rel="0"><span id="total1">0 (E)</span></td>
 						</tr>
 					</tbody>
 				</table>
