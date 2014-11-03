@@ -245,6 +245,7 @@
 		
 		
 	<#include "modules/popup.ftl"/>
+	<#include "modules/product/popup_paiement.ftl"/>
 		
 	</footer>
 
