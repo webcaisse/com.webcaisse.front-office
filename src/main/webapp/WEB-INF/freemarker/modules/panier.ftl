@@ -240,7 +240,7 @@
 									Solde 
 								</b>
 							</td>
-							<td style="width: 111px;" id="resteAPayer" rel="0"><span id="total1">0 (E)</span></td>
+							<td style="width: 111px;" id="resteAPayer" rel="0"><span id="solde">0 (E)</span></td>
 						</tr>
 					</tbody>
 				</table>
