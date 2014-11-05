@@ -71,6 +71,7 @@ $(document).ready(function() {
 			$('#totalHt').html(data.prixHt + ' ' + data.devise);
 			$('#total').html(data.prixTtc + ' ' + data.devise);
 			$('#solde').html(data.prixTtc + ' ' + data.devise);
+			$('#prix').html(data.prixTtc + ' ' + data.devise);
 		});
 	};
 

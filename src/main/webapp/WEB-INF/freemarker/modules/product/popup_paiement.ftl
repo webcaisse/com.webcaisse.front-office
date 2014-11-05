@@ -7,7 +7,8 @@
 </a></span>
 </li>
 </ul>
-<div class="block-content"><h1>Entrez le montant</h1><div class="modal-content modal-scroll" style="min-width:200px; min-height:40px; max-width:1216px;  max-height:500px; "><a class="calculette" href="javascript:;" title="7">7</a>
+<div class="block-content"><h1>Entrez le montant</h1><div class="modal-content modal-scroll" style="min-width:200px; min-height:40px; max-width:1216px;  max-height:500px; ">
+<a class="calculette" href="javascript:;" title="7">7</a>
 <a class="calculette" href="javascript:;" title="8">8</a>
 <a class="calculette" href="javascript:;" title="9">9</a>
 <div class="clearfix"></div>
@@ -27,7 +28,8 @@
 <br>
 <div class="form">
 	<p>
-		<span class="input-type-text"><input type="text" id="prix" value="0"></span>
+	
+		<span class="input-type-text" id="prix"><input type="text" id="prix" value="0"></span>
 	</p>
 </div></div><div class="block-footer align-right">
 <button type="button" class="red b-close"><img src="images/icons/fugue/cross-circle.png" width="16" height="16" title="Fermer"> Fermer</button>&nbsp;<button type="button" class="grey"><img src="images/icons/fugue/tick-circle.png" width="16" height="16" title="Valider"> Valider</button></div></div>

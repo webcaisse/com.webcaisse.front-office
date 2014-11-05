@@ -207,13 +207,13 @@
     <div id="tab-paiements" style="display: block;">
     	<div class="container_12">
 	        <div class="grid_6">
-									<a class="paiement" href="javascript:;" title="Chèque">CHQ</a>
-									<a class="paiement" href="javascript:;" title="ticket restaurant">TRT</a>
-									<a class="paiement" href="javascript:;" title="Espèces">ESP</a>
-									<a class="paiement" href="javascript:;" title="Carte Bleue">CB</a>
-									<a class="paiement" href="javascript:;" title="Virement">VIR</a>
-									<a class="paiement" href="javascript:;" title="Débiteur">DEB</a>
-									<a class="paiement" href="javascript:;" title="carte de fidélité">FID</a>
+									<a class="paiement" href="javascript:paiement();" title="Chèque">CHQ</a>
+									<a class="paiement" href="javascript:paiement();" title="ticket restaurant">TRT</a>
+									<a class="paiement" href="javascript:paiement();" title="Espèces">ESP</a>
+									<a class="paiement" href="javascript:paiement();" title="Carte Bleue">CB</a>
+									<a class="paiement" href="javascript:paiement();" title="Virement">VIR</a>
+									<a class="paiement" href="javascript:paiement();" title="Débiteur">DEB</a>
+									<a class="paiement" href="javascript:paiement();" title="carte de fidélité">FID</a>
 		        </div>
 	        <div class="grid_6">
 				<table class="table" cellspacing="0" width="100%">
