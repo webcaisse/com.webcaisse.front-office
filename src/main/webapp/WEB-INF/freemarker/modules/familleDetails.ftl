@@ -1,4 +1,4 @@
-	<h1 style="font-size: 20px;">Menu MAXI best-of </h1>
+<h1 style="font-size: 20px;">Menu MAXI best-of </h1>
 <div class="clearfix"></div>
 	<ul class="grid dark-grey-gradient">
 		<li style="height: 2em; width: 50px;">

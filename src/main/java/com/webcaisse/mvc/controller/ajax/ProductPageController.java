@@ -58,20 +58,54 @@ public class ProductPageController {
 	@RequestMapping(value = "/ajouterAuPanier", method = RequestMethod.GET)
 	public String ajouterAuPanier(@ModelAttribute("lignePanier") LignePanier lignePanier, ModelMap model) {
 
-		if (lignePanier.getIdProduit() != null) {
+		if (lignePanier.getIdProduit() != null && lignePanier.getIdPrix()!=null) {
 
 			ProduitOut produit = caisseManagerService.loadProductById(lignePanier.getIdProduit());
 
 			if (produit != null) {
+				Boolean ajouter  = Boolean.TRUE;
+				// on verifie que ce produit existe ou pas dans le panier
+				Integer indexProduitDansPanier  = getIndexProduitExisteDansPanier(lignePanier.getIdProduit(), lignePanier.getIdPrix());
+				if (indexProduitDansPanier!=-1){
+					LignePanier lp  = this.panier.getLignesPanier().get(indexProduitDansPanier);
+					if (lp!=null){
+						Integer quantite  = lp.getQuantite();
+						lp.setQuantite(quantite+1);
+						
+						model.put("lignePanier", lp);
+						
+						ajouter = Boolean.FALSE;
+					}
+				}
 				// j'ajoute ce produit dans le panier
-				panier.addLine(lignePanier);
+				if (ajouter==Boolean.TRUE){
+					panier.addLine(lignePanier);
+					model.put("lignePanier", lignePanier);
+				}
 				model.put("productName", produit.getLibelle());
-				model.put("lignePanier", panier.getLignePanierByProductId(produit.getId()));
+
 			}
 		}
 		return "modules/product/lignePanier";
 	}
 
+
+	/**
+	 * Pour dire si pour un produit et un prix donnée j'ai cette ligne dans le panier
+	 * @param idProduit
+	 * @param idPrix
+	 * @return
+	 */
+	private Integer getIndexProduitExisteDansPanier(Long idProduit, Long idPrix) {
+		if (this.panier!=null){
+			for (LignePanier lp : this.panier.getLignesPanier()) {
+				if (idProduit.equals(lp.getIdProduit()) && idPrix.equals(lp.getIdPrix())){
+					return this.panier.getLignesPanier().indexOf(lp);
+				}
+			}
+		}
+		return -1;
+	}
 
 	@RequestMapping(value = "/supprimerDuPanier/{index}", method = RequestMethod.GET)
 	@ResponseBody
@@ -88,7 +122,13 @@ public class ProductPageController {
 		JsonPrixPanier jsonPrixPanier = new JsonPrixPanier();
 		Double prixHt = 0D;
 		Double prixTtc = 0D;
+		
+		//
+		//
+
 		for (LignePanier lignePanier : panier.getLignesPanier()) {
+			Integer indexProduitDansPanier  = getIndexProduitExisteDansPanier(lignePanier.getIdProduit(), lignePanier.getIdPrix());
+			LignePanier lp  = panier.getLignesPanier().get(indexProduitDansPanier);
 			prixTtc += lignePanier.getQuantite() * lignePanier.getPrix();
 			if (lignePanier.getRemise()>0){
 				prixTtc -=prixTtc * lignePanier.getRemise();

@@ -17,17 +17,27 @@ public class LignePanier {
 
 	private Double prix;
 	
+	private Long idPrix ;
+	
+	public Long getIdPrix() {
+		return idPrix;
+	}
+	public void setIdPrix(Long idPrix) {
+		this.idPrix = idPrix;
+	}
 	public LignePanier() {
-		this(null, 0, 0, 0D);
+		this(null, 0, 0, 0D,null);
 	}	
-	public LignePanier(Long idProduit, float remise, Integer quantite, Double prix) {
+
+
+	public LignePanier(Long idProduit, float remise, Integer quantite,Double prix, Long idPrix) {
 		super();
 		this.idProduit = idProduit;
 		this.remise = remise;
 		this.quantite = quantite;
 		this.prix = prix;
+		this.idPrix = idPrix;
 	}
-
 	public Long getIdProduit() {
 		return idProduit;
 	}

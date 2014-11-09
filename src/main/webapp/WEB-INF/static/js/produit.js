@@ -33,7 +33,7 @@ $(document).ready(
 						displayPopupWithEffect();
 					} else if (product.nbResult == 1) {
 						// direct ajouter produit au panier
-						ajouterAuPanier(product.produitOut.id, product.produitOut.prixOut[0].valeur);
+						ajouterAuPanier(product.produitOut.id, product.produitOut.prixOut[0].valeur,product.produitOut.prixOut[0].idPrix);
 					}
 				});
 			};
@@ -45,8 +45,10 @@ $(document).ready(
 					var liClone =  li.clone();
 					liClone.children("a").children("p.productLabel").text(product.produitOut.libelle);
 					liClone.children("a").children("p.productPrice").text(this.valeur +' ' + product.devise );
+					liClone.children("a").children("p.idPrice").text(this.idPrix);
 					liClone.data("product-id", product.produitOut.id);
 					liClone.data("product-price", this.valeur);
+					liClone.data("price-id", this.idPrix);
 					$('#popup ul').append(liClone);
 				});
 				li.remove();
@@ -76,7 +78,7 @@ $(document).ready(
 			});
 			
 			$( document ).on( "click", 'li.product.popup',function() {
-				ajouterAuPanier($(this).data('product-id'), $(this).data('product-price'));
+				ajouterAuPanier($(this).data('product-id'), $(this).data('product-price'),$(this).data('price-id'));
 				//closePopup();
 			});
 			

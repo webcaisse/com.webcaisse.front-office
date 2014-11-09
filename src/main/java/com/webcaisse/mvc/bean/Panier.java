@@ -99,18 +99,4 @@ public class Panier {
 		setPrixTtc(prixTtc);
 	}
 	
-	/**
-	 * 
-	 * @param productId
-	 * @return
-	 */
-	public LignePanier getLignePanierByProductId(Long productId){
-		for (LignePanier lignePanier : this.lignesPanier) {
-			if (lignePanier.getIdProduit()!=null && lignePanier.getIdProduit().equals(productId)){
-				return lignePanier;
-			}
-		}
-		return null;
-	}
-
 }

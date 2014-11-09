@@ -6,12 +6,13 @@ $(document).ready(function() {
 	 * @param productId
 	 * @param productPrice
 	 */
-	ajouterAuPanier = function(productId, productPrice) {
+	ajouterAuPanier = function(productId, productPrice,IdPrice) {
 		var prodObj = {
 			idProduit : productId,
 			remise : 0,
 			quantite : 1,
-			prix : productPrice 
+			prix : productPrice, 
+			idPrix:IdPrice
 		};
 		$.ajax({
 			type : "GET",
@@ -19,7 +20,7 @@ $(document).ready(function() {
 			data : prodObj
 		}).done(function(line) {
 			// je verifier que cette lige est deja presente
-			var index = verifierLigneDansPanier($(line).find( ":hidden" ).val());
+			var index = verifierLigneDansPanier($(line).find( ":hidden:eq(0)" ).val(),$(line).find( ":hidden:eq(1)" ).val());
 			if (index==-1){
 				// ajout
 				$(".table.sortable tbody").append(line);				
@@ -31,12 +32,13 @@ $(document).ready(function() {
 		});
 	};
 	
-	verifierLigneDansPanier = function (productId){
+	verifierLigneDansPanier = function (productId, priceId){
 		var tmpIndex = 0;
 		var indexLignePanier = -1;
 		$('.table.sortable > tbody  > tr').each(function() {
-			var idProduit = $(this).find( ":hidden" ).val();
-			if (productId==idProduit){
+			var idProduit = $(this).find( ":hidden:eq(0)" ).val();
+			var idPrix 	= $(this).find( ":hidden:eq(1)" ).val();
+			if (productId==idProduit && idPrix==priceId){
 				indexLignePanier = tmpIndex;
 			}
 			tmpIndex++;
