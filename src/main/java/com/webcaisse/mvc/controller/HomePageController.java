@@ -24,6 +24,8 @@ import com.webcaisse.ws.model.ProduitOut;
 @Controller
 public class HomePageController {
 	
+	private static final Long ID_SOCIETE = 1L;
+	
 	@Autowired
 	CaisseManagerService caisseManagerService ;
 		
@@ -31,7 +33,7 @@ public class HomePageController {
 	public String home (ModelMap model){
 		System.out.println("caisseManagerService " +caisseManagerService);
 		
-		List<FamilleOut> familles = caisseManagerService.getFamillesActivees();
+		List<FamilleOut> familles = caisseManagerService.getFamillesActivees(ID_SOCIETE);
 		
 		System.out.println("familles " +familles);
 
@@ -45,7 +47,7 @@ public class HomePageController {
 //		//CaisseManagerService caisseManagerService = (CaisseManagerService) factory.create();
 	System.out.println("caisseManagerService " +caisseManagerService);
 		
-		List<FamilleOut> familles = caisseManagerService.getFamillesActivees();
+		List<FamilleOut> familles = caisseManagerService.getFamillesActivees(ID_SOCIETE);
 		
 		System.out.println("familles " +familles);
 
