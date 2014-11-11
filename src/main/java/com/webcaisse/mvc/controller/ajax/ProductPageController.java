@@ -17,7 +17,8 @@ import com.webcaisse.ws.model.ProduitOut;
 @Controller
 @RequestMapping("/ajax/product")
 public class ProductPageController {
-
+	
+	private static final Long ID_SOCIETE = 1L;
 	private static final String EURO ="EUR";
 	@Autowired
 	CaisseManagerService caisseManagerService;
@@ -29,7 +30,10 @@ public class ProductPageController {
 	@ResponseBody
 	public JsonFamillyResponse loadFamillies() {
 
-		return new JsonFamillyResponse(caisseManagerService.getFamillesActivees(new Long (1)));
+		//return new JsonFamillyResponse(caisseManagerService.getFamillesActivees(new Long (1)));
+
+		return new JsonFamillyResponse(caisseManagerService.getFamillesActivees(ID_SOCIETE));
+
 	}
 
 	@RequestMapping("/details/{produitId}")
@@ -122,13 +126,9 @@ public class ProductPageController {
 		JsonPrixPanier jsonPrixPanier = new JsonPrixPanier();
 		Double prixHt = 0D;
 		Double prixTtc = 0D;
-		
-		//
-		//
 
 		for (LignePanier lignePanier : panier.getLignesPanier()) {
-			Integer indexProduitDansPanier  = getIndexProduitExisteDansPanier(lignePanier.getIdProduit(), lignePanier.getIdPrix());
-			LignePanier lp  = panier.getLignesPanier().get(indexProduitDansPanier);
+			
 			prixTtc += lignePanier.getQuantite() * lignePanier.getPrix();
 			if (lignePanier.getRemise()>0){
 				prixTtc -=prixTtc * lignePanier.getRemise();

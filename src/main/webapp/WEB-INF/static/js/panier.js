@@ -94,6 +94,31 @@ $(document).ready(function() {
 		
 	};
 
+	/**
+	 * Afficher le popup de remise
+	 */
+	afficherPopupRemise = function (){
+		$('#popup_remise').bPopup({
+			easing : 'easeOutBack',
+			speed : 450,
+			transition : 'slideDown'
+		});
+	};
+	
+	saisirMontantRemise =  function (value){
+		if (!value){
+			return ;
+		}
+		var pattern = /^\d+$/;
+		if (value.indexOf('%')!=-1){
+			$('.input-type-text').val(value);
+		}else {
+		   if (pattern.test(value)){
+			   $('.input-type-text').val($('.input-type-text').val() + value);   
+		   }
+		}
+	};
+	
 	viderPanier = function() {
 		$.get("ajax/product/viderPanier");
 	};
@@ -113,8 +138,11 @@ $(document).ready(function() {
 	});
 	
 	$( document ).on( "click", '.button.editRemiseProduit',function() {
-		$('.modal-window.block-border').show();		
+		afficherPopupRemise();
 	});
-
+	
+	$( document ).on( "click", '.calculette',function() {
+		saisirMontantRemise($(this).attr('title'));
+	});
 	viderPanier();
 });

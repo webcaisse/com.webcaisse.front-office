@@ -42,12 +42,13 @@ public class Panier {
 	}
 
 	public void addLine(LignePanier lignePanier) {
-		if (lignePanier.getIdProduit() != null) {
+		if (lignePanier.getIdProduit() != null && lignePanier.getIdPrix()!=null) {
 			// je verifie que ce produit est ajouté deja dans le panier
 			boolean produitDejaPresent = false;
 			Integer indexLigne =0;
 			for (LignePanier lp : lignesPanier) {
-				if (lp!=null && lp.getIdProduit() !=null && lp.getIdProduit().equals(lignePanier.getIdProduit())){
+				if (lp!=null && lp.getIdProduit() !=null && lp.getIdPrix()!=null && lp.getIdProduit().equals(lignePanier.getIdProduit())
+						&& lp.getIdPrix().equals(lignePanier.getIdPrix())){
 					produitDejaPresent = true;
 					indexLigne = lignesPanier.indexOf(lp);
 					break;
@@ -55,7 +56,8 @@ public class Panier {
 			}
 			if (produitDejaPresent){
 				LignePanier lp  = lignesPanier.get(indexLigne);
-				lp.setQuantite(lp.getQuantite()+lignePanier.getQuantite());
+				Integer quantite  = lp.getQuantite();
+				lp.setQuantite(quantite + lignePanier.getQuantite());
 			}else{
 				// on ajoute le LP
 				lignesPanier.add(lignePanier);				
