@@ -29,7 +29,7 @@ public class ProductPageController {
 	@ResponseBody
 	public JsonFamillyResponse loadFamillies() {
 
-		return new JsonFamillyResponse(caisseManagerService.getFamillesActivees());
+		return new JsonFamillyResponse(caisseManagerService.getFamillesActivees(new Long (1)));
 	}
 
 	@RequestMapping("/details/{produitId}")

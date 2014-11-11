@@ -35,6 +35,7 @@
       <script type="text/javascript" src="<@spring.url '/js/main.js' />"></script>
       <script type="text/javascript" src="<@spring.url '/js/panier.js' />"></script>
       <script type="text/javascript" src="<@spring.url '/js/produit.js' />"></script>
+      <script type="text/javascript" src="<@spring.url '/js/onglets.js' />"></script>
       
   
 

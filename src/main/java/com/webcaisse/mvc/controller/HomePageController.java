@@ -31,7 +31,7 @@ public class HomePageController {
 	public String home (ModelMap model){
 		System.out.println("caisseManagerService " +caisseManagerService);
 		
-		List<FamilleOut> familles = caisseManagerService.getFamillesActivees();
+		List<FamilleOut> familles = caisseManagerService.getFamillesActivees(new Long (1));
 		
 		System.out.println("familles " +familles);
 
@@ -39,13 +39,21 @@ public class HomePageController {
 
 		return "acceuil";
 	}
+	@RequestMapping("loginSuccess/paiement")
+	public String home1 (ModelMap model){
+		System.out.println("caisseManagerService " +caisseManagerService);
+		
+	
+
+		return "modules/paiement";
+	}
 	
 	@RequestMapping("ajax/loadFamilly")
 	public String loadFamilly (ModelMap model){
 //		//CaisseManagerService caisseManagerService = (CaisseManagerService) factory.create();
 	System.out.println("caisseManagerService " +caisseManagerService);
 		
-		List<FamilleOut> familles = caisseManagerService.getFamillesActivees();
+		List<FamilleOut> familles = caisseManagerService.getFamillesActivees(new Long (1));
 		
 		System.out.println("familles " +familles);
 
