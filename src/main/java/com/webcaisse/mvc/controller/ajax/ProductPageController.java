@@ -1,5 +1,7 @@
 package com.webcaisse.mvc.controller.ajax;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -12,6 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.webcaisse.mvc.bean.LignePanier;
 import com.webcaisse.mvc.bean.Panier;
 import com.webcaisse.ws.interfaces.CaisseManagerService;
+import com.webcaisse.ws.model.FamilleOut;
 import com.webcaisse.ws.model.ProduitOut;
 
 @Controller
@@ -30,7 +33,7 @@ public class ProductPageController {
 	@ResponseBody
 	public JsonFamillyResponse loadFamillies() {
 
-		//return new JsonFamillyResponse(caisseManagerService.getFamillesActivees(new Long (1)));
+		
 
 		return new JsonFamillyResponse(caisseManagerService.getFamillesActivees(ID_SOCIETE));
 
@@ -48,8 +51,7 @@ public class ProductPageController {
 		System.out.println("produits" + produit);
 
 		if (produit != null) {
-			jsonProductResponse.setNbResult(produit.getPrixOut() != null ? produit
-							.getPrixOut().size() : 0);
+			jsonProductResponse.setNbResult(produit.getPrixOut() != null ? produit.getPrixOut().size() : 0);
 		} else {
 			jsonProductResponse.setNbResult(0);
 		}

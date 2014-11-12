@@ -5,7 +5,7 @@
 			<a href="javascript:;" class="selectProduit"  rel="4060" prix="1" type="1" libre="1" remise="0%" style="display: inline-block; margin: -10px; padding: 10px; cursor: pointer;">
 				<p class="grid-name productLabel" style="width: 131px;height: 29px;"></p>
 				<p class="grid-name productPrice" style="width: 131px;"></p>
-				<p class="grid-name idPrice" style="width: 10px;"></p>
+				
 			</a>
 		</li>		
 	</ul>

@@ -14,6 +14,11 @@ public class JsonFamillyResponse {
 		this.famillesOut = famillesOut;
 	}
 
+	public JsonFamillyResponse() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
 	public List<FamilleOut> getFamillesOut() {
 		return famillesOut;
 	}

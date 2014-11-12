@@ -11,7 +11,7 @@
 	      <#if produits ?? >
 			<#list produits as produit>
 			<li class="product" data-product-id=${produit.id}>
-				<a href="javascript:;" class="selectProduit"  rel="4060" prix="1" type="1" libre="1" remise="0%" style="display: block; margin: -10px; padding: 10px; cursor: pointer;">
+				<a href="javascript:;" class="selectProduit"  rel="4060" prix="1" type="1" libre="1" remise="0%" style="display: block; margin: -10px; padding: 10px; cursor: pointer;background-color:${produit.couleur}">
 		           	<p class="grid-name" style="width: 131px;">${produit.libelle} </p>
 			    </a>
 			 </li>

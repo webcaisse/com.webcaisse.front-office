@@ -56,6 +56,7 @@ public class HomePageController {
 
 		
 		System.out.println("familles " +familles);
+	
 
 		model.put("familles", familles);
 	

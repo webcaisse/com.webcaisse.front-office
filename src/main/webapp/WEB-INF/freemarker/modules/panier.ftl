@@ -3,7 +3,6 @@
 	<ul class="tabs js-tabs same-height">
 	    <li class="current"><a href="#tab-liste">Liste des achats</a></li>
 	    <li> <a href="#tab-infos">Informations</a></li>
-	    <li><a href="#tab-options">Options</a></li>
 	    <li><a href="#tab-paiement">Paiement</a></li>
 	</ul>
 	
@@ -19,8 +18,6 @@
 	<#include "listeAchats.ftl"/>
 	
 	<#include "info.ftl"/>
-	
-	<#include "options.ftl"/>
 		
 	<#include "paiement.ftl"/>
 	 	
