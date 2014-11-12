@@ -1,5 +1,6 @@
 <div id="popup_remise" style="display: none; height: 1091px; left: -47px;">
-	
+	<input type="hidden" id="productId">
+	<input type="hidden" id="priceId">
 	<div class="modal-window block-border" style="display: block; left: -47px; top: 10px;">
 		<ul class="action-tabs right b-close">
 			<li>
@@ -11,12 +12,12 @@
 		<div class="block-content"><h1>Entrez la remise</h1>
 		<div class="modal-content modal-scroll" style="min-width:200px; min-height:40px; max-width:1216px;  max-height:500px; ">
 			<input type="hidden" id="remiseCalculette" value="1">
-			<a class="calculette" href="javascript:;" title="5%">5%</a>
-			<a class="calculette" href="javascript:;" title="10%">10%</a>
-			<a class="calculette" href="javascript:;" title="15%">15%</a>
+			<a class="calculette" href="javascript:;" title="0.05">5%</a>
+			<a class="calculette" href="javascript:;" title="0.1">10%</a>
+			<a class="calculette" href="javascript:;" title="0.15">15%</a>
 			<div class="clearfix"></div>
-			<a class="calculette" href="javascript:;" title="20%">20%</a>
-			<a class="calculette" href="javascript:;" title="50%">50%</a>
+			<a class="calculette" href="javascript:;" title="0.2">20%</a>
+			<a class="calculette" href="javascript:;" title="0.5">50%</a>
 			<a class="calculette" href="javascript:;" title="%">%</a>
 			<div class="clearfix"></div>
 			<a class="calculette" href="javascript:;" title="7">7</a>
@@ -40,13 +41,17 @@
 			<div class="clearfix"></div>
 				<br>
 				<div class="form">
-					<span class="input-type-text"></span>
+					<p>
+						<span class="input-type-text">
+							<input type="text" id="prix" value="">
+						</span>
+					</p>
 				</div>
 			</div>
 			<div class="block-footer align-right">
 				<button type="button" class="red b-close">
 				<img src="images/icons/fugue/cross-circle.png" width="16" height="16" title="Fermer"> Fermer</button>&nbsp;
-				<button type="button" class="grey">
+				<button type="button" class="grey submitRemise">
 				<img src="images/icons/fugue/tick-circle.png" width="16" height="16" title="Valider"> Valider</button>
 			</div>
 		</div>

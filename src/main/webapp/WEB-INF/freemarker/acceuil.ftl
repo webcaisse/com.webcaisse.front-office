@@ -7,9 +7,9 @@
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 
-	<title>Mag Marine </title>
+	<title>WebCaisse 2.0</title>
 	<meta name="description" content="">
-	<meta name="author" content="David Grill">
+	<meta name="author" content="a2n Informatique">
 	
 	<link rel="stylesheet" type="text/css" href="<@spring.url '/css/style.min.css' />">
 	<link rel="stylesheet" type="text/css" href="<@spring.url '/css/reset.css' />">

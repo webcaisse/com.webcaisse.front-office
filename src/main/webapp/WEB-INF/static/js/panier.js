@@ -110,12 +110,35 @@ $(document).ready(function() {
 			return ;
 		}
 		var pattern = /^\d+$/;
+		var inputVal = $('input[id="prix"]');
 		if (value.indexOf('%')!=-1){
-			$('.input-type-text').val(value);
+			inputVal.val(value);
 		}else {
 		   if (pattern.test(value)){
-			   $('.input-type-text').val($('.input-type-text').val() + value);   
+			   inputVal.val(inputVal.val() + value);
 		   }
+		}
+	};
+	
+	doSubmitRemise = function (valueRemise, idProduit, idPrix){
+		if(valueRemise==''){
+			return;
+		}
+		$.ajax({
+			type : "GET",
+			url : "ajax/product/remiseProduit",
+			data :{productId : idProduit, priceId : idPrix, remiseValue:valueRemise} 
+		}).done(function(line) {
+			calculerPrixPanier();
+		});
+	};
+	
+	offrirLignePanier = function (index){
+		var elementGiftOK = $('.with-tip.button.produitOffert:eq('+index+')').children().next();
+		if (elementGiftOK.is(':visible')){
+			elementGiftOK.hide();
+		}else{
+			elementGiftOK.show();
 		}
 	};
 	
@@ -144,5 +167,14 @@ $(document).ready(function() {
 	$( document ).on( "click", '.calculette',function() {
 		saisirMontantRemise($(this).attr('title'));
 	});
+
+	$( document ).on( "click", '.submitRemise',function() {
+		doSubmitRemise($('input[id="prix"]').val());
+	});
+	
+	$( document ).on( "click", '.produitOffert',function() {
+		offrirLignePanier($(this).parent('td').parent('tr').index());
+	});
+
 	viderPanier();
 });

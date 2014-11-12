@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.webcaisse.mvc.bean.LignePanier;
 import com.webcaisse.mvc.bean.Panier;
+import com.webcaisse.mvc.bean.RemiseProduit;
 import com.webcaisse.ws.interfaces.CaisseManagerService;
 import com.webcaisse.ws.model.FamilleOut;
 import com.webcaisse.ws.model.ProduitOut;
@@ -95,6 +96,16 @@ public class ProductPageController {
 		return "modules/product/lignePanier";
 	}
 
+	@RequestMapping(value="/remiseProduit", method=RequestMethod.GET)
+	public void appliquerRemiseSurProduit(@ModelAttribute("remiseProduit") RemiseProduit remiseProduit){
+		if (remiseProduit.getProductId()!=null && remiseProduit.getPriceId()!=null){
+			Integer indexLignePanier = getIndexProduitExisteDansPanier(remiseProduit.getProductId(), remiseProduit.getPriceId());
+			if (indexLignePanier!=-1 && indexLignePanier<panier.getLignesPanier().size()){
+				LignePanier lignePanier = panier.getLignesPanier().get(indexLignePanier);
+				lignePanier.setRemise(remiseProduit.getRemiseValue());
+			}
+		}
+	}
 
 	/**
 	 * Pour dire si pour un produit et un prix donnée j'ai cette ligne dans le panier

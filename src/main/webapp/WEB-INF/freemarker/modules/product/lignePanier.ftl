@@ -15,7 +15,7 @@
                    
                 </div>
 		   </td>
-		  <td>
+		  <td style="width:10%">
 			<a href="javascript:;" class="button editRemiseProduit" rel="4083" prix="2" type="1" libre="1" taux="20" nb="1" remise="0%" style="cursor: pointer;">
 															Remise 
 			</a>
@@ -24,7 +24,11 @@
 				<a href="#" class="button">${lignePanier.prix * lignePanier.quantite}</a>
 			</td>
 			
-			<td>				
+			<td style="width:20%">				
 				<a href="javascript:;" title="Supprimer" class="with-tip button deleteProduit" rel="4083" prix="2" type="1" libre="1" taux="20" nb="-1" style="margin-left: 5px;"><img src="images/icons/fugue/trash.png" width="16"></a>
+				<a href="javascript:;" title="Offrir" class="with-tip button produitOffert" rel="4083" prix="2" type="1" libre="1" taux="20" nb="-1" style="margin-left: 5px;">
+					<img src="images/icons/fugue/gift.png" width="16" >
+					<img src="images/icons/fugue/gift_OK.png" width="16" style="display:none">
+				</a>
 			</td>
 	</tr>
