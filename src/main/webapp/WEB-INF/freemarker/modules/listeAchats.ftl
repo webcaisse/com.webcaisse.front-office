@@ -1,4 +1,4 @@
-<div id="tab-liste" style="display: none;">
+<div id="tab-liste" style="display: block;">
 		    
 	 <#include "ligneCommande.ftl" />
 	  		<div id="panier_ttc">

@@ -1,7 +1,5 @@
 package com.webcaisse.mvc.controller.ajax;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -15,7 +13,6 @@ import com.webcaisse.mvc.bean.LignePanier;
 import com.webcaisse.mvc.bean.Panier;
 import com.webcaisse.mvc.bean.RemiseProduit;
 import com.webcaisse.ws.interfaces.CaisseManagerService;
-import com.webcaisse.ws.model.FamilleOut;
 import com.webcaisse.ws.model.ProduitOut;
 
 @Controller
@@ -24,6 +21,7 @@ public class ProductPageController {
 	
 	private static final Long ID_SOCIETE = 1L;
 	private static final String EURO ="EUR";
+	private static final Float MAX_VALUE_REMISE = 1F;
 	@Autowired
 	CaisseManagerService caisseManagerService;
 
@@ -33,11 +31,7 @@ public class ProductPageController {
 	@RequestMapping("loadFamillies")
 	@ResponseBody
 	public JsonFamillyResponse loadFamillies() {
-
-		
-
 		return new JsonFamillyResponse(caisseManagerService.getFamillesActivees(ID_SOCIETE));
-
 	}
 
 	@RequestMapping("/details/{produitId}")
@@ -97,14 +91,15 @@ public class ProductPageController {
 	}
 
 	@RequestMapping(value="/remiseProduit", method=RequestMethod.GET)
-	public void appliquerRemiseSurProduit(@ModelAttribute("remiseProduit") RemiseProduit remiseProduit){
-		if (remiseProduit.getProductId()!=null && remiseProduit.getPriceId()!=null){
-			Integer indexLignePanier = getIndexProduitExisteDansPanier(remiseProduit.getProductId(), remiseProduit.getPriceId());
-			if (indexLignePanier!=-1 && indexLignePanier<panier.getLignesPanier().size()){
-				LignePanier lignePanier = panier.getLignesPanier().get(indexLignePanier);
-				lignePanier.setRemise(remiseProduit.getRemiseValue());
-			}
+	@ResponseBody
+	public String appliquerRemiseSurProduit(@ModelAttribute("remiseProduit") RemiseProduit remiseProduit){
+		if (remiseProduit.getIndexLignePanier()!=null && remiseProduit.getIndexLignePanier()<panier.getLignesPanier().size()
+				&& remiseProduit.getRemiseValue()<=MAX_VALUE_REMISE){
+			LignePanier lignePanier = panier.getLignesPanier().get(remiseProduit.getIndexLignePanier());
+			lignePanier.setRemise(remiseProduit.getRemiseValue());
+			return "REMISE_OK";
 		}
+		return "PAS_DE_REMISE";
 	}
 
 	/**

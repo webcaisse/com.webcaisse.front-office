@@ -12,12 +12,12 @@
 		<div class="block-content"><h1>Entrez la remise</h1>
 		<div class="modal-content modal-scroll" style="min-width:200px; min-height:40px; max-width:1216px;  max-height:500px; ">
 			<input type="hidden" id="remiseCalculette" value="1">
-			<a class="calculette" href="javascript:;" title="0.05">5%</a>
-			<a class="calculette" href="javascript:;" title="0.1">10%</a>
-			<a class="calculette" href="javascript:;" title="0.15">15%</a>
+			<a class="calculette" href="javascript:;" title="5%">5%</a>
+			<a class="calculette" href="javascript:;" title="10%">10%</a>
+			<a class="calculette" href="javascript:;" title="15%">15%</a>
 			<div class="clearfix"></div>
-			<a class="calculette" href="javascript:;" title="0.2">20%</a>
-			<a class="calculette" href="javascript:;" title="0.5">50%</a>
+			<a class="calculette" href="javascript:;" title="20%">20%</a>
+			<a class="calculette" href="javascript:;" title="50%">50%</a>
 			<a class="calculette" href="javascript:;" title="%">%</a>
 			<div class="clearfix"></div>
 			<a class="calculette" href="javascript:;" title="7">7</a>
@@ -34,7 +34,7 @@
 			<div class="clearfix"></div>
 			<a class="calculette" href="javascript:;" title="0">0</a>
 			<a class="calculette" href="javascript:;" title=".">.</a>
-			<a class="calculette" href="javascript:;" title="Effacer">
+			<a class="calculette effacer" href="javascript:;" title="Effacer">
 				<img src="images/icons/web-app/24/Back.png" width="24" height="24" style="vertical-align: middle;">
 			</a>
 		

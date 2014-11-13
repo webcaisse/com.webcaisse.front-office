@@ -109,25 +109,38 @@ $(document).ready(function() {
 		if (!value){
 			return ;
 		}
-		var pattern = /^\d+$/;
+		var pattern = /^\d{0,2}(\.\d{0,2}){0,1}$/;
 		var inputVal = $('input[id="prix"]');
-		if (value.indexOf('%')!=-1){
+		if (value.indexOf('%')!=-1 && value!='%'){
 			inputVal.val(value);
 		}else {
 		   if (pattern.test(value)){
+			   if (pattern.test(inputVal.val())){
+				   inputVal.val(inputVal.val() + value);				   
+			   }else{
+				   inputVal.val(value);
+			   }
+		   }else{
 			   inputVal.val(inputVal.val() + value);
 		   }
 		}
 	};
 	
-	doSubmitRemise = function (valueRemise, idProduit, idPrix){
+	effacerMontantRemise = function (){
+		$('input[id="prix"]').val('');
+	};
+	
+	doSubmitRemise = function (valueRemise, idxLignePanier){
 		if(valueRemise==''){
 			return;
+		}
+		if (valueRemise.indexOf('%')!=-1){
+			valueRemise = valueRemise.replace('%','')/100;
 		}
 		$.ajax({
 			type : "GET",
 			url : "ajax/product/remiseProduit",
-			data :{productId : idProduit, priceId : idPrix, remiseValue:valueRemise} 
+			data :{indexLignePanier : 0, remiseValue:valueRemise} 
 		}).done(function(line) {
 			calculerPrixPanier();
 		});
@@ -167,9 +180,13 @@ $(document).ready(function() {
 	$( document ).on( "click", '.calculette',function() {
 		saisirMontantRemise($(this).attr('title'));
 	});
-
+	
+	$( document ).on( "click", '.calculette.effacer',function() {
+		effacerMontantRemise();
+	});
+	
 	$( document ).on( "click", '.submitRemise',function() {
-		doSubmitRemise($('input[id="prix"]').val());
+		doSubmitRemise($('input[id="prix"]').val(), $(this).parent('td').parent('tr').index() );
 	});
 	
 	$( document ).on( "click", '.produitOffert',function() {
