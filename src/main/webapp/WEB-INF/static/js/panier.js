@@ -131,23 +131,31 @@ $(document).ready(function() {
 	};
 	
 	doSubmitRemise = function (valueRemise, idxLignePanier){
-		if(valueRemise==''){
-			return;
-		}
-		if (valueRemise.indexOf('%')!=-1){
-			valueRemise = valueRemise.replace('%','')/100;
-		}
+//		if(valueRemise==''){
+//			return;
+//		}
+//		if (valueRemise.indexOf('%')!=-1){
+//			valueRemise = valueRemise.replace('%','')/100;
+//		}
 		$.ajax({
 			type : "GET",
 			url : "ajax/product/remiseProduit",
+			async: false,
 			data :{indexLignePanier : 0, remiseValue:valueRemise} 
 		}).done(function(line) {
+			$(".table.sortable tbody tr:eq("+idxLignePanier+")").replaceWith(line);
 			calculerPrixPanier();
 		});
 	};
 	
 	offrirLignePanier = function (index){
+		var valueRemise = 0; // pas de remise
 		var elementGiftOK = $('.with-tip.button.produitOffert:eq('+index+')').children().next();
+		if (!elementGiftOK.is(':visible')){
+			// faire une remise à 100%
+			valueRemise=1;
+		}
+		doSubmitRemise(valueRemise, index);
 		if (elementGiftOK.is(':visible')){
 			elementGiftOK.hide();
 		}else{

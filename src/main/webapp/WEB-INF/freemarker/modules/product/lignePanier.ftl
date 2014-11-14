@@ -21,7 +21,7 @@
 			</a>
 		  </td>
 			<td>
-				<a href="#" class="button">${lignePanier.prix * lignePanier.quantite}</a>
+				<a href="#" class="button">${(lignePanier.prix - lignePanier.prix*lignePanier.remise ) * lignePanier.quantite}</a>
 			</td>
 			
 			<td style="width:20%">				

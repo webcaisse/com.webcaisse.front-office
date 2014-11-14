@@ -11,7 +11,7 @@ public class LignePanier {
 	
 	private Long idProduit;
 	
-	private float remise ;
+	private float remise =1f;
 	
 	private Integer quantite;
 

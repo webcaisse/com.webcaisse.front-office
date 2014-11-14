@@ -91,15 +91,18 @@ public class ProductPageController {
 	}
 
 	@RequestMapping(value="/remiseProduit", method=RequestMethod.GET)
-	@ResponseBody
-	public String appliquerRemiseSurProduit(@ModelAttribute("remiseProduit") RemiseProduit remiseProduit){
+	public String appliquerRemiseSurProduit(@ModelAttribute("remiseProduit") RemiseProduit remiseProduit, ModelMap model){
 		if (remiseProduit.getIndexLignePanier()!=null && remiseProduit.getIndexLignePanier()<panier.getLignesPanier().size()
 				&& remiseProduit.getRemiseValue()<=MAX_VALUE_REMISE){
 			LignePanier lignePanier = panier.getLignesPanier().get(remiseProduit.getIndexLignePanier());
 			lignePanier.setRemise(remiseProduit.getRemiseValue());
-			return "REMISE_OK";
+
+			ProduitOut produit = caisseManagerService.loadProductById(lignePanier.getIdProduit());
+			model.put("productName", produit.getLibelle());
+			model.put("lignePanier", lignePanier);
 		}
-		return "PAS_DE_REMISE";
+		
+		return "modules/product/lignePanier";
 	}
 
 	/**
@@ -137,10 +140,10 @@ public class ProductPageController {
 
 		for (LignePanier lignePanier : panier.getLignesPanier()) {
 			
-			prixTtc += lignePanier.getQuantite() * lignePanier.getPrix();
-			if (lignePanier.getRemise()>0){
-				prixTtc -=prixTtc * lignePanier.getRemise();
-			}
+			prixTtc += (lignePanier.getPrix() - lignePanier.getPrix()* lignePanier.getRemise())*lignePanier.getQuantite();
+//			if (lignePanier.getRemise()>0){
+//				prixTtc -=prixTtc * lignePanier.getRemise();
+//			}
 			prixHt = prixTtc ;//- prixTtc * lignePanier.get
 		}
 		jsonPrixPanier.setPrixHt(prixHt);
