@@ -140,27 +140,26 @@ $(document).ready(function() {
 		$.ajax({
 			type : "GET",
 			url : "ajax/product/remiseProduit",
-			async: false,
 			data :{indexLignePanier : 0, remiseValue:valueRemise} 
-		}).done(function(line) {
-			$(".table.sortable tbody tr:eq("+idxLignePanier+")").replaceWith(line);
-			calculerPrixPanier();
+		}).done(function(nouveauPrix) {
+			if (nouveauPrix!='PAS_DE_REMISE'){
+				$('.button.lignePanierPrix:eq('+idxLignePanier+')').html(nouveauPrix);
+				calculerPrixPanier();				
+			}
 		});
 	};
 	
 	offrirLignePanier = function (index){
 		var valueRemise = 0; // pas de remise
 		var elementGiftOK = $('.with-tip.button.produitOffert:eq('+index+')').children().next();
-		if (!elementGiftOK.is(':visible')){
-			// faire une remise à 100%
-			valueRemise=1;
-		}
-		doSubmitRemise(valueRemise, index);
 		if (elementGiftOK.is(':visible')){
 			elementGiftOK.hide();
 		}else{
+			// faire une remise à 100%
+			valueRemise=1;
 			elementGiftOK.show();
 		}
+		doSubmitRemise(valueRemise, index);
 	};
 	
 	viderPanier = function() {

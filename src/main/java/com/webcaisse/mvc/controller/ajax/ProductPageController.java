@@ -91,18 +91,18 @@ public class ProductPageController {
 	}
 
 	@RequestMapping(value="/remiseProduit", method=RequestMethod.GET)
+	@ResponseBody
 	public String appliquerRemiseSurProduit(@ModelAttribute("remiseProduit") RemiseProduit remiseProduit, ModelMap model){
 		if (remiseProduit.getIndexLignePanier()!=null && remiseProduit.getIndexLignePanier()<panier.getLignesPanier().size()
 				&& remiseProduit.getRemiseValue()<=MAX_VALUE_REMISE){
 			LignePanier lignePanier = panier.getLignesPanier().get(remiseProduit.getIndexLignePanier());
 			lignePanier.setRemise(remiseProduit.getRemiseValue());
-
-			ProduitOut produit = caisseManagerService.loadProductById(lignePanier.getIdProduit());
-			model.put("productName", produit.getLibelle());
-			model.put("lignePanier", lignePanier);
+			
+			Double nouveauPrix  = (lignePanier.getPrix() - lignePanier.getPrix()*lignePanier.getRemise())* lignePanier.getQuantite();
+			return nouveauPrix.toString();
 		}
 		
-		return "modules/product/lignePanier";
+		return "PAS_DE_REMISE";
 	}
 
 	/**
