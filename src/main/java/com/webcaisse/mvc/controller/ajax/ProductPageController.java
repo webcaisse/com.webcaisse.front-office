@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.webcaisse.mvc.bean.LignePanier;
+import com.webcaisse.mvc.bean.ModePaiement;
 import com.webcaisse.mvc.bean.Panier;
 import com.webcaisse.mvc.bean.RemiseProduit;
 import com.webcaisse.ws.interfaces.CaisseManagerService;
@@ -187,6 +188,23 @@ public class ProductPageController {
 		panier.setMessage(message) ;
 	}
 
+	@RequestMapping(value = "/saisirModePaiement", method = RequestMethod.GET)
+	@ResponseBody
+	public void saisirModePaiement(Double montant,@ModelAttribute("modePaiement") ModePaiement modePaiement ) {
+	
+		if(montant != null && modePaiement != null){
+			modePaiement.setCb(montant);
+			modePaiement.setCheque(montant);
+			modePaiement.setEspace(montant);
+			modePaiement.setFidelite(montant);
+			modePaiement.setTicketRestau(montant);
+			
+			
+		}
+		
+	} 
+	
+	
 	}
 	
 

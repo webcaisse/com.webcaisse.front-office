@@ -166,13 +166,26 @@ $(document).ready(function() {
 		$.get("ajax/product/viderPanier");
 	};
 	
+	
 	ajouterNote=function(){
 		var message=$('#message').val() ;
 		$.get("ajax/product/ajouterNote/"+message);
 	}
 	
+	saisirModePaiement=function(montant,modePaiement){
+		$.ajax({
+			type : "GET",
+			url : "ajax/product/saisirModePaiement",
+			data :{montant : montant, modePaiement:modePaiement} 
+		});
+	} ;
+	
 	// gestion des événements 
 	
+	$( document ).on( "click", '.paiement',function() {
+		saisirModePaiement($('#solde').html(),$(this).attr('title')) ;
+	});
+
 	$( document ).on( "click", '.addNote',function() {
 		ajouterNote() ;
 	});
@@ -189,7 +202,8 @@ $(document).ready(function() {
 		incDecProduit($(this).parent().parent().parent().index(), -1);		
 	});
 	
-	$( document ).on( "click", '.button.editRemiseProduit',function() {
+	$( document ).on( "click", '.button.editRemiseProduit'
+			,function() {
 		afficherPopupRemise();
 	});
 	
