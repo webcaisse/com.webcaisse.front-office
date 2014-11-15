@@ -1,6 +1,5 @@
 <div id="popup_remise" style="display: none; height: 1091px; left: -47px;">
-	<input type="hidden" id="productId">
-	<input type="hidden" id="priceId">
+	<input type="hidden" id="indexLigneProduit">
 	<div class="modal-window block-border" style="display: block; left: -47px; top: 10px;">
 		<ul class="action-tabs right b-close">
 			<li>
