@@ -16,6 +16,16 @@ public class Panier {
 	private Double prixTtc = 0D;
 
 	private Double prixHt = 0D;
+	
+	private String message ;
+
+	public String getMessage() {
+		return message;
+	}
+
+	public void setMessage(String message) {
+		this.message = message;
+	}
 
 	public Double getPrixTtc() {
 		return prixTtc;

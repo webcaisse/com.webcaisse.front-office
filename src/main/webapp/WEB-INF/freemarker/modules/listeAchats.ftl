@@ -45,12 +45,9 @@
 				<div class="clearfix"></div><br>
 				    <p>
 						<label for="message">Message</label>
-						<textarea name="message" style="width: 95%; height: 60px;"></textarea>
+						<textarea id="message" name="message" style="width: 95%; height: 60px;"></textarea>
 					</p>
-				   <p>
-					<label for="commentaires">Commentaires</label>
-					<textarea name="commentaires" style="width: 95%; height: 75px;"></textarea>
-				   </p>
+				   <button class="addNote float-left" style="font-size: 14px; margin: 2px 0 0 50px;"><img src="images/icons/fugue/plus-circle.png" width="16" height="16"> Ajouter Notes</button>
 			</div>
 			
 	   </div>

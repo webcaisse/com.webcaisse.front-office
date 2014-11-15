@@ -179,4 +179,14 @@ public class ProductPageController {
 		}
 		return "modules/product/lignePanier";
 	}
-}
+	
+	
+	@RequestMapping(value = "/ajouterNote/{message}", method = RequestMethod.GET)
+	@ResponseBody
+	public void ajouterNote(@PathVariable String message) {
+		panier.setMessage(message) ;
+	}
+
+	}
+	
+

@@ -140,7 +140,7 @@ $(document).ready(function() {
 		$.ajax({
 			type : "GET",
 			url : "ajax/product/remiseProduit",
-			data :{indexLignePanier : 0, remiseValue:valueRemise} 
+			data :{indexLignePanier : idxLignePanier, remiseValue:valueRemise} 
 		}).done(function(nouveauPrix) {
 			if (nouveauPrix!='PAS_DE_REMISE'){
 				$('.button.lignePanierPrix:eq('+idxLignePanier+')').html(nouveauPrix);
@@ -166,7 +166,16 @@ $(document).ready(function() {
 		$.get("ajax/product/viderPanier");
 	};
 	
+	ajouterNote=function(){
+		var message=$('#message').val() ;
+		$.get("ajax/product/ajouterNote/"+message);
+	}
+	
 	// gestion des événements 
+	
+	$( document ).on( "click", '.addNote',function() {
+		ajouterNote() ;
+	});
 
 	$( document ).on( "click", '.button.deleteProduit',function() {
 		supprimerProduitDuPanier( $(this).parent('td').parent('tr').index() );
@@ -199,6 +208,7 @@ $(document).ready(function() {
 	$( document ).on( "click", '.produitOffert',function() {
 		offrirLignePanier($(this).parent('td').parent('tr').index());
 	});
+	
 
 	viderPanier();
 });
