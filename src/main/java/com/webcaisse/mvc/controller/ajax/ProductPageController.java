@@ -193,7 +193,6 @@ public class ProductPageController {
 		return message;
 	}
 
-<<<<<<< HEAD
 	@RequestMapping(value = "/saisirModePaiement", method = RequestMethod.GET)
 	@ResponseBody
 	public void saisirModePaiement(Double montant,@ModelAttribute("modePaiement") ModePaiement modePaiement ) {
@@ -204,16 +203,11 @@ public class ProductPageController {
 			modePaiement.setEspace(montant);
 			modePaiement.setFidelite(montant);
 			modePaiement.setTicketRestau(montant);
-			
-			
 		}
 		
-	} 
-	
-	
 	}
-=======
 }
->>>>>>> dev ajout des notes
+	
+	
 	
 
