@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.webcaisse.mvc.bean.LignePanier;
 import com.webcaisse.mvc.bean.ModePaiement;
+import com.webcaisse.mvc.bean.Paiement;
 import com.webcaisse.mvc.bean.Panier;
 import com.webcaisse.mvc.bean.RemiseProduit;
 import com.webcaisse.ws.interfaces.CaisseManagerService;
@@ -190,21 +191,24 @@ public class ProductPageController {
 
 	@RequestMapping(value = "/saisirModePaiement", method = RequestMethod.GET)
 	@ResponseBody
-	public void saisirModePaiement(Double montant,@ModelAttribute("modePaiement") ModePaiement modePaiement ) {
+	public void saisirModePaiement(@ModelAttribute("paiement") Paiement paiement) {
 	
-		if(montant != null && modePaiement != null){
-			modePaiement.setCb(montant);
-			modePaiement.setCheque(montant);
-			modePaiement.setEspace(montant);
-			modePaiement.setFidelite(montant);
-			modePaiement.setTicketRestau(montant);
-			
+		ModePaiement modePaiement= new ModePaiement() ;
+		
+		if (paiement.getIdModePaiement()=="Carte Bleue")	    modePaiement.setCb(paiement.getMontant());
+		if (paiement.getIdModePaiement()=="Cheque")		modePaiement.setCheque(paiement.getMontant());
+		if (paiement.getIdModePaiement()=="Especes")		modePaiement.setEspace(paiement.getMontant());
+		if (paiement.getIdModePaiement()=="carte de fidelite")		modePaiement.setFidelite(paiement.getMontant());
+		if (paiement.getIdModePaiement()=="ticket restaurant")		modePaiement.setTicketRestau(paiement.getMontant());
+		
+		System.out.println(paiement.getIdModePaiement());	
+		System.out.println(paiement.getMontant());	
 			
 		}
 		
 	} 
 	
 	
-	}
+	
 	
 

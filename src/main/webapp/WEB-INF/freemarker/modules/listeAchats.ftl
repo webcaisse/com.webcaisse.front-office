@@ -22,25 +22,7 @@
 			<input type="hidden" id="nbProduits" value="0">
 	        </br></br>
 			<div class="form container_12">
-					<div class="grid_6">
-						<fieldset>
-							<legend for="livraisonRadio">Mode de livraison</legend>
-							<ul class="checkable-list">
-								<li><input type="radio" name="livraisonRadio" value="0" checked="">&nbsp;Au comptoir</li>
-								<li><input type="radio" name="livraisonRadio" value="1">&nbsp;A emporter</li>
-								<li><input type="radio" name="livraisonRadio" value="2">&nbsp;A livrer</li>
-								<li class="nodisplay"><input type="radio" name="livraisonRadio" value="3">&nbsp;Transmition</li>
-							</ul>
-						</fieldset>
-					</div>
-					<div class="grid_6">
-						<fieldset>
-							<legend>Vendeur / Collaborateur</legend>
-							<ul class="checkable-list">
-								<li><input type="radio" name="idCaissier" value="2" checked="checked">&nbsp;admin</li>																																								<li><input type="radio" name="idCaissier" value="21">&nbsp;kevin</li>
-							</ul>
-						</fieldset>
-					</div>
+					
 				
 				<div class="clearfix"></div><br>
 				    <p>

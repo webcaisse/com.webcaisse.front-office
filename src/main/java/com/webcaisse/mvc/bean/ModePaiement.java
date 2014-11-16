@@ -8,6 +8,7 @@ public class ModePaiement {
 	private Double fidelite ;
 	private Double ticketRestau ;
 	
+	
 
 	public Double getEspace() {
 		return espace;
