@@ -1,32 +1,43 @@
 package com.webcaisse.mvc.bean;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class ModePaiement {
 	
-	private Double espace ;
+	private Double espece ;
 	private Double cb ;
 	private Double cheque ;
 	private Double fidelite ;
 	private Double ticketRestau ;
 	
 	
-
-	public Double getEspace() {
-		return espace;
-	}
 	public ModePaiement() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 	public ModePaiement(Double espace, Double cb, Double cheque,Double fidelite, Double ticketRestau) {
 		super();
-		this.espace = espace;
+		this.espece = espace;
 		this.cb = cb;
 		this.cheque = cheque;
 		this.fidelite = fidelite;
 		this.ticketRestau = ticketRestau;
 	}
-	public void setEspace(Double espace) {
-		this.espace = espace;
+	
+	public void empty(){
+		this.espece =null;
+		this.cb = null;
+		this.cheque = null;
+		this.fidelite = null;
+		this.ticketRestau = null;
+	}
+
+	public Double getEspece() {
+		return espece;
+	}
+
+	public void setEspece(Double espace) {
+		this.espece = espace;
 	}
 	public Double getCb() {
 		return cb;
@@ -53,5 +64,4 @@ public class ModePaiement {
 		this.ticketRestau = ticketRestau;
 	}
 
-	
 }

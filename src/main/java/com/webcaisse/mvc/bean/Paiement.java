@@ -2,14 +2,14 @@ package com.webcaisse.mvc.bean;
 
 public class Paiement {
 
-	String idModePaiement ;
+	Integer idModePaiement ;
 	Double montant ;
 	
 	
-	public String getIdModePaiement() {
+	public Integer getIdModePaiement() {
 		return idModePaiement;
 	}
-	public void setIdModePaiement(String idModePaiement) {
+	public void setIdModePaiement(Integer idModePaiement) {
 		this.idModePaiement = idModePaiement;
 	}
 	public Double getMontant() {

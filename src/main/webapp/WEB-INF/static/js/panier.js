@@ -175,9 +175,6 @@ $(document).ready(function() {
 	
 	ajouterNote = function(){
 		var message=$('#message').val() ;
-
-		$.get("ajax/product/ajouterNote/"+message);
-
 		$.ajax({
 			type : "GET",
 			url : "ajax/product/ajouterNote/"+message
@@ -190,6 +187,21 @@ $(document).ready(function() {
 
 	};
 	
+	afficherPopupModePaiement = function(mode){
+		$.ajax({
+			type : "GET",
+			url : "ajax/product/afficherPopupModePaiement/"+mode
+		}).done(function(montant) {
+			$('#prixPopupModePaiement').val(montant);
+			$('#popup_paiement').bPopup({
+				easing : 'easeOutBack',
+				speed : 450,
+				transition : 'slideDown'
+			});
+		});;
+		
+	};
+	
 	saisirModePaiement=function(montant,modePaiement){
 		$.ajax({
 			type : "GET",
@@ -197,18 +209,16 @@ $(document).ready(function() {
 			data :{montant : montant, idModePaiement:modePaiement} 
 		});
 		
-		};
+	};
 		
-   viderPanierModePaiement = function() {
-			$.get("ajax/product/viderPanierModePaiement");
-		};
-		
-				
+	viderPanierModePaiement = function() {
+		$.get("ajax/product/viderPanierModePaiement");
+	};
 		
 	// gestion des événements 
 	
 	$( document ).on( "click", '.paiement',function() {
-		saisirModePaiement(parseFloat($('#solde').html()),$(this).attr('title')) ;
+		afficherPopupModePaiement($(this).data('mode'));
 	});
 
 	$( document ).on( "click", '.addNote',function() {

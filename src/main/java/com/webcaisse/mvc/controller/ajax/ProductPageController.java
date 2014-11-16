@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.webcaisse.mvc.EnumModePaiement;
 import com.webcaisse.mvc.bean.LignePanier;
 import com.webcaisse.mvc.bean.ModePaiement;
 import com.webcaisse.mvc.bean.Paiement;
@@ -33,6 +34,9 @@ public class ProductPageController {
 	@Autowired
 	Panier panier;
 
+	@Autowired
+	ModePaiement modePaiement;
+	
 	@RequestMapping("loadFamillies")
 	@ResponseBody
 	public JsonFamillyResponse loadFamillies() {
@@ -188,35 +192,50 @@ public class ProductPageController {
 		panier.setMessage((messageActuel!=null?message:"")+message) ;
 		return message;
 	}
-
-	@RequestMapping(value = "/saisirModePaiement", method = RequestMethod.GET)
-	@ResponseBody
-	public void saisirModePaiement(@ModelAttribute("paiement") Paiement paiement) {
 	
+	@RequestMapping(value = "/afficherPopupModePaiement/{modePaiement}", method = RequestMethod.GET)
+	@ResponseBody
+	public String afficherPopupModePaiement(@PathVariable("modePaiement") Integer idModePaiement) {
+		
+		Double montant = 0D;
+		if (EnumModePaiement.CB.getMode().equals(idModePaiement)){
+			montant = modePaiement.getCb();
+		}else if (EnumModePaiement.CHEQUE.getMode().equals(idModePaiement)){
+			montant = modePaiement.getCheque();
+		}else if (EnumModePaiement.ESPECE.getMode().equals(idModePaiement)){
+			montant = modePaiement.getEspece();
+		}else if (EnumModePaiement.FIDELITE.getMode().equals(idModePaiement)){
+			montant = modePaiement.getFidelite();
+		}else if (EnumModePaiement.TR.getMode().equals(idModePaiement)){
+			montant = modePaiement.getTicketRestau();
+		}
+		return montant!=null?montant.toString():"";
+	}
 
-		ModePaiement modePaiement= new ModePaiement() ;
+	@RequestMapping(value = "/saisirMontantParModePaiement", method = RequestMethod.GET)
+	@ResponseBody
+	public void saisirMontantParModePaiement(@ModelAttribute("paiement") Paiement paiement) {
 		
-		if (paiement.getIdModePaiement()=="Carte Bleue")	    modePaiement.setCb(paiement.getMontant());
-		if (paiement.getIdModePaiement()=="Cheque")		modePaiement.setCheque(paiement.getMontant());
-		if (paiement.getIdModePaiement()=="Especes")		modePaiement.setEspace(paiement.getMontant());
-		if (paiement.getIdModePaiement()=="carte de fidelite")		modePaiement.setFidelite(paiement.getMontant());
-		if (paiement.getIdModePaiement()=="ticket restaurant")		modePaiement.setTicketRestau(paiement.getMontant());
-		
+		if (EnumModePaiement.CB.getMode().equals(paiement.getIdModePaiement())){
+			modePaiement.setCb(paiement.getMontant());
+		}else if (EnumModePaiement.CHEQUE.getMode().equals(paiement.getIdModePaiement())){
+			modePaiement.setCheque(paiement.getMontant());
+		}else if (EnumModePaiement.ESPECE.getMode().equals(paiement.getIdModePaiement())){
+			modePaiement.setEspece(paiement.getMontant());
+		}else if (EnumModePaiement.FIDELITE.getMode().equals(paiement.getIdModePaiement())){
+			modePaiement.setFidelite(paiement.getMontant());
+		}else if (EnumModePaiement.TR.getMode().equals(paiement.getIdModePaiement())){
+			modePaiement.setTicketRestau(paiement.getMontant());
+		}
 		System.out.println(paiement.getIdModePaiement());	
 		System.out.println(paiement.getMontant());	
-				
 	}
 	
 	@RequestMapping(value = "/viderPanierModePaiement", method = RequestMethod.GET)
 	@ResponseBody
 	public void viderPanierModePaiement() {
-		ModePaiement modePaiement= new ModePaiement() ;
 		panier.empty();
-		modePaiement.setCb(0.0);
-		modePaiement.setCheque(0.0);
-		modePaiement.setEspace(0.0);
-		modePaiement.setFidelite(0.0);
-		modePaiement.setTicketRestau(0.0);
+		modePaiement.empty();
 	}
 }
 	
