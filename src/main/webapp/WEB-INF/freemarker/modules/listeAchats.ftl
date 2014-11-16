@@ -24,12 +24,18 @@
 			<div class="form container_12">
 					
 				
-				<div class="clearfix"></div><br>
+				<div class="clearfix">
+				</div>
+				<br>
+				<hr>
 				    <p>
-						<label for="message">Message</label>
+						<label for="message" class="notes">Note</label>
+						<ul id="notes">
+						</ul>
+						</br>
 						<textarea id="message" name="message" style="width: 95%; height: 60px;"></textarea>
 					</p>
-				   <button class="addNote float-left" style="font-size: 14px; margin: 2px 0 0 50px;"><img src="images/icons/fugue/plus-circle.png" width="16" height="16"> Ajouter Notes</button>
+				   <button class="addNote float-left" style="font-size: 14px;"><img src="images/icons/fugue/plus-circle.png" width="16" height="16"> Ajouter Notes</button>
 			</div>
 			
 	   </div>

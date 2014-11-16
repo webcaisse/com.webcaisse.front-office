@@ -1,5 +1,7 @@
 package com.webcaisse.mvc.controller.ajax;
 
+import java.text.DecimalFormat;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -24,6 +26,7 @@ public class ProductPageController {
 	private static final Long ID_SOCIETE = 1L;
 	private static final String EURO ="EUR";
 	private static final Float MAX_VALUE_REMISE = 1F;
+	private static final DecimalFormat DECIMAL_FORMAT = new DecimalFormat( "#,##" );
 	@Autowired
 	CaisseManagerService caisseManagerService;
 
@@ -101,7 +104,7 @@ public class ProductPageController {
 			lignePanier.setRemise(remiseProduit.getRemiseValue());
 			
 			Double nouveauPrix  = (lignePanier.getPrix() - lignePanier.getPrix()*lignePanier.getRemise())* lignePanier.getQuantite();
-			return nouveauPrix.toString();
+			return DECIMAL_FORMAT.format(nouveauPrix);
 		}
 		
 		return "PAS_DE_REMISE";
@@ -185,14 +188,17 @@ public class ProductPageController {
 	
 	@RequestMapping(value = "/ajouterNote/{message}", method = RequestMethod.GET)
 	@ResponseBody
-	public void ajouterNote(@PathVariable String message) {
-		panier.setMessage(message) ;
+	public String ajouterNote(@PathVariable String message, ModelMap model) {
+		String messageActuel  = panier.getMessage();
+		panier.setMessage((messageActuel!=null?message:"")+message) ;
+		return message;
 	}
 
 	@RequestMapping(value = "/saisirModePaiement", method = RequestMethod.GET)
 	@ResponseBody
 	public void saisirModePaiement(@ModelAttribute("paiement") Paiement paiement) {
 	
+
 		ModePaiement modePaiement= new ModePaiement() ;
 		
 		if (paiement.getIdModePaiement()=="Carte Bleue")	    modePaiement.setCb(paiement.getMontant());
@@ -204,11 +210,11 @@ public class ProductPageController {
 		System.out.println(paiement.getIdModePaiement());	
 		System.out.println(paiement.getMontant());	
 			
-		}
+
 		
-	} 
+	}
+}
 	
 	
-	
-	
+
 

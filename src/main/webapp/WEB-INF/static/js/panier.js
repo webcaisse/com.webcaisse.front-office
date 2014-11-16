@@ -1,5 +1,7 @@
 $(document).ready(function() {
 
+	var pattern = /^\d{0,2}(\.\d{0,2}){0,1}$/;
+
 	/**
 	 * ajouter un produit au panier
 	 * 
@@ -97,19 +99,19 @@ $(document).ready(function() {
 	/**
 	 * Afficher le popup de remise
 	 */
-	afficherPopupRemise = function (){
+	afficherPopupRemise = function (index){
 		$('#popup_remise').bPopup({
 			easing : 'easeOutBack',
 			speed : 450,
 			transition : 'slideDown'
 		});
+		$('#indexLigneProduit').val(index);
 	};
 	
 	saisirMontantRemise =  function (value){
 		if (!value){
 			return ;
 		}
-		var pattern = /^\d{0,2}(\.\d{0,2}){0,1}$/;
 		var inputVal = $('input[id="prix"]');
 		if (value.indexOf('%')!=-1 && value!='%'){
 			inputVal.val(value);
@@ -131,22 +133,30 @@ $(document).ready(function() {
 	};
 	
 	doSubmitRemise = function (valueRemise, idxLignePanier){
-//		if(valueRemise==''){
-//			return;
-//		}
-//		if (valueRemise.indexOf('%')!=-1){
-//			valueRemise = valueRemise.replace('%','')/100;
-//		}
+
 		$.ajax({
 			type : "GET",
 			url : "ajax/product/remiseProduit",
-			data :{indexLignePanier : idxLignePanier, remiseValue:valueRemise} 
+			data :{indexLignePanier : idxLignePanier, remiseValue:formatterValeurRemise(valueRemise)} 
 		}).done(function(nouveauPrix) {
 			if (nouveauPrix!='PAS_DE_REMISE'){
 				$('.button.lignePanierPrix:eq('+idxLignePanier+')').html(nouveauPrix);
 				calculerPrixPanier();				
 			}
 		});
+	};
+	
+	formatterValeurRemise = function (valueRemise){
+	   if (pattern.test(valueRemise)){
+		   if (valueRemise==1){
+			   valueRemise=100;
+		   }
+		   return valueRemise/100;
+	   }else if (valueRemise.indexOf('%')!=-1){
+		   return formatterValeurRemise(valueRemise.replace('%',''));
+	   }else{
+		   return 0;// pas de remise
+	   }
 	};
 	
 	offrirLignePanier = function (index){
@@ -166,10 +176,21 @@ $(document).ready(function() {
 		$.get("ajax/product/viderPanier");
 	};
 	
-	
-	ajouterNote=function(){
+	ajouterNote = function(){
 		var message=$('#message').val() ;
+
 		$.get("ajax/product/ajouterNote/"+message);
+
+		$.ajax({
+			type : "GET",
+			url : "ajax/product/ajouterNote/"+message
+		}).done(function(notes) {
+			$( "<li>"+notes+"</li>" ).insertAfter( "#notes" );
+			$('#message').val("");
+			$('#message').focus();
+		});
+
+
 	};
 	
 	saisirModePaiement=function(montant,modePaiement){
@@ -202,9 +223,8 @@ $(document).ready(function() {
 		incDecProduit($(this).parent().parent().parent().index(), -1);		
 	});
 	
-	$( document ).on( "click", '.button.editRemiseProduit'
-			,function() {
-		afficherPopupRemise();
+	$( document ).on( "click", '.button.editRemiseProduit',function() {
+		afficherPopupRemise($(this).parent('td').parent('tr').index());
 	});
 	
 	$( document ).on( "click", '.calculette',function() {
@@ -216,7 +236,7 @@ $(document).ready(function() {
 	});
 	
 	$( document ).on( "click", '.submitRemise',function() {
-		doSubmitRemise($('input[id="prix"]').val(), $(this).parent('td').parent('tr').index() );
+		doSubmitRemise($('input[id="prix"]').val(), $('#indexLigneProduit').val());
 	});
 	
 	$( document ).on( "click", '.produitOffert',function() {
