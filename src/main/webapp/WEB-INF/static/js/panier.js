@@ -172,9 +172,6 @@ $(document).ready(function() {
 		doSubmitRemise(valueRemise, index);
 	};
 	
-	viderPanier = function() {
-		$.get("ajax/product/viderPanier");
-	};
 	
 	ajouterNote = function(){
 		var message=$('#message').val() ;
@@ -201,6 +198,13 @@ $(document).ready(function() {
 		});
 		
 		};
+		
+   viderPanierModePaiement = function() {
+			$.get("ajax/product/viderPanierModePaiement");
+		};
+		
+				
+		
 	// gestion des événements 
 	
 	$( document ).on( "click", '.paiement',function() {
@@ -244,5 +248,5 @@ $(document).ready(function() {
 	});
 	
 
-	viderPanier();
+	viderPanierModePaiement();
 });

@@ -158,12 +158,7 @@ public class ProductPageController {
 		return jsonPrixPanier;
 	}
 
-	@RequestMapping(value = "/viderPanier", method = RequestMethod.GET)
-	@ResponseBody
-	public void viderPanier() {
-		panier.empty();
-	}
-
+	
 	@RequestMapping(value = "/incDec", method = RequestMethod.GET)
 	public String incrementerDecrementer(Integer indexLignePanier, Integer quantite, ModelMap model) {
 		
@@ -209,9 +204,19 @@ public class ProductPageController {
 		
 		System.out.println(paiement.getIdModePaiement());	
 		System.out.println(paiement.getMontant());	
-			
-
-		
+				
+	}
+	
+	@RequestMapping(value = "/viderPanierModePaiement", method = RequestMethod.GET)
+	@ResponseBody
+	public void viderPanierModePaiement() {
+		ModePaiement modePaiement= new ModePaiement() ;
+		panier.empty();
+		modePaiement.setCb(0.0);
+		modePaiement.setCheque(0.0);
+		modePaiement.setEspace(0.0);
+		modePaiement.setFidelite(0.0);
+		modePaiement.setTicketRestau(0.0);
 	}
 }
 	

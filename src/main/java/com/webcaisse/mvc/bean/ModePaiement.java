@@ -17,8 +17,7 @@ public class ModePaiement {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public ModePaiement(Double espace, Double cb, Double cheque,
-			Double fidelite, Double ticketRestau) {
+	public ModePaiement(Double espace, Double cb, Double cheque,Double fidelite, Double ticketRestau) {
 		super();
 		this.espace = espace;
 		this.cb = cb;
