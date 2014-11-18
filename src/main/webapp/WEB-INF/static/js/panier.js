@@ -108,12 +108,11 @@ $(document).ready(function() {
 		$('#indexLigneProduit').val(index);
 	};
 	
-	saisirMontantRemise =  function (value){
+	saisirMontant =  function (value, inputVal){
 		if (!value){
 			return ;
 		}
-		var inputVal = $('input[id="prix"]');
-		if (value.indexOf('%')!=-1 && value!='%'){
+		if (pattern.test(value)==false && value.indexOf('%')!=-1 && value!='%'){
 			inputVal.val(value);
 		}else {
 		   if (pattern.test(value)){
@@ -208,7 +207,6 @@ $(document).ready(function() {
 			url : "ajax/product/saisirModePaiement",
 			data :{montant : montant, idModePaiement:modePaiement} 
 		});
-		
 	};
 		
 	viderPanierModePaiement = function() {
@@ -240,11 +238,15 @@ $(document).ready(function() {
 	$( document ).on( "click", '.button.editRemiseProduit',function() {
 		afficherPopupRemise($(this).parent('td').parent('tr').index());
 	});
-	
-	$( document ).on( "click", '.calculette',function() {
-		saisirMontantRemise($(this).attr('title'));
+		
+	$( document ).on( "click", '.calculette.calculettePaiement',function() {
+		saisirMontant($(this).data('montant'), $('input[id="prixPopupModePaiement"]'));
 	});
 	
+	$( document ).on( "click", '.calculette',function() {
+		saisirMontant($(this).attr('title'), $('input[id="prix"]'));
+	});
+
 	$( document ).on( "click", '.calculette.effacer',function() {
 		effacerMontantRemise();
 	});
