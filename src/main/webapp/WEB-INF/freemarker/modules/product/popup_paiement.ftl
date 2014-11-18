@@ -1,5 +1,6 @@
 	<div id="popup_paiement" style="left: 433px; position: absolute; top: 302px; z-index: 9999; opacity: 1;">
 		
+	<input type="hidden" id="modePaiement">
 	<ul class="action-tabs right">
 		<li><span class="b-close">
 		<a href="#" title="Close window">
@@ -31,6 +32,15 @@
 		
 			<span class="input-type-text" id="prixPopupPaiement"><input type="text" id="prixPopupModePaiement" value=""></span>
 		</p>
-	</div></div><div class="block-footer align-right">
-	<button type="button" class="red b-close"><img src="images/icons/fugue/cross-circle.png" width="16" height="16" title="Fermer"> Fermer</button>&nbsp;<button type="button" class="grey"><img src="images/icons/fugue/tick-circle.png" width="16" height="16" title="Valider"> Valider</button></div></div>
+	</div>
+	</div>
+	<div class="block-footer align-right">
+		<button type="button" id="closePopupPaiement" class="red b-close">
+			<img src="images/icons/fugue/cross-circle.png" width="16" height="16" title="Fermer"> Fermer
+		</button>&nbsp;
+		<button type="button" class="validerMontant grey">
+			<img src="images/icons/fugue/tick-circle.png" width="16" height="16" title="Valider"> Valider
+		</button>
+	</div>
+	</div>
 	</div>
