@@ -105,7 +105,43 @@ $(document).ready(function() {
 			$('#message').val("");
 			$('#message').focus();
 		});
+
+
 	};
+	
+	afficherPopupModePaiement = function(mode){
+		$.ajax({
+			type : "GET",
+			url : "ajax/product/afficherPopupModePaiement/"+mode
+		}).done(function(montant) {
+			$('#prixPopupModePaiement').val(montant);
+			$('#popup_paiement').bPopup({
+				easing : 'easeOutBack',
+				speed : 450,
+				transition : 'slideDown'
+			});
+		});
+		
+	};
+	
+	saisirModePaiement=function(montant,modePaiement){
+		$.ajax({
+			type : "GET",
+			url : "ajax/product/saisirModePaiement",
+			data :{montant : montant, idModePaiement:modePaiement} 
+		});
+		
+
+	};
+	
+	sauvegarderCommande=function(){
+		$.ajax({
+			type : "GET",
+			url : "ajax/product/sauvegarderCommande" 
+		}).done(function() {
+			location.reload();
+		});
+	} ;
 		
 	viderPanierModePaiement = function() {
 		$.get("ajax/product/viderPanierModePaiement");
@@ -129,5 +165,32 @@ $(document).ready(function() {
 		incDecProduit($(this).parent().parent().parent().index(), -1);		
 	});
 	
+
+	$( document ).on( "click", '.button.editRemiseProduit',function() {
+		afficherPopupRemise($(this).parent('td').parent('tr').index());
+	});
+	
+	$( document ).on( "click", '.calculette',function() {
+		saisirMontantRemise($(this).attr('title'));
+	});
+	
+	$( document ).on( "click", '.calculette.effacer',function() {
+		effacerMontantRemise();
+	});
+	
+	$( document ).on( "click", '.submitRemise',function() {
+		doSubmitRemise($('input[id="prix"]').val(), $('#indexLigneProduit').val());
+	});
+	
+	$( document ).on( "click", '.produitOffert',function() {
+		offrirLignePanier($(this).parent('td').parent('tr').index());
+	});
+	
+
+	$( document ).on( "click", '#terminer',function() {
+		sauvegarderCommande();
+	});
+	
+
 	viderPanierModePaiement();
 });

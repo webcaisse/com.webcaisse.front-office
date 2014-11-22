@@ -1,10 +1,13 @@
 package com.webcaisse.mvc.controller.ajax;
 
 import java.text.DecimalFormat;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.util.CollectionUtils;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,6 +21,8 @@ import com.webcaisse.mvc.bean.Paiement;
 import com.webcaisse.mvc.bean.Panier;
 import com.webcaisse.mvc.bean.RemiseProduit;
 import com.webcaisse.ws.interfaces.CaisseManagerService;
+import com.webcaisse.ws.model.CommandeIn;
+import com.webcaisse.ws.model.LigneCommandeIn;
 import com.webcaisse.ws.model.ProduitOut;
 
 @Controller
@@ -25,6 +30,7 @@ import com.webcaisse.ws.model.ProduitOut;
 public class ProductPageController {
 	
 	private static final Long ID_SOCIETE = 1L;
+	private static final Long  ID_SESSION=1L ;
 	private static final String EURO ="EUR";
 	private static final Float MAX_VALUE_REMISE = 1F;
 	private static final DecimalFormat DECIMAL_FORMAT = new DecimalFormat( "#,##" );
@@ -237,8 +243,51 @@ public class ProductPageController {
 		panier.empty();
 		modePaiement.empty();
 	}
-}
 	
+	@RequestMapping (value = "/sauvegarderCommande", method = RequestMethod.GET)
+	@ResponseBody
+	public Long sauvegarderCommande() {
+		
+		
+		Long idCommande = null ;
+		CommandeIn commande = new CommandeIn() ;	
+
+		commande.setRegCB(modePaiement.getCb());
+		commande.setRegCarteFidelite(modePaiement.getFidelite());
+		commande.setRegCheque(modePaiement.getCheque());
+		commande.setRegEspece(modePaiement.getEspece());
+		commande.setRegTicketRestau(modePaiement.getTicketRestau());
+		commande.setIdSession(ID_SESSION);;
+		
+		
+		commande.setMontant(panier.getPrixTtc());
+		commande.setNotes(panier.getMessage());
+		
+		List<LigneCommandeIn> commandeIns =new ArrayList<LigneCommandeIn>();
+		commande.setLignesCommandesIn(commandeIns);
+		
+		// faire un boucle sur panier.getLignePanier pour construire les LigneCOmmandeIn
+		if (!CollectionUtils.isEmpty(panier.getLignesPanier())){
+			for (LignePanier lignePanier : panier.getLignesPanier()) {
+				LigneCommandeIn in = new LigneCommandeIn();
+				in.setIdProduit(lignePanier.getIdProduit());
+				in.setPrix(lignePanier.getPrix());
+				in.setQuantite(lignePanier.getQuantite());
+				in.setTotal(lignePanier.getPrix()*lignePanier.getQuantite());
+				
+				commandeIns.add(in);
+			}
+		}
+		
+		idCommande = caisseManagerService.sauvegarderCommande(commande);
+		
+		return idCommande ;
+	}
+		
+	
+}
+
+
 	
 
 

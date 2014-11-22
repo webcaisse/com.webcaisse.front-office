@@ -1,11 +1,11 @@
 	 <div id="tab-paiements" style="display: none;">
 	    	<div class="container_12">
 		        <div class="grid_6">
-					<a class="paiement" href="javascript:paiement();" title="Cheque" data-mode="3">CHQ</a>
-					<a class="paiement" href="javascript:paiement();" title="ticket restaurant" data-mode="5">T R</a>
-					<a class="paiement" href="javascript:paiement();" title="Especes" data-mode="1">ESP</a>
-					<a class="paiement" href="javascript:paiement();" title="Carte Bleue" data-mode="2">CB</a>
-					<a class="paiement" href="javascript:paiement();" title="carte de fidelite" data-mode="4">FID</a>
+					<a class="paiement" href="javascript:;" title="Cheque" data-mode="3">CHQ</a>
+					<a class="paiement" href="javascript:;" title="ticket restaurant" data-mode="5">T R</a>
+					<a class="paiement" href="javascript:;" title="Especes" data-mode="1">ESP</a>
+					<a class="paiement" href="javascript:;" title="Carte Bleue" data-mode="2">CB</a>
+					<a class="paiement" href="javascript:;" title="carte de fidelite" data-mode="4">FID</a>
 			      </div>
 			    
 			      
