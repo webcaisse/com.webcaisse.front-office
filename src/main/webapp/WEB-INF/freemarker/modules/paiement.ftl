@@ -10,7 +10,7 @@
 			    
 			      
 		        <div class="grid_6">
-					<table class="table" cellspacing="0" width="100%">
+					<table class="table tablePaiement" cellspacing="0" width="100%">
 						<thead>
 							<tr>
 								<th scope="col">
@@ -24,6 +24,15 @@
 						</thead>
 	
 						<tbody>
+							<tr style="display :none;">
+								<td>CB</td>
+								<td class="montant">2</td>
+								<td class="table-actions">
+									<a href="javascript:;" title="Supprimer" class="with-tip deletePaiement" rel="CB">
+										<img src="images/icons/fugue/cross-circle.png" width="16" height="16">
+									</a>
+								</td>
+							</tr>
 						</tbody>
 					</table>
 					<table class="table" cellspacing="0" width="100%">
