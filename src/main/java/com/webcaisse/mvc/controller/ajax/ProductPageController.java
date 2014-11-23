@@ -247,8 +247,6 @@ public class ProductPageController {
 	@RequestMapping (value = "/sauvegarderCommande", method = RequestMethod.GET)
 	@ResponseBody
 	public Long sauvegarderCommande() {
-		
-		
 		Long idCommande = null ;
 		CommandeIn commande = new CommandeIn() ;	
 
