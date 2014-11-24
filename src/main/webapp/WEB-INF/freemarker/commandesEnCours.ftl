@@ -1,6 +1,6 @@
 <#import "spring.ftl" as spring />
 <head>
-<#include "head.ftl">	
+<#include "modules/head.ftl">	
 </head>
 
 <body data-base="https://test.caisseenligne.fr">
@@ -132,22 +132,27 @@
 						<a href="#" title="Sort up" class="sort-up"></a>
 						<a href="#" title="Sort down" class="sort-down"></a>
 					</span>
-					Libellé
+					Libellé Produits
 				</th>
-				<th scope="col" class="sorting_disabled" style="width: 550.400001525879px;">
-					<span class="column-sort">
-						<a href="#" title="Sort up" class="sort-up"></a>
-						<a href="#" title="Sort down" class="sort-down"></a>
-					</span>
-					Produits
-				</th>
+			
 				<th scope="col" class="table-actions sorting_disabled" style="width: 269.400001525879px;">Actions</th>
 			</tr>
 		</thead>
 
 		
 
-	<tbody id="commandesTbody"><tr class="odd"><td valign="top" colspan="5" class="dataTables_empty">Aucun élément à afficher</td></tr></tbody></table><div class="message no-margin">Affichage de l'élement 0 à 0 sur 0 éléments</div></div>
+	<tbody id="commandesTbody">
+	   <#list commandes as commande>
+	     <tr class="odd">
+	       <td>${(commande.dateCommande?date)!}</td>
+	       <td>0</td>
+	       <td>${commande.libelleProduit}</td>
+	        <td>0</td>
+	      </tr>
+	   </#list>   
+	 </tbody>
+	 </table>
+	 <div class="message no-margin">Affichage de l'élement 0 à 0 sur 0 éléments</div></div>
 	<iframe id="ifrImpression" name="ifrImpression" style="width: 0; height: 0; margin: auto; border: 0;"></iframe>
 </section>
 		<div class="clear"></div>

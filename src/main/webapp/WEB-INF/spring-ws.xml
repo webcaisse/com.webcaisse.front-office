@@ -13,7 +13,15 @@
 
 	<jaxws:client id="gestionCaisse"
 		serviceClass="com.webcaisse.ws.interfaces.CaisseManagerService"
-		 address="http://localhost:7777/caisse_ws/gestionCaisse" />
+		 address="http://localhost:8092/caisse_ws/gestionCaisse" />
+		 
+     <jaxws:client id="gestionCommande"
+		serviceClass="com.webcaisse.ws.interfaces.CommandeManagerService"
+		 address="http://localhost:8092/caisse_ws/gestionCommande" />	
+		 
+	     <jaxws:client id="gestionClient"
+		serviceClass="com.webcaisse.ws.interfaces.ClientManagerService"
+		 address="http://localhost:8092/caisse_ws/gestionClient" />		 	 
 
  
  <bean name="logginfInterceptor" class="org.apache.cxf.interceptor.LoggingInInterceptor"/>

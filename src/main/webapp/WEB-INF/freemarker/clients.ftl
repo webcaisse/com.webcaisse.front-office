@@ -153,67 +153,26 @@
 
 		
 
-	<tbody><tr class="odd">
-					<td style="cursor: pointer;" title="Cliquez pour voir la fiche client" class="voirClient with-tip sorting_1" rel="2">Anonyme</td>
-					<td style="cursor: pointer;" title="Cliquez pour voir la fiche client" class="voirClient with-tip" rel="2"></td>
-					<td style="cursor: pointer;" title="Cliquez pour voir la fiche client" class="voirClient with-tip" rel="2">
-						<a href="mailto:" title="Envoyer un email"></a>
-					</td>
-					<td style="cursor: pointer;" title="Cliquez pour voir la fiche client" class="voirClient with-tip" rel="2">
-												-
-											</td>
-					<td class="table-actions">
-											</td>
-				</tr><tr class="even">
-					<td style="cursor: pointer;" title="" class="voirClient with-tip sorting_1" rel="88">eddie</td>
-					<td style="cursor: pointer;" title="Cliquez pour voir la fiche client" class="voirClient with-tip" rel="88"></td>
+	<tbody>
+	
+	<#list clients as client>
+	   <tr class="odd">
+					
+				
+					<td style="cursor: pointer;" title="" class="voirClient with-tip sorting_1" rel="88">${client.nom}</td>
+					<td style="cursor: pointer;" title="Cliquez pour voir la fiche client" class="voirClient with-tip" rel="88">${client.prenom}</td>
 					<td style="cursor: pointer;" title="Cliquez pour voir la fiche client" class="voirClient with-tip" rel="88">
-						<a href="mailto:jessica4954@gmail.com" title="Envoyer un email">jessica4954@gmail.com</a>
+						<a href="mailto:jessica4954@gmail.com" title="Envoyer un email">${client.email}</a>
 					</td>
-					<td style="cursor: pointer;" title="Cliquez pour voir la fiche client" class="voirClient with-tip" rel="88">
-												-
-											</td>
+					<td style="cursor: pointer;" title="Cliquez pour voir la fiche client" class="voirClient with-tip" rel="88">${client.telephone} </td>
 					<td class="table-actions">
-													<a href="javascript:;" title="Modifier" class="with-tip editClient" rel="88"><img src="images/icons/fugue/pencil.png" width="16" height="16"></a>
-															<a href="javascript:;" title="Supprimer" class="with-tip deleteClient" rel="88"><img src="images/icons/fugue/cross-circle.png" width="16" height="16"></a>
-																		</td>
-				</tr><tr class="odd">
-					<td style="cursor: pointer;" title="Cliquez pour voir la fiche client" class="voirClient with-tip sorting_1" rel="89">liberg</td>
-					<td style="cursor: pointer;" title="Cliquez pour voir la fiche client" class="voirClient with-tip" rel="89">jeanne</td>
-					<td style="cursor: pointer;" title="Cliquez pour voir la fiche client" class="voirClient with-tip" rel="89">
-						<a href="mailto:" title="Envoyer un email"></a>
+					  <a href="javascript:;" title="Modifier" class="with-tip editClient" rel="88"><img src="images/icons/fugue/pencil.png" width="16" height="16"></a>
+					  <a href="javascript:;" title="Supprimer" class="with-tip deleteClient" rel="88"><img src="images/icons/fugue/cross-circle.png" width="16" height="16"></a>
 					</td>
-					<td style="cursor: pointer;" title="Cliquez pour voir la fiche client" class="voirClient with-tip" rel="89">
-												-
-											</td>
-					<td class="table-actions">
-													<a href="javascript:;" title="Modifier" class="with-tip editClient" rel="89"><img src="images/icons/fugue/pencil.png" width="16" height="16"></a>
-															<a href="javascript:;" title="Supprimer" class="with-tip deleteClient" rel="89"><img src="images/icons/fugue/cross-circle.png" width="16" height="16"></a>
-																		</td>
-				</tr><tr class="even">
-					<td style="cursor: pointer;" title="Cliquez pour voir la fiche client" class="voirClient with-tip sorting_1" rel="87">Marcé</td>
-					<td style="cursor: pointer;" title="Cliquez pour voir la fiche client" class="voirClient with-tip" rel="87">Marine</td>
-					<td style="cursor: pointer;" title="Cliquez pour voir la fiche client" class="voirClient with-tip" rel="87">
-						<a href="mailto:marine.80500@hotmail.fr" title="Envoyer un email">marine.80500@hotmail.fr</a>
-					</td>
-					<td style="cursor: pointer;" title="Cliquez pour voir la fiche client" class="voirClient with-tip" rel="87">
-													0695693606											</td>
-					<td class="table-actions">
-													<a href="javascript:;" title="Modifier" class="with-tip editClient" rel="87"><img src="images/icons/fugue/pencil.png" width="16" height="16"></a>
-															<a href="javascript:;" title="Supprimer" class="with-tip deleteClient" rel="87"><img src="images/icons/fugue/cross-circle.png" width="16" height="16"></a>
-																		</td>
-				</tr><tr class="odd">
-					<td style="cursor: pointer;" title="Cliquez pour voir la fiche client" class="voirClient with-tip sorting_1" rel="1">Perte</td>
-					<td style="cursor: pointer;" title="Cliquez pour voir la fiche client" class="voirClient with-tip" rel="1"></td>
-					<td style="cursor: pointer;" title="Cliquez pour voir la fiche client" class="voirClient with-tip" rel="1">
-						<a href="mailto:" title="Envoyer un email"></a>
-					</td>
-					<td style="cursor: pointer;" title="Cliquez pour voir la fiche client" class="voirClient with-tip" rel="1">
-												-
-											</td>
-					<td class="table-actions">
-											</td>
-				</tr></tbody></table><div class="message no-margin">Affichage de l'élement 1 à 5 sur 5 éléments</div></div>
+				
+	     </tr>
+	</#list>
+	</tbody></table><div class="message no-margin">Affichage de l'élement 1 à 5 sur 5 éléments</div></div>
 </section>
 <iframe id="ifrExport" name="ifrExport" style="width: 0; height: 0; margin: auto; border: 0;"></iframe>
 		<div class="clear"></div>
