@@ -1,6 +1,13 @@
 <#import "spring.ftl" as spring />
 <head>
-<#include "modules/head.ftl">	
+<#include "modules/head.ftl">
+<link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css">
+  <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+  <script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>	<script>
+  $(function() {
+    $( "#datepicker" ).datepicker({ dateFormat: "dd/mm/yy" });
+  });
+  </script>
 </head>
 
 <body data-base="https://test.caisseenligne.fr">
@@ -110,7 +117,9 @@
 		<section class=" block-content">
 	<h1>Liste des commandes</h1>
 
-	<div class="no-margin last-child"><div class="block-controls"><div class="controls-buttons"><div class="sub-hover paging_two_button"><div class="control-prev disabled" title="Précédent"></div><div class="control-next disabled" title="Suivant"></div></div></div></div><div class="block-footer clearfix filter"><div class="float-left">Afficher <select size="1"><option value="10">10</option><option value="25">25</option><option value="50">50</option><option value="100" selected="selected">100</option></select> éléments</div><div class="float-right">Rechercher : <input type="text"></div></div><table class="table sortable" cellspacing="0" width="100%">
+	<div class="no-margin last-child"><div class="block-controls"><div class="controls-buttons"><div class="sub-hover paging_two_button"><div class="control-prev disabled" title="Précédent"></div><div class="control-next disabled" title="Suivant"></div></div></div></div><div class="block-footer clearfix filter"><div class="float-left">Afficher <select size="1"><option value="10">10</option><option value="25">25</option><option value="50">50</option><option value="100" selected="selected">100</option></select> éléments</div><div class="float-right">Rechercher : <input type="text" id="datepicker" style="position: relative; z-index: 100000;">
+	<a href="javascript:;" class="addClient">Actualiser</a>
+	</div></div><table class="table sortable" cellspacing="0" width="100%">
 		<thead>
 			<tr>
 				<th scope="col" style="width: 149.400001525879px;" class="sorting_desc">
@@ -142,14 +151,16 @@
 		
 
 	<tbody id="commandesTbody">
-	   <#list commandes as commande>
-	     <tr class="odd">
-	       <td>${(commande.dateCommande?date)!}</td>
-	       <td>0</td>
-	       <td>${commande.libelleProduit}</td>
-	        <td>0</td>
-	      </tr>
-	   </#list>   
+	   <#if commandes??>
+		   <#list commandes as commande>
+		     <tr class="odd">
+		       <td>${(commande.dateCommande?date)!}</td>
+		       <td>0</td>
+		       <td>${commande.libelleProduit}</td>
+		        <td>0</td>
+		      </tr>
+		   </#list>   
+	   </#if>
 	 </tbody>
 	 </table>
 	 <div class="message no-margin">Affichage de l'élement 0 à 0 sur 0 éléments</div></div>
