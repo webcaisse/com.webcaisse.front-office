@@ -65,6 +65,10 @@ $(document).ready(
 				$('.button.b-close').click(); 
 			};
 			
+			
+			
+			
+		
 			// Gestion des événements 
 			
 			$('li.famille').click(function(e){ 

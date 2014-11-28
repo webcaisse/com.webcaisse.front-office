@@ -116,9 +116,15 @@
 		
 		<section class=" block-content">
 	<h1>Liste des commandes</h1>
+	   <#if commandes??>
+		   <#list commandes as commande>
 
-	<div class="no-margin last-child"><div class="block-controls"><div class="controls-buttons"><div class="sub-hover paging_two_button"><div class="control-prev disabled" title="Précédent"></div><div class="control-next disabled" title="Suivant"></div></div></div></div><div class="block-footer clearfix filter"><div class="float-left">Afficher <select size="1"><option value="10">10</option><option value="25">25</option><option value="50">50</option><option value="100" selected="selected">100</option></select> éléments</div><div class="float-right">Rechercher : <input type="text" id="datepicker" style="position: relative; z-index: 100000;">
-	<a href="javascript:;" class="addClient">Actualiser</a>
+    <form action="/commandes/rechercherCommand" method="get">
+	<div class="no-margin last-child"><div class="block-controls"><div class="controls-buttons"><div class="sub-hover paging_two_button"><div class="control-prev disabled" title="Précédent"></div><div class="control-next disabled" title="Suivant"></div></div></div></div><div class="block-footer clearfix filter"><div class="float-left">Afficher <select size="1"><option value="10">10</option><option value="25">25</option><option value="50">50</option><option value="100" selected="selected">100</option></select> éléments</div><div class="float-right">Rechercher : <input type="text" id="datepicker" name="dateCommande" style="position: relative; z-index: 100000;">
+	
+ 	<input type="submit" value="Actualiser"> 
+ 	</form>
+ 	
 	</div></div><table class="table sortable" cellspacing="0" width="100%">
 		<thead>
 			<tr>
@@ -146,21 +152,17 @@
 			
 				<th scope="col" class="table-actions sorting_disabled" style="width: 269.400001525879px;">Actions</th>
 			</tr>
-		</thead>
-
-		
+		</thead>	
 
 	<tbody id="commandesTbody">
-	   <#if commandes??>
-		   <#list commandes as commande>
+	
 		     <tr class="odd">
-		       <td>${(commande.dateCommande?date)!}</td>
+		       <td>${commande.dateCommande?string["dd/MM/yyyy"]}</td>
 		       <td>0</td>
 		       <td>${commande.libelleProduit}</td>
 		        <td>0</td>
 		      </tr>
-		   </#list>   
-	   </#if>
+		
 	 </tbody>
 	 </table>
 	 <div class="message no-margin">Affichage de l'élement 0 à 0 sur 0 éléments</div></div>
@@ -171,6 +173,7 @@
 	</article>
 	<footer>
 	</footer>
-
+   </#list>   
+	   </#if>
 </body>
 </html>
