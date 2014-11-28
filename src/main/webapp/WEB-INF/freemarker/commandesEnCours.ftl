@@ -10,7 +10,7 @@
   </script>
 </head>
 
-<body data-base="https://test.caisseenligne.fr">
+<body>
 	<!-- Header -->
 <div id="headerHide">
 		<!-- Server status -->
@@ -46,36 +46,36 @@
 		<div class="pull-right" style="padding-top: 5px; padding-right: 15px;">
 
 				<ul id="status-infos" class="float-right">
-											<li>
-							<div class="button menu-opener">
-								<img src="images/icons/fugue/database.png">
-								<div class="menu-arrow">
-									<img src="images/menu-open-arrow.png" width="16" height="16">
-								</div>
-								<div class="menu">
-									<ul>
-										<li class="icon_export"><a href="https://test.caisseenligne.fr/index/dump" title="Sauvegarder la base de donnée">Sauvegarder</a></li>
-										<li class="icon_import"><a href="https://test.caisseenligne.fr/index/restaurer" title="Restaurer la base de donnée">Restaurer</a></li>
-									</ul>
-								</div>
+					<li>
+						<div class="button menu-opener">
+							<img src="images/icons/fugue/database.png">
+							<div class="menu-arrow">
+								<img src="images/menu-open-arrow.png" width="16" height="16">
 							</div>
-						</li>
-																<li>
-							<a href="javascript:;" class="button" title="Alertes de stock"><img src="images/icons/fugue/balloon.png" width="16" height="16"> <strong id="nbAlertes"></strong></a>
-							<div class="result-block">
-								<ul class="small-files-list icon-warning" id="alertesListe"></ul>
+							<div class="menu">
+								<ul>
+									<li class="icon_export"><a href="https://test.caisseenligne.fr/index/dump" title="Sauvegarder la base de donnée">Sauvegarder</a></li>
+									<li class="icon_import"><a href="https://test.caisseenligne.fr/index/restaurer" title="Restaurer la base de donnée">Restaurer</a></li>
+								</ul>
 							</div>
-						</li>
-																<li>
-							<a href="javascript:;" class="button" title="Planning"><img src="images/icons/fugue/calendar-day.png" width="16" height="16"> <strong id="nbPlanning"></strong></a>
-							<div class="result-block">
-								<table cellspacing="0" class="list-calendar">
-								    <tbody id="planningListe">
-								    </tbody>
-								</table>
-							</div>
-						</li>
-										<li>
+						</div>
+					</li>
+					<li>
+						<a href="javascript:;" class="button" title="Alertes de stock"><img src="images/icons/fugue/balloon.png" width="16" height="16"> <strong id="nbAlertes"></strong></a>
+						<div class="result-block">
+							<ul class="small-files-list icon-warning" id="alertesListe"></ul>
+						</div>
+					</li>
+					<li>
+						<a href="javascript:;" class="button" title="Planning"><img src="images/icons/fugue/calendar-day.png" width="16" height="16"> <strong id="nbPlanning"></strong></a>
+						<div class="result-block">
+							<table cellspacing="0" class="list-calendar">
+							    <tbody id="planningListe">
+							    </tbody>
+							</table>
+						</div>
+					</li>
+					<li>
 						<a href="javascript:;" class="button" title="Envoyez un message" id="sendMail"><img src="images/icons/fugue/mail.png" width="16" height="16"></a>
 					</li>
 					<li>
@@ -114,18 +114,36 @@
 	
 	<article class="container_12" id="contentD">
 		
-		<section class=" block-content">
+	<section class=" block-content">
 	<h1>Liste des commandes</h1>
-	   <#if commandes??>
-		   <#list commandes as commande>
-
-    <form action="/commandes/rechercherCommand" method="get">
-	<div class="no-margin last-child"><div class="block-controls"><div class="controls-buttons"><div class="sub-hover paging_two_button"><div class="control-prev disabled" title="Précédent"></div><div class="control-next disabled" title="Suivant"></div></div></div></div><div class="block-footer clearfix filter"><div class="float-left">Afficher <select size="1"><option value="10">10</option><option value="25">25</option><option value="50">50</option><option value="100" selected="selected">100</option></select> éléments</div><div class="float-right">Rechercher : <input type="text" id="datepicker" name="dateCommande" style="position: relative; z-index: 100000;">
 	
- 	<input type="submit" value="Actualiser"> 
- 	</form>
- 	
-	</div></div><table class="table sortable" cellspacing="0" width="100%">
+	<div class="no-margin last-child">
+		<div class="block-controls">
+			<div class="controls-buttons">
+				<div class="sub-hover paging_two_button">
+					<div class="control-prev disabled" title="Précédent">
+				</div>
+				<div class="control-next disabled" title="Suivant"></div>
+			</div>
+		</div>
+	</div>
+	<div class="block-footer clearfix filter">
+		<div class="float-left">Afficher 
+			<select size="1">
+				<option value="10">10</option>
+				<option value="25">25</option>
+				<option value="50">50</option>
+				<option value="100" selected="selected">100</option>
+			</select> éléments
+		</div>
+		<div class="float-right">
+			<form action="${rc.getContextPath()}/commandes/rechercherCommande">Rechercher : 
+				<input type="text" id="datepicker" name="dateCommande" style="position: relative; z-index: 100000;">
+		 		<input type="submit" value="Actualiser">
+		 	</form> 
+		</div>
+	</div>
+	<table class="table sortable" cellspacing="0" width="100%">
 		<thead>
 			<tr>
 				<th scope="col" style="width: 149.400001525879px;" class="sorting_desc">
@@ -155,6 +173,8 @@
 		</thead>	
 
 	<tbody id="commandesTbody">
+	   <#if commandes??>
+		   <#list commandes as commande>
 	
 		     <tr class="odd">
 		       <td>${commande.dateCommande?string["dd/MM/yyyy"]}</td>
@@ -162,7 +182,8 @@
 		       <td>${commande.libelleProduit}</td>
 		        <td>0</td>
 		      </tr>
-		
+			</#list>   
+	   </#if>	
 	 </tbody>
 	 </table>
 	 <div class="message no-margin">Affichage de l'élement 0 à 0 sur 0 éléments</div></div>
@@ -173,7 +194,6 @@
 	</article>
 	<footer>
 	</footer>
-   </#list>   
-	   </#if>
+   
 </body>
 </html>

@@ -5,14 +5,12 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.webcaisse.ws.interfaces.CaisseManagerService;
 import com.webcaisse.ws.interfaces.CommandeManagerService;
 import com.webcaisse.ws.model.CommandeOut;
 
@@ -25,7 +23,7 @@ public class CommandePageController {
 	
 	private static final Long ID_SOCIETE = 1L;
 	
-	@RequestMapping("/enCours/{idSession}")
+	@RequestMapping(value = "/enCours/{idSession}", method=RequestMethod.GET)
 	public String afficherCommandeEnCours(ModelMap model,@PathVariable  Long idSession){
 		
 		List<CommandeOut> commandes = commandeManagerService.rechercherCommande(idSession) ;
@@ -35,7 +33,7 @@ public class CommandePageController {
 		return "/commandesEnCours";
 	}
 	
-	@RequestMapping("/rechercherCommande")
+	@RequestMapping(value = "/rechercherCommande",  method=RequestMethod.GET)
 	public String rechercherCommandes(@RequestParam(value="dateCommande") Date  dateCommande,ModelMap model){
 		
 		//List<CommandeOut> commandes = commandeManagerService.rechercherCommandeParDate(ID_SOCIETE, dateCommande) ;

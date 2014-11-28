@@ -23,6 +23,7 @@
 		<property name="cache" value="true" />
 		<property name="prefix" value="" />
 		<property name="suffix" value=".ftl" />
+		<property name="requestContextAttribute" value="rc"/>
 	</bean>
 
 
