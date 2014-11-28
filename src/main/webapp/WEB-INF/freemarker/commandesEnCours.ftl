@@ -138,7 +138,7 @@
 		</div>
 		<div class="float-right">
 			<form action="${rc.getContextPath()}/commandes/rechercherCommande">Rechercher : 
-				<input type="text" id="datepicker" name="dateCommande" style="position: relative; z-index: 100000;">
+				<input type="text" id="datepicker" name="dateCommande" value="${dateCommande}" style="position: relative; z-index: 100000;">
 		 		<input type="submit" value="Actualiser">
 		 	</form> 
 		</div>
