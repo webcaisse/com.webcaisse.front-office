@@ -5,7 +5,7 @@
   <script src="//code.jquery.com/jquery-1.10.2.js"></script>
   <script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>	<script>
   $(function() {
-    $( "#datepicker" ).datepicker({ dateFormat: "dd/mm/yy" });
+    $( "#datepicker" ).datepicker({ dateFormat: "dd-mm-yy" });
   });
   </script>
 </head>
@@ -39,7 +39,7 @@
 		</div>
 		<div class="float-right">
 			<form action="${rc.getContextPath()}/commandes/rechercherCommande">Rechercher : 
-				<input type="text" id="datepicker" name="dateCommande" value="${dateCommande}" style="position: relative; z-index: 100000;">
+				<input type="text" id="datepicker" name="dateCommande" value="${dateCommande!}" style="position: relative; z-index: 100000;">
 		 		<input type="submit" value="Actualiser">
 		 	</form> 
 		</div>
@@ -78,8 +78,26 @@
 		   <#list commandes as commande>
 	
 		     <tr class="odd">
-		       <td>${commande.dateCommande?string["dd/MM/yyyy"]}</td>
-		       <td>0</td>
+		       <td>
+		       		<#if commande.dateCommande??>
+			       		${commande.dateCommande?string["dd/MM/yyyy HH:mm"]}
+		       		<#else>
+		       			Inconnu
+		       		</#if>
+		       	</td>
+		       <td>
+		       		<#if commande.etat??>
+		       			<#if commande.etat="L">
+		       				Livraison
+						<#elseif commande.etat="E">
+		       				A emporter
+			       		<#else>
+			       			Sur place
+			       		</#if>
+		       		<#else>
+		       			Inconnu
+		       		</#if>
+		       </td>
 		       <td>${commande.libelleProduit}</td>
 		        <td>0</td>
 		      </tr>
