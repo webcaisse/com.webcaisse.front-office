@@ -52,7 +52,7 @@
 						<tr class="odd">
 							<td style="cursor: pointer;" title="" class="voirClient with-tip sorting_1" rel="88">${famille.libelle}</td>
 							<td style="cursor: pointer;" title="Cliquez pour voir la fiche client"	class="voirClient with-tip" rel="88">
-								<a href="${rc.getContextPath()}/produits/ajouter?idFamilly=${famille.id}">Ajouter Produits</a>
+								<a href="${rc.getContextPath()}/produits/listeProduits?idFamilly=${famille.id}">Afficher Produits</a>
 							</td>
 						</tr>
 						</#list>

@@ -65,9 +65,6 @@ $(document).ready(
 				$('.button.b-close').click(); 
 			};
 			
-			
-			
-			
 		
 			// Gestion des événements 
 			
