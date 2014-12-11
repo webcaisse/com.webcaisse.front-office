@@ -6,8 +6,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.webcaisse.ws.interfaces.CaisseManagerService;
@@ -47,19 +49,22 @@ public class ProduitPageController {
 		return "listeProduits";
 	}
 
-	@RequestMapping("/afficherFormulaire")
+	@RequestMapping(value="/afficherFormulaire", method = RequestMethod.GET)
 	public String afficherFormulaire(Model model) {
-
+        model.addAttribute("produit", new ProduitIn()) ;
 		return "ajoutproduits";
 	}
 
-	@RequestMapping("/ajouterProduits")
-	public Long AjouterProduits(Model model, ProduitIn p, Long idFamilly) {
+	@RequestMapping(value="/ajouterProduits",method = RequestMethod.POST)
+	public String AjouterProduits(ProduitIn produit) {
 
-		Long id = caisseManagerService.ajouterProduit(p, idFamilly);
-		model.addAttribute("produit", new ProduitIn());
+		
+		ProduitOut produitOut = new ProduitOut() ;
+		caisseManagerService.ajouterProduit(produit, produitOut.getFamilleId());
+	
+	
 
-		return id;
+		return "redirect:/produits/listeProduits?idFamilly="+produitOut.getFamilleId();
 	}
 	
 	@RequestMapping("/supprimerProduit/{idProduit}")
