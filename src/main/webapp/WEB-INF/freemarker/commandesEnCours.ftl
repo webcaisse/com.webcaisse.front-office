@@ -16,7 +16,11 @@
 	<article class="container_12" id="contentD">
 		
 	<section class=" block-content">
-	<h1>Liste des commandes <a href="${rc.getContextPath()}/commandes/exporterCommande/1" class="exporter"> exporter</a></h1>
+	<#assign dateExport="DATE_VIDE" />
+	<#if dateCommande??>
+		<#assign dateExport=dateCommande />
+	</#if>
+	<h1>Liste des commandes <a href="${rc.getContextPath()}/commandes/exporterCommande/${dateExport!}/" class="exporter"> exporter</a></h1>
 	
 	<div class="no-margin last-child">
 		<div class="block-controls">

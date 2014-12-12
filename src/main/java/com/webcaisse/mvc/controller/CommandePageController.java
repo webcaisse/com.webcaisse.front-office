@@ -8,6 +8,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+
 
 
 import com.webcaisse.ws.interfaces.CommandeManagerService;
@@ -28,6 +30,7 @@ public class CommandePageController {
 	CommandeManagerService commandeManagerService ;
 	
 	private static final Long ID_SOCIETE = 1L;
+	private static final Long ID_SESSION = 1L;
 	
 	@RequestMapping(value = "/enCours/{idSession}", method=RequestMethod.GET)
 	public String afficherCommandeEnCours(ModelMap model,@PathVariable  Long idSession){
@@ -42,7 +45,6 @@ public class CommandePageController {
 	@RequestMapping(value = "/rechercherCommande",  method=RequestMethod.GET)
 	public String rechercherCommandes(@RequestParam(value="dateCommande") String  dateCommande,ModelMap model) throws ParseException{
 		
-		//List<CommandeOut> commandes = commandeManagerService.rechercherCommandeParDate(ID_SOCIETE, dateCommande) ;
 		model.addAttribute("dateCommande", dateCommande) ;
 		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MM-yyyy");
 		model.put("commandes", commandeManagerService.rechercherCommandeParDate(ID_SOCIETE,simpleDateFormat.parse(dateCommande)));
@@ -50,13 +52,18 @@ public class CommandePageController {
 		return "/commandesEnCours";
 	}
 	
-	@RequestMapping(value="/exporterCommande/{idSession}",method=RequestMethod.GET)
-	public void exporterCommande(HttpServletResponse response,@PathVariable  Long idSession) throws IOException{
+	@RequestMapping(value="/exporterCommande/{dateExport}/",method=RequestMethod.GET)
+	public void exporterCommande(HttpServletResponse response,@PathVariable  String dateExport) throws IOException, ParseException{
 		BufferedWriter writer = null;
+		List<CommandeOut> commandes = null ;
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MM-yyyy");
 		
-		List<CommandeOut> commandes= commandeManagerService.rechercherCommande(idSession) ;
-		
-		 
+		if (dateExport!=null && !dateExport.isEmpty()  && !"DATE_VIDE".equals(dateExport)){
+			commandes = commandeManagerService.rechercherCommandeParDate(ID_SOCIETE,simpleDateFormat.parse(dateExport)) ;
+		}else{
+			commandes = commandeManagerService.rechercherCommande(ID_SESSION) ;			
+		}
+	
 		try {
 			writer = new BufferedWriter(response.getWriter());
 		} catch (IOException e) {
@@ -69,7 +76,7 @@ public class CommandePageController {
                  writer.write(",");
                  writer.write(commande.getDateCommande().toString());
                  writer.write("\n");
-                 //System.out.println(writer) ;
+                
              }
              writer.newLine();
          } catch (IOException ex) {
