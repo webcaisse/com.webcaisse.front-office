@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.webcaisse.mvc.CsvUtilsClients;
 import com.webcaisse.ws.interfaces.ClientManagerService;
 import com.webcaisse.ws.interfaces.CommandeManagerService;
 import com.webcaisse.ws.model.ClientOut;
@@ -40,41 +41,12 @@ public class ClientPageController {
 		return "clients";
 	}
 	
+	
 	@RequestMapping("/exporterClients")
 	public void exporterCommande(HttpServletResponse response) throws IOException{
-		BufferedWriter writer = null;
-		
+	
 		List<ClientOut> clients = clientManagerService.rechercherClient(ID_SOCIETE) ;
-		
-		try {
-			writer = new BufferedWriter(response.getWriter());
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-         try {
-             response.setHeader("Content-Disposition","attachment; filename=\"clients.csv\"");
-             for (ClientOut client : clients) {
-                 writer.write(client.getNom());
-                 writer.write(",");
-                 writer.write(client.getPrenom());
-                 writer.write(",");
-                 writer.write(client.getEmail()) ;
-                 writer.write(",");
-                 writer.write(client.getTelephone());
-                 writer.write("\n");
-                
-             }
-             writer.newLine();
-         } catch (IOException ex) {
-         } finally {
-             try {
-				writer.flush();
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-             writer.close();
-         }
-		
-		
-	}
+		CsvUtilsClients CsvClients = new  CsvUtilsClients() ;
+		CsvClients.writeClient("clients.csv", clients, response ) ;
+}
 }

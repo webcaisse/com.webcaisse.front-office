@@ -19,6 +19,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 
 
+
+
+import com.webcaisse.mvc.CsvUtilsClients;
+import com.webcaisse.mvc.CsvUtilsCommandes;
 import com.webcaisse.ws.interfaces.CommandeManagerService;
 import com.webcaisse.ws.model.CommandeOut;
 
@@ -54,9 +58,12 @@ public class CommandePageController {
 	
 	@RequestMapping(value="/exporterCommande/{dateExport}/",method=RequestMethod.GET)
 	public void exporterCommande(HttpServletResponse response,@PathVariable  String dateExport) throws IOException, ParseException{
-		BufferedWriter writer = null;
+		
 		List<CommandeOut> commandes = null ;
 		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MM-yyyy");
+		
+		CsvUtilsCommandes CsvCommandes = new  CsvUtilsCommandes() ;
+		
 		
 		if (dateExport!=null && !dateExport.isEmpty()  && !"DATE_VIDE".equals(dateExport)){
 			commandes = commandeManagerService.rechercherCommandeParDate(ID_SOCIETE,simpleDateFormat.parse(dateExport)) ;
@@ -64,33 +71,8 @@ public class CommandePageController {
 			commandes = commandeManagerService.rechercherCommande(ID_SESSION) ;			
 		}
 	
-		try {
-			writer = new BufferedWriter(response.getWriter());
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-         try {
-             response.setHeader("Content-Disposition","attachment; filename=\"commandes.csv\"");
-             for (CommandeOut commande : commandes) {
-                 writer.write(commande.getLibelleProduit());
-                 writer.write(",");
-                 writer.write(commande.getDateCommande().toString());
-                 writer.write("\n");
-                
-             }
-             writer.newLine();
-         } catch (IOException ex) {
-         } finally {
-             try {
-				writer.flush();
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-             writer.close();
-         }
-		
-		
-	}
+		CsvCommandes.writeCommande("clients.csv",commandes , response ) ;
 	
 	
+}
 }
