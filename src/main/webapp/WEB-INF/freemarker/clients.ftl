@@ -10,10 +10,10 @@
 	<article class="container_12" id="contentD">
 		
 		<section class=" block-content">
-	<h1>Liste des clients <a href="javascript:;" class="addClient"><img src="images/icons/fugue/plus-circle.png" width="16" height="16"> ajouter</a></h1>
+	<h1>Liste des clients <a href="javascript:;" class="addClient"><img src="images/icons/fugue/plus-circle.png" width="16" height="16"> ajouter </a> </h1>
 	<div class="block-controls">
         <div class="controls-buttons">
-        	<a href="javascript:;" class="exportExcel"><img src="images/icons/fugue/print.png" width="16" height="16"> Excel</a>
+        	<a href="${rc.getContextPath()}/clients/exporterClients" class="exporter"> exporter</a>
         </div>
     </div>
 
