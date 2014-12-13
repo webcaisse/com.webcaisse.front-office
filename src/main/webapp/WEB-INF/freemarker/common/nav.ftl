@@ -12,36 +12,33 @@
 				<a href="${rc.getContextPath()}/loginSuccess/" title="Caisse">Caisse</a>
 			</li>
 			<li class="tip-bottom commandes">
-				<a href="https://test.caisseenligne.fr/commandes" title="Commandes en cours">Commandes</a>
+				<a href="${rc.getContextPath()}/commandes/enCours/1" title="Commandes en cours">Commandes</a>
 			</li>
 			<li class="tip-bottom planningNav">
-				<a href="https://test.caisseenligne.fr/planning" title="Gestion du planning">Planning</a>
+				<a href="#" title="Gestion du planning">Planning</a>
 			</li>
 			<li class="tip-bottom users">
-				<a href="https://test.caisseenligne.fr/clients" title="Gestion des clients">Clients</a>
+				<a href="${rc.getContextPath()}/clients/afficher/1" title="Gestion des clients">Clients</a>
 			</li>
 			<li class="tip-bottom fournisseurs">
-				<a href="https://test.caisseenligne.fr/fournisseurs" title="Gestion des fournisseurs">Fournisseurs</a>
+				<a href="#" title="Gestion des fournisseurs">Fournisseurs</a>
 			</li>
 			<li class="tip-bottom products">
-				<a href="https://test.caisseenligne.fr/produits" title="Gestion des produits">Produits</a>
+				<a href="${rc.getContextPath()}/produits/afficher" title="Gestion des produits">Produits</a>
 			</li>
 			<li class="tip-bottom promotions">
-				<a href="https://test.caisseenligne.fr/promotions" title="Gestion des promotions">Promotions</a>
-			</li>
-			<li class="tip-bottom caisse margin-right">
-				<a href="https://test.caisseenligne.fr/caisse" title="Gestion de la caisse">Caisse</a>
+				<a href="#" title="Gestion des promotions">Promotions</a>
 			</li>
 			<li class="tip-bottom settings margin-left">
-				<a href="https://test.caisseenligne.fr/parametres" title="Paramètres">Paramètres</a>
+				<a href="#" title="Paramètres">Paramètres</a>
 			</li>
 			<li class="tip-bottom stats">
-				<a href="https://test.caisseenligne.fr/stats" title="Statistiques">Statistiques</a>
+				<a href="#" title="Statistiques">Statistiques</a>
 			</li>
 		</ul>
 	<div class="pull-right" style="padding-top: 5px; padding-right: 15px;">
 		<ul id="status-infos" class="float-right">
-			<li>
+			<!--<li>
 				<div class="button menu-opener">
 					<img src="images/icons/fugue/database.png">
 					<div class="menu-arrow">
@@ -103,10 +100,10 @@
 						</ul>
 					</div>
 				</div>
-			</li>
+			</li>-->
 		</ul>
 		<p class="float-right" style="line-height: 30px; background: -moz-linear-gradient(center top , white, #E5E5E5 88%, #D8D8D8) repeat scroll 0 0 transparent; border-radius: 5px 5px 0 0; padding: 0 10px 0 10px; margin: 6px 20px 0 0;">
-			16/08/2014 ()
+			${.now?date} (${.now?time})
 		</p>
 		</div>
 	</nav>

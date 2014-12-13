@@ -143,7 +143,7 @@
 
 	</dependencies>
 	<build>
-		<finalName>3</finalName>
+		<finalName>/</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.eclipse.jetty</groupId>
