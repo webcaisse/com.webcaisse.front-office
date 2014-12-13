@@ -39,8 +39,7 @@ public class ProduitPageController {
 	}
 
 	@RequestMapping("/listeProduits")
-	public String listeProduits(Model model,
-			@RequestParam(value = "idFamilly") Long idFamilly) {
+	public String listeProduits(Model model, @RequestParam(value = "idFamilly") Long idFamilly) {
 		model.addAttribute("idFamilly", idFamilly);
 
 		List<ProduitOut> produits = caisseManagerService.getProductsByFamilly(idFamilly);
@@ -57,7 +56,6 @@ public class ProduitPageController {
 
 	@RequestMapping(value="/ajouterProduits",method = RequestMethod.POST)
 	public String AjouterProduits(ProduitIn produit) {
-
 		
 		ProduitOut produitOut = new ProduitOut() ;
 		caisseManagerService.ajouterProduit(produit, produitOut.getFamilleId());
@@ -66,15 +64,15 @@ public class ProduitPageController {
 
 		return "redirect:/produits/listeProduits?idFamilly="+produitOut.getFamilleId();
 	}
-	
+
 	@RequestMapping("/supprimerProduit/{idProduit}")
-	public String supprimerProduit (@PathVariable("idProduit") Long idProduit){
-		
+	public String supprimerProduit(@PathVariable("idProduit") Long idProduit) {
+
 		ProduitOut produitOut = caisseManagerService.loadProductById(idProduit);
-		
+
 		caisseManagerService.supprimerProduit(idProduit);
-		
-		return "redirect:/produits/listeProduits?idFamilly="+produitOut.getFamilleId();
+
+		return "redirect:/produits/listeProduits?idFamilly=" + produitOut.getFamilleId();
 	}
 
 }

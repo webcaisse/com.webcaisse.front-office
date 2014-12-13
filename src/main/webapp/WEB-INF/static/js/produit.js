@@ -21,6 +21,7 @@ $(document).ready(
 					$("#productFinderFamilles").hide();
 					$("#productFinderProducts").html(data);
 				});
+				
 			};
 
 			loadProductDetails = function (produitId) {
@@ -65,6 +66,13 @@ $(document).ready(
 				$('.button.b-close').click(); 
 			};
 			
+			ajouterLignePrixAuFormulaire =  function (){
+				var first_row = $('#matable tr:first');
+			    var new_id = parseInt($(first_row).attr('id').split("_")[1]) + 1;
+			    var firstTr  = $(first_row).clone();
+			    firstTr.find("td:last").remove();
+			    firstTr.insertAfter('#matable tr:last').attr('id', 'row_' + new_id);
+			};
 		
 			// Gestion des événements 
 			
@@ -84,6 +92,10 @@ $(document).ready(
 			
 			$( document ).on( "click", '.inCategorie',function() {
 				chargerFamilles();
+			});
+
+			$( document ).on( "click", '.plus',function() {
+				ajouterLignePrixAuFormulaire();
 			});
 
 		});
