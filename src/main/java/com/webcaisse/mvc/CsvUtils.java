@@ -8,19 +8,19 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.webcaisse.ws.model.ClientOut;
 
-public class CsvUtilsClients {
+public class CsvUtils {
 	
 	public String fileName ;
-    public  List<ClientOut> clients;
+    public List<ObjectCSV> objCsv ;
    
 	
-	public CsvUtilsClients() {
+	public CsvUtils() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
 
-	public void writeClient ( String fileName, List<ClientOut> clients, HttpServletResponse response ) throws IOException {
+	public void exporter ( String fileName, List<ObjectCSV> objCsv, HttpServletResponse response ) throws IOException {
 		BufferedWriter writer = null;
 		
 		try {
@@ -30,14 +30,14 @@ public class CsvUtilsClients {
 		}
          try {
              response.setHeader("Content-Disposition","attachment; filename=\""+fileName+"\"");
-             for (ClientOut client : clients) {
-                 writer.write(client.getNom());
+             
+             for (ObjectCSV objectCSV : objCsv) {
+				
+                 writer.write(objectCSV.getLibelle());
                  writer.write(",");
-                 writer.write(client.getPrenom());
+                 writer.write(objectCSV.getPrenom());
                  writer.write(",");
-                 writer.write(client.getEmail()) ;
-                 writer.write(",");
-                 writer.write(client.getTelephone());
+                 writer.write(objectCSV.getTelephone());
                  writer.write("\n");
                 
              }
