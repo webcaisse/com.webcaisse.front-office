@@ -30,12 +30,9 @@
 	  </authentication-provider>
 	</authentication-manager>
  -->
- 
- <authentication-manager>
-		<authentication-provider>
-		  <user-service>
-			<user name="khaled" password="123456" authorities="ROLE_USER" />
-		  </user-service>
-		</authentication-provider>
-	</authentication-manager>
+ <!--  <beans:bean id="userDetailsService" class="com.webcaisse.mvc.CustomUserDetailsService" />-->
+    <authentication-manager>
+      <authentication-provider user-service-ref="customUserDetailsService" />
+     </authentication-manager>
+
 </beans:beans>

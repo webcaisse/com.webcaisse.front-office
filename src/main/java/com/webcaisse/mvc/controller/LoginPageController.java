@@ -8,8 +8,19 @@ public class LoginPageController {
 
 	
 	
-	@RequestMapping("login")
+	@RequestMapping("/login")
 	public String login (){
 		return "login";
+
+	}
+	
+	
+	@RequestMapping(value = "/login/failure")
+ 	public String loginFailure() {
+		String message = "Login Failure!";
+		return "redirect:/login?message="+message;
 	}
 }
+
+
+
