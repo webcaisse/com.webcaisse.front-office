@@ -23,7 +23,7 @@
 		serviceClass="com.webcaisse.ws.interfaces.ClientManagerService"
 		 address="http://localhost:8092/caisse_ws/gestionClient" />		
 		 
-		 <jaxws:client id="authentification"
+		 <jaxws:client id="authentificationService"
 		serviceClass="com.webcaisse.ws.interfaces.AuthentificationService"
 		 address="http://localhost:8092/caisse_ws/authentification" />	 	 
 
