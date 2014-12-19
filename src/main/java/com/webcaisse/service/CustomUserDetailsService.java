@@ -1,4 +1,4 @@
-package com.webcaisse.mvc;
+package com.webcaisse.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.User;
@@ -12,28 +12,30 @@ import com.webcaisse.ws.interfaces.AuthentificationService;
 import com.webcaisse.ws.model.UserOut;
 
 
-
-
-@Transactional
 public class CustomUserDetailsService implements UserDetailsService{
 
-	@Autowired
-	AuthentificationService authentificationService ;
+	@Autowired(required=true)
+    AuthentificationService authentificationService ;
 	
 	
 	
 	public UserDetails loadUserByUsername(String userName)throws UsernameNotFoundException {
 	 
+		UserOut userOut = null ;
+		
 		
 		try{
-		UserOut userOut = authentificationService.findByUserName(userName);
+		userOut = authentificationService.findByUserName(userName);
 		
+		
+		System.out.print(userOut.getNom());
+		System.out.print(userOut.getPrenom());
 		boolean enabled = true;
 		boolean accountNonExpired = true;
 		boolean credentialsNonExpired = true;
 		boolean accountNonLocked = true;
 		
-		return new User(userOut.getNom(),userOut.getPrenom(),enabled,accountNonExpired, credentialsNonExpired,accountNonLocked, null)  ;
+		return new User(userOut.getUsername(),userOut.getPassword(),enabled,accountNonExpired, credentialsNonExpired,accountNonLocked, null)  ;
 				
 		}catch(Exception e) {
 			throw new RuntimeException(e);

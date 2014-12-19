@@ -29,6 +29,7 @@
 
 	<context:component-scan base-package="com.webcaisse.mvc.controller" />
 	<context:component-scan base-package="com.webcaisse.mvc.bean" />
+	<context:component-scan base-package="com.webcaisse.mvc.service" />
 
 	<mvc:resources mapping="/css/**" location="/WEB-INF/static/css/" />
 	<mvc:resources mapping="/images/**" location="/WEB-INF/static/images/" />

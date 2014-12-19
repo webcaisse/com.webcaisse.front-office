@@ -7,17 +7,17 @@
 <body>
 <h2 id="sc" class="webCaisseTitle">WEBCAISSE</h2>
 <div id="box">
-<form class="login-form" action="j_spring_security_check" method="post">
+<form method="POST" action="<@spring.url '/postlogin' />">
 <table>
     <tr>
       <td align="right"><p id="text">Pseudo:</p></td>
       <td align="left">
-		<input type="text" id="j_username" name="j_username">
+		<input type="text" name="login">
 	</td>
     </tr>
     <tr>
       <td align="right"><p id="text">mot de passe:</p></td>
-      <td align="left"><input type="password" id="j_password" name="j_password" ></td>
+     <td align="left"><input type="password" name="password"></td>
     </tr>
     <tr>
       <td align="right"><input type="submit" value="connexion"></td>

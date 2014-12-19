@@ -28,11 +28,22 @@
 		  authorities-by-username-query=
 		    "select username, role from users_roles where username = ?" />
 	  </authentication-provider>
-	</authentication-manager>
- -->
+	</authentication-manager>-->
+	
+	<!--<authentication-manager>
+	<authentication-provider>
+		  <user-service>
+			<user name="khaled" password="123456" authorities="ROLE_USER" />
+		  </user-service>
+		</authentication-provider>
+	</authentication-manager>-->
+
  <!--  <beans:bean id="userDetailsService" class="com.webcaisse.mvc.CustomUserDetailsService" />-->
-    <authentication-manager>
-      <authentication-provider user-service-ref="customUserDetailsService" />
-     </authentication-manager>
+   <beans:bean id="customUserDetailsService" class="com.webcaisse.service.CustomUserDetailsService"></beans:bean>
+
+<authentication-manager>
+    <authentication-provider user-service-ref="customUserDetailsService">
+    </authentication-provider>
+</authentication-manager>
 
 </beans:beans>
