@@ -12,19 +12,18 @@ import com.webcaisse.ws.interfaces.AuthentificationService;
 import com.webcaisse.ws.model.UserOut;
 
 
+@Service
 public class CustomUserDetailsService implements UserDetailsService{
 
 	@Autowired(required=true)
-    AuthentificationService authentificationService ;
+	AuthentificationService authentificationService ;
 	
 	
-	
+	@Transactional
 	public UserDetails loadUserByUsername(String userName)throws UsernameNotFoundException {
 	 
 		UserOut userOut = null ;
 		
-		
-		try{
 		userOut = authentificationService.findByUserName(userName);
 		
 		
@@ -35,15 +34,13 @@ public class CustomUserDetailsService implements UserDetailsService{
 		boolean credentialsNonExpired = true;
 		boolean accountNonLocked = true;
 		
-		return new User(userOut.getUsername(),userOut.getPassword(),enabled,accountNonExpired, credentialsNonExpired,accountNonLocked, null)  ;
+		UserDetails user = new User(userOut.getUsername(),userOut.getPassword(),enabled,accountNonExpired, credentialsNonExpired,accountNonLocked,null)  ;
 				
-		}catch(Exception e) {
-			throw new RuntimeException(e);
-		}
-	}
-	
+		
+		return user ;
 	}
 
 	
+}
 	
 
