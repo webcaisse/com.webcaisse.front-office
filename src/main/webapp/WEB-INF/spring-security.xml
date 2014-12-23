@@ -39,7 +39,9 @@
 	</authentication-manager>-->
 
  <!--  <beans:bean id="userDetailsService" class="com.webcaisse.mvc.CustomUserDetailsService" />-->
-   <beans:bean id="customUserDetailsService" class="com.webcaisse.service.CustomUserDetailsService"></beans:bean>
+  <beans:bean id="customUserDetailsService" class="com.webcaisse.service.CustomUserDetailsService">
+  	<beans:property name="authentificationService" ref="authentificationService"/>
+  </beans:bean>
 
 <authentication-manager>
     <authentication-provider user-service-ref="customUserDetailsService">
