@@ -27,6 +27,10 @@
 		serviceClass="com.webcaisse.ws.interfaces.AuthentificationService"
 		 address="http://localhost:8092/caisse_ws/authentification" />	 	 
 
+		 <jaxws:client id="sessionManagerService"
+		serviceClass="com.webcaisse.ws.interfaces.SessionManagerService"
+		 address="http://localhost:8092/caisse_ws/session" />	 	 
+
  
  <bean name="logginfInterceptor" class="org.apache.cxf.interceptor.LoggingInInterceptor"/>
  

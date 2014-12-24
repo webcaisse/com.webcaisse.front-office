@@ -79,7 +79,7 @@
 				<a href="javascript:;" class="button" title="Envoyez un message" id="sendMail">
 					<img src="images/icons/fugue/mail.png" width="16" height="16">
 				</a>
-			</li>
+			</li>-->
 			<li>
 				<div class="button red menu-opener">
 					<b>ADMIN</b>
@@ -100,7 +100,7 @@
 						</ul>
 					</div>
 				</div>
-			</li>-->
+			</li>
 		</ul>
 		<p class="float-right" style="line-height: 30px; background: -moz-linear-gradient(center top , white, #E5E5E5 88%, #D8D8D8) repeat scroll 0 0 transparent; border-radius: 5px 5px 0 0; padding: 0 10px 0 10px; margin: 6px 20px 0 0;">
 			${.now?date} (${.now?time})
