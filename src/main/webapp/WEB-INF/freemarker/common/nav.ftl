@@ -89,7 +89,7 @@
 					<div class="menu">
 						<ul class="reverted">
 							<li class="icon_dot">
-								<a href="https://test.caisseenligne.fr/access/logout" title="Déconnexion">
+								<a href="${rc.getContextPath()}/logout/1" title="Déconnexion">
 									<span class="smaller">DECONNEXION</span>
 								</a>
 							</li>

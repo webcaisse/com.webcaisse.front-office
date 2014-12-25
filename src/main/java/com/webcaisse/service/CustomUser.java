@@ -1,16 +1,17 @@
 package com.webcaisse.service;
 
+import java.io.Serializable;
 import java.util.Collection;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 
-public class CustomUser extends User {
+public class CustomUser extends User implements Serializable{
+	
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = -3107429359125823371L;
-	
+	private static final long serialVersionUID = 7425331963680032844L;
 	private Long sessionId;
 
 	public CustomUser(String username, String password, boolean enabled,
