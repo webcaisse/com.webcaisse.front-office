@@ -20,7 +20,7 @@ public class HomePageController {
 	@Autowired
 	CaisseManagerService caisseManagerService;
 
-	@RequestMapping("loginSuccess")
+	@RequestMapping({"/loginSuccess","/"})
 	public String home(ModelMap model) {
 		CustomUser customUser = (CustomUser) SecurityContextHolder.getContext()
 				.getAuthentication().getPrincipal();

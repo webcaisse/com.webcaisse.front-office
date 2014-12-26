@@ -9,7 +9,7 @@
 	<nav id="main-nav">
 		<ul class="container_12">
 			<li class="tip-bottom home current">
-				<a href="${rc.getContextPath()}/loginSuccess/" title="Caisse">Caisse</a>
+				<a href="${rc.getContextPath()}/" title="Caisse">Caisse</a>
 			</li>
 			<li class="tip-bottom commandes">
 				<a href="${rc.getContextPath()}/commandes/enCours" title="Commandes en cours">Commandes</a>
@@ -89,7 +89,7 @@
 					<div class="menu">
 						<ul class="reverted">
 							<li class="icon_dot">
-								<a href="${rc.getContextPath()}/logout/1" title="Déconnexion">
+								<a href="${rc.getContextPath()}/logout" title="Déconnexion">
 									<span class="smaller">DECONNEXION</span>
 								</a>
 							</li>

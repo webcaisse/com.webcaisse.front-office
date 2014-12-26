@@ -1,10 +1,12 @@
 package com.webcaisse.mvc.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.webcaisse.service.CustomUser;
 import com.webcaisse.ws.interfaces.SessionManagerService;
 
 
@@ -15,10 +17,13 @@ public class LogoutPageControlleur {
 	
 	SessionManagerService sessionManagerService ;
 	
-	@RequestMapping("/logout/{idSession}")
-	public String logOut(@PathVariable Long idSession){
+	@RequestMapping("/logout")
+	public String logOut(){
 
-		sessionManagerService.fermerSession(idSession);
+		CustomUser customUser = (CustomUser) SecurityContextHolder.getContext()
+				.getAuthentication().getPrincipal();
+
+		sessionManagerService.fermerSession(customUser.getSessionId());
 		//request.getSession().invalidate();
 		
 		return "redirect:/j_spring_security_logout" ;
