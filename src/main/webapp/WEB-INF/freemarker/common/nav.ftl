@@ -12,13 +12,13 @@
 				<a href="${rc.getContextPath()}/loginSuccess/" title="Caisse">Caisse</a>
 			</li>
 			<li class="tip-bottom commandes">
-				<a href="${rc.getContextPath()}/commandes/enCours/1" title="Commandes en cours">Commandes</a>
+				<a href="${rc.getContextPath()}/commandes/enCours" title="Commandes en cours">Commandes</a>
 			</li>
 			<li class="tip-bottom planningNav">
 				<a href="#" title="Gestion du planning">Planning</a>
 			</li>
 			<li class="tip-bottom users">
-				<a href="${rc.getContextPath()}/clients/afficher/1" title="Gestion des clients">Clients</a>
+				<a href="${rc.getContextPath()}/clients/afficher" title="Gestion des clients">Clients</a>
 			</li>
 			<li class="tip-bottom fournisseurs">
 				<a href="#" title="Gestion des fournisseurs">Fournisseurs</a>

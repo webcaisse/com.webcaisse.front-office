@@ -40,6 +40,7 @@ public class CustomUserDetailsService implements UserDetailsService {
 					accountNonLocked, authorities, userOut.getId());
 			
 			customUser.setSessionId(sessionManagerService.ouvrirSession(userOut.getId()));
+			customUser.setSocieteId(userOut.getSocieteId());
 			return customUser;
 		}
 

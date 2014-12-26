@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.util.CollectionUtils;
@@ -20,6 +21,7 @@ import com.webcaisse.mvc.bean.ModePaiement;
 import com.webcaisse.mvc.bean.Paiement;
 import com.webcaisse.mvc.bean.Panier;
 import com.webcaisse.mvc.bean.RemiseProduit;
+import com.webcaisse.service.CustomUser;
 import com.webcaisse.ws.interfaces.CaisseManagerService;
 import com.webcaisse.ws.model.CommandeIn;
 import com.webcaisse.ws.model.LigneCommandeIn;
@@ -29,8 +31,6 @@ import com.webcaisse.ws.model.ProduitOut;
 @RequestMapping("/ajax/product")
 public class ProductPageController {
 	
-	private static final Long ID_SOCIETE = 1L;
-	private static final Long  ID_SESSION=1L ;
 	private static final String EURO ="EUR";
 	private static final Float MAX_VALUE_REMISE = 1F;
 	private static final DecimalFormat DECIMAL_FORMAT = new DecimalFormat( "#,##" );
@@ -46,7 +46,10 @@ public class ProductPageController {
 	@RequestMapping("loadFamillies")
 	@ResponseBody
 	public JsonFamillyResponse loadFamillies() {
-		return new JsonFamillyResponse(caisseManagerService.getFamillesActivees(ID_SOCIETE));
+		CustomUser customUser = (CustomUser) SecurityContextHolder.getContext()
+				.getAuthentication().getPrincipal();
+
+		return new JsonFamillyResponse(caisseManagerService.getFamillesActivees(customUser.getSocieteId()));
 	}
 
 	@RequestMapping("/details/{produitId}")
@@ -247,6 +250,10 @@ public class ProductPageController {
 	@RequestMapping (value = "/sauvegarderCommande", method = RequestMethod.GET)
 	@ResponseBody
 	public Long sauvegarderCommande() {
+		
+		CustomUser customUser = (CustomUser) SecurityContextHolder.getContext()
+				.getAuthentication().getPrincipal();
+
 		Long idCommande = null ;
 		CommandeIn commande = new CommandeIn() ;	
 
@@ -255,7 +262,7 @@ public class ProductPageController {
 		commande.setRegCheque(modePaiement.getCheque());
 		commande.setRegEspece(modePaiement.getEspece());
 		commande.setRegTicketRestau(modePaiement.getTicketRestau());
-		commande.setIdSession(ID_SESSION);;
+		commande.setIdSession(customUser.getSessionId());;
 		
 		
 		commande.setMontant(panier.getPrixTtc());

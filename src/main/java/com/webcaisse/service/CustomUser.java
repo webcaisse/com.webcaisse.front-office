@@ -13,6 +13,7 @@ public class CustomUser extends User implements Serializable{
 	 */
 	private static final long serialVersionUID = 7425331963680032844L;
 	private Long sessionId;
+	private Long societeId;
 
 	public CustomUser(String username, String password, boolean enabled,
 			boolean accountNonExpired, boolean credentialsNonExpired,
@@ -29,5 +30,14 @@ public class CustomUser extends User implements Serializable{
 	public void setSessionId(Long sessionId) {
 		this.sessionId = sessionId;
 	}
+
+	public Long getSocieteId() {
+		return societeId;
+	}
+
+	public void setSocieteId(Long societeId) {
+		this.societeId = societeId;
+	}
+	
 
 }

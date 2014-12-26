@@ -6,21 +6,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class LoginPageController {
 
-	
-	
 	@RequestMapping("/login")
-	public String login (){
+	public String login() {
 		return "login";
-
 	}
-	
-	
+
 	@RequestMapping(value = "/login/failure")
- 	public String loginFailure() {
+	public String loginFailure() {
 		String message = "Login Failure!";
-		return "redirect:/login?message="+message;
+		return "redirect:/login?message=" + message;
 	}
 }
-
-
-

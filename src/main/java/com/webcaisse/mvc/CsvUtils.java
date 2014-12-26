@@ -6,8 +6,6 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletResponse;
 
-import com.webcaisse.ws.model.ClientOut;
-
 public class CsvUtils {
 	
 	public String fileName ;
@@ -16,7 +14,6 @@ public class CsvUtils {
 	
 	public CsvUtils() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 
