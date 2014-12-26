@@ -10,6 +10,7 @@
 		<intercept-url pattern="/css/**" access="permitAll" />
 		<intercept-url pattern="/images/**" access="permitAll" />
 		<intercept-url pattern="/js/**" access="permitAll" />
+		<intercept-url pattern="/produits/**" access="hasRole('ROLE_USER')" />
 		<intercept-url pattern="/commandes/**" access="hasRole('ROLE_USER')" />
 
 		<intercept-url pattern="/login" access="permitAll" />
@@ -19,7 +20,14 @@
 			default-target-url="/loginSuccess" username-parameter="login"
 			password-parameter="password" />
 
-		<logout logout-url="/logout" logout-success-url="/" />
+		<!--  <logout logout-url="/logout" logout-success-url="/" />-->
+		
+		 <logout
+            invalidate-session="true"
+            logout-success-url="/login"
+            logout-url="/j_spring_security_logout"
+            delete-cookies="JSESSIONID" 
+            />
 	</http>
 
 	<!-- <authentication-manager> <authentication-provider> <jdbc-user-service 

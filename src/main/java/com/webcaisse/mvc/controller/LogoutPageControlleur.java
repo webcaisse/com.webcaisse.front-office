@@ -19,7 +19,8 @@ public class LogoutPageControlleur {
 	public String logOut(@PathVariable Long idSession){
 
 		sessionManagerService.fermerSession(idSession);
+		//request.getSession().invalidate();
 		
-		return "redirect:/login" ;
+		return "redirect:/j_spring_security_logout" ;
 	}
 }
