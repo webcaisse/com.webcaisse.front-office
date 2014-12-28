@@ -22,26 +22,21 @@
 
 		<!--  <logout logout-url="/logout" logout-success-url="/" />-->
 		
-		 <logout
+	<!-- 	 <logout
             invalidate-session="true"
-            logout-success-url="/login"
             logout-url="/j_spring_security_logout"
             delete-cookies="JSESSIONID" 
-            />
+            success-handler-ref="customLogoutSuccessHandler" />
+     -->
+       <logout logout-url="/logout" delete-cookies="true" invalidate-session="true" success-handler-ref="customUrlLogoutSuccessHandler"></logout>
+             
 	</http>
 
-	<!-- <authentication-manager> <authentication-provider> <jdbc-user-service 
-		data-source-ref="dataSource" users-by-username-query= "select username,password, 
-		enabled from users where username = ?" authorities-by-username-query= "select 
-		username, role from users_roles where username = ?" /> </authentication-provider> 
-		</authentication-manager> -->
+  
+	 <beans:bean name="customUrlLogoutSuccessHandler" class="com.webcaisse.logOutPage.CustomLogoutSuccessHandler" >
+	 	<beans:property name="sessionManagerService" ref="sessionManagerService"/>
+	 </beans:bean>
 
-	<!--<authentication-manager> <authentication-provider> <user-service> <user 
-		name="khaled" password="123456" authorities="ROLE_USER" /> </user-service> 
-		</authentication-provider> </authentication-manager> -->
-
-	<!-- <beans:bean id="userDetailsService" class="com.webcaisse.mvc.CustomUserDetailsService" 
-		/> -->
 	<beans:bean id="customUserDetailsService"
 		class="com.webcaisse.service.CustomUserDetailsService">
 		<beans:property name="authentificationService" ref="authentificationService" />

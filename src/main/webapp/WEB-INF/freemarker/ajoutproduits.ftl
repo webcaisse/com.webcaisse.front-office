@@ -12,7 +12,8 @@
 	<#include "common/nav.ftl">
 </br></br>
 
-<form action="${rc.getContextPath()}/produits/ajouterProduits" modelAttribute="produit" method="POST">
+<form action="${rc.getContextPath()}/produits/ajouterProduits" modelAttribute="produitIn" method="POST">
+<input type="hidden" name="familleId" value="${produit.getFamilleId()}"/>
    <fieldset style="margin-bottom: 15px;padding: 10px;">
       <legend style=" color: #384313;font-size: 16px;font-weight: bold;padding-bottom: 10px;text-shadow: 0 1px 1px #c0d576;">Ajouter Produits</legend>
          <label style="display: block;width: 150px;float: left;" for="libelle">Libelle</label>

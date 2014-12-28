@@ -11,7 +11,7 @@
 	<article class="container_12" id="contentD">
 
 		<section class=" block-content">
-			<h1>Liste des produits <a href="${rc.getContextPath()}/produits/afficherFormulaire" class="addProduct"><img src="${rc.getContextPath()}/images/icons/fugue/plus-circle.png" width="16" height="16"> ajouter</a></h1>
+			<h1>Liste des produits <a href="${rc.getContextPath()}/produits/afficherFormulaire/${idFamilly}" class="addProduct"><img src="${rc.getContextPath()}/images/icons/fugue/plus-circle.png" width="16" height="16"> ajouter</a></h1>
 			<div class="no-margin last-child">
 				<div class="block-controls">
 					<div class="controls-buttons">
@@ -52,11 +52,16 @@
 							<#list produits as produit>
 							<tr class="odd">
 								<td style="cursor: pointer;" title="" class="voirClient with-tip sorting_1" rel="88">${produit.libelle!}</td>
-								<td style="cursor: pointer;" title="" class="voirClient with-tip sorting_1" rel="88"></td>
+								<td style="cursor: pointer;" title="" class="voirClient with-tip sorting_1" rel="88">${produit.code!}</td>
 								<td style="cursor: pointer;" title="Supprimer produit"	class="voirClient with-tip" rel="88">
-									<a href="${rc.getContextPath()}/produits/supprimerProduit/${produit.id}" onclick="return confirm('Voulez vous vraiment supprimer ce produit?')" ><img src="${rc.getContextPath()}/images/icons/fugue/delete.png"> <img src="${rc.getContextPath()}/images/icons/fugue/pencil.png"></a>
+									<a href="${rc.getContextPath()}/produits/supprimerProduit/${produit.id}" onclick="return confirm('Voulez vous vraiment supprimer ce produit?')" ><img src="${rc.getContextPath()}/images/icons/fugue/delete.png"></a>
+								    
 								</td>
+								<td td style="cursor: pointer;" title="update produit"	class="voirClient with-tip" rel="88">
+								<a href="${rc.getContextPath()}/produits/afficherUpdateProduct/${produit.id}"><img src="${rc.getContextPath()}/images/icons/fugue/pencil.png"></a>
+                                 </td>						
 							</tr>
+							
 							</#list>
 						</#if>
 					</tbody>

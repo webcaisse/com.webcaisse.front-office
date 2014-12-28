@@ -7,6 +7,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -47,21 +48,20 @@ public class ProduitPageController {
 		return "listeProduits";
 	}
 
-	@RequestMapping(value="/afficherFormulaire", method = RequestMethod.GET)
-	public String afficherFormulaire(Model model) {
-        model.addAttribute("produit", new ProduitIn()) ;
+	@RequestMapping(value="/afficherFormulaire/{famillyId}", method = RequestMethod.GET)
+	public String afficherFormulaire(Model model, @PathVariable("famillyId") Long famillyId) {
+		ProduitIn in = new ProduitIn();
+		in.setFamilleId(famillyId);
+        model.addAttribute("produit", in) ;
 		return "ajoutproduits";
 	}
 
 	@RequestMapping(value="/ajouterProduits",method = RequestMethod.POST)
-	public String AjouterProduits(ProduitIn produit) {
+	public String AjouterProduits(@ModelAttribute("produitIn") ProduitIn produit) {
 		
-		ProduitOut produitOut = new ProduitOut() ;
-		caisseManagerService.ajouterProduit(produit, produitOut.getFamilleId());
-	
-	
-
-		return "redirect:/produits/listeProduits?idFamilly="+produitOut.getFamilleId();
+		//ProduitOut produitOut = new ProduitOut() ;
+		caisseManagerService.ajouterProduit(produit);
+		return "redirect:/produits/listeProduits?idFamilly="+produit.getFamilleId();
 	}
 
 	@RequestMapping("/supprimerProduit/{idProduit}")
@@ -73,5 +73,30 @@ public class ProduitPageController {
 
 		return "redirect:/produits/listeProduits?idFamilly=" + produitOut.getFamilleId();
 	}
-
+	
+ @RequestMapping(value="/afficherUpdateProduct/{idProduit}", method=RequestMethod.GET)
+ public String afficherUpadateProduct(Model model , @PathVariable("idProduit") Long idProduit)
+ {
+	 ProduitOut produitOut = caisseManagerService.loadProductById(idProduit) ;
+	 ProduitIn in = new ProduitIn();
+	 in.setCode(produitOut.getCode());
+	 in.setLibelle(produitOut.getLibelle());
+	 in.setFamilleId(produitOut.getFamilleId());
+	 in.setId(idProduit);
+	 
+	 model.addAttribute("produit", in) ;
+	 return "formulaireMaj" ;
+ }
+ 
+ @RequestMapping(value="/saveUpdateProduct",method = RequestMethod.POST)
+	public String saveUpdate(@ModelAttribute("produitIn") ProduitIn produit) {
+		
+   //  ProduitOut produitOut = caisseManagerService.loadProductById(produit.getId()) ;
+	 
+		caisseManagerService.updateProduit(produit);
+		return "redirect:/produits/listeProduits?idFamilly="+produit.getFamilleId();
+	}
+ 
+	
+	
 }
