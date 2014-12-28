@@ -33,7 +33,7 @@
 	</http>
 
   
-	 <beans:bean name="customUrlLogoutSuccessHandler" class="com.webcaisse.logOutPage.CustomLogoutSuccessHandler" >
+	 <beans:bean name="customUrlLogoutSuccessHandler" class="com.webcaisse.service.CustomLogoutSuccessHandler" >
 	 	<beans:property name="sessionManagerService" ref="sessionManagerService"/>
 	 </beans:bean>
 

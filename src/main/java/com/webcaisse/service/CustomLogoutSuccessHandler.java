@@ -1,4 +1,4 @@
-package com.webcaisse.logOutPage;
+package com.webcaisse.service;
 
 import java.io.IOException;
 
@@ -10,7 +10,6 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.web.authentication.logout.LogoutSuccessHandler;
 import org.springframework.security.web.authentication.logout.SimpleUrlLogoutSuccessHandler;
 
-import com.webcaisse.service.CustomUser;
 import com.webcaisse.ws.interfaces.SessionManagerService;
 
 public class CustomLogoutSuccessHandler  extends SimpleUrlLogoutSuccessHandler implements LogoutSuccessHandler  {
