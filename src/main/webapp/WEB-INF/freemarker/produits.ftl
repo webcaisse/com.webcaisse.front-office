@@ -12,7 +12,7 @@
 	<article class="container_12" id="contentD">
 
 		<section class=" block-content">
-			<h1>Liste des familles</h1>
+			<h1>Liste des familles <a href="${rc.getContextPath()}/produits/afficherFormulaireFamille" class="addFamille"><img src="${rc.getContextPath()}/images/icons/fugue/plus-circle.png" width="16" height="16"> ajouter</a></h1>
 			<div class="no-margin last-child">
 				<div class="block-controls">
 					<div class="controls-buttons">
@@ -44,7 +44,7 @@
 								<a	href="#" title="Sort up" class="sort-up"></a> 
 								<a href="#"	title="Sort down" class="sort-down"></a>
 							</span> Libelle</th>
-							<th scope="col" class="table-actions sorting_disabled"	style="width: 110.400001525879px;">Actions</th>
+							<th scope="col" class="table-actions sorting_disabled"	style="width: 100px;">Actions</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -54,6 +54,14 @@
 							<td style="cursor: pointer;" title="Cliquez pour voir la fiche client"	class="voirClient with-tip" rel="88">
 								<a href="${rc.getContextPath()}/produits/listeProduits?idFamilly=${famille.id}">Afficher Produits</a>
 							</td>
+							
+							<td style="cursor: pointer;" title="Supprimer famille"	class="voirClient with-tip" rel="88">
+									<a href="${rc.getContextPath()}/produits/supprimerFamille/${famille.id}" onclick="return confirm('Voulez vous vraiment supprimer cette Famille?')" ><img src="${rc.getContextPath()}/images/icons/fugue/delete.png"></a>
+								    
+							</td>
+							<td td style="cursor: pointer;" title="Update famille"	class="voirClient with-tip" rel="88">
+								<a href="${rc.getContextPath()}/produits/afficherUpdateFamille/${famille.id}"><img src="${rc.getContextPath()}/images/icons/fugue/pencil.png"></a>
+                             </td>	
 						</tr>
 						</#list>
 					</tbody>

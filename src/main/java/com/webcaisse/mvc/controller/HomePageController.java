@@ -22,8 +22,8 @@ public class HomePageController {
 
 	@RequestMapping({"/loginSuccess","/"})
 	public String home(ModelMap model) {
-		CustomUser customUser = (CustomUser) SecurityContextHolder.getContext()
-				.getAuthentication().getPrincipal();
+		
+		CustomUser customUser = (CustomUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
 		System.out.println("caisseManagerService " + caisseManagerService);
 		List<FamilleOut> familles = caisseManagerService
@@ -56,8 +56,7 @@ public class HomePageController {
 	@RequestMapping("ajax/loadProduct/{fammillyId}")
 	public String loadProduct(ModelMap model, @PathVariable Long fammillyId) {
 
-		List<ProduitOut> produits = caisseManagerService
-				.getProductsByFamilly(fammillyId);
+		List<ProduitOut> produits = caisseManagerService.getProductsByFamilly(fammillyId);
 		model.put("produits", produits);
 		return "modules/familleDetails";
 	}

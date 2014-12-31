@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.webcaisse.service.CustomUser;
 import com.webcaisse.ws.interfaces.CaisseManagerService;
+import com.webcaisse.ws.model.FamilleIn;
 import com.webcaisse.ws.model.FamilleOut;
 import com.webcaisse.ws.model.ProduitIn;
 import com.webcaisse.ws.model.ProduitOut;
@@ -48,7 +49,7 @@ public class ProduitPageController {
 		return "listeProduits";
 	}
 
-	@RequestMapping(value="/afficherFormulaire/{famillyId}", method = RequestMethod.GET)
+	@RequestMapping(value="/afficherFormulaireProduit/{famillyId}", method = RequestMethod.GET)
 	public String afficherFormulaire(Model model, @PathVariable("famillyId") Long famillyId) {
 		ProduitIn in = new ProduitIn();
 		in.setFamilleId(famillyId);
@@ -85,18 +86,64 @@ public class ProduitPageController {
 	 in.setId(idProduit);
 	 
 	 model.addAttribute("produit", in) ;
-	 return "formulaireMaj" ;
+	 return "formulaireMajProduit" ;
  }
  
  @RequestMapping(value="/saveUpdateProduct",method = RequestMethod.POST)
 	public String saveUpdate(@ModelAttribute("produitIn") ProduitIn produit) {
-		
-   //  ProduitOut produitOut = caisseManagerService.loadProductById(produit.getId()) ;
-	 
+ 
 		caisseManagerService.updateProduit(produit);
 		return "redirect:/produits/listeProduits?idFamilly="+produit.getFamilleId();
 	}
  
 	
+ @RequestMapping(value="/afficherFormulaireFamille", method = RequestMethod.GET)
+	public String afficherFormulaireFamille(Model model) {
+	 
+	 //CustomUser customUser = (CustomUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+	 
+		FamilleIn in = new FamilleIn();
+		//in.setIdSociete(customUser.getSocieteId());
+        model.addAttribute("famille", in) ;
+		return "ajouterFamille";
+	}
+ 
+ @RequestMapping(value="/ajouterFamille",method = RequestMethod.POST)
+	public String AjouterProduits(@ModelAttribute("familleIn") FamilleIn famille) {
+		
+	 CustomUser customUser = (CustomUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+	 
+	   famille.setIdSociete(customUser.getSocieteId());
+		caisseManagerService.ajouterFamille(famille);
+		return "redirect:/produits/afficher";
+	}
+ 
+ @RequestMapping("/supprimerFamille/{idFamille}")
+	public String supprimerFamille(@PathVariable("idFamille") Long idFamille) {
+
+		caisseManagerService.supprimerFamille(idFamille);
+
+		return "redirect:/produits/afficher" ;
+	}
 	
+ @RequestMapping(value="/afficherUpdateFamille/{idFamille}", method=RequestMethod.GET)
+ public String afficherUpadateFamille(Model model , @PathVariable("idFamille") Long idFamille)
+ {
+	 FamilleOut familleOut = caisseManagerService.loadFamilleById(idFamille) ;
+	 FamilleIn in = new FamilleIn();
+	 in.setLibelle(familleOut.getLibelle());
+	 in.setColor(familleOut.getCouleur());
+	 in.setId(idFamille);
+	
+	 model.addAttribute("famille", in) ;
+	 return "formulaireMajFamille" ;
+ }
+ 
+ @RequestMapping(value="/saveUpdateFamille",method = RequestMethod.POST)
+	public String saveUpdate(@ModelAttribute("familleIn") FamilleIn famille) {
+
+		caisseManagerService.updateFamille(famille);
+		return "redirect:/produits/afficher"  ;
+	}
+ 
 }

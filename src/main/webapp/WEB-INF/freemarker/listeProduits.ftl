@@ -11,7 +11,7 @@
 	<article class="container_12" id="contentD">
 
 		<section class=" block-content">
-			<h1>Liste des produits <a href="${rc.getContextPath()}/produits/afficherFormulaire/${idFamilly}" class="addProduct"><img src="${rc.getContextPath()}/images/icons/fugue/plus-circle.png" width="16" height="16"> ajouter</a></h1>
+			<h1>Liste des produits <a href="${rc.getContextPath()}/produits/afficherFormulaireProduit/${idFamilly}" class="addProduct"><img src="${rc.getContextPath()}/images/icons/fugue/plus-circle.png" width="16" height="16"> ajouter</a></h1>
 			<div class="no-margin last-child">
 				<div class="block-controls">
 					<div class="controls-buttons">
