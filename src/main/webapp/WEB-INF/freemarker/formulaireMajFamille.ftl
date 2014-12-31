@@ -14,13 +14,13 @@
 
 <form action="${rc.getContextPath()}/produits/saveUpdateFamille" modelAttribute="familleIn" method="POST">
 	
-	<input type="hidden" name="id" value="${famille.id!}"/>
+	<input type="hidden" name="id" value="${familleIn.id!}"/>
    <fieldset style="margin-bottom: 15px;padding: 10px;">
       <legend style=" color: #384313;font-size: 16px;font-weight: bold;padding-bottom: 10px;text-shadow: 0 1px 1px #c0d576;">Mise à jour Familles</legend>
          <label style="display: block;width: 150px;float: left;" for="libelle" >Libelle</label>
-      <input name="libelle" value="${famille.libelle!}"><br>
+      <input name="libelle" value="${familleIn.libelle!}"><br>
          <label style="display: block;width: 150px;float: left;" for="Code" >Couleur</label>
-       <input name="code" value="${famille.color!}"><br>
+       <input name="color" value="${familleIn.color!}"><br>
 
     	</table>
     	<br>

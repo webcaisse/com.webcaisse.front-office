@@ -1,11 +1,6 @@
 <#import "spring.ftl" as spring />
 <head>
-	<#include "modules/head.ftl">
-	<link rel="stylesheet"	href="<@spring.url '/css/themes/default/style.min.css' />" />
-	<script src="//code.jquery.com/jquery-1.10.2.js"></script>
-	<script src="<@spring.url '/js/dist/jstree.min.js' />"></script>
-	<script type="text/javascript" src="<@spring.url '/js/produit.js' />"></script>
-	
+	<#include "modules/head.ftl">	
 </head>
 
 <body>
@@ -19,7 +14,7 @@
          <label style="display: block;width: 150px;float: left;" for="libelle">Libelle</label>
           <input name="libelle"><br>
           <label style="display: block;width: 150px;float: left;" for="libelle">Couleur</label>
-          <input name="couleur"><br>
+          <input name="color"><br>
          
     	<br>
 

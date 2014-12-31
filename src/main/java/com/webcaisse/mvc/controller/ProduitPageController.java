@@ -135,7 +135,7 @@ public class ProduitPageController {
 	 in.setColor(familleOut.getCouleur());
 	 in.setId(idFamille);
 	
-	 model.addAttribute("famille", in) ;
+	 model.addAttribute("familleIn", in) ;
 	 return "formulaireMajFamille" ;
  }
  
