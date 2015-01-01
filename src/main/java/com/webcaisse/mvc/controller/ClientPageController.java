@@ -107,6 +107,17 @@ public class ClientPageController {
 		 in.setPrenom(clientOut.getPrenom());
 		 in.setEmail(clientOut.getEmail());
 		 in.setTelephone(clientOut.getTelephone());
+		 in.setCode1(clientOut.getCode1());
+		 in.setCode2(clientOut.getCode2());
+		 in.setCode3(clientOut.getCode3());
+		 in.setCodePostale(clientOut.getCodePostale());
+		 in.setEtage(clientOut.getEtage());
+		 in.setImmeuble(clientOut.getImmeuble());
+		 in.setInterphone(clientOut.getInterphone());
+		 in.setNumeroRue(clientOut.getNumeroRue());
+		 in.setNomRue(clientOut.getNomRue());
+		 in.setVille(clientOut.getVille());
+		 
 		 in.setId(idClient);
 
 		

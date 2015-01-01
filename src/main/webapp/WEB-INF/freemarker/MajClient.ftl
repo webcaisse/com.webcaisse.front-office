@@ -25,7 +25,27 @@
        <input name="email" value="${clientIn.email!}"><br>
        <label style="display: block;width: 150px;float: left;" for="telephone" >Telephone</label>
        <input name="telephone" value="${clientIn.telephone!}"><br>
-
+        <label style="display: block;width: 150px;float: left;" for="code1">Code1</label>
+          <input name="code1" value="${clientIn.code1!}"><br>
+          <label style="display: block;width: 150px;float: left;" for="code2">Code2</label>
+          <input name="code2" value="${clientIn.code2!}"><br>
+          <label style="display: block;width: 150px;float: left;" for="email">Code3</label>
+          <input name="code3" value="${clientIn.code3!}"><br>
+          <label style="display: block;width: 150px;float: left;" for="etage">Etage</label>
+          <input name="etage"value="${clientIn.etage!}"><br>
+          <label style="display: block;width: 150px;float: left;" for="immeuble">Immeuble</label>
+          <input name="immeuble"value="${clientIn.immeuble!}"><br>
+         <label style="display: block;width: 150px;float: left;" for="ville">Ville</label>
+          <input name="ville"value="${clientIn.ville!}"><br>
+          <label style="display: block;width: 150px;float: left;" for="codePostal">Code Postal</label>
+          <input name="codePostal"value="${clientIn.codePostale!}"><br>
+          <label style="display: block;width: 150px;float: left;" for="numeroRue">N°Rue (*)</label>
+          <input name="numeroRue" value="${clientIn.numeroRue!}"><br>
+           <label style="display: block;width: 150px;float: left;" for="nomRue">Rue (*)</label>
+          <input name="nomRue"value="${clientIn.nomRue!}"><br>
+          <label style="display: block;width: 150px;float: left;" for="interphone">Interphone</label>
+          <input name="interphone" value="${clientIn.interphone!}"><br>
+          
     	</table>
     	<br>
 

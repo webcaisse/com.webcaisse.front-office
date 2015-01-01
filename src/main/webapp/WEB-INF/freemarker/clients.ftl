@@ -25,22 +25,16 @@
 						<a href="#" title="Sort up" class="sort-up"></a>
 						<a href="#" title="Sort down" class="sort-down"></a>
 					</span>
-					Nom
+					Nom & Prenom
 				</th>
 				<th scope="col" style="width: 210.400001525879px;" class="sorting">
 					<span class="column-sort">
 						<a href="#" title="Sort up" class="sort-up"></a>
 						<a href="#" title="Sort down" class="sort-down"></a>
 					</span>
-					Prénom
+					 Rue
 				</th>
-				<th scope="col" style="width: 258.400001525879px;" class="sorting">
-					<span class="column-sort">
-						<a href="#" title="Sort up" class="sort-up"></a>
-						<a href="#" title="Sort down" class="sort-down"></a>
-					</span>
-					Email
-				</th>
+				
 				<th scope="col" style="width: 128.400001525879px;" class="sorting">
 					<span class="column-sort">
 						<a href="#" title="Sort up" class="sort-up"></a>
@@ -61,11 +55,8 @@
 	   <tr class="odd">
 					
 				
-					<td style="cursor: pointer;" title="" class="voirClient with-tip sorting_1" rel="88">${client.nom}</td>
-					<td style="cursor: pointer;" title="Cliquez pour voir la fiche client" class="voirClient with-tip" rel="88">${client.prenom}</td>
-					<td style="cursor: pointer;" title="Cliquez pour voir la fiche client" class="voirClient with-tip" rel="88">
-						<a href="mailto:jessica4954@gmail.com" title="Envoyer un email">${client.email}</a>
-					</td>
+					<td style="cursor: pointer;" title="" class="voirClient with-tip sorting_1" rel="88">${client.nom} ${client.prenom}</td>
+					<td style="cursor: pointer;" title="Cliquez pour voir la fiche client" class="voirClient with-tip" rel="88">${client.numeroRue} ${client.nomRue}</td>
 					<td style="cursor: pointer;" title="Cliquez pour voir la fiche client" class="voirClient with-tip" rel="88">${client.telephone} </td>
 					<td class="table-actions">
 					  <a href="${rc.getContextPath()}/clients/afficherUpdateClient/${client.id}" title="Modifier" class="with-tip editClient" rel="88"><img src="${rc.getContextPath()}/images/icons/fugue/pencil.png" width="16" height="16"></a>
