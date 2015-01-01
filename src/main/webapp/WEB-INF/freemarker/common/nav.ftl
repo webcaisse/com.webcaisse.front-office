@@ -84,7 +84,7 @@
 				<div class="button red menu-opener">
 					<b>ADMIN</b>
 					<div class="menu-arrow">
-						<img src="images/menu-open-arrow.png" width="16" height="16">
+						<img src="${rc.getContextPath()}/images/menu-open-arrow.png" width="16" height="16">
 					</div>
 					<div class="menu">
 						<ul class="reverted">

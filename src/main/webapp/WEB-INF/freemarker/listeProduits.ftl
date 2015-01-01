@@ -53,13 +53,11 @@
 							<tr class="odd">
 								<td style="cursor: pointer;" title="" class="voirClient with-tip sorting_1" rel="88">${produit.libelle!}</td>
 								<td style="cursor: pointer;" title="" class="voirClient with-tip sorting_1" rel="88">${produit.code!}</td>
-								<td style="cursor: pointer;" title="Supprimer produit"	class="voirClient with-tip" rel="88">
-									<a href="${rc.getContextPath()}/produits/supprimerProduit/${produit.id}" onclick="return confirm('Voulez vous vraiment supprimer ce produit?')" ><img src="${rc.getContextPath()}/images/icons/fugue/delete.png"></a>
-								    
+								<td class="table-actions">
+									<a href="${rc.getContextPath()}/produits/supprimerProduit/${produit.id}" onclick="return confirm('Voulez vous vraiment supprimer ce produit?')" title="update produit"	class="voirClient with-tip" rel="88" ><img src="${rc.getContextPath()}/images/icons/fugue/delete.png"></a>
+								    <a href="${rc.getContextPath()}/produits/afficherUpdateProduct/${produit.id}" title="Modifier" class="with-tip editClient" rel="88"><img src="${rc.getContextPath()}/images/icons/fugue/pencil.png"></a>
 								</td>
-								<td td style="cursor: pointer;" title="update produit"	class="voirClient with-tip" rel="88">
-								<a href="${rc.getContextPath()}/produits/afficherUpdateProduct/${produit.id}"><img src="${rc.getContextPath()}/images/icons/fugue/pencil.png"></a>
-                                 </td>						
+													
 							</tr>
 							
 							</#list>

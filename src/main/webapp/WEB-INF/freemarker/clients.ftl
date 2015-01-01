@@ -10,7 +10,7 @@
 	<article class="container_12" id="contentD">
 		
 		<section class=" block-content">
-	<h1>Liste des clients <a href="javascript:;" class="addClient"><img src="images/icons/fugue/plus-circle.png" width="16" height="16"> ajouter </a> </h1>
+	<h1>Liste des clients <a href="${rc.getContextPath()}/clients/afficherFormulaireClient" class="addClient"><img src="${rc.getContextPath()}/images/icons/fugue/plus-circle.png" width="16" height="16"> ajouter </a> </h1>
 	<div class="block-controls">
         <div class="controls-buttons">
         	<a href="${rc.getContextPath()}/clients/exporterClients" class="exporter"> exporter</a>
@@ -57,7 +57,7 @@
 	<tbody>
 	
 	<#if clients??>
-	<#list clients as client>
+       <#list clients as client>
 	   <tr class="odd">
 					
 				
@@ -68,8 +68,8 @@
 					</td>
 					<td style="cursor: pointer;" title="Cliquez pour voir la fiche client" class="voirClient with-tip" rel="88">${client.telephone} </td>
 					<td class="table-actions">
-					  <a href="javascript:;" title="Modifier" class="with-tip editClient" rel="88"><img src="images/icons/fugue/pencil.png" width="16" height="16"></a>
-					  <a href="javascript:;" title="Supprimer" class="with-tip deleteClient" rel="88"><img src="images/icons/fugue/cross-circle.png" width="16" height="16"></a>
+					  <a href="${rc.getContextPath()}/clients/afficherUpdateClient/${client.id}" title="Modifier" class="with-tip editClient" rel="88"><img src="${rc.getContextPath()}/images/icons/fugue/pencil.png" width="16" height="16"></a>
+					  <a href="${rc.getContextPath()}/clients/supprimerClient/${client.id}" title="Supprimer" class="with-tip deleteClient" rel="88" onclick="return confirm('Voulez vous vraiment supprimer ce produit?')" ><img src="${rc.getContextPath()}/images/icons/fugue/delete.png" width="16" height="16"></a>
 					</td>
 				
 	     </tr>
