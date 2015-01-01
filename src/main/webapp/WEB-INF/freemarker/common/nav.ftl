@@ -30,7 +30,7 @@
 				<a href="#" title="Gestion des promotions">Promotions</a>
 			</li>
 			<li class="tip-bottom settings margin-left">
-				<a href="#" title="Paramètres">Paramètres</a>
+				<a href="${rc.getContextPath()}/parametrage/afficher" title="Paramètres">Paramètres</a>
 			</li>
 			<li class="tip-bottom stats">
 				<a href="#" title="Statistiques">Statistiques</a>

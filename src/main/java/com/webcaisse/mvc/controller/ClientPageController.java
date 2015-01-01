@@ -22,9 +22,6 @@ import com.webcaisse.service.CustomUser;
 import com.webcaisse.ws.interfaces.ClientManagerService;
 import com.webcaisse.ws.model.ClientIn;
 import com.webcaisse.ws.model.ClientOut;
-import com.webcaisse.ws.model.FamilleIn;
-import com.webcaisse.ws.model.FamilleOut;
-import com.webcaisse.ws.model.ProduitIn;
 
 @Controller
 @RequestMapping("/clients")
@@ -53,12 +50,13 @@ public class ClientPageController {
 		
 		CsvUtils csvUtils = new CsvUtils();
 		List<ObjectCSV> objectCSV = new ArrayList<ObjectCSV>();
-		ObjectCSV o = new ObjectCSV();
+		
 		List<ClientOut> clients = clientManagerService
 				.rechercherClient(customUser.getSocieteId());
 
 		for (ClientOut clientOut : clients) {
 
+			ObjectCSV o = new ObjectCSV();
 			o.setLibelle(clientOut.getNom());
 			o.setPrenom(clientOut.getPrenom());
 			o.setTelephone(clientOut.getTelephone());

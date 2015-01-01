@@ -12,7 +12,7 @@
 		<intercept-url pattern="/js/**" access="permitAll" />
 		<intercept-url pattern="/produits/**" access="hasRole('ROLE_USER')" />
 		<intercept-url pattern="/commandes/**" access="hasRole('ROLE_USER')" />
-
+		<intercept-url pattern="/clients/**" access="hasRole('ROLE_USER')" />
 		<intercept-url pattern="/login" access="permitAll" />
 		<intercept-url pattern="/" access="permitAll" />
 		<intercept-url pattern="/loginSuccess" access="permitAll" />
