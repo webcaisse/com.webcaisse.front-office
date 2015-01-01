@@ -1,6 +1,7 @@
 package com.webcaisse.mvc.controller;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 
@@ -12,5 +13,10 @@ public class ParametragePageController {
 	public String afficher(){
 		
 		return "parametrage";
+	}
+	
+	@RequestMapping("/ajax/caisse")
+	public String afficherParametrageCaisse(ModelMap model){
+		return "modules/parametrage/caisse";
 	}
 }
