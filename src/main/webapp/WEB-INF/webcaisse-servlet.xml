@@ -26,7 +26,8 @@
 		<property name="requestContextAttribute" value="rc"/>
 	</bean>
 
-
+  <bean id="clientValidator" class="com.webcaisse.validator.ClientValidator" />
+  <bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource"  />
 	<context:component-scan base-package="com.webcaisse.mvc.controller" />
 	<context:component-scan base-package="com.webcaisse.mvc.bean" />
 	<context:component-scan base-package="com.webcaisse.mvc.service" />
