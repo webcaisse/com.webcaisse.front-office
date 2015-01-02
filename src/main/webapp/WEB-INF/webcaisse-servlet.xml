@@ -27,7 +27,11 @@
 	</bean>
 
   <bean id="clientValidator" class="com.webcaisse.validator.ClientValidator" />
-  <bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource"  />
+  <bean id="messageSource" class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
+    <property name="basename" value="WEB-INF/messages" />
+</bean>
+  
+  
 	<context:component-scan base-package="com.webcaisse.mvc.controller" />
 	<context:component-scan base-package="com.webcaisse.mvc.bean" />
 	<context:component-scan base-package="com.webcaisse.mvc.service" />

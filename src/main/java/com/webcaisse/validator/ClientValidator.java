@@ -15,7 +15,7 @@ public class ClientValidator implements Validator{
 
 	@Override
 	public void validate(Object target, Errors errors) {
-		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "nom","name.required");
+		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "nom","nom.required");
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "prenom","prenom.required");
 		ValidationUtils.rejectIfEmpty(errors, "telephone", "telephone.required");
 		ValidationUtils.rejectIfEmpty(errors, "numeroRue", "numeroRue.required");

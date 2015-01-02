@@ -1,5 +1,5 @@
 <#import "spring.ftl" as spring />
-<#assign form=JspTaglibs["http://www.springframework.org/tags/form"] />
+
 <head>
 	<#include "modules/head.ftl">	
 </head>
@@ -16,12 +16,14 @@ font-style: italic;
 
 <form action="${rc.getContextPath()}/clients/ajouterClient" modelAttribute="clientIn" method="POST">
 
+
    <fieldset style="margin-bottom: 15px;padding: 10px;">
       <legend style=" color: #384313;font-size: 16px;font-weight: bold;padding-bottom: 10px;text-shadow: 0 1px 1px #c0d576;">Ajouter Clients</legend>
-         <label style="display: block;width: 150px;float: left;" for="nom">Nom (*)</label>
-          <input name="nom" >
-        
-      <@spring.showErrors "<br>" />
+       <@spring.bind "clientIn.nom"/>
+         <label style="display: block;width: 150px;float: left;" for="nom">Nom (*) </label>
+          <@spring.formInput 'clientIn.nom'/>
+           <@spring.showErrors ' ', 'errors'/>
+     
           <br>
           <label style="display: block;width: 150px;float: left;" for="prenom">Prenom (*)</label>
           <input name="prenom"><br>
