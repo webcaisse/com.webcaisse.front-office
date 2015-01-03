@@ -29,7 +29,11 @@
 
 		 <jaxws:client id="sessionManagerService"
 		serviceClass="com.webcaisse.ws.interfaces.SessionManagerService"
-		 address="http://localhost:8092/caisse_ws/session" />	 	 
+		 address="http://localhost:8092/caisse_ws/session" />	
+		 
+		 <jaxws:client id="parametreManagerService"
+		serviceClass="com.webcaisse.ws.interfaces.ParametreManagerService"
+		 address="http://localhost:8092/caisse_ws/parametre" />	 	 
 
  
  <bean name="logginfInterceptor" class="org.apache.cxf.interceptor.LoggingInInterceptor"/>
