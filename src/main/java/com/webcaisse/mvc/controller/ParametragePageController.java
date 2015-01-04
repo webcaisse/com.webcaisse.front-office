@@ -36,6 +36,9 @@ public class ParametragePageController {
 
 		model.put("users", users);
 
+		ParametreCaisseIn caisseIn = new ParametreCaisseIn();
+		caisseIn.setEntete1("dmldfmdkfmd");
+		model.put("parametreCaisseIn", caisseIn);
 		return "parametrage";
 	}
 
