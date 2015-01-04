@@ -5,7 +5,7 @@
 <form action="${rc.getContextPath()}/parametrage/sauvegarderParametresCaisse" modelAttribute="parametreCaisseIn" method="POST">
 
    <fieldset style="margin-bottom: 15px;padding: 10px;">
-      <legend style=" color: #384313;font-size: 16px;font-weight: bold;padding-bottom: 10px;text-shadow: 0 1px 1px #c0d576;">Sauvegarder Parametres</legend>
+      <legend style=" color: #384313;font-size: 16px;font-weight: bold;padding-bottom: 10px;text-shadow: 0 1px 1px #c0d576;">Sauvegarder Parametres Caisse</legend>
      
          <label style="display: block;width: 150px;float: left;" for="E1">Entite 1 ticket</label>
           <input name="entete1" path="parametre.nomParametre" value=""><br>

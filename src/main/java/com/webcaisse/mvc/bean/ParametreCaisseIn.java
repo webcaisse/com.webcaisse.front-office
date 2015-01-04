@@ -12,6 +12,9 @@ public class ParametreCaisseIn {
 	private String pied2;
 	private String pied3;
 	private String pied4;
+	
+	
+
 	public String getEntete1() {
 		return entete1;
 	}
