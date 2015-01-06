@@ -17,8 +17,9 @@ import com.webcaisse.mvc.bean.ParametreCaisseIn;
 import com.webcaisse.mvc.bean.ParametreTVAIn;
 import com.webcaisse.service.CustomUser;
 import com.webcaisse.ws.interfaces.ParametreManagerService;
-import com.webcaisse.ws.model.ClientOut;
+import com.webcaisse.ws.interfaces.UserManagerService;
 import com.webcaisse.ws.model.ParametreIn;
+import com.webcaisse.ws.model.ProfilVOut;
 import com.webcaisse.ws.model.UserIn;
 import com.webcaisse.ws.model.UserOut;
 
@@ -28,13 +29,17 @@ public class ParametragePageController {
 
 	@Autowired
 	ParametreManagerService parametreManagerService;
+	
+	@Autowired
+	UserManagerService userManagerService;
 
 	@RequestMapping("/afficher")
 	public String afficher(ModelMap model) {
 		CustomUser customUser = (CustomUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		List<UserOut> users = parametreManagerService.rechercherUser(customUser.getSocieteId()) ;
-
+		List<ProfilVOut> profils = userManagerService.getProfils();
 		model.put("users", users);
+		model.put("profils", profils);
 
 		ParametreCaisseIn caisseIn = new ParametreCaisseIn();
 		caisseIn.setEntete1("dmldfmdkfmd");
@@ -86,6 +91,17 @@ public class ParametragePageController {
 		return afficher(model);
 	}
 	
+	@RequestMapping( value="/sauvegarderParametresUtilisateur",method=RequestMethod.POST)
+	public String sauvgarderParametresUtilisateurs(ModelMap model,@ModelAttribute("parametreUtilisateurIn") UserIn parametreUtilisateurIn ){
+		
+		CustomUser customUser = (CustomUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
+		parametreUtilisateurIn.setSocieteId(customUser.getSocieteId());
+		parametreUtilisateurIn.setEnabled(Boolean.TRUE);
+		parametreManagerService.sauvegarderUser(parametreUtilisateurIn);
+		return afficher(model); 	
+	}
+	
 	/**
 	 * Sauvegarder un parametre dans la BDD
 	 * 
@@ -101,21 +117,4 @@ public class ParametragePageController {
 		}
 	}
 
-	@RequestMapping( value="/sauvegarderParametresUtilisateur",method=RequestMethod.POST)
-	public String sauvgarderParametresUtilisateurs(ModelMap model,@ModelAttribute("parametreUtilisateurIn") UserIn parametreUtilisateurIn ){
-		
-		
-		CustomUser customUser = (CustomUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-
-		parametreUtilisateurIn.setSocieteId(customUser.getSocieteId());
-		
-		parametreManagerService.sauvegarderUser(parametreUtilisateurIn);
-		
-		
-	return afficher(model); 	
-	}
-	
-	
-	
-	
 }

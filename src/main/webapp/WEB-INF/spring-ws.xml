@@ -33,7 +33,11 @@
 		 
 		 <jaxws:client id="parametreManagerService"
 		serviceClass="com.webcaisse.ws.interfaces.ParametreManagerService"
-		 address="http://localhost:8092/caisse_ws/parametre" />	 	 
+		address="http://localhost:8092/caisse_ws/parametre" />	 	 
+
+		 <jaxws:client id="userManagerService"
+		serviceClass="com.webcaisse.ws.interfaces.UserManagerService"
+		address="http://localhost:8092/caisse_ws/user" />	 	 
 
  
  <bean name="logginfInterceptor" class="org.apache.cxf.interceptor.LoggingInInterceptor"/>

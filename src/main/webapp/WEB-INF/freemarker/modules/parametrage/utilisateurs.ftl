@@ -1,6 +1,4 @@
 <body>
-</br></br>
-
 <form action="${rc.getContextPath()}/parametrage/sauvegarderParametresUtilisateur" modelAttribute="parametreUtilisateurIn" method="POST">
 
    <fieldset style="margin-bottom: 15px;padding: 10px;">
@@ -19,41 +17,34 @@
            <label style="display: block;width: 150px;float: left;" for="MP">Mot de passe</label>
           <input name="password"><br>
            <label style="display: block;width: 150px;float: left;" for="type">Type</label>
-           <SELECT name="type">
-		           <OPTION VALUE="utilisateur">Utilisateur</OPTION>
-		           <OPTION VALUE="administrateur">Administrateur</OPTION>
-		          
+           <SELECT name="profil">
+           		<#if profils??>
+           			<#list profils as profil>
+			            <OPTION VALUE="${profil.id}">${profil.libelle}</OPTION>
+		            </#list>
+		         </#if>
 	       </SELECT>
      
     	<br>
     </fieldset>
    <p><input type="submit" value="Sauvegarder" style="float: left;"></p>
-</br></br>
 </form>
-</br>
 <div id="listeUsers">
-<table>
-		
-			<tr>
-				<th style="padding:10px;margin:10px;border:1px dotted gray; background:pink">Nom & Prenom</th> 
-				<th style="padding:10px;margin:10px;border:1px dotted gray; background:pink">Adresse</th>
-				
-			</tr>
-		
-   <#if users??>
-       <#list users as user>
-	   <tr >
-					
-				
+	<table>
+		<tr>
+			<th style="padding:10px;margin:10px;border:1px dotted gray; background:pink">Nom & Prenom</th> 
+			<th style="padding:10px;margin:10px;border:1px dotted gray; background:pink">Adresse</th>
+			
+		</tr>
+	   <#if users??>
+	       <#list users as user>
+			   <tr >
 					<td style="padding:10px;margin:10px;border:1px dotted gray; background:white">${user.nom!} ${user.prenom!}</td>
 					<td  style="padding:10px;margin:10px;border:1px dotted gray; background:white">${user.adresse!}</td>
-					
-				
-	     </tr>
-	</#list>
-	</#if>
-		
-
-	</table>
+		     </tr>
+		</#list>
+		</#if>
+			
 	
+	</table>
 </div>	

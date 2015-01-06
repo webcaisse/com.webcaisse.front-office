@@ -1,9 +1,7 @@
 
 <body>
 </br></br>
-
 <form action="${rc.getContextPath()}/parametrage/sauvegarderParametresCaisse" modelAttribute="parametreCaisseIn" method="POST">
-
    <fieldset style="margin-bottom: 15px;padding: 10px;">
       <legend style=" color: #384313;font-size: 16px;font-weight: bold;padding-bottom: 10px;text-shadow: 0 1px 1px #c0d576;">Sauvegarder Parametres Caisse</legend>
      
@@ -23,11 +21,6 @@
           <input name="pied3"><br>
            <label style="display: block;width: 150px;float: left;" for="P4">Pied 4 ticket</label>
           <input name="pied4"><br>
-           
-         
-    	<br>
-
     </fieldset>
    <p><input type="submit" value="Sauvegarder" style="float: left;"></p>
-</br></br>
 </form>
