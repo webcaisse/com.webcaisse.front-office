@@ -1,5 +1,7 @@
 package com.webcaisse.mvc.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -13,10 +15,12 @@ import com.webcaisse.mvc.bean.ParametrageCaisseEnum;
 import com.webcaisse.mvc.bean.ParametrageTVAEnum;
 import com.webcaisse.mvc.bean.ParametreCaisseIn;
 import com.webcaisse.mvc.bean.ParametreTVAIn;
-import com.webcaisse.mvc.bean.Parametres;
 import com.webcaisse.service.CustomUser;
 import com.webcaisse.ws.interfaces.ParametreManagerService;
+import com.webcaisse.ws.model.ClientOut;
 import com.webcaisse.ws.model.ParametreIn;
+import com.webcaisse.ws.model.UserIn;
+import com.webcaisse.ws.model.UserOut;
 
 @Controller
 @RequestMapping("/parametrage")
@@ -27,16 +31,17 @@ public class ParametragePageController {
 
 	@RequestMapping("/afficher")
 	public String afficher(ModelMap model) {
+		CustomUser customUser = (CustomUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		List<UserOut> users = parametreManagerService.rechercherUser(customUser.getSocieteId()) ;
+
+		model.put("users", users);
 
 		return "parametrage";
 	}
 
 	@RequestMapping(value = "/ajax/caisse", method = RequestMethod.GET)
 	public String afficherParametrageCaisse(ModelMap model) {
-		// List<ParametreIn> parametres = new ArrayList<ParametreIn>() ;
 
-		Parametres parametres = new Parametres();
-		model.addAttribute("parametres", parametres);
 		return "modules/parametrage/caisse";
 	}
 
@@ -93,4 +98,21 @@ public class ParametragePageController {
 		}
 	}
 
+	@RequestMapping( value="/sauvegarderParametresUtilisateur",method=RequestMethod.POST)
+	public String sauvgarderParametresUtilisateurs(ModelMap model,@ModelAttribute("parametreUtilisateurIn") UserIn parametreUtilisateurIn ){
+		
+		
+		CustomUser customUser = (CustomUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
+		parametreUtilisateurIn.setSocieteId(customUser.getSocieteId());
+		
+		parametreManagerService.sauvegarderUser(parametreUtilisateurIn);
+		
+		
+	return afficher(model); 	
+	}
+	
+	
+	
+	
 }
