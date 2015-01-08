@@ -28,7 +28,7 @@
     	<br>
     </fieldset>
    <p><input type="submit" value="Sauvegarder" style="float: left;"></p>
-</form>
+</form> </br></br> </br>
 <div id="listeUsers">
 	<table>
 		<tr>

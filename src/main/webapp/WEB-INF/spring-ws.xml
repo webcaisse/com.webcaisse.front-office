@@ -38,6 +38,10 @@
 		 <jaxws:client id="userManagerService"
 		serviceClass="com.webcaisse.ws.interfaces.UserManagerService"
 		address="http://localhost:8092/caisse_ws/user" />	 	 
+		
+		<jaxws:client id="livreurManagerService"
+		serviceClass="com.webcaisse.ws.interfaces.LivreurManagerService"
+		address="http://localhost:8092/caisse_ws/livreur" />	
 
  
  <bean name="logginfInterceptor" class="org.apache.cxf.interceptor.LoggingInInterceptor"/>

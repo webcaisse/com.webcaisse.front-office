@@ -16,8 +16,11 @@ import com.webcaisse.mvc.bean.ParametrageTVAEnum;
 import com.webcaisse.mvc.bean.ParametreCaisseIn;
 import com.webcaisse.mvc.bean.ParametreTVAIn;
 import com.webcaisse.service.CustomUser;
+import com.webcaisse.ws.interfaces.LivreurManagerService;
 import com.webcaisse.ws.interfaces.ParametreManagerService;
 import com.webcaisse.ws.interfaces.UserManagerService;
+import com.webcaisse.ws.model.LivreurIn;
+import com.webcaisse.ws.model.LivreurOut;
 import com.webcaisse.ws.model.ParametreIn;
 import com.webcaisse.ws.model.ProfilVOut;
 import com.webcaisse.ws.model.UserIn;
@@ -33,13 +36,19 @@ public class ParametragePageController {
 	@Autowired
 	UserManagerService userManagerService;
 
+	@Autowired
+	LivreurManagerService livreurManagerService ;
+	
+	
 	@RequestMapping("/afficher")
 	public String afficher(ModelMap model) {
 		CustomUser customUser = (CustomUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		List<UserOut> users = parametreManagerService.rechercherUser(customUser.getSocieteId()) ;
 		List<ProfilVOut> profils = userManagerService.getProfils();
+		List<LivreurOut> livreurs = livreurManagerService.rechercherLivreur(customUser.getSocieteId()) ;
 		model.put("users", users);
 		model.put("profils", profils);
+		model.put("livreurs", livreurs) ;
 
 		ParametreCaisseIn caisseIn = new ParametreCaisseIn();
 		caisseIn.setEntete1("dmldfmdkfmd");
@@ -101,6 +110,21 @@ public class ParametragePageController {
 		parametreManagerService.sauvegarderUser(parametreUtilisateurIn);
 		return afficher(model); 	
 	}
+	
+	
+	@RequestMapping( value="/sauvegarderParametresLivreur",method=RequestMethod.POST)
+	public String sauvgarderParametresLivreur(ModelMap model,@ModelAttribute("parametreLivreurIn") LivreurIn parametreLivreurIn ){
+		
+		CustomUser customUser = (CustomUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
+		parametreLivreurIn.setSocieteId(customUser.getSocieteId());
+		livreurManagerService.sauvegarderLivreur(parametreLivreurIn);
+		return afficher(model); 	
+	}
+	
+	
+	
+	
 	
 	/**
 	 * Sauvegarder un parametre dans la BDD
