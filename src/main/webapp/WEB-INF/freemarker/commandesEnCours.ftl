@@ -103,7 +103,7 @@
 		       		</#if>
 		       </td>
 		       <td>${commande.libelleProduit}</td>
-		        <td>0</td>
+		        <td><a href="${rc.getContextPath()}/commandes/details/${commande.id}" title="details">details</a></td>
 		      </tr>
 			</#list>   
 	   </#if>	

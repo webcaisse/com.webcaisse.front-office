@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,6 +23,7 @@ import com.webcaisse.mvc.ObjectCSV;
 import com.webcaisse.service.CustomUser;
 import com.webcaisse.ws.interfaces.CommandeManagerService;
 import com.webcaisse.ws.model.CommandeOut;
+import com.webcaisse.ws.model.LigneCommandeOut;
 
 @Controller
 @RequestMapping("/commandes")
@@ -32,11 +34,9 @@ public class CommandePageController {
 
 	@RequestMapping(value = "/enCours", method = RequestMethod.GET)
 	public String afficherCommandeEnCours(ModelMap model) {
-		CustomUser customUser = (CustomUser) SecurityContextHolder.getContext()
-				.getAuthentication().getPrincipal();
+		CustomUser customUser = (CustomUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
-		List<CommandeOut> commandes = commandeManagerService
-				.rechercherCommande(customUser.getSessionId());
+		List<CommandeOut> commandes = commandeManagerService.rechercherCommande(customUser.getSessionId());
 
 		model.put("commandes", commandes);
 
@@ -96,5 +96,17 @@ public class CommandePageController {
 
 		csvUtils.exporter("commandes.csv", objectCSV, response);
 
+	}
+	
+	@RequestMapping("/details/{idCommande}")
+	public String afficherDetails(Model model ,@PathVariable("idCommande") Long idCommande) {
+
+		CommandeOut commandeOut = commandeManagerService.loadCommandeById(idCommande);
+		List <LigneCommandeOut> ligneComandeOuts= commandeOut.getLigneCommandeOut() ;
+	 
+		model.addAttribute ("commandeOut",commandeOut) ;
+		model.addAttribute ("ligneComandeOuts",ligneComandeOuts) ;
+
+		return "detailsCommande";
 	}
 }
