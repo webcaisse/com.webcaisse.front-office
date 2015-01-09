@@ -10,38 +10,39 @@
  	<import resource="classpath:META-INF/cxf/cxf.xml" />
 	<import resource="classpath:META-INF/cxf/cxf-extension-soap.xml" />
 	<import resource="classpath:META-INF/cxf/cxf-servlet.xml" />
+	<context:property-placeholder location="classpath:spring.webcaisse.services.url.properties" />
 
 	<jaxws:client id="gestionCaisse"
 		serviceClass="com.webcaisse.ws.interfaces.CaisseManagerService"
-		 address="http://localhost:8092/caisse_ws/gestionCaisse" />
+		 address="${webcaisse.services.caisse.url}" />
 		 
      <jaxws:client id="gestionCommande"
 		serviceClass="com.webcaisse.ws.interfaces.CommandeManagerService"
-		 address="http://localhost:8092/caisse_ws/gestionCommande" />	
+		 address="${webcaisse.services.commandes.url}" />	
 		 
 	     <jaxws:client id="gestionClient"
 		serviceClass="com.webcaisse.ws.interfaces.ClientManagerService"
-		 address="http://localhost:8092/caisse_ws/gestionClient" />		
+		 address="${webcaisse.services.client.url}" />		
 		 
 		 <jaxws:client id="authentificationService"
 		serviceClass="com.webcaisse.ws.interfaces.AuthentificationService"
-		 address="http://localhost:8092/caisse_ws/authentification" />	 	 
+		 address="${webcaisse.services.authentification.url}" />	 	 
 
 		 <jaxws:client id="sessionManagerService"
 		serviceClass="com.webcaisse.ws.interfaces.SessionManagerService"
-		 address="http://localhost:8092/caisse_ws/session" />	
+		 address="${webcaisse.services.session.url}" />	
 		 
 		 <jaxws:client id="parametreManagerService"
 		serviceClass="com.webcaisse.ws.interfaces.ParametreManagerService"
-		address="http://localhost:8092/caisse_ws/parametre" />	 	 
+		address="${webcaisse.services.parametre.url}" />	 	 
 
 		 <jaxws:client id="userManagerService"
 		serviceClass="com.webcaisse.ws.interfaces.UserManagerService"
-		address="http://localhost:8092/caisse_ws/user" />	 	 
+		address="${webcaisse.services.user.url}" />	 	 
 		
 		<jaxws:client id="livreurManagerService"
 		serviceClass="com.webcaisse.ws.interfaces.LivreurManagerService"
-		address="http://localhost:8092/caisse_ws/livreur" />	
+		address="${webcaisse.services.livreur.url}" />	
 
  
  <bean name="logginfInterceptor" class="org.apache.cxf.interceptor.LoggingInInterceptor"/>
