@@ -22,7 +22,7 @@
 		  </td>
 			<td>
 				<#assign prix="${(lignePanier.prix - lignePanier.prix*lignePanier.remise ) * lignePanier.quantite}">
-				<a href="#" class="button lignePanierPrix">  #{prix?number}</a>
+				<a href="#" class="button lignePanierPrix">  ${prix}</a>
 			</td>
 			
 			<td style="width:20%">				
