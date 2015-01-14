@@ -1,13 +1,4 @@
     <div class="grid_5">
-    	<div class="grid" style="position: relative; float: right; margin: 5px;">
-			<a href="javascript:;" title="Remise à 0 du filtre" class="width-tip button" id="razFiltre">
-				<img src="<@spring.url '/images/icons/fugue/cross-circle.png' />" width="24" height="24">
-			</a>
-			<input type="text" id="produitFiltre" class="width-tip" title="Filtrer la liste des produits" value="" style="height: 2em; width: 50px;">
-			<input type="text" id="barcodeSearch" class="width-tip" title="Recherche code barre" placeholder="Code barre" value="" style="height: 2em; width: 100px;">
-		 </div>
-    	 <div id="abonnementsFinder">
-         </div>
     	 <div id="productFinderFamilles">	
     	    <h1 style="font-size: 20px;">Choisissez une catégorie</h1>
 	        <div class="clearfix">
