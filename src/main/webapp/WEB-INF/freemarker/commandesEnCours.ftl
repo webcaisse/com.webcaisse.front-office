@@ -1,9 +1,14 @@
 <#import "spring.ftl" as spring />
 <head>
 <#include "modules/head.ftl">
+<link rel="stylesheet" href="<@spring.url '/css/themes/default/style.min.css' />" />
 <link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css">
   <script src="//code.jquery.com/jquery-1.10.2.js"></script>
-  <script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>	<script>
+  <script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
+  <script type="text/javascript"	src="<@spring.url '/js/jquery.bpopup.min.js' />"></script>
+	
+    <script type="text/javascript" src="<@spring.url '/js/commande.js' />"></script>
+  	<script>
   $(function() {
     $( "#datepicker" ).datepicker({ dateFormat: "dd-mm-yy" });
   });
@@ -42,6 +47,18 @@
 			</select> éléments
 		</div>
 		<div class="float-right">
+			<form action="${rc.getContextPath()}/commandes/rechercherCommandeParLivreur">Livreurs : 
+				   <select name="idLivreur">
+				  <#if livreurs??>
+		              <#list livreurs as livreur>
+		              <option  value=""> </option> 
+  					<option  value="${livreur.id}">${livreur.nom}</option> 
+  					 </#list>
+		           </#if>  
+				</select> 
+				<input type="submit" value="Actualiser">
+			 </form>				
+		            
 			<form action="${rc.getContextPath()}/commandes/rechercherCommande">Rechercher : 
 				<input type="text" id="datepicker" name="dateCommande" value="${dateCommande!}" style="position: relative; z-index: 100000;">
 		 		<input type="submit" value="Actualiser">
@@ -71,6 +88,13 @@
 						<a href="#" title="Sort down" class="sort-down"></a>
 					</span>
 					Libellé Produits
+				</th>
+				<th scope="col" style="width: 149.400001525879px;" class="sorting">
+					<span class="column-sort">
+						<a href="#" title="Sort up" class="sort-up"></a>
+						<a href="#" title="Sort down" class="sort-down"></a>
+					</span>
+					Nom Livreur 
 				</th>
 			
 				<th scope="col" class="table-actions sorting_disabled" style="width: 269.400001525879px;">Actions</th>
@@ -103,7 +127,20 @@
 		       		</#if>
 		       </td>
 		       <td>${commande.libelleProduit}</td>
-		        <td><a href="${rc.getContextPath()}/commandes/details/${commande.id}" title="details">details</a></td>
+		       <td>
+		       <#if commande.nomLivreur??>
+			       		${commande.nomLivreur!}
+		       		<#else>
+		       			Inconnu
+		       		</#if>
+		       
+		       </td>
+		        <td>
+		        <a href="${rc.getContextPath()}/commandes/details/${commande.id}" title="details">details</a> 
+		        <a href="javascript:;" title="Affecter Livreur" class="affecterLivreur" data-idcmd="${commande.id}">affecter livreur </a>
+		        
+		        </td>
+		        
 		      </tr>
 			</#list>   
 	   </#if>	
@@ -117,6 +154,6 @@
 	</article>
 	<footer>
 	</footer>
-   
+   <#include "modules/popupLivreur.ftl"/>
 </body>
 </html>

@@ -37,6 +37,7 @@
 	<script type="text/javascript" src="<@spring.url '/js/produit.js' />"></script>
 	<script type="text/javascript" src="<@spring.url '/js/onglets.js' />"></script>
 	<script type="text/javascript" src="<@spring.url '/js/paiement.js' />"></script>
+	
 </head>
 
 <body>
@@ -173,6 +174,7 @@
 		<#include "modules/popup.ftl"/>
 		<#include "modules/product/popup_paiement.ftl"/> 
 		<#include "modules/product/remise.ftl"/>
+		
 
 	</footer>
 

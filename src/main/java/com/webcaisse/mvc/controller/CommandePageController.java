@@ -22,8 +22,10 @@ import com.webcaisse.mvc.CsvUtils;
 import com.webcaisse.mvc.ObjectCSV;
 import com.webcaisse.service.CustomUser;
 import com.webcaisse.ws.interfaces.CommandeManagerService;
+import com.webcaisse.ws.interfaces.LivreurManagerService;
 import com.webcaisse.ws.model.CommandeOut;
 import com.webcaisse.ws.model.LigneCommandeOut;
+import com.webcaisse.ws.model.LivreurOut;
 
 @Controller
 @RequestMapping("/commandes")
@@ -31,14 +33,18 @@ public class CommandePageController {
 
 	@Autowired(required = true)
 	CommandeManagerService commandeManagerService;
+	
+	@Autowired
+	LivreurManagerService livreurManagerService ;
 
 	@RequestMapping(value = "/enCours", method = RequestMethod.GET)
 	public String afficherCommandeEnCours(ModelMap model) {
 		CustomUser customUser = (CustomUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
 		List<CommandeOut> commandes = commandeManagerService.rechercherCommande(customUser.getSessionId());
-
+        List<LivreurOut> livreurs= livreurManagerService.rechercherLivreur(customUser.getSocieteId()) ;
 		model.put("commandes", commandes);
+		model.put("livreurs",livreurs) ;
 
 		return "/commandesEnCours";
 	}
@@ -108,5 +114,21 @@ public class CommandePageController {
 		model.addAttribute ("ligneComandeOuts",ligneComandeOuts) ;
 
 		return "detailsCommande";
+	}
+	
+	@RequestMapping(value = "/rechercherCommandeParLivreur", method = RequestMethod.GET)
+	public String rechercherCommandeParLivreur(Model model,@RequestParam(value = "idLivreur") Long idLivreur){
+		
+		CustomUser customUser = (CustomUser) SecurityContextHolder.getContext()
+				.getAuthentication().getPrincipal();
+		
+		List<CommandeOut> commandes= commandeManagerService.getCommandesByIdLivreur(idLivreur) ;
+		List<LivreurOut> livreurs= livreurManagerService.rechercherLivreur(customUser.getSocieteId()) ;
+		model.addAttribute("commandes",commandes) ;
+		model.addAttribute("livreurs",livreurs) ;
+		
+		return "/commandesEnCours";
+		
+		
 	}
 }
