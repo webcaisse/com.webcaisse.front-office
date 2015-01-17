@@ -37,6 +37,7 @@
 	<script type="text/javascript" src="<@spring.url '/js/produit.js' />"></script>
 	<script type="text/javascript" src="<@spring.url '/js/onglets.js' />"></script>
 	<script type="text/javascript" src="<@spring.url '/js/paiement.js' />"></script>
+	<script type="text/javascript" src="<@spring.url '/js/client.js' />"></script>
 	
 </head>
 
@@ -64,7 +65,7 @@
 						<option value="1">Perte</option>
 					</select>
 				</div>
-				<button class="addClient float-left"
+				<button class="addCl float-left"
 					style="font-size: 14px; margin: 2px 0 0 50px;">
 					<img src="images/icons/fugue/plus-circle.png" width="16" height="16"> Nouveau
 				</button>
@@ -174,6 +175,7 @@
 		<#include "modules/popup.ftl"/>
 		<#include "modules/product/popup_paiement.ftl"/> 
 		<#include "modules/product/remise.ftl"/>
+		<#include "modules/nouvelleClient.ftl"/>
 		
 
 	</footer>

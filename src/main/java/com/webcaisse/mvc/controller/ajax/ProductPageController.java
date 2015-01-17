@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.webcaisse.mvc.EnumModePaiement;
+import com.webcaisse.mvc.bean.Client;
 import com.webcaisse.mvc.bean.LignePanier;
 import com.webcaisse.mvc.bean.ModePaiement;
 import com.webcaisse.mvc.bean.Paiement;
@@ -23,6 +24,7 @@ import com.webcaisse.mvc.bean.Panier;
 import com.webcaisse.mvc.bean.RemiseProduit;
 import com.webcaisse.service.CustomUser;
 import com.webcaisse.ws.interfaces.CaisseManagerService;
+import com.webcaisse.ws.model.ClientIn;
 import com.webcaisse.ws.model.CommandeIn;
 import com.webcaisse.ws.model.LigneCommandeIn;
 import com.webcaisse.ws.model.ProduitOut;
@@ -42,6 +44,9 @@ public class ProductPageController {
 
 	@Autowired
 	ModePaiement modePaiement;
+	
+	@Autowired
+	Client client ;
 	
 	@RequestMapping("loadFamillies")
 	@ResponseBody
@@ -251,8 +256,7 @@ public class ProductPageController {
 	@ResponseBody
 	public Long sauvegarderCommande() {
 		
-		CustomUser customUser = (CustomUser) SecurityContextHolder.getContext()
-				.getAuthentication().getPrincipal();
+		CustomUser customUser = (CustomUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
 		Long idCommande = null ;
 		CommandeIn commande = new CommandeIn() ;	
@@ -262,12 +266,24 @@ public class ProductPageController {
 		commande.setRegCheque(modePaiement.getCheque());
 		commande.setRegEspece(modePaiement.getEspece());
 		commande.setRegTicketRestau(modePaiement.getTicketRestau());
-		commande.setIdSession(customUser.getSessionId());;
-		
-		
+		commande.setIdSession(customUser.getSessionId());
 		commande.setMontant(panier.getPrixTtc());
 		commande.setNotes(panier.getMessage());
 		
+		ClientIn  clientIn= new ClientIn() ;
+		//clientIn.setId(client.getIdClient());
+		clientIn.setNom(client.getNom());
+		clientIn.setPrenom(client.getPrenom());
+		clientIn.setEtage(client.getEtage());
+		clientIn.setImmeuble(client.getImmeuble());
+		clientIn.setInterphone(client.getInterphone());
+		clientIn.setNomRue(client.getNomRue());
+		clientIn.setNumeroRue(client.getNumeroRue());
+		
+		commande.setClientIn(clientIn);
+	 
+	    
+	
 		List<LigneCommandeIn> commandeIns =new ArrayList<LigneCommandeIn>();
 		commande.setLignesCommandesIn(commandeIns);
 		
