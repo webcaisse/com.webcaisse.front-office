@@ -52,18 +52,8 @@
 				<div class="ui-widget float-left">
 					<label class="combobox" style="font-size: 24px;"><img
 						src="images/icons/Profile.png" width="24" height="24"
-						style="vertical-align: middle;"> Client : </label> <select
-						id="combobox" am-focus="0">
-						<option value="2" selected="selected">Anonyme</option>
-						<option value="75">Alexis</option>
-						<option value="76">GANA SAMY</option>
-						<option value="73">Mansouri Hocine</option>
-						<option value="74">Mansouri Hocine</option>
-						<option value="72">Mansouri Hocine</option>
-						<option value="70">Mansouri Leila</option>
-						<option value="71">Mansouri Sara</option>
-						<option value="1">Perte</option>
-					</select>
+						style="vertical-align: middle;"> Client : </label>
+						<input type="text" id="idTelephone">
 				</div>
 				<button class="addCl float-left"
 					style="font-size: 14px; margin: 2px 0 0 50px;">

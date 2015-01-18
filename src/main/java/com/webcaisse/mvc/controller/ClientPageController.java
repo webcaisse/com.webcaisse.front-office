@@ -79,7 +79,7 @@ public class ClientPageController {
 	@RequestMapping(value = "/afficherFormulaireClient", method = RequestMethod.GET)
 	public String afficherFomulaire(Model model) {
 		ClientIn in = new ClientIn();
-		model.addAttribute("client", in);
+		model.addAttribute("clientIn", in);
 
 		return "ajouterClient";
 	}

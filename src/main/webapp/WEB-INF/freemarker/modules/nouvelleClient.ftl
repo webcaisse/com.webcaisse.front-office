@@ -10,8 +10,8 @@
           <label style="display: block;width: 150px;float: left;" for="prenom" >Prenom (*)</label>
           <input name="prenom" id="prenom"><br>
           <div id="telephones" class="ui-helper-clearfix">
-          <label style="display: block;width: 150px;float: left;" for="telephone" >Telephone (*)</label>
-          <input name="telephone" id="telephone"><br>
+          <label style="display: block;float: left;" for="telephone" >Telephone (*)</label>
+          <input name="telephone" id="phoneId"><br>
           </div>
           <label style="display: block;width: 150px;float: left;" for="etage">Etage</label>
           <input name="etage" id="etage"><br>

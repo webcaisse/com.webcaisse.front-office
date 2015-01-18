@@ -53,39 +53,59 @@ $(document).ready(
 			    return split(term).pop();
 			}
 			
+//			 $("#telephone").autocomplete({
+//		    	   minLength: 2,
+//		           delay: 500,
+//		           source : function(request, response) {
+//		               $.ajax({
+//		                   url : "ajax/client/autoCompleteClient",
+//		                   dataType : "json",
+//		                   data : {
+//		                       term : request.term
+//		                   },
+//		                   success : function(data) {
+//		                       /*response(data/*$.map(data, function(item) {
+//		                           return {
+//		                               label : item.nom,
+//		                               value : item.telephone
+//		                           } ;
+//		                       })/)*/
+//		                	   var suggestions = [];  
+//		                       //process response  
+//		                       $.each(data, function(i, val){  
+//		                        	suggestions.push({"id": val.nom, "value": val.telephone});  
+//		                    	});  
+//		                    	//pass array to callback
+//		                       alert (suggestions);
+//		                       response(suggestions); 
+//		                   }
+//		               });
+//		           }
+//		       });
 		
-			
-			autocompliteClient=function(){
-				
-				 $("#telephone").autocomplete(
-					       {
-					    	   
-					    	   minLength: 1,
-					           delay: 500,
-					           source : function(request, response) {
-					               $.ajax({
-					                   url : "ajax/client/autoCompleteClient",
-					                  
-					                   dataType : "json",
-					                   data : {
-					                       term : request.term
-					                   },
-					                   success : function(data) {
-					                       response($.map(data, function(item) {
-					                           return {
-					                               label : item.telephone,
-					                               value : item.telephone
-					                           } ;
-					                       }));
-					                   }
-					               });
-					           },
-					              
-					           
-					       });
-		
-			};
-			
+			$("#idTelephone").autocomplete({
+			    minLength: 2,
+			    scrollHeight: 220, 
+			       source: function(req, add){
+				  $.ajax({
+			            url:'ajax/client/autoCompleteClient',
+			            type:"get",
+			            dataType: 'json',
+			            data: 'term='+req.term,
+			            async: true,
+			            cache: true,
+			            success: function(data){
+			                var suggestions = [];  
+			                //process response  
+			                $.each(data, function(i, val){  
+			                 	suggestions.push({"id": val.id, "value": val.nom});  
+			             	});  
+			             	//pass array to callback  
+			             	add(suggestions); 
+			            }
+			        });
+			   }
+			});
 			//gestion des evenements
 			
 			$( document ).on( "click", '.addCl',function() {
@@ -97,8 +117,8 @@ $(document).ready(
 				//closePopup();
 			});
 			
-			$( document ).on( "click", '#telephone',function() {
-				autocompliteClient();
-			});
+//			$( document ).on( "click", '#telephone',function() {
+//				autocompliteClient();
+//			});
 			
 	}) ;
