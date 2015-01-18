@@ -116,6 +116,7 @@ public class ClientPageController {
 	public String afficherUpadateClient(Model model,
 			@PathVariable("idClient") Long idClient) {
 		ClientOut clientOut = clientManagerService.loadClientById(idClient);
+		
 		ClientIn in = new ClientIn();
 
 		in.setNom(clientOut.getNom());

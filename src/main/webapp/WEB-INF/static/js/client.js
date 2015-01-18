@@ -22,10 +22,11 @@ $(document).ready(
 			
 			};
 			
-			ajouterClient = function(nomClient, prenomClient,numeroRue,nomRue,etage,immeuble,interphone,codePostale) {
+			ajouterClient = function(nomClient, prenomClient,numeroRue,telephone,nomRue,etage,immeuble,interphone,codePostale) {
 				var clientObj = {
 					nom : nomClient,
 					prenom : prenomClient,
+					telephone:telephone,
 					numeroRue: numeroRue, 
 					nomRue:nomRue ,
 					etage:etage,
@@ -44,6 +45,47 @@ $(document).ready(
 			
 			};
 			
+			
+			function split(val) {
+			    return val.split(/,\s*/);
+			}
+			function extractLast(term) {
+			    return split(term).pop();
+			}
+			
+		
+			
+			autocompliteClient=function(){
+				
+				 $("#telephone").autocomplete(
+					       {
+					    	   
+					    	   minLength: 1,
+					           delay: 500,
+					           source : function(request, response) {
+					               $.ajax({
+					                   url : "ajax/client/autoCompleteClient",
+					                  
+					                   dataType : "json",
+					                   data : {
+					                       term : request.term
+					                   },
+					                   success : function(data) {
+					                       response($.map(data, function(item) {
+					                           return {
+					                               label : item.telephone,
+					                               value : item.telephone
+					                           } ;
+					                       }));
+					                   }
+					               });
+					           },
+					              
+					           
+					       });
+		
+			};
+			
 			//gestion des evenements
 			
 			$( document ).on( "click", '.addCl',function() {
@@ -51,10 +93,12 @@ $(document).ready(
 			});
 			
 			$( document ).on( "click", '#ajoutClient',function() {
-				ajouterClient($('input[id="nom"]').val(),$('input[id="prenom"]').val(),$('input[id="numeroRue"]').val(),$('input[id="nomRue"]').val(),$('input[id="etage"]').val(),$('input[id="immeuble"]').val(),$('input[id="interphone"]').val(),$('input[id="codePostale"]').val());
+				ajouterClient($('input[id="nom"]').val(),$('input[id="telephone"]').val(),$('input[id="telephone"]').val(),$('input[id="numeroRue"]').val(),$('input[id="nomRue"]').val(),$('input[id="etage"]').val(),$('input[id="immeuble"]').val(),$('input[id="interphone"]').val(),$('input[id="codePostale"]').val());
 				//closePopup();
 			});
 			
-			
+			$( document ).on( "click", '#telephone',function() {
+				autocompliteClient();
+			});
 			
 	}) ;

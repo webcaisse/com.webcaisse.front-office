@@ -1,15 +1,19 @@
  <div id="popupClient" style="display:none;left: 433px; position: absolute; top: 302px; z-index: 9999; opacity: 1; background-color:white;border: 5px solid rgb(90, 158, 181);>
 	<span class="button b-close"><span>X</span></span>
 	
-<form action="" modelAttribute="client" method="POST">
+<form action="#" modelAttribute="client" method="POST">
 	
    <fieldset style="margin-bottom: 15px;padding: 10px;">
       <legend style=" color: #384313;font-size:18px;text-align:center;text-shadow:1px 0px 3px gray;">Ajout Client</legend></br></br>
-         <label style="display: block;width: 150px;float: left;" for="nom" >Nom (*)</label>
-         <input name="nom" id="nom"><br>
-         <label style="display: block;width: 150px;float: left;" for="prenom" >Prenom (*)</label>
-         <input name="prenom" id="prenom"><br>
-         <label style="display: block;width: 150px;float: left;" for="etage">Etage</label>
+          <label style="display: block;width: 150px;float: left;" for="nom" >Nom (*)</label>
+          <input name="nom" id="nom"><br>
+          <label style="display: block;width: 150px;float: left;" for="prenom" >Prenom (*)</label>
+          <input name="prenom" id="prenom"><br>
+          <div id="telephones" class="ui-helper-clearfix">
+          <label style="display: block;width: 150px;float: left;" for="telephone" >Telephone (*)</label>
+          <input name="telephone" id="telephone"><br>
+          </div>
+          <label style="display: block;width: 150px;float: left;" for="etage">Etage</label>
           <input name="etage" id="etage"><br>
           <label style="display: block;width: 150px;float: left;" for="immeuble">Immeuble (*)</label>
           <input name="immeuble" id="immeuble"><br>
