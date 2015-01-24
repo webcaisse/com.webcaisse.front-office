@@ -1,7 +1,9 @@
 $(document).ready(
 		function() {
-	
 			
+			/***
+			 * Afficher le popup pour le saisie d'une nouveaux client 
+			 */
 			displayPopupWithEffect = function() {
 				$('#popupClient').bPopup({
 					easing : 'easeOutBack',
@@ -10,41 +12,12 @@ $(document).ready(
 				});
 			};
 			
+			/**
+			 * Fermer de popup 
+			*/
 			closePopup = function (){
 				$('.button.b-close').click(); 
 			};
-			
-			
-			afficherFormulaireClient= function () {
-				
-						// display popup
-						displayPopupWithEffect();	
-			
-			};
-			
-			ajouterClient = function(nomClient, prenomClient,numeroRue,telephone,nomRue,etage,immeuble,interphone,codePostale) {
-				var clientObj = {
-					nom : nomClient,
-					prenom : prenomClient,
-					telephone:telephone,
-					numeroRue: numeroRue, 
-					nomRue:nomRue ,
-					etage:etage,
-					immeuble:immeuble,
-					interphone:interphone,
-					codePostale:codePostale 
-				};
-				$.ajax({
-					type : "POST",
-					url : "ajax/client/ajouterClient",
-					data : clientObj
-				}).done(function() {
-					location.reload();
-				});
-				
-			
-			};
-			
 			
 			function split(val) {
 			    return val.split(/,\s*/);
@@ -52,73 +25,71 @@ $(document).ready(
 			function extractLast(term) {
 			    return split(term).pop();
 			}
-			
-//			 $("#telephone").autocomplete({
-//		    	   minLength: 2,
-//		           delay: 500,
-//		           source : function(request, response) {
-//		               $.ajax({
-//		                   url : "ajax/client/autoCompleteClient",
-//		                   dataType : "json",
-//		                   data : {
-//		                       term : request.term
-//		                   },
-//		                   success : function(data) {
-//		                       /*response(data/*$.map(data, function(item) {
-//		                           return {
-//		                               label : item.nom,
-//		                               value : item.telephone
-//		                           } ;
-//		                       })/)*/
-//		                	   var suggestions = [];  
-//		                       //process response  
-//		                       $.each(data, function(i, val){  
-//		                        	suggestions.push({"id": val.nom, "value": val.telephone});  
-//		                    	});  
-//		                    	//pass array to callback
-//		                       alert (suggestions);
-//		                       response(suggestions); 
-//		                   }
-//		               });
-//		           }
-//		       });
 		
 			$("#idTelephone").autocomplete({
 			    minLength: 2,
 			    scrollHeight: 220, 
-			       source: function(req, add){
-				  $.ajax({
-			            url:'ajax/client/autoCompleteClient',
-			            type:"get",
-			            dataType: 'json',
-			            data: 'term='+req.term,
-			            async: true,
-			            cache: true,
-			            success: function(data){
-			                var suggestions = [];  
-			                //process response  
-			                $.each(data, function(i, val){  
-			                 	suggestions.push({"id": val.id, "value": val.nom});  
-			             	});  
-			             	//pass array to callback  
-			             	add(suggestions); 
-			            }
-			        });
-			   }
+			    source: function(req, add){ $.ajax({
+		            url:'ajax/client/autoCompleteClient',
+		            type:"get",
+		            dataType: 'json',
+		            data: 'term='+req.term,
+		            async: true,
+		            cache: true,
+		            success: function(data){
+		                var suggestions = [];  
+		                //process response  
+		                $.each(data, function(i, val){  
+		                 	suggestions.push({"id": val.id, "value": constructAutocompleteName(val)});  
+		             	});  
+		             	//pass array to callback  
+		             	add(suggestions); 
+		            }
+		        });
+			   },
+			   select: function (elem, data) {
+				   affecterClientToSession(data.item.id);
+			    }
 			});
-			//gestion des evenements
 			
+			constructAutocompleteName = function (val){
+				return whiteIfNull(val.prenom) +' ' +
+				whiteIfNull(val.nom) +', '+
+				whiteIfNull(val.numeroRue)+' '+
+				whiteIfNull(val.nomRue)+' '+
+				whiteIfNull(val.codePostale)+' '+
+				whiteIfNull(val.ville) +'\n' ;
+			}
+			
+			/**
+			 * Choisir le client courant 
+			 */
+			
+			affecterClientToSession = function(idClient){
+				$.ajax({
+		            url:'ajax/client/selectClient/'+idClient,
+		            type:"get",
+		            dataType: 'json',
+		            success: function(data){
+		            	$('#idTelephone').val(data.telephone);
+		            	$('.clientInfos').html(constructAutocompleteName(data));
+		            }
+		        });
+			}
+			
+			whiteIfNull =  function (data){
+				if (data==null || data=='undifined'){
+					return '';
+				}
+				return data;
+			}
+			//-------------- gestion des evenements------------
 			$( document ).on( "click", '.addCl',function() {
-				afficherFormulaireClient() ;
+				displayPopupWithEffect();
 			});
 			
 			$( document ).on( "click", '#ajoutClient',function() {
 				ajouterClient($('input[id="nom"]').val(),$('input[id="telephone"]').val(),$('input[id="telephone"]').val(),$('input[id="numeroRue"]').val(),$('input[id="nomRue"]').val(),$('input[id="etage"]').val(),$('input[id="immeuble"]').val(),$('input[id="interphone"]').val(),$('input[id="codePostale"]').val());
 				//closePopup();
 			});
-			
-//			$( document ).on( "click", '#telephone',function() {
-//				autocompliteClient();
-//			});
-			
 	}) ;

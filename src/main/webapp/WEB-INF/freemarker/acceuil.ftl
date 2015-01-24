@@ -47,6 +47,7 @@
 	<article class="container_12" id="contentD">
 
 		<div class="clearfix"></div>
+		
 		<div class="container_12">
 			<div class="indexAutocomplete grid_8">
 				<div class="ui-widget float-left">
@@ -59,6 +60,8 @@
 					style="font-size: 14px; margin: 2px 0 0 50px;">
 					<img src="images/icons/fugue/plus-circle.png" width="16" height="16"> Nouveau
 				</button>
+				<div class="clientInfos">
+				</div>
 			</div>
 			<div class="grid_4" style="padding-top: 4px;">
 				<div class="button menu-opener float-right"

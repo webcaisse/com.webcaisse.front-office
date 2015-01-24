@@ -2488,3 +2488,12 @@ p {
 	margin-right: 10px;
 	text-align: right
 }
+
+.clientInfos{
+	margin: 10px; 
+	float: left;
+	color: crimson;
+	font: bold;
+	font-style: italic;
+	font-weight: bold;
+}
