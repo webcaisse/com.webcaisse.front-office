@@ -4,7 +4,7 @@ $(document).ready(
 			/***
 			 * Afficher le popup pour le saisie d'une nouveaux client 
 			 */
-			displayPopupWithEffect = function() {
+			displayPopupWithEffectClient = function() {
 				$('#popupClient').bPopup({
 					easing : 'easeOutBack',
 					speed : 450,
@@ -19,12 +19,6 @@ $(document).ready(
 				$('.button.b-close').click(); 
 			};
 			
-			function split(val) {
-			    return val.split(/,\s*/);
-			}
-			function extractLast(term) {
-			    return split(term).pop();
-			}
 		
 			$("#idTelephone").autocomplete({
 			    minLength: 2,
@@ -83,6 +77,7 @@ $(document).ready(
 				}
 				return data;
 			}
+			
 			//-------------- gestion des evenements------------
 			$( document ).on( "click", '.addCl',function() {
 				displayPopupWithEffect();
@@ -92,4 +87,11 @@ $(document).ready(
 				ajouterClient($('input[id="nom"]').val(),$('input[id="telephone"]').val(),$('input[id="telephone"]').val(),$('input[id="numeroRue"]').val(),$('input[id="nomRue"]').val(),$('input[id="etage"]').val(),$('input[id="immeuble"]').val(),$('input[id="interphone"]').val(),$('input[id="codePostale"]').val());
 				//closePopup();
 			});
+			
+			$( document ).on("keypress",'#idTelephone',function(e){
+			if( e.which == 13 ){
+				displayPopupWithEffectClient();
+		       }
+			});
+			
 	}) ;
