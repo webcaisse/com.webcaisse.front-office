@@ -198,15 +198,7 @@ public class ProductPageController {
 		return "modules/product/lignePanier";
 	}
 	
-	
-	@RequestMapping(value = "/ajouterNote/{message}")
-	@ResponseBody
-	public String ajouterNote(@PathVariable String message, ModelMap model) {
-		String messageActuel  = panier.getMessage();
-		panier.setMessage((messageActuel!=null?message:"")+message) ;
-		return message;
-	}
-	
+		
 	@RequestMapping(value = "/afficherPopupModePaiement/{modePaiement}", method = RequestMethod.GET)
 	@ResponseBody
 	public String afficherPopupModePaiement(@PathVariable("modePaiement") Integer idModePaiement) {
@@ -304,11 +296,18 @@ public class ProductPageController {
 		
 		return idCommande ;
 	}
-		
+
+	@RequestMapping(value = "/afficherNotes")
+	@ResponseBody
+	public String ajouterNote(ModelMap model) {
+		return panier.getMessage();
+	}
 	
+	@RequestMapping(value = "/ajouterNote/{notes}")
+	@ResponseBody
+	public String ajouterNote(@PathVariable("notes") String notes) {
+		panier.setMessage(notes) ;
+		return notes;
+	}
+
 }
-
-
-	
-
-

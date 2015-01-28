@@ -3,12 +3,21 @@ $(document).ready(function() {
 	/***
 	 * Afficher le popup pour le saisie d'une nouveaux client 
 	 */
-	displayPopupWithEffectNote = function() {
-		$('#popupNote').bPopup({
-			easing : 'easeOutBack',
-			speed : 450,
-			transition : 'slideDown'
+	displayPopupNoteWithEffect = function() {
+		debugger;
+		$.ajax({
+			type : "GET",
+			url : "ajax/product/afficherNotes"
+		}).success(function(data) {
+			$(".message").html(data);
+			$('#popupNote').bPopup({
+				easing : 'easeOutBack',
+				speed : 450,
+				transition : 'slideDown'
+			});
+		
 		});
+
 	};
 	
 	/**
@@ -120,13 +129,12 @@ $(document).ready(function() {
 	ajouterNote = function(){
 		
 		$.ajax({
-			type : "GET",
+			type : "POST",
 			url : "ajax/product/ajouterNote/"+$('textarea[class="message"]').val(), 
 		    success: function(data){
-		    	$('textarea[class="message"]').val(data) ;
+		    	location.reload();
 		    }
-		
-		    }) ;
+		 }) ;
 	};
 	
 	afficherPopupModePaiement = function(mode){
@@ -167,15 +175,13 @@ $(document).ready(function() {
 		$.get("ajax/product/viderPanierModePaiement");
 	};
 		
-	// gestion des événements 
+	// gestion des ï¿½vï¿½nements 
 	
 	$( document ).on( "click", '.addNote',function() {
-		displayPopupWithEffectNote() ;
+		displayPopupNoteWithEffect() ;
 	});
 	$( document ).on( "click", '#ajoutNote',function() {
-		ajouterNote() ;
-		//$('textarea[class="message"]').val("").focus() ;
-		
+		ajouterNote() ;		
 	});
 	$( document ).on( "click", '.button.deleteProduit',function() {
 		supprimerProduitDuPanier( $(this).parent('td').parent('tr').index() );

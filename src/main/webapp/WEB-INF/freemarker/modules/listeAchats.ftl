@@ -22,20 +22,7 @@
 			<input type="hidden" id="nbProduits" value="0">
 	        </br></br>
 			<div class="form container_12">
-					
-				
-				<div class="clearfix">
-				</div>
-				<br>
 				<hr>
-				    <p>
-						<label for="message" class="notes">Note</label>
-						<ul id="notes">
-						</ul>
-						</br>
-						
-					</p>
-				   <button class="addNote float-left" style="font-size: 14px;"><img src="images/icons/fugue/plus-circle.png" width="16" height="16"> Ajouter Notes</button>
+		    	<button class="addNote float-left" style="font-size: 14px;"><img src="images/icons/fugue/plus-circle.png" width="16" height="16"> Ajouter Notes</button>
 			</div>
-			
 	   </div>

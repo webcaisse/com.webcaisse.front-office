@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.webcaisse.mvc.bean.Panier;
 import com.webcaisse.service.CustomUser;
@@ -150,8 +149,5 @@ public class ProduitPageController {
 		caisseManagerService.updateFamille(famille);
 		return "redirect:/produits/afficher"  ;
 	}
- 
-	
-	
  
 }
