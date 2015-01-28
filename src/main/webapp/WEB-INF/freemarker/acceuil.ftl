@@ -169,6 +169,7 @@
 		<#include "modules/product/popup_paiement.ftl"/> 
 		<#include "modules/product/remise.ftl"/>
 		<#include "modules/nouvelleClient.ftl"/>
+		<#include "modules/note.ftl"/>
 		
 
 	</footer>

@@ -1,5 +1,27 @@
 $(document).ready(function() {
 
+	/***
+	 * Afficher le popup pour le saisie d'une nouveaux client 
+	 */
+	displayPopupWithEffectNote = function() {
+		$('#popupNote').bPopup({
+			easing : 'easeOutBack',
+			speed : 450,
+			transition : 'slideDown'
+		});
+	};
+	
+	/**
+	 * Fermer de popup 
+	*/
+	closePopup = function (){
+		$('.button.b-close').click(); 
+	};
+	
+	
+		
+	
+	
 	/**
 	 * ajouter un produit au panier
 	 * 
@@ -96,17 +118,15 @@ $(document).ready(function() {
 	};
 
 	ajouterNote = function(){
-		var message=$('#message').val() ;
+		
 		$.ajax({
 			type : "GET",
-			url : "ajax/product/ajouterNote/"+message
-		}).done(function(notes) {
-			$( "<li>"+notes+"</li>" ).insertAfter( "#notes" );
-			$('#message').val("");
-			$('#message').focus();
-		});
-
-
+			url : "ajax/product/ajouterNote/"+$('textarea[class="message"]').val(), 
+		    success: function(data){
+		    	$('textarea[class="message"]').val(data) ;
+		    }
+		
+		    }) ;
 	};
 	
 	afficherPopupModePaiement = function(mode){
@@ -150,9 +170,13 @@ $(document).ready(function() {
 	// gestion des événements 
 	
 	$( document ).on( "click", '.addNote',function() {
-		ajouterNote() ;
+		displayPopupWithEffectNote() ;
 	});
-
+	$( document ).on( "click", '#ajoutNote',function() {
+		ajouterNote() ;
+		//$('textarea[class="message"]').val("").focus() ;
+		
+	});
 	$( document ).on( "click", '.button.deleteProduit',function() {
 		supprimerProduitDuPanier( $(this).parent('td').parent('tr').index() );
 	});

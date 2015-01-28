@@ -1,7 +1,7 @@
  <div id="popupClient" style="display:none;left: 433px; position: absolute; top: 302px; z-index: 9999; opacity: 1; background-color:white;border: 5px solid rgb(90, 158, 181);>
 	<span class="button b-close"><span>X</span></span>
 	
-<form action="#" modelAttribute="client" method="POST">
+<form action="${rc.getContextPath()}/clients/ajouterClientMemoire" modelAttribute="clientIn">
 	
    <fieldset style="margin-bottom: 15px;padding: 10px;">
       <legend style=" color: #384313;font-size:18px;text-align:center;text-shadow:1px 0px 3px gray;">Ajout Client</legend></br></br>
@@ -9,8 +9,8 @@
           <input name="nom" id="nom"><br>
           <label style="display: block;width: 150px;float: left;" for="prenom" >Prenom (*)</label>
           <input name="prenom" id="prenom"><br>
-          <div id="telephones" class="ui-helper-clearfix">
-          <label style="display: block;float: left;" for="telephone" >Telephone (*)</label>
+          <div id="telephones" >
+          <label style="display: block;width: 150px;float: left;" for="telephone" >Telephone (*)</label>
           <input name="telephone" id="phoneId"><br>
           </div>
           <label style="display: block;width: 150px;float: left;" for="etage">Etage</label>
@@ -30,7 +30,7 @@
     	<br>
 
     </fieldset>
-   <p><input id ="ajoutClient" type="submit" value="Save" style="float: left;"></p>
+   <p><input type="submit" value="Save" style="float: left;"></p>
 </br></br>
 </form>
 	

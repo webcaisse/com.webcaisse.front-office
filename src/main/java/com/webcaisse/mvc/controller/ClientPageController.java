@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.webcaisse.mvc.CsvUtils;
 import com.webcaisse.mvc.ObjectCSV;
+import com.webcaisse.mvc.bean.Client;
 import com.webcaisse.service.CustomUser;
 import com.webcaisse.validator.ClientValidator;
 import com.webcaisse.ws.interfaces.ClientManagerService;
@@ -34,6 +35,9 @@ public class ClientPageController {
 
 	@Autowired
 	ClientValidator clientValidator;
+	
+	@Autowired
+	Client client;
 
 	@RequestMapping("/afficher")
 	public String afficherClients(ModelMap model) {
@@ -145,5 +149,22 @@ public class ClientPageController {
 		clientManagerService.updateClient(client);
 		return "redirect:/clients/afficher";
 	}
+	
+	@RequestMapping(value = "/ajouterClientMemoire")
+	public String ajouterClient(@ModelAttribute("clientIn") ClientIn clientIn) {
+		
+		client.setNom(clientIn.getNom());
+		client.setPrenom(clientIn.getPrenom());
+		client.setTelephone(clientIn.getTelephone());
+		client.setCodePostale(clientIn.getCodePostale());
+		client.setInterphone(clientIn.getInterphone());
+		client.setNomRue(clientIn.getNomRue());
+		client.setNumeroRue(clientIn.getNumeroRue());
+		client.setImmeuble(clientIn.getImmeuble());
+		client.setEtage(clientIn.getEtage());
+		
+		
+		return "redirect:/loginSuccess" ;
+}
 
 }

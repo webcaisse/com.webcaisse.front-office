@@ -199,7 +199,7 @@ public class ProductPageController {
 	}
 	
 	
-	@RequestMapping(value = "/ajouterNote/{message}", method = RequestMethod.GET)
+	@RequestMapping(value = "/ajouterNote/{message}")
 	@ResponseBody
 	public String ajouterNote(@PathVariable String message, ModelMap model) {
 		String messageActuel  = panier.getMessage();

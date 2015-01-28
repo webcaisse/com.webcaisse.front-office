@@ -27,22 +27,7 @@ public class ClientController {
 	@Autowired
 	ClientManagerService clientManagerService ;
 	
-	@RequestMapping(value = "/ajouterClient", method = RequestMethod.POST)
-	public String ajouterClient(@ModelAttribute("clientIn") ClientIn clientIn) {
-		
-		client.setNom(clientIn.getNom());
-		client.setPrenom(clientIn.getPrenom());
-		client.setTelephone(clientIn.getTelephone());
-		client.setCodePostale(clientIn.getCodePostale());
-		client.setInterphone(clientIn.getInterphone());
-		client.setNomRue(clientIn.getNomRue());
-		client.setNumeroRue(clientIn.getNumeroRue());
-		client.setImmeuble(clientIn.getImmeuble());
-		client.setEtage(clientIn.getEtage());
-		
-		
-		return "redirect:/loginSuccess" ;
-}
+	
 
 	@RequestMapping(value = "/autoCompleteClient", method = RequestMethod.GET)
 	@ResponseBody

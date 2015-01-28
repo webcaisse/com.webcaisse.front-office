@@ -12,7 +12,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.webcaisse.mvc.bean.Panier;
 import com.webcaisse.service.CustomUser;
 import com.webcaisse.ws.interfaces.CaisseManagerService;
 import com.webcaisse.ws.model.FamilleIn;
@@ -26,6 +28,9 @@ public class ProduitPageController {
 
 	@Autowired
 	CaisseManagerService caisseManagerService;
+	
+	@Autowired
+	Panier panier ;
 
 	@RequestMapping("afficher")
 	public String afficherProduits(ModelMap model) {
@@ -145,5 +150,8 @@ public class ProduitPageController {
 		caisseManagerService.updateFamille(famille);
 		return "redirect:/produits/afficher"  ;
 	}
+ 
+	
+	
  
 }

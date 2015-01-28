@@ -53,7 +53,7 @@ $(document).ready(
 				whiteIfNull(val.nomRue)+' '+
 				whiteIfNull(val.codePostale)+' '+
 				whiteIfNull(val.ville) +'\n' ;
-			}
+			};
 			
 			/**
 			 * Choisir le client courant 
@@ -69,23 +69,20 @@ $(document).ready(
 		            	$('.clientInfos').html(constructAutocompleteName(data));
 		            }
 		        });
-			}
+			} ;
 			
 			whiteIfNull =  function (data){
 				if (data==null || data=='undifined'){
 					return '';
 				}
 				return data;
-			}
+			} ;
+			
+			
 			
 			//-------------- gestion des evenements------------
 			$( document ).on( "click", '.addCl',function() {
 				displayPopupWithEffect();
-			});
-			
-			$( document ).on( "click", '#ajoutClient',function() {
-				ajouterClient($('input[id="nom"]').val(),$('input[id="telephone"]').val(),$('input[id="telephone"]').val(),$('input[id="numeroRue"]').val(),$('input[id="nomRue"]').val(),$('input[id="etage"]').val(),$('input[id="immeuble"]').val(),$('input[id="interphone"]').val(),$('input[id="codePostale"]').val());
-				//closePopup();
 			});
 			
 			$( document ).on("keypress",'#idTelephone',function(e){
