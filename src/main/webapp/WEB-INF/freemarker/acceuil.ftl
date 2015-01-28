@@ -64,71 +64,16 @@
 				</div>
 			</div>
 			<div class="grid_4" style="padding-top: 4px;">
-				<div class="button menu-opener float-right"
-					style="z-index: 2; margin-left: 5px;">
-					Gestion ticket
-					<div class="menu-arrow">
-						<img src="images/menu-open-arrow.png" width="16" height="16">
-					</div>
-					<div class="menu">
-						<ul class="reverted">
-							<li class="icon_delete">
-								<a href="javascript:;" class="razFacture" title="Effacer ticket en cours">Effacer ticket en cours</a>
-							</li>
-							<li class="icon_save">
-								<a href="javascript:;"	class="saveFacture" data-type="0" title="Enregistrer ticket et nouveau">Enregistrer et nouveau</a>
-							</li>
-							<li class="icon_doc_web">
-								<a href="javascript:;"	class="saveDevis" data-type="0"	title="Transformer en devis et imprimer">Transformer en	devis</a>
-							</li>
-							<li class="icon_load">
-								<a href="javascript:;" title="Charger un ticket">Charger un ticket</a>
-								<ul>
-									<li>08/08/2014</li>
-									<li class="icon_doc_web">
-										<a href="javascript:;" class="editCaisse" rel="321">16:15:25 - sara mansouri</a>
-									</li>
-									<li>22/07/2014</li>
-									<li class="icon_doc_web">
-										<a href="javascript:;"	class="editCaisse" rel="279">18:26:48 - </a>
-									</li>
-									<li class="icon_doc_web">
-										<a href="javascript:;"	class="editCaisse" rel="270">12:57:04 - </a>
-									</li>
-									<li>19/07/2014</li>
-									<li class="icon_doc_web">
-										<a href="javascript:;"	class="editCaisse" rel="251">08:09:25 - Table 11</a>
-									</li>
-									<li class="icon_doc_web">
-										<a href="javascript:;"	class="editCaisse" rel="249">07:04:52 - 4</a>
-									</li>
-								</ul>
-							</li>
-							<li class="icon_print">
-								<a href="javascript:;"	class="imprimerBon" title="Imprimer bon">Imprimer bon</a>
-							</li>
-						</ul>
-					</div>
+				<div class="button float-left red menu-opener" style="z-index: 2;">
+					A emporter
 				</div>
-				<div class="button float-right red menu-opener" style="z-index: 2;">
-					Gestion caisse
-					<div class="menu-arrow">
-						<img src="images/menu-open-arrow.png" width="16" height="16">
-					</div>
-					<div class="menu">
-						<ul class="reverted">
-							<li class="icon_dot">
-								<a href="https://test.caisseenligne.fr/index/open"	title="Modifier fond de caisse de d�part">Fond de caisse départ</a>
-							</li>
-							<li class="icon_dot">
-								<a href="javascript:;"	class="releveCaisse" data-id="0" data-idfont="168"	title="Nouveau relev� de caisse">Relevé de caisse</a>
-							</li>
-							<li class="icon_dot">
-								<a href="https://test.caisseenligne.fr/index/close"	title="Entrer le fond de caisse de fin">Fermer la caisse</a>
-							</li>
-						</ul>
-					</div>
+				<div class="button float-left red menu-opener" style="z-index: 2;">
+					Sur place
 				</div>
+				<div class="button float-left red menu-opener" style="z-index: 2;">
+					Livraison
+				</div>
+				
 			</div>
 			<div class="clearfix" style="margin-bottom: 20px;"></div>
 

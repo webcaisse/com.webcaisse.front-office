@@ -2,7 +2,7 @@
 	<!-- Use the class js-tabs to enable JS tabs script -->
 	<ul class="tabs js-tabs same-height">
 	    <li class="current"><a href="#tab-liste">Liste des achats</a></li>
-	    <li> <a href="#tab-infos">Informations</a></li>
+	    <!-- <li> <a href="#tab-infos">Informations</a></li>-->
 	    <li><a href="#tab-paiement">Paiement</a></li>
 	</ul>
 	
@@ -17,7 +17,7 @@
 	         </form>
 	<#include "listeAchats.ftl"/>
 	
-	<#include "info.ftl"/>
+	<!-- <#include "info.ftl"/>-->
 		
 	<#include "paiement.ftl"/>
 	 	

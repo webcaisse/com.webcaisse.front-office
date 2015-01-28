@@ -125,17 +125,6 @@ $(document).ready(function() {
 		});
 		
 	};
-
-	ajouterNote = function(){
-		
-		$.ajax({
-			type : "POST",
-			url : "ajax/product/ajouterNote/"+$('textarea[class="message"]').val(), 
-		    success: function(data){
-		    	location.reload();
-		    }
-		 }) ;
-	};
 	
 	afficherPopupModePaiement = function(mode){
 		$.ajax({
@@ -180,9 +169,7 @@ $(document).ready(function() {
 	$( document ).on( "click", '.addNote',function() {
 		displayPopupNoteWithEffect() ;
 	});
-	$( document ).on( "click", '#ajoutNote',function() {
-		ajouterNote() ;		
-	});
+
 	$( document ).on( "click", '.button.deleteProduit',function() {
 		supprimerProduitDuPanier( $(this).parent('td').parent('tr').index() );
 	});

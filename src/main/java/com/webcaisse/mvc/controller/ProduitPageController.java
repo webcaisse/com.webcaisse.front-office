@@ -2,6 +2,8 @@ package com.webcaisse.mvc.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -12,8 +14,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.webcaisse.mvc.bean.Panier;
+import com.webcaisse.mvc.in.NoteIn;
 import com.webcaisse.service.CustomUser;
 import com.webcaisse.ws.interfaces.CaisseManagerService;
 import com.webcaisse.ws.model.FamilleIn;
@@ -143,11 +147,16 @@ public class ProduitPageController {
 	 return "formulaireMajFamille" ;
  }
  
- @RequestMapping(value="/saveUpdateFamille",method = RequestMethod.POST)
+ 	@RequestMapping(value="/saveUpdateFamille",method = RequestMethod.POST)
 	public String saveUpdate(@ModelAttribute("familleIn") FamilleIn famille) {
 
 		caisseManagerService.updateFamille(famille);
 		return "redirect:/produits/afficher"  ;
 	}
  
+ 	@RequestMapping(value = "/ajouterNote")
+	public String ajouterNote(@ModelAttribute("noteIn") NoteIn notes, HttpServletRequest  request) {
+		panier.setMessage(notes.getNotes()) ;
+		return "redirect:/";
+	}
 }

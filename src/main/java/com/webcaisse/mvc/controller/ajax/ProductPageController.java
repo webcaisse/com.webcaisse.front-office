@@ -302,12 +302,5 @@ public class ProductPageController {
 	public String ajouterNote(ModelMap model) {
 		return panier.getMessage();
 	}
-	
-	@RequestMapping(value = "/ajouterNote/{notes}")
-	@ResponseBody
-	public String ajouterNote(@PathVariable("notes") String notes) {
-		panier.setMessage(notes) ;
-		return notes;
-	}
 
 }
