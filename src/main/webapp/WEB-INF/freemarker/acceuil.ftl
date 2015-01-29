@@ -64,13 +64,13 @@
 				</div>
 			</div>
 			<div class="grid_4" style="padding-top: 4px;">
-				<div class="button float-left red menu-opener" style="z-index: 2;">
+				<div id ="Aemporter"class="button float-left red menu-opener" title="E" tyle="z-index: 2;">
 					A emporter
 				</div>
-				<div class="button float-left red menu-opener" style="z-index: 2;">
+				<div  id ="surPlace" class="button float-left red menu-opener" title="P" style="z-index: 2;">
 					Sur place
 				</div>
-				<div class="button float-left red menu-opener" style="z-index: 2;">
+				<div id ="livraison" class="button float-left red menu-opener" title="L" style="z-index: 2;">
 					Livraison
 				</div>
 				

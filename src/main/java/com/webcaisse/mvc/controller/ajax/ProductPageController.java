@@ -244,9 +244,9 @@ public class ProductPageController {
 		modePaiement.empty();
 	}
 	
-	@RequestMapping (value = "/sauvegarderCommande", method = RequestMethod.GET)
+	@RequestMapping (value = "/sauvegarderCommande/{modeVente}", method = RequestMethod.GET)
 	@ResponseBody
-	public Long sauvegarderCommande() {
+	public Long sauvegarderCommande(@PathVariable("modeVente") String modeVente) {
 		
 		CustomUser customUser = (CustomUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
@@ -261,6 +261,7 @@ public class ProductPageController {
 		commande.setIdSession(customUser.getSessionId());
 		commande.setMontant(panier.getPrixTtc());
 		commande.setNotes(panier.getMessage());
+		commande.setMode(modeVente);
 		
 		ClientIn  clientIn= new ClientIn() ;
 		//clientIn.setId(client.getIdClient());
@@ -271,6 +272,7 @@ public class ProductPageController {
 		clientIn.setInterphone(client.getInterphone());
 		clientIn.setNomRue(client.getNomRue());
 		clientIn.setNumeroRue(client.getNumeroRue());
+		
 		
 		commande.setClientIn(clientIn);
 	 

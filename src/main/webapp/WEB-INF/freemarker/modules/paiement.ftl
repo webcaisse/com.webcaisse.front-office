@@ -1,4 +1,10 @@
-	 <div id="tab-paiements" style="display: none;">
+	
+	
+	 
+	 <div id="tab-paiements" style="display: none;left: 433px; position: absolute; top: 302px; z-index: 9999; opacity: 1;background-color: white;">
+	 	<span class="button b-close"><span>X</span></span>
+	 	<ul class="grid dark-grey-gradient" style="height: 400px; overflow: auto; position: relative;background-color: white;">
+	 	
 	    	<div class="container_12">
 		        <div class="grid_6">
 					<a class="paiement" href="javascript:;" title="Cheque" data-mode="3">CHQ</a>
@@ -38,12 +44,12 @@
 					<table class="table" cellspacing="0" width="100%">
 						<tbody>
 							<tr>
-								<td style="text-align: right;">
+								<td style="text-align: right;background-color: black;">
 									<b>
 										Solde 
 									</b>
 								</td>
-								<td style="width: 111px;" id="resteAPayer" rel="0"><span id="solde">0 (E)</span></td>
+								<td style="width: 111px; background-color: black;" id="resteAPayer" rel="0"><span id="solde">0 (E)</span></td>
 							</tr>
 						</tbody>
 					</table>
@@ -53,17 +59,7 @@
 				 				 		<button class="saveDevis float-right red" style="margin-right: 30px;">Devis</button>
 				 					<div class="clearfix"></div> 		
 				 				 <br><br><br>
-				 <div class="grid_6" >
-						<fieldset>
-							<legend for="livraisonRadio">Mode de livraison</legend>
-							<ul class="checkable-list"> 
-								<li><input type="radio" name="livraisonRadio" value="0" checked="">&nbsp;Au comptoir</li>
-								<li><input type="radio" name="livraisonRadio" value="1">&nbsp;A emporter</li>
-								<li><input type="radio" name="livraisonRadio" value="2">&nbsp;A livrer</li>
-								<li class="nodisplay"><input type="radio" name="livraisonRadio" value="3">&nbsp;Transmition</li>
-							</ul>
-						</fieldset>
-		          </div>
+				 
 		
 				</div>
 		    </div>
@@ -72,7 +68,7 @@
 	    
 	 	<div class="clearfix"></div>
 	 	
-	 	  
+	 	  </ul>
 	</div>
 	
 	

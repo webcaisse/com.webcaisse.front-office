@@ -1,5 +1,18 @@
 $(document).ready(function() {
 
+	
+	afficherPopupPaiement=function(){
+		
+		$('#tab-paiements').bPopup({
+			easing : 'easeOutBack',
+			speed : 450,
+			transition : 'slideDown'
+		});
+	};
+	
+	
+
+	
 	/***
 	 * Afficher le popup pour le saisie d'une nouveaux client 
 	 */
@@ -151,10 +164,10 @@ $(document).ready(function() {
 
 	};
 	
-	sauvegarderCommande=function(){
+	sauvegarderCommande=function(modeVente){
 		$.ajax({
 			type : "GET",
-			url : "ajax/product/sauvegarderCommande" 
+			url : "ajax/product/sauvegarderCommande/"+modeVente 
 		}).done(function() {
 			location.reload();
 		});
@@ -203,9 +216,11 @@ $(document).ready(function() {
 		offrirLignePanier($(this).parent('td').parent('tr').index());
 	});
 	
-
+	$( document ).on( "click", '#Aemporter',function() {
+		afficherPopupPaiement() ;
+	});
 	$( document ).on( "click", '#terminer',function() {
-		sauvegarderCommande();
+		sauvegarderCommande($('#Aemporter').attr('title'));
 	});
 	
 
