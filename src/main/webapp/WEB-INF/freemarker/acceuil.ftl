@@ -79,9 +79,6 @@
 
 			<#include "modules/familles.ftl" />
 
-			<div class="float-right" style="margin-right: 20px; text-align: right;">
-				<small> CA : 0 (E) NB tickets : 0 Ticket moyen : 0 (E) </small>
-			</div>
 			<#include "modules/panier.ftl">
 
 			<iframe id="ifrImpression" name="ifrImpression"	style="width: 0; height: 0; margin: auto; border: 0;"></iframe>
