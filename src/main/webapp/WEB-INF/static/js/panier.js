@@ -17,7 +17,6 @@ $(document).ready(function() {
 	 * Afficher le popup pour le saisie d'une nouveaux client 
 	 */
 	displayPopupNoteWithEffect = function() {
-		debugger;
 		$.ajax({
 			type : "GET",
 			url : "ajax/product/afficherNotes"
