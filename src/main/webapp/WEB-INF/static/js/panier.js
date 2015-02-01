@@ -200,9 +200,9 @@ $(document).ready(function() {
 		afficherPopupRemise($(this).parent('td').parent('tr').index());
 	});
 	
-	$( document ).on( "click", '.calculette',function() {
-		saisirMontantRemise($(this).attr('title'));
-	});
+	//$( document ).on( "click", '.calculette',function() {
+		//saisirMontantRemise($(this).attr('title'));
+	//});
 	
 	$( document ).on( "click", '.calculette.effacer',function() {
 		effacerMontantRemise();
