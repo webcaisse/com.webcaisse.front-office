@@ -9977,7 +9977,12 @@ ul.grid {
 .grid_12 {
 	width: 98.0%
 }
-
+.container_12
+.grid_13 {
+	width: 48.0%;
+	background-color: white;
+	height: 377px;
+}
 .container_12
 .prefix_1 {
 	padding-left: 8.333%

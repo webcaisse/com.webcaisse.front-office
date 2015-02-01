@@ -1,15 +1,15 @@
  <div id="tab-paiements" style="left: 433px; position: absolute; top: 302px; z-index: 9999; opacity: 1;">
- 	<span class="button b-close"><span>X</span></span>
- 	<ul class="grid dark-grey-gradient" style="height: 400px; overflow: auto; position: relative;background-color: white;">
+ 	<span class="button b-close" style="z-index: inherit;"><span>X</span></span>
+ 	<ul class="grid dark-grey-gradient" style="height: 280px; overflow: auto; position: relative;background-color: white;">
     	<div class="container_12">
-	        <div class="grid_6">
+	        <div class="grid_6" style="margin-top: 30px;">
 				<a class="paiement" href="javascript:;" title="Cheque" data-mode="3">CHQ</a>
 				<a class="paiement" href="javascript:;" title="ticket restaurant" data-mode="5">T R</a>
 				<a class="paiement" href="javascript:;" title="Especes" data-mode="1">ESP</a>
 				<a class="paiement" href="javascript:;" title="Carte Bleue" data-mode="2">CB</a>
 				<a class="paiement" href="javascript:;" title="carte de fidelite" data-mode="4">FID</a>
 	        </div>
-	        <div class="grid_6">
+	        <div class="grid_6" style="margin-top: 30px;">
 				<table class="table tablePaiement" cellspacing="0" width="100%">
 					<thead>
 						<tr>
