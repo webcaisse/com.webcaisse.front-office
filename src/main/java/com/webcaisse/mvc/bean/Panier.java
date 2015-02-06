@@ -1,12 +1,15 @@
 package com.webcaisse.mvc.bean;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.springframework.stereotype.Component;
+public class Panier implements Serializable{
 
-@Component
-public class Panier {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -568027640257729662L;
 
 	/**
 	 * List de lignes

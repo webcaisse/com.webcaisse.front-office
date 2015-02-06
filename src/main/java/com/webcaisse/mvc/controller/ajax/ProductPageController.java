@@ -1,14 +1,11 @@
 package com.webcaisse.mvc.controller.ajax;
 
 import java.text.DecimalFormat;
-import java.util.ArrayList;
-import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.util.CollectionUtils;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,17 +13,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.webcaisse.mvc.EnumModePaiement;
-import com.webcaisse.mvc.bean.Client;
+import com.webcaisse.mvc.bean.CommandeDump;
 import com.webcaisse.mvc.bean.LignePanier;
-import com.webcaisse.mvc.bean.ModePaiement;
 import com.webcaisse.mvc.bean.Paiement;
-import com.webcaisse.mvc.bean.Panier;
 import com.webcaisse.mvc.bean.RemiseProduit;
 import com.webcaisse.service.CustomUser;
 import com.webcaisse.ws.interfaces.CaisseManagerService;
-import com.webcaisse.ws.model.ClientIn;
-import com.webcaisse.ws.model.CommandeIn;
-import com.webcaisse.ws.model.LigneCommandeIn;
 import com.webcaisse.ws.model.ProduitOut;
 
 @Controller
@@ -36,18 +28,13 @@ public class ProductPageController {
 	private static final String EURO ="EUR";
 	private static final Float MAX_VALUE_REMISE = 1F;
 	private static final DecimalFormat DECIMAL_FORMAT = new DecimalFormat( "#,##" );
+
 	@Autowired
 	CaisseManagerService caisseManagerService;
-
-	@Autowired
-	Panier panier;
-
-	@Autowired
-	ModePaiement modePaiement;
 	
 	@Autowired
-	Client client ;
-	
+	CommandeDump commandeDump;
+
 	@RequestMapping("loadFamillies")
 	@ResponseBody
 	public JsonFamillyResponse loadFamillies() {
@@ -91,7 +78,7 @@ public class ProductPageController {
 				// on verifie que ce produit existe ou pas dans le panier
 				Integer indexProduitDansPanier  = getIndexProduitExisteDansPanier(lignePanier.getIdProduit(), lignePanier.getIdPrix());
 				if (indexProduitDansPanier!=-1){
-					LignePanier lp  = this.panier.getLignesPanier().get(indexProduitDansPanier);
+					LignePanier lp  = this.commandeDump.getPanier().getLignesPanier().get(indexProduitDansPanier);
 					if (lp!=null){
 						Integer quantite  = lp.getQuantite();
 						lp.setQuantite(quantite+1);
@@ -103,7 +90,7 @@ public class ProductPageController {
 				}
 				// j'ajoute ce produit dans le panier
 				if (ajouter==Boolean.TRUE){
-					panier.addLine(lignePanier);
+					commandeDump.getPanier().addLine(lignePanier);
 					model.put("lignePanier", lignePanier);
 				}
 				model.put("productName", produit.getLibelle());
@@ -116,9 +103,9 @@ public class ProductPageController {
 	@RequestMapping(value="/remiseProduit", method=RequestMethod.GET)
 	@ResponseBody
 	public String appliquerRemiseSurProduit(@ModelAttribute("remiseProduit") RemiseProduit remiseProduit, ModelMap model){
-		if (remiseProduit.getIndexLignePanier()!=null && remiseProduit.getIndexLignePanier()<panier.getLignesPanier().size()
+		if (remiseProduit.getIndexLignePanier()!=null && remiseProduit.getIndexLignePanier()<commandeDump.getPanier().getLignesPanier().size()
 				&& remiseProduit.getRemiseValue()<=MAX_VALUE_REMISE){
-			LignePanier lignePanier = panier.getLignesPanier().get(remiseProduit.getIndexLignePanier());
+			LignePanier lignePanier = commandeDump.getPanier().getLignesPanier().get(remiseProduit.getIndexLignePanier());
 			lignePanier.setRemise(remiseProduit.getRemiseValue());
 			
 			Double nouveauPrix  = (lignePanier.getPrix() - lignePanier.getPrix()*lignePanier.getRemise())* lignePanier.getQuantite();
@@ -135,10 +122,10 @@ public class ProductPageController {
 	 * @return
 	 */
 	private Integer getIndexProduitExisteDansPanier(Long idProduit, Long idPrix) {
-		if (this.panier!=null){
-			for (LignePanier lp : this.panier.getLignesPanier()) {
+		if (this.commandeDump.getPanier()!=null){
+			for (LignePanier lp : this.commandeDump.getPanier().getLignesPanier()) {
 				if (idProduit.equals(lp.getIdProduit()) && idPrix.equals(lp.getIdPrix())){
-					return this.panier.getLignesPanier().indexOf(lp);
+					return this.commandeDump.getPanier().getLignesPanier().indexOf(lp);
 				}
 			}
 		}
@@ -150,7 +137,7 @@ public class ProductPageController {
 	public void SupprimerDuPanier(@PathVariable("index") Integer index) {
 		
 		if (index != null && index>=0) {
-			panier.supprimerDePanier(index);
+			commandeDump.getPanier().supprimerDePanier(index);
 		}
 	}
 
@@ -161,7 +148,7 @@ public class ProductPageController {
 		Double prixHt = 0D;
 		Double prixTtc = 0D;
 
-		for (LignePanier lignePanier : panier.getLignesPanier()) {
+		for (LignePanier lignePanier : commandeDump.getPanier().getLignesPanier()) {
 			
 			prixTtc += (lignePanier.getPrix() - lignePanier.getPrix()* lignePanier.getRemise())*lignePanier.getQuantite();
 //			if (lignePanier.getRemise()>0){
@@ -172,7 +159,7 @@ public class ProductPageController {
 		jsonPrixPanier.setPrixHt(prixHt);
 		jsonPrixPanier.setPrixTtc(prixTtc);
 		jsonPrixPanier.setDevise(EURO);
-		panier.updatePrice(prixHt, prixTtc);
+		commandeDump.getPanier().updatePrice(prixHt, prixTtc);
 		return jsonPrixPanier;
 	}
 
@@ -180,8 +167,8 @@ public class ProductPageController {
 	@RequestMapping(value = "/incDec", method = RequestMethod.GET)
 	public String incrementerDecrementer(Integer indexLignePanier, Integer quantite, ModelMap model) {
 		
-		if (indexLignePanier>=0 && indexLignePanier<panier.getLignesPanier().size()){
-			LignePanier lignePanier = panier.getLignesPanier().get(indexLignePanier);
+		if (indexLignePanier>=0 && indexLignePanier<commandeDump.getPanier().getLignesPanier().size()){
+			LignePanier lignePanier = commandeDump.getPanier().getLignesPanier().get(indexLignePanier);
 			
 			Integer quantiteFinal  = lignePanier.getQuantite() + quantite;
 			if (quantiteFinal<1){
@@ -205,15 +192,15 @@ public class ProductPageController {
 		
 		Double montant = 0D;
 		if (EnumModePaiement.CB.getMode().equals(idModePaiement)){
-			montant = modePaiement.getCb();
+			montant = commandeDump.getModePaiement().getCb();
 		}else if (EnumModePaiement.CHEQUE.getMode().equals(idModePaiement)){
-			montant = modePaiement.getCheque();
+			montant = commandeDump.getModePaiement().getCheque();
 		}else if (EnumModePaiement.ESPECE.getMode().equals(idModePaiement)){
-			montant = modePaiement.getEspece();
+			montant = commandeDump.getModePaiement().getEspece();
 		}else if (EnumModePaiement.FIDELITE.getMode().equals(idModePaiement)){
-			montant = modePaiement.getFidelite();
+			montant = commandeDump.getModePaiement().getFidelite();
 		}else if (EnumModePaiement.TR.getMode().equals(idModePaiement)){
-			montant = modePaiement.getTicketRestau();
+			montant = commandeDump.getModePaiement().getTicketRestau();
 		}
 		return montant!=null?montant.toString():"";
 	}
@@ -223,15 +210,15 @@ public class ProductPageController {
 	public void saisirMontantParModePaiement(@ModelAttribute("paiement") Paiement paiement) {
 		
 		if (EnumModePaiement.CB.getMode().equals(paiement.getIdModePaiement())){
-			modePaiement.setCb(paiement.getMontant());
+			commandeDump.getModePaiement().setCb(paiement.getMontant());
 		}else if (EnumModePaiement.CHEQUE.getMode().equals(paiement.getIdModePaiement())){
-			modePaiement.setCheque(paiement.getMontant());
+			commandeDump.getModePaiement().setCheque(paiement.getMontant());
 		}else if (EnumModePaiement.ESPECE.getMode().equals(paiement.getIdModePaiement())){
-			modePaiement.setEspece(paiement.getMontant());
+			commandeDump.getModePaiement().setEspece(paiement.getMontant());
 		}else if (EnumModePaiement.FIDELITE.getMode().equals(paiement.getIdModePaiement())){
-			modePaiement.setFidelite(paiement.getMontant());
+			commandeDump.getModePaiement().setFidelite(paiement.getMontant());
 		}else if (EnumModePaiement.TR.getMode().equals(paiement.getIdModePaiement())){
-			modePaiement.setTicketRestau(paiement.getMontant());
+			commandeDump.getModePaiement().setTicketRestau(paiement.getMontant());
 		}
 		System.out.println(paiement.getIdModePaiement());	
 		System.out.println(paiement.getMontant());	
@@ -240,69 +227,14 @@ public class ProductPageController {
 	@RequestMapping(value = "/viderPanierModePaiement", method = RequestMethod.GET)
 	@ResponseBody
 	public void viderPanierModePaiement() {
-		panier.empty();
-		modePaiement.empty();
+		commandeDump.getPanier().empty();
+		commandeDump.getModePaiement().empty();
 	}
 	
-	@RequestMapping (value = "/sauvegarderCommande/{modeVente}", method = RequestMethod.GET)
-	@ResponseBody
-	public Long sauvegarderCommande(@PathVariable("modeVente") String modeVente) {
-		
-		CustomUser customUser = (CustomUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-
-		Long idCommande = null ;
-		CommandeIn commande = new CommandeIn() ;	
-
-		commande.setRegCB(modePaiement.getCb());
-		commande.setRegCarteFidelite(modePaiement.getFidelite());
-		commande.setRegCheque(modePaiement.getCheque());
-		commande.setRegEspece(modePaiement.getEspece());
-		commande.setRegTicketRestau(modePaiement.getTicketRestau());
-		commande.setIdSession(customUser.getSessionId());
-		commande.setMontant(panier.getPrixTtc());
-		commande.setNotes(panier.getMessage());
-		commande.setMode(modeVente);
-		
-		ClientIn  clientIn= new ClientIn() ;
-		//clientIn.setId(client.getIdClient());
-		clientIn.setNom(client.getNom());
-		clientIn.setPrenom(client.getPrenom());
-		clientIn.setEtage(client.getEtage());
-		clientIn.setImmeuble(client.getImmeuble());
-		clientIn.setInterphone(client.getInterphone());
-		clientIn.setNomRue(client.getNomRue());
-		clientIn.setNumeroRue(client.getNumeroRue());
-		
-		
-		commande.setClientIn(clientIn);
-	 
-	    
-	
-		List<LigneCommandeIn> commandeIns =new ArrayList<LigneCommandeIn>();
-		commande.setLignesCommandesIn(commandeIns);
-		
-		// faire un boucle sur panier.getLignePanier pour construire les LigneCOmmandeIn
-		if (!CollectionUtils.isEmpty(panier.getLignesPanier())){
-			for (LignePanier lignePanier : panier.getLignesPanier()) {
-				LigneCommandeIn in = new LigneCommandeIn();
-				in.setIdProduit(lignePanier.getIdProduit());
-				in.setPrix(lignePanier.getPrix());
-				in.setQuantite(lignePanier.getQuantite());
-				in.setTotal(lignePanier.getPrix()*lignePanier.getQuantite());
-				
-				commandeIns.add(in);
-			}
-		}
-		
-		idCommande = caisseManagerService.sauvegarderCommande(commande);
-		
-		return idCommande ;
-	}
-
 	@RequestMapping(value = "/afficherNotes")
 	@ResponseBody
 	public String ajouterNote(ModelMap model) {
-		return panier.getMessage();
+		return commandeDump.getPanier().getMessage();
 	}
 
 }

@@ -17,9 +17,9 @@ $(document).ready(
 			
 			chargerLivreurs= function (idCommande) {
 				
-				$.get("ajax/loadLivreurs" , function(livreur) {
+				$.get("ajax/commandes/loadLivreurs" , function(livreur) {
 				
-						// création de popup
+						// crï¿½ation de popup
 						createPopup(livreur, idCommande);
 						// display popup
 						displayPopupWithEffect();
@@ -48,15 +48,13 @@ $(document).ready(
 			affecterLivreur = function( idCommande,idLivreur) {
 
 				 $.ajax({
-				       url : 'ajax/affecter/'+idCommande+'/'+idLivreur,
+				       url : 'ajax/commandes/affecter/'+idCommande+'/'+idLivreur,
 				       type : 'GET',
 				       success : function(data){
 							location.reload();           
 				       }
 				 });
 			};
-			
-			
 			
 			//gestion des evenements
 			

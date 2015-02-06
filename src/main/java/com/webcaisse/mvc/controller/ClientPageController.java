@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.webcaisse.mvc.CsvUtils;
 import com.webcaisse.mvc.ObjectCSV;
-import com.webcaisse.mvc.bean.Client;
+import com.webcaisse.mvc.bean.CommandeDump;
 import com.webcaisse.service.CustomUser;
 import com.webcaisse.validator.ClientValidator;
 import com.webcaisse.ws.interfaces.ClientManagerService;
@@ -37,15 +37,14 @@ public class ClientPageController {
 	ClientValidator clientValidator;
 	
 	@Autowired
-	Client client;
-
+	CommandeDump commandeDump;
+	
 	@RequestMapping("/afficher")
 	public String afficherClients(ModelMap model) {
 
 		CustomUser customUser = (CustomUser) SecurityContextHolder.getContext()
 				.getAuthentication().getPrincipal();
-		List<ClientOut> clients = clientManagerService
-				.rechercherClient(customUser.getSocieteId());
+		List<ClientOut> clients = clientManagerService.rechercherClient(customUser.getSocieteId());
 
 		model.put("clients", clients);
 
@@ -53,8 +52,7 @@ public class ClientPageController {
 	}
 
 	@RequestMapping("/exporterClients")
-	public void exporterCommande(HttpServletResponse response)
-			throws IOException {
+	public void exporterCommande(HttpServletResponse response)	throws IOException {
 
 		CustomUser customUser = (CustomUser) SecurityContextHolder.getContext()
 				.getAuthentication().getPrincipal();
@@ -153,18 +151,18 @@ public class ClientPageController {
 	@RequestMapping(value = "/ajouterClientMemoire")
 	public String ajouterClient(@ModelAttribute("clientIn") ClientIn clientIn) {
 		
-		client.setNom(clientIn.getNom());
-		client.setPrenom(clientIn.getPrenom());
-		client.setTelephone(clientIn.getTelephone());
-		client.setCodePostale(clientIn.getCodePostale());
-		client.setInterphone(clientIn.getInterphone());
-		client.setNomRue(clientIn.getNomRue());
-		client.setNumeroRue(clientIn.getNumeroRue());
-		client.setImmeuble(clientIn.getImmeuble());
-		client.setEtage(clientIn.getEtage());
+		commandeDump.getClient().setNom(clientIn.getNom());
+		commandeDump.getClient().setPrenom(clientIn.getPrenom());
+		commandeDump.getClient().setTelephone(clientIn.getTelephone());
+		commandeDump.getClient().setCodePostale(clientIn.getCodePostale());
+		commandeDump.getClient().setInterphone(clientIn.getInterphone());
+		commandeDump.getClient().setNomRue(clientIn.getNomRue());
+		commandeDump.getClient().setNumeroRue(clientIn.getNumeroRue());
+		commandeDump.getClient().setImmeuble(clientIn.getImmeuble());
+		commandeDump.getClient().setEtage(clientIn.getEtage());
 		
 		
 		return "redirect:/loginSuccess" ;
-}
+	}
 
 }

@@ -166,7 +166,7 @@ $(document).ready(function() {
 	sauvegarderCommande=function(modeVente){
 		$.ajax({
 			type : "GET",
-			url : "ajax/product/sauvegarderCommande/"+modeVente 
+			url : "ajax/commandes/sauvegarderCommande/"+modeVente 
 		}).done(function() {
 			location.reload();
 		});

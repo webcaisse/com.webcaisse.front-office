@@ -1,14 +1,21 @@
 package com.webcaisse.mvc.bean;
 
+import java.io.Serializable;
+
 
 /**
  * une ligne de panier dans l'objet Panier 
  * @author Belhadj
  *
  */
-public class LignePanier {
+public class LignePanier implements Serializable{
 
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -6668274564228828605L;
+
 	private Long idProduit;
 	
 	private float remise =1f;

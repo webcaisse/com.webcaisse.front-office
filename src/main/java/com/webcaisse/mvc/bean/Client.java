@@ -1,13 +1,18 @@
 package com.webcaisse.mvc.bean;
 
-import org.springframework.stereotype.Component;
+import java.io.Serializable;
 
 
-@Component
-public class Client {
+
+public class Client implements Serializable{
 	
 	
-    private Long idClient ;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 4928300948344236333L;
+	
+	private Long idClient ;
 	private String telephone ;
 	private  String nom ;
 	private String codePostale;

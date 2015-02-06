@@ -14,9 +14,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.webcaisse.mvc.bean.Panier;
+import com.webcaisse.mvc.bean.CommandeDump;
 import com.webcaisse.mvc.in.NoteIn;
 import com.webcaisse.service.CustomUser;
 import com.webcaisse.ws.interfaces.CaisseManagerService;
@@ -33,7 +32,7 @@ public class ProduitPageController {
 	CaisseManagerService caisseManagerService;
 	
 	@Autowired
-	Panier panier ;
+	CommandeDump commandeDump ;
 
 	@RequestMapping("afficher")
 	public String afficherProduits(ModelMap model) {
@@ -156,7 +155,7 @@ public class ProduitPageController {
  
  	@RequestMapping(value = "/ajouterNote")
 	public String ajouterNote(@ModelAttribute("noteIn") NoteIn notes, HttpServletRequest  request) {
-		panier.setMessage(notes.getNotes()) ;
+		commandeDump.getPanier().setMessage(notes.getNotes()) ;
 		return "redirect:/";
 	}
 }

@@ -5,16 +5,14 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.webcaisse.mvc.bean.Client;
+import com.webcaisse.mvc.bean.CommandeDump;
 import com.webcaisse.ws.interfaces.ClientManagerService;
-import com.webcaisse.ws.model.ClientIn;
 import com.webcaisse.ws.model.ClientOut;
 
 @Controller
@@ -22,10 +20,10 @@ import com.webcaisse.ws.model.ClientOut;
 public class ClientController {
 	
 	@Autowired
-	Client client;
+	private CommandeDump commandeDump;
 	
 	@Autowired
-	ClientManagerService clientManagerService ;
+	private ClientManagerService clientManagerService ;
 	
 	
 
@@ -52,16 +50,16 @@ public class ClientController {
 	 * @param clientOut
 	 */
 	private void updateInMemoryClient(ClientOut clientOut) {
-		client.setIdClient(clientOut.getId());
-		client.setCodePostale(clientOut.getCodePostale());
-		client.setEtage(client.getEtage());
-		client.setImmeuble(clientOut.getImmeuble());
-		client.setInterphone(clientOut.getInterphone());
-		client.setNom(clientOut.getNom());
-		client.setPrenom(clientOut.getPrenom());
-		client.setNumeroRue(clientOut.getNumeroRue());
-		client.setNomRue(clientOut.getNomRue());
-		client.setTelephone(clientOut.getTelephone());
+		commandeDump.getClient().setIdClient(clientOut.getId());
+		commandeDump.getClient().setCodePostale(clientOut.getCodePostale());
+		commandeDump.getClient().setEtage(clientOut.getEtage());
+		commandeDump.getClient().setImmeuble(clientOut.getImmeuble());
+		commandeDump.getClient().setInterphone(clientOut.getInterphone());
+		commandeDump.getClient().setNom(clientOut.getNom());
+		commandeDump.getClient().setPrenom(clientOut.getPrenom());
+		commandeDump.getClient().setNumeroRue(clientOut.getNumeroRue());
+		commandeDump.getClient().setNomRue(clientOut.getNomRue());
+		commandeDump.getClient().setTelephone(clientOut.getTelephone());
 	}
 	
 }

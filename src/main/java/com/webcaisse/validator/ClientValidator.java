@@ -20,7 +20,7 @@ public class ClientValidator implements Validator{
 		ValidationUtils.rejectIfEmpty(errors, "telephone", "telephone.required");
 		ValidationUtils.rejectIfEmpty(errors, "numeroRue", "numeroRue.required");
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "nomRue","nomRue.required");
-		ClientIn client=  (ClientIn) target;
+//		ClientIn client=  (ClientIn) target;
 //		if (user.getCommunity().length == 0) {
 //			errors.rejectValue("community", "community.required");
 //		}

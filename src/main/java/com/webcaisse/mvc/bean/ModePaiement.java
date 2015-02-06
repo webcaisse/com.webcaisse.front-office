@@ -1,9 +1,14 @@
 package com.webcaisse.mvc.bean;
 
-import org.springframework.stereotype.Component;
+import java.io.Serializable;
 
-@Component
-public class ModePaiement {
+
+public class ModePaiement implements Serializable{
+	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 9142437692781820613L;
 	
 	private Double espece ;
 	private Double cb ;
