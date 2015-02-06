@@ -45,6 +45,8 @@ public class ProductPageController {
 	@Autowired
 	ModePaiement modePaiement;
 	
+	
+	
 	@Autowired
 	Client client ;
 	
@@ -224,17 +226,23 @@ public class ProductPageController {
 		
 		if (EnumModePaiement.CB.getMode().equals(paiement.getIdModePaiement())){
 			modePaiement.setCb(paiement.getMontant());
+			modePaiement.setLibelle("Cb");
 		}else if (EnumModePaiement.CHEQUE.getMode().equals(paiement.getIdModePaiement())){
 			modePaiement.setCheque(paiement.getMontant());
+			modePaiement.setLibelle("Cheque");
 		}else if (EnumModePaiement.ESPECE.getMode().equals(paiement.getIdModePaiement())){
 			modePaiement.setEspece(paiement.getMontant());
+			modePaiement.setLibelle("Espece");
 		}else if (EnumModePaiement.FIDELITE.getMode().equals(paiement.getIdModePaiement())){
 			modePaiement.setFidelite(paiement.getMontant());
+			modePaiement.setLibelle("fidelite");
 		}else if (EnumModePaiement.TR.getMode().equals(paiement.getIdModePaiement())){
 			modePaiement.setTicketRestau(paiement.getMontant());
 		}
 		System.out.println(paiement.getIdModePaiement());	
-		System.out.println(paiement.getMontant());	
+		System.out.println(paiement.getMontant());
+		System.out.println(modePaiement.getLibelle()) ;
+		
 	}
 	
 	@RequestMapping(value = "/viderPanierModePaiement", method = RequestMethod.GET)
@@ -304,5 +312,58 @@ public class ProductPageController {
 	public String ajouterNote(ModelMap model) {
 		return panier.getMessage();
 	}
+	
+	@RequestMapping(value = "/payerEnPlusieursForme/{valeur}/{mode}", method = RequestMethod.GET)
+	@ResponseBody
+	public ModePaiement payerEnPlusieursForme (@PathVariable("valeur") Double valeur,@PathVariable("mode") Integer mode){
+		
+		
+		if (EnumModePaiement.CB.getMode().equals(mode)){
+			modePaiement.setCb(valeur);
+		}else if (EnumModePaiement.CHEQUE.getMode().equals(mode)){
+			modePaiement.setCheque(valeur);
+		}else if (EnumModePaiement.ESPECE.getMode().equals(mode)){
+			modePaiement.setEspece(valeur);
+		}else if (EnumModePaiement.FIDELITE.getMode().equals(mode)){
+			modePaiement.setFidelite(valeur);
+		}else if (EnumModePaiement.TR.getMode().equals(mode)){
+			modePaiement.setTicketRestau(valeur);
+		}
 
-}
+		return modePaiement;
+	}
+
+	@RequestMapping(value = "/deletePaiement/{mode}", method = RequestMethod.GET)
+	@ResponseBody
+	public void deletePaiement(@PathVariable("mode") Integer mode) {
+		
+		if (EnumModePaiement.CB.getMode().equals(mode)){
+			modePaiement.setCb(0D);
+		}else if (EnumModePaiement.CHEQUE.getMode().equals(mode)){
+			modePaiement.setCheque(0D);
+		}else if (EnumModePaiement.ESPECE.getMode().equals(mode)){
+			modePaiement.setEspece(0D);	
+		}else if (EnumModePaiement.FIDELITE.getMode().equals(mode)){
+			modePaiement.setFidelite(0D);
+		}else if (EnumModePaiement.TR.getMode().equals(mode)){
+			modePaiement.setTicketRestau(0D);
+			
+		}
+		}
+	
+	@RequestMapping(value = "/calculerSoldePaiement/{valeur}", method = RequestMethod.GET)
+	@ResponseBody
+	public JsonSoldePaiement calculerSoldePaiement(@PathVariable("valeur") Double valeur) {
+		JsonSoldePaiement jsonSoldePaiement = new JsonSoldePaiement();
+		Double solde=0D ;
+		Double montantTotal=0D ;
+		montantTotal += valeur ;
+		
+		solde += (panier.getPrixTtc()- montantTotal) ;
+		
+		jsonSoldePaiement.setSolde(solde);
+		jsonSoldePaiement.setMontant(montantTotal);
+		jsonSoldePaiement.setDevise(EURO);
+		return jsonSoldePaiement;
+	}
+	}

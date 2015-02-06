@@ -38,7 +38,7 @@
 		<button type="button" id="closePopupPaiement" class="red b-close">
 			<img src="images/icons/fugue/cross-circle.png" width="16" height="16" title="Fermer"> Fermer
 		</button>&nbsp;
-		<button type="button" class="validerMontant grey">
+		<button type="button" class="validerMontant grey" id="validerPopupPaiement">
 			<img src="images/icons/fugue/tick-circle.png" width="16" height="16" title="Valider"> Valider
 		</button>
 	</div>

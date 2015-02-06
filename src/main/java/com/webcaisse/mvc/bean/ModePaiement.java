@@ -5,13 +5,21 @@ import org.springframework.stereotype.Component;
 @Component
 public class ModePaiement {
 	
+	private String Libelle ;
 	private Double espece ;
 	private Double cb ;
 	private Double cheque ;
 	private Double fidelite ;
 	private Double ticketRestau ;
 	
+
 	
+	public String getLibelle() {
+		return Libelle;
+	}
+	public void setLibelle(String libelle) {
+		Libelle = libelle;
+	}
 	public ModePaiement() {
 		super();
 	}
@@ -25,11 +33,11 @@ public class ModePaiement {
 	}
 	
 	public void empty(){
-		this.espece =null;
-		this.cb = null;
-		this.cheque = null;
-		this.fidelite = null;
-		this.ticketRestau = null;
+		this.espece =0D;
+		this.cb = 0D;
+		this.cheque = 0D;
+		this.fidelite = 0D;
+		this.ticketRestau = 0D;
 	}
 
 	public Double getEspece() {
@@ -64,4 +72,6 @@ public class ModePaiement {
 		this.ticketRestau = ticketRestau;
 	}
 
+	
+	
 }

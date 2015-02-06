@@ -1,18 +1,7 @@
 $(document).ready(function() {
 
 	
-	afficherPopupPaiement=function(){
-		
-		$('#tab-paiements').bPopup({
-			easing : 'easeOutBack',
-			speed : 450,
-			transition : 'slideDown'
-		});
-	};
-	
-	
 
-	
 	/***
 	 * Afficher le popup pour le saisie d'une nouveaux client 
 	 */
@@ -39,9 +28,6 @@ $(document).ready(function() {
 	closePopup = function (){
 		$('.button.b-close').click(); 
 	};
-	
-	
-		
 	
 	
 	/**
@@ -117,7 +103,7 @@ $(document).ready(function() {
 			$('#totalTtc').html(data.prixTtc + ' ' + data.devise);
 			$('#totalHt').html(data.prixHt + ' ' + data.devise);
 			$('#total').html(data.prixTtc + ' ' + data.devise);
-			$('#solde').html(data.prixTtc + ' ' + data.devise);
+			$('#totalTTC').html(data.prixTtc + ' ' + data.devise);
 			$('#prix').html(data.prixTtc + ' ' + data.devise);
 		});
 	};
@@ -139,30 +125,7 @@ $(document).ready(function() {
 		
 	};
 	
-	afficherPopupModePaiement = function(mode){
-		$.ajax({
-			type : "GET",
-			url : "ajax/product/afficherPopupModePaiement/"+mode
-		}).done(function(montant) {
-			$('#prixPopupModePaiement').val(montant);
-			$('#popup_paiement').bPopup({
-				easing : 'easeOutBack',
-				speed : 450,
-				transition : 'slideDown'
-			});
-		});
-		
-	};
 	
-	saisirModePaiement=function(montant,modePaiement){
-		$.ajax({
-			type : "GET",
-			url : "ajax/product/saisirModePaiement",
-			data :{montant : montant, idModePaiement:modePaiement} 
-		});
-		
-
-	};
 	
 	sauvegarderCommande=function(modeVente){
 		$.ajax({
@@ -216,9 +179,6 @@ $(document).ready(function() {
 		offrirLignePanier($(this).parent('td').parent('tr').index());
 	});
 	
-	$( document ).on( "click", '#Aemporter',function() {
-		afficherPopupPaiement() ;
-	});
 	$( document ).on( "click", '#terminer',function() {
 		sauvegarderCommande($('#Aemporter').attr('title'));
 	});

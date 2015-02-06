@@ -30,19 +30,29 @@
 						</thead>
 	
 						<tbody>
-							<tr style="display :none;">
-								<td>CB</td>
-								<td class="montant">2</td>
-								<td class="table-actions">
-									<a href="javascript:;" title="Supprimer" class="with-tip deletePaiement" rel="CB">
-										<img src="images/icons/fugue/cross-circle.png" width="16" height="16">
-									</a>
-								</td>
-							</tr>
+							
+							<tr style="display:none">
+			                    <td class="modeP" style="background-color:Pink"></td>
+			                    <td class="montant" style="background-color:Pink"></td>
+			                    <td class="table-actions">
+			                          <a href="javascript:;" title="Supprimer" class="with-tip deletePaiement" rel="CB">
+					                   <img src="images/icons/fugue/cross-circle.png" width="16" height="16">
+				                       </a>
+			                     </td>
+			               </tr>
+										
 						</tbody>
 					</table>
 					<table class="table" cellspacing="0" width="100%">
 						<tbody>
+							<tr>
+								<td style="text-align: right;background-color: black;">
+									<b>
+										Total TTC 
+									</b>
+								</td>
+								<td style="width: 111px; background-color: black;" id="resteAPayer" rel="0"><span id="totalTTC">0 (E)</span></td>
+							</tr>
 							<tr>
 								<td style="text-align: right;background-color: black;">
 									<b>
