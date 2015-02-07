@@ -2,13 +2,28 @@ $(document).ready(function() {
 
 	var pattern = /^\d{0,2}(\.\d{0,2}){0,1}$/;
 
-  afficherPopupPaiement=function(){
+	afficherPopupPaiement=function(modeVente){
 		
-		$('#tab-paiements').bPopup({
-			easing : 'easeOutBack',
-			speed : 450,
-			transition : 'slideDown'
-		});
+		$.ajax({
+			type : "GET",
+			url : "ajax/product/afficherPopupPaiement/"+modeVente
+		}).done(function(data) {
+			
+			var obj = jQuery.parseJSON(data);
+			
+			// renseignement sur le prix de panier
+			$('#solde').html(obj.total_ttc);
+			$('#totalTTC').html(obj.total_ttc);
+			
+			// affichage de popup
+			$('#tab-paiements').bPopup({
+				easing : 'easeOutBack',
+				speed : 450,
+				transition : 'slideDown'
+			});
+			
+		});;
+	
 	};
 	
 	afficherPopupModePaiement = function(mode){
@@ -51,7 +66,7 @@ $(document).ready(function() {
 		if (elementGiftOK.is(':visible')){
 			elementGiftOK.hide();
 		}else{
-			// faire une remise à 100%
+			// faire une remise ï¿½ 100%
 			valueRemise=1;
 			elementGiftOK.show();
 		}
@@ -130,10 +145,8 @@ $(document).ready(function() {
 			type : "GET",
 			url : "ajax/product/payerEnPlusieursForme/"+valeur+"/"+mode,
 			success :function(data) {
-				calculerSoldePaiement () ;
 				afficherLignePaiement(data, mode) ;
-				 
-	
+				calculerSoldePaiement () ;
 			}
 		});
 	};
@@ -145,16 +158,16 @@ $(document).ready(function() {
 			
 		//ESPECE(1),CB(2), CHEQUE(3), FIDELITE(4), TR(5);
 		if (mode==1){
-			trClone.find(("td:eq(0)")).html('Espèces') ;
+			trClone.find(("td:eq(0)")).html('Espï¿½ces') ;
 			trClone.find(("td:eq(1)")).html(modePaiement.espece);
 		}else if (mode==2){
 			trClone.find(("td:eq(0)")).html('Carte bancaire') ;
 			trClone.find(("td:eq(1)")).html(modePaiement.cb);
 		}else if (mode==3){
-			trClone.find(("td:eq(0)")).html('Chèque') ;
+			trClone.find(("td:eq(0)")).html('Chï¿½que') ;
 			trClone.find(("td:eq(1)")).html(modePaiement.cheque);
 		}else if (mode==4){
-			trClone.find(("td:eq(0)")).html('Carte fidelité') ;
+			trClone.find(("td:eq(0)")).html('Carte fidelitï¿½') ;
 			trClone.find(("td:eq(1)")).html(modePaiement.fidelite);
 		}else if (mode==5){
 			trClone.find(("td:eq(0)")).html('Ticket restaurent') ;
@@ -186,24 +199,20 @@ $(document).ready(function() {
 	};	
 	
 	
-		 calculerSoldePaiement = function() {		
-			 var valeur= $('input[id="prixPopupModePaiement"]').val() ;
-			 $.ajax({
-			       url : 'ajax/product/calculerSoldePaiement/'+valeur,
-			       type : 'GET',
-			       success : function(data){
-			    	   $('#solde').html(data.solde + ' ' + data.devise);     
-			       }
-			 });
-			 
-				
-			};
-		 
+	 calculerSoldePaiement = function() {		
+		var montantSaisie=0;
+		$('.montant').each(function(){
+			 if ($(this).html() && $(this).html()!==''){
+				 montantSaisie+=parseFloat($(this).html());
+			 }			 
+		});
+		$('#solde').html(parseFloat($('#totalTTC').html())-montantSaisie);
+	 }
 			
 	  //gestion des evenements
 			
      $( document ).on( "click", '#Aemporter',function() {
-		afficherPopupPaiement() ;
+		afficherPopupPaiement('E') ;
 	 });
 	
 	$( document ).on( "click", '.button.editRemiseProduit',function() {
@@ -249,4 +258,5 @@ $(document).ready(function() {
 	
 	
 	
+
 });

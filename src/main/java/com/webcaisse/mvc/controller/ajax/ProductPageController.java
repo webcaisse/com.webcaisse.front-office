@@ -200,6 +200,12 @@ public class ProductPageController {
 		return "modules/product/lignePanier";
 	}
 	
+	
+	@RequestMapping(value="/afficherPopupPaiement/{modeVente}", method=RequestMethod.GET)
+	@ResponseBody
+	public String afficherPopupPaiement (@PathVariable("modeVente") String modeVente){
+		return "{\"total_ttc\":"+panier.getPrixTtc()+",\"total_ht\":"+panier.getPrixHt()+"}";
+	}
 		
 	@RequestMapping(value = "/afficherPopupModePaiement/{modePaiement}", method = RequestMethod.GET)
 	@ResponseBody
