@@ -19,13 +19,12 @@
 	
 	<!-- <#include "info.ftl"/>-->
 		
-	<#include "paiement.ftl"/>
 	 	
-		<br>
-		<div class="box">
-			<h1>Promotion(s) du moment</h1>
-					Aucune promotion en ce moment.
-		</div>
+	<br><br><br>
+	<div class="box">
+		<h1>Promotion(s) du moment</h1>
+				Aucune promotion en ce moment.
+	</div>
 	<iframe id="ifrEnvoi" name="ifrEnvoi" style="width: 0; height: 0; margin: auto; border: 0;"></iframe>
 	</div>
 	</div>

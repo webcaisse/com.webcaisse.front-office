@@ -1,7 +1,13 @@
+<<<<<<< HEAD
 	
 <div id="tab-paiements" style="left: 433px; position: absolute; top: 302px; z-index: 9999; opacity: 1;">
  	<span class="button b-close" style="z-index: 88"><span>X</span></span>
  	<ul class="grid dark-grey-gradient" style="height: 300px; overflow: auto; position: relative;background-color: white; padding-top: 26px">
+=======
+ <div id="tab-paiements" style="left: 433px; position: absolute; top: 302px; z-index: 9999; opacity: 1;">
+ 	<span class="button b-close"><span>X</span></span>
+ 	<ul class="grid dark-grey-gradient" style="height: 400px; overflow: auto; position: relative;background-color: white;">
+>>>>>>> refacto
     	<div class="container_12">
 	        <div class="grid_6">
 				<a class="paiement" href="javascript:;" title="Cheque" data-mode="3">CHQ</a>
@@ -24,9 +30,15 @@
 						</tr>
 					</thead>
 					<tbody>
+<<<<<<< HEAD
 						<tr style="display :none;color: black;" class="lignePaiement">
 							<td></td>
 							<td class="montant"></td>
+=======
+						<tr style="display :none;">
+							<td>CB</td>
+							<td class="montant">2</td>
+>>>>>>> refacto
 							<td class="table-actions">
 								<a href="javascript:;" title="Supprimer" class="with-tip deletePaiement" rel="CB">
 									<img src="images/icons/fugue/cross-circle.png" width="16" height="16">
@@ -43,6 +55,7 @@
 									Solde 
 								</b>
 							</td>
+<<<<<<< HEAD
 							<td style="width: 111px; background-color: black;" id="resteAPayer" rel="0">
 								<span id="solde">0</span><span>EUR</span>
 							</td>
