@@ -69,7 +69,8 @@
 	    </div>
 	    
 	 	<div class="clearfix"></div>
-	  </ul>
-</div>
+	 	
+	 	  </ul>
+	</div>
 	
 	

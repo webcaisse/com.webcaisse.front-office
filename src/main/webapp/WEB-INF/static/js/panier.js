@@ -1,5 +1,4 @@
 $(document).ready(function() {
-
 	
 
 	/***
@@ -102,7 +101,7 @@ $(document).ready(function() {
 			$('#totalTtc').html(data.prixTtc + ' ' + data.devise);
 			$('#totalHt').html(data.prixHt + ' ' + data.devise);
 			$('#total').html(data.prixTtc + ' ' + data.devise);
-			$('#totalTTC').html(data.prixTtc + ' ' + data.devise);
+			$('#solde').html(data.prixTtc + ' ' + data.devise);
 			$('#prix').html(data.prixTtc + ' ' + data.devise);
 		});
 	};
@@ -123,13 +122,50 @@ $(document).ready(function() {
 		});
 		
 	};
-	
-	
-	
-	sauvegarderCommande=function(modeVente){
+
+	ajouterNote = function(){
+		var message=$('#message').val() ;
 		$.ajax({
 			type : "GET",
-			url : "ajax/product/sauvegarderCommande/"+modeVente 
+			url : "ajax/product/ajouterNote/"+message
+		}).done(function(notes) {
+			$( "<li>"+notes+"</li>" ).insertAfter( "#notes" );
+			$('#message').val("");
+			$('#message').focus();
+		});
+
+
+	};
+	
+	afficherPopupModePaiement = function(mode){
+		$.ajax({
+			type : "GET",
+			url : "ajax/product/afficherPopupModePaiement/"+mode
+		}).done(function(montant) {
+			$('#prixPopupModePaiement').val(montant);
+			$('#popup_paiement').bPopup({
+				easing : 'easeOutBack',
+				speed : 450,
+				transition : 'slideDown'
+			});
+		});
+		
+	};
+	
+	saisirModePaiement=function(montant,modePaiement){
+		$.ajax({
+			type : "GET",
+			url : "ajax/product/saisirModePaiement",
+			data :{montant : montant, idModePaiement:modePaiement} 
+		});
+		
+
+	};
+	
+	sauvegarderCommande=function(){
+		$.ajax({
+			type : "GET",
+			url : "ajax/product/sauvegarderCommande" 
 		}).done(function() {
 			location.reload();
 		});
@@ -152,7 +188,7 @@ $(document).ready(function() {
 	// gestion des �v�nements 
 	
 	$( document ).on( "click", '.addNote',function() {
-		displayPopupNoteWithEffect() ;
+		ajouterNote() ;
 	});
 
 	$( document ).on( "click", '.button.deleteProduit',function() {
@@ -172,9 +208,9 @@ $(document).ready(function() {
 		afficherPopupRemise($(this).parent('td').parent('tr').index());
 	});
 	
-	//$( document ).on( "click", '.calculette',function() {
-		//saisirMontantRemise($(this).attr('title'));
-	//});
+	$( document ).on( "click", '.calculette',function() {
+		saisirMontantRemise($(this).attr('title'));
+	});
 	
 	$( document ).on( "click", '.calculette.effacer',function() {
 		effacerMontantRemise();
@@ -188,8 +224,9 @@ $(document).ready(function() {
 		offrirLignePanier($(this).parent('td').parent('tr').index());
 	});
 	
+
 	$( document ).on( "click", '#terminer',function() {
-		sauvegarderCommande($('#Aemporter').attr('title'));
+		sauvegarderCommande();
 	});
 	
 
