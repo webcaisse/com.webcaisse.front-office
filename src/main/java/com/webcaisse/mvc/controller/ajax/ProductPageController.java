@@ -357,19 +357,19 @@ public class ProductPageController {
 		}
 		}
 	
-	@RequestMapping(value = "/calculerSoldePaiement/{valeur}", method = RequestMethod.GET)
-	@ResponseBody
-	public JsonSoldePaiement calculerSoldePaiement(@PathVariable("valeur") Double valeur) {
-		JsonSoldePaiement jsonSoldePaiement = new JsonSoldePaiement();
-		Double solde=0D ;
-		Double montantTotal=0D ;
-		montantTotal += valeur ;
-		
-		solde += (panier.getPrixTtc()- montantTotal) ;
-		
-		jsonSoldePaiement.setSolde(solde);
-		jsonSoldePaiement.setMontant(montantTotal);
-		jsonSoldePaiement.setDevise(EURO);
-		return jsonSoldePaiement;
-	}
+//	@RequestMapping(value = "/calculerSoldePaiement/{valeur}", method = RequestMethod.GET)
+//	@ResponseBody
+//	public JsonSoldePaiement calculerSoldePaiement(@PathVariable("valeur") Double valeur) {
+//		JsonSoldePaiement jsonSoldePaiement = new JsonSoldePaiement();
+//		Double solde=0D ;
+//		Double montantTotal=0D ;
+//		montantTotal += valeur ;
+//		
+//		solde += (panier.getPrixTtc()- montantTotal) ;
+//		
+//		jsonSoldePaiement.setSolde(solde);
+//		jsonSoldePaiement.setMontant(montantTotal);
+//		jsonSoldePaiement.setDevise(EURO);
+//		return jsonSoldePaiement;
+//	}
 	}

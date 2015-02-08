@@ -2,30 +2,6 @@ $(document).ready(function() {
 
 	var pattern = /^\d{0,2}(\.\d{0,2}){0,1}$/;
 
-	afficherPopupPaiement=function(modeVente){
-		
-		$.ajax({
-			type : "GET",
-			url : "ajax/product/afficherPopupPaiement/"+modeVente
-		}).done(function(data) {
-			
-			var obj = jQuery.parseJSON(data);
-			
-			// renseignement sur le prix de panier
-			$('#solde').html(obj.total_ttc);
-			$('#totalTTC').html(obj.total_ttc);
-			
-			// affichage de popup
-			$('#tab-paiements').bPopup({
-				easing : 'easeOutBack',
-				speed : 450,
-				transition : 'slideDown'
-			});
-			
-		});;
-	
-	};
-	
 	afficherPopupModePaiement = function(mode){
 		$.ajax({
 			type : "GET",
@@ -66,7 +42,7 @@ $(document).ready(function() {
 		if (elementGiftOK.is(':visible')){
 			elementGiftOK.hide();
 		}else{
-			// faire une remise ï¿½ 100%
+			// faire une remise à 100%
 			valueRemise=1;
 			elementGiftOK.show();
 		}
@@ -135,86 +111,6 @@ $(document).ready(function() {
 		$('#indexLigneProduit').val(index);
 	};
 
-	/**
-	 * payer en plusieurs forme
-	 * 
-	 */ 
-	PayerEnPlusieursForme= function(valeur){
-		var mode  = $('#modePaiement').val();
-		$.ajax({
-			type : "GET",
-			url : "ajax/product/payerEnPlusieursForme/"+valeur+"/"+mode,
-			success :function(data) {
-				afficherLignePaiement(data, mode) ;
-				calculerSoldePaiement () ;
-			}
-		});
-	};
-	
-	afficherLignePaiement = function(modePaiement, mode) {
-
-		var  tr= $('.table.tablePaiement > tbody tr:eq(0)')    ;
-		var trClone= tr.clone();
-			
-		//ESPECE(1),CB(2), CHEQUE(3), FIDELITE(4), TR(5);
-		if (mode==1){
-			trClone.find(("td:eq(0)")).html('Espï¿½ces') ;
-			trClone.find(("td:eq(1)")).html(modePaiement.espece);
-		}else if (mode==2){
-			trClone.find(("td:eq(0)")).html('Carte bancaire') ;
-			trClone.find(("td:eq(1)")).html(modePaiement.cb);
-		}else if (mode==3){
-			trClone.find(("td:eq(0)")).html('Chï¿½que') ;
-			trClone.find(("td:eq(1)")).html(modePaiement.cheque);
-		}else if (mode==4){
-			trClone.find(("td:eq(0)")).html('Carte fidelitï¿½') ;
-			trClone.find(("td:eq(1)")).html(modePaiement.fidelite);
-		}else if (mode==5){
-			trClone.find(("td:eq(0)")).html('Ticket restaurent') ;
-			trClone.find(("td:eq(1)")).html(modePaiement.ticketRestau);
-		}
-
-		// rendre le TR visible
-		trClone.removeAttr("style");
-	
-		$('.table.tablePaiement > tbody').append(trClone);
-		
-	
-	};
-	
-	deletePaiement= function(index){
-		
-		var mode  = $('#modePaiement').val() ;
-		if (index<0){
-			return ;
-		}
-		 $.ajax({
-		       url : 'ajax/product/deletePaiement/'+mode,
-		       type : 'GET',
-		       success : function(){
-					$('.table.tablePaiement tbody tr:eq(' + index + ')').remove();
-					calculerSoldePaiement();         
-		       }
-		 });
-	};	
-	
-	
-	 calculerSoldePaiement = function() {		
-		var montantSaisie=0;
-		$('.montant').each(function(){
-			 if ($(this).html() && $(this).html()!==''){
-				 montantSaisie+=parseFloat($(this).html());
-			 }			 
-		});
-		$('#solde').html(parseFloat($('#totalTTC').html())-montantSaisie);
-	 }
-			
-	  //gestion des evenements
-			
-     $( document ).on( "click", '#Aemporter',function() {
-		afficherPopupPaiement('E') ;
-	 });
-	
 	$( document ).on( "click", '.button.editRemiseProduit',function() {
 		afficherPopupRemise($(this).parent('td').parent('tr').index());
 	});
@@ -246,17 +142,5 @@ $(document).ready(function() {
 	$( document ).on( "click", '.validerMontant.grey',function() {
 		doSubmitModePaiement($('#prixPopupModePaiement').val(), $('#modePaiement').val());
 	});
-	
-	$( document ).on( "click", '#validerPopupPaiement',function() {
-		PayerEnPlusieursForme($('input[id="prixPopupModePaiement"]').val()) ;
-	});
-	
-	$( document ).on( "click", '.deletePaiement',function() {
-		deletePaiement($(this).parent('td').parent('tr').index() ) ;
-	});
-	
-	
-	
-	
 
 });
