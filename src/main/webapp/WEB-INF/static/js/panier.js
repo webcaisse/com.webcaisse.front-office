@@ -138,6 +138,16 @@ $(document).ready(function() {
 	viderPanierModePaiement = function() {
 		$.get("ajax/product/viderPanierModePaiement");
 	};
+	
+	ajouterNotes = function (){
+		var message = $('.notesForm .message').val();
+		$.ajax({
+			type : "GET",
+			url : "ajax/product/ajouterNotes/"+message
+		}).done(function(obj) {
+			$('#popupNote').find($('.button.b-close')).click();
+		});
+	}
 		
 	// gestion des �v�nements 
 	
@@ -183,5 +193,9 @@ $(document).ready(function() {
 	});
 	
 
+	$( document ).on( "click", '#ajoutNote',function() {
+		ajouterNotes();
+	});
+	
 	viderPanierModePaiement();
 });
