@@ -1,10 +1,8 @@
 $(document).ready(
 		function() {
+	
 			
-			/***
-			 * Afficher le popup pour le saisie d'une nouveaux client 
-			 */
-			displayPopupWithEffectClient = function() {
+			displayPopupWithEffect = function() {
 				$('#popupClient').bPopup({
 					easing : 'easeOutBack',
 					speed : 450,
@@ -12,83 +10,51 @@ $(document).ready(
 				});
 			};
 			
-			/**
-			 * Fermer de popup 
-			*/
 			closePopup = function (){
 				$('.button.b-close').click(); 
 			};
 			
-		
-			$("#idTelephone").autocomplete({
-			    minLength: 2,
-			    scrollHeight: 220, 
-			    source: function(req, add){ $.ajax({
-		            url:'ajax/client/autoCompleteClient',
-		            type:"get",
-		            dataType: 'json',
-		            data: 'term='+req.term,
-		            async: true,
-		            cache: true,
-		            success: function(data){
-		                var suggestions = [];  
-		                //process response  
-		                $.each(data, function(i, val){  
-		                 	suggestions.push({"id": val.id, "value": constructAutocompleteName(val)});  
-		             	});  
-		             	//pass array to callback  
-		             	add(suggestions); 
-		            }
-		        });
-			   },
-			   select: function (elem, data) {
-				   affecterClientToSession(data.item.id);
-			    }
-			});
 			
-			constructAutocompleteName = function (val){
-				return whiteIfNull(val.prenom) +' ' +
-				whiteIfNull(val.nom) +', '+
-				whiteIfNull(val.numeroRue)+' '+
-				whiteIfNull(val.nomRue)+' '+
-				whiteIfNull(val.codePostale)+' '+
-				whiteIfNull(val.ville) +'\n' ;
+			afficherFormulaireClient= function () {
+				
+						// display popup
+						displayPopupWithEffect();	
+			
 			};
 			
-			/**
-			 * Choisir le client courant 
-			 */
-			
-			affecterClientToSession = function(idClient){
+			ajouterClient = function(nomClient, prenomClient,numeroRue,nomRue,etage,immeuble,interphone,codePostale) {
+				var clientObj = {
+					nom : nomClient,
+					prenom : prenomClient,
+					numeroRue: numeroRue, 
+					nomRue:nomRue ,
+					etage:etage,
+					immeuble:immeuble,
+					interphone:interphone,
+					codePostale:codePostale 
+				};
 				$.ajax({
-		            url:'ajax/client/selectClient/'+idClient,
-		            type:"get",
-		            dataType: 'json',
-		            success: function(data){
-		            	$('#idTelephone').val(data.telephone);
-		            	$('.clientInfos').html(constructAutocompleteName(data));
-		            }
-		        });
-			} ;
+					type : "POST",
+					url : "ajax/client/ajouterClient",
+					data : clientObj
+				}).done(function() {
+					location.reload();
+				});
+				
 			
-			whiteIfNull =  function (data){
-				if (data==null || data=='undifined'){
-					return '';
-				}
-				return data;
-			} ;
+			};
 			
+			//gestion des evenements
 			
-			
-			//-------------- gestion des evenements------------
 			$( document ).on( "click", '.addCl',function() {
-				displayPopupWithEffect();
+				afficherFormulaireClient() ;
 			});
 			
-			$( document ).on("keypress",'#idTelephone',function(e){
-			if( e.which == 13 ){
-				displayPopupWithEffectClient();
-		       }
+			$( document ).on( "click", '#ajoutClient',function() {
+				ajouterClient($('input[id="nom"]').val(),$('input[id="prenom"]').val(),$('input[id="numeroRue"]').val(),$('input[id="nomRue"]').val(),$('input[id="etage"]').val(),$('input[id="immeuble"]').val(),$('input[id="interphone"]').val(),$('input[id="codePostale"]').val());
+				//closePopup();
 			});
+			
+			
 			
 	}) ;

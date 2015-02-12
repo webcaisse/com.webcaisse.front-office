@@ -64,7 +64,7 @@
 				</div>
 			</div>
 			<div class="grid_4" style="padding-top: 4px;">
-				<div id ="Aemporter"class="button float-left red menu-opener" title="E" tyle="z-index: 2;">
+				<!--<div id ="Aemporter"class="button float-left red menu-opener" title="E" tyle="z-index: 2;">
 					A emporter
 				</div>
 				<div  id ="surPlace" class="button float-left red menu-opener" title="P" style="z-index: 2;">
@@ -72,8 +72,15 @@
 				</div>
 				<div id ="livraison" class="button float-left red menu-opener" title="L" style="z-index: 2;">
 					Livraison
-				</div>
+				</div>-->
 				
+				<div id ="en_preparation" class="button float-left red menu-opener" style="z-index: 2;height: 37px;width: 136px">
+					En pr&eacute;paration
+				</div>
+				&nbsp;
+				<div id ="paiement" class="button float-left red menu-opener" style="z-index: 2;height: 37px;width: 136px;">
+					Paiement
+				</div>
 			</div>
 			<div class="clearfix" style="margin-bottom: 20px;"></div>
 

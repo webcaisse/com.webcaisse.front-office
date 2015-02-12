@@ -2,8 +2,6 @@ package com.webcaisse.mvc.controller;
 
 import java.util.List;
 
-import javax.servlet.http.HttpServletRequest;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -15,8 +13,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+<<<<<<< HEAD
 import com.webcaisse.mvc.bean.CommandeDump;
 import com.webcaisse.mvc.in.NoteIn;
+=======
+import com.webcaisse.mvc.bean.Panier;
+>>>>>>> lost_branch
 import com.webcaisse.service.CustomUser;
 import com.webcaisse.ws.interfaces.CaisseManagerService;
 import com.webcaisse.ws.model.FamilleIn;
@@ -153,9 +155,12 @@ public class ProduitPageController {
 		return "redirect:/produits/afficher"  ;
 	}
  
+<<<<<<< HEAD
  	@RequestMapping(value = "/ajouterNote")
 	public String ajouterNote(@ModelAttribute("noteIn") NoteIn notes, HttpServletRequest  request) {
 		commandeDump.getPanier().setMessage(notes.getNotes()) ;
 		return "redirect:/";
 	}
+=======
+>>>>>>> lost_branch
 }

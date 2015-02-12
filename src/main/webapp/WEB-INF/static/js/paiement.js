@@ -2,7 +2,6 @@ $(document).ready(function() {
 
 	var pattern = /^\d{0,2}(\.\d{0,2}){0,1}$/;
 
-	
 	afficherPopupModePaiement = function(mode){
 		$.ajax({
 			type : "GET",
@@ -143,8 +142,5 @@ $(document).ready(function() {
 	$( document ).on( "click", '.validerMontant.grey',function() {
 		doSubmitModePaiement($('#prixPopupModePaiement').val(), $('#modePaiement').val());
 	});
-	
-	
-	
-	
+
 });
