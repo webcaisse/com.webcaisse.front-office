@@ -1,6 +1,5 @@
  <div id="popupClient" style="display:none;left: 433px; position: absolute; top: 302px; z-index: 9999; opacity: 1; background-color:white;border: 5px solid rgb(90, 158, 181);>
-	<span class="button b-close"><span>X</span></span>
-	
+	<span class="button b-close" style="z-index: 88"><span>X</span></span>
 <form action="${rc.getContextPath()}/clients/ajouterClientMemoire" modelAttribute="clientIn">
 	
    <fieldset style="margin-bottom: 15px;padding: 10px;">

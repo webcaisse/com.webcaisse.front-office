@@ -28,10 +28,10 @@ $(document).ready(
 				$.get("ajax/product/details/" + produitId, function(product) {
 					// parsing json object
 					if (product.nbResult > 1) {
-						// création de popup
+						// crï¿½ation de popup
 						createPopup(product);
 						// display popup
-						displayPopupWithEffect();
+						displayPopupProduit();
 					} else if (product.nbResult == 1) {
 						// direct ajouter produit au panier
 						ajouterAuPanier(product.produitOut.id, product.produitOut.prixOut[0].valeur,product.produitOut.prixOut[0].idPrix);
@@ -54,7 +54,7 @@ $(document).ready(
 				li.remove();
 			};
 
-			displayPopupWithEffect = function() {
+			displayPopupProduit = function() {
 				$('#popup').bPopup({
 					easing : 'easeOutBack',
 					speed : 450,
@@ -74,7 +74,7 @@ $(document).ready(
 			    firstTr.insertAfter('#matable tr:last').attr('id', 'row_' + new_id);
 			};
 		
-			// Gestion des événements 
+			// Gestion des evenements 
 			
 			$('li.famille').click(function(e){ 
 			    loadProduct($(this).data('famille-id'));

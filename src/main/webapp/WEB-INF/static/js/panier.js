@@ -1,9 +1,8 @@
 $(document).ready(function() {
 	
-
-	/***
-	 * Afficher le popup pour le saisie d'une nouveaux client 
-	 */
+	/**
+	 * afficher popup notes
+	*/
 	displayPopupNoteWithEffect = function() {
 		$.ajax({
 			type : "GET",
@@ -123,53 +122,12 @@ $(document).ready(function() {
 		
 	};
 
-	ajouterNote = function(){
-		var message=$('#message').val() ;
-		$.ajax({
-			type : "GET",
-			url : "ajax/product/ajouterNote/"+message
-		}).done(function(notes) {
-			$( "<li>"+notes+"</li>" ).insertAfter( "#notes" );
-			$('#message').val("");
-			$('#message').focus();
-		});
-
-
-	};
-	
-	afficherPopupModePaiement = function(mode){
-		$.ajax({
-			type : "GET",
-			url : "ajax/product/afficherPopupModePaiement/"+mode
-		}).done(function(montant) {
-			$('#prixPopupModePaiement').val(montant);
-			$('#popup_paiement').bPopup({
-				easing : 'easeOutBack',
-				speed : 450,
-				transition : 'slideDown'
-			});
-		});
 		
-	};
 	
-	saisirModePaiement=function(montant,modePaiement){
+	sauvegarderCommande=function(modeVente){
 		$.ajax({
 			type : "GET",
-			url : "ajax/product/saisirModePaiement",
-			data :{montant : montant, idModePaiement:modePaiement} 
-		});
-		
-
-	};
-	
-	sauvegarderCommande=function(){
-		$.ajax({
-			type : "GET",
-<<<<<<< HEAD
 			url : "ajax/commandes/sauvegarderCommande/"+modeVente 
-=======
-			url : "ajax/product/sauvegarderCommande" 
->>>>>>> lost_branch
 		}).done(function() {
 			location.reload();
 		});
@@ -187,13 +145,18 @@ $(document).ready(function() {
 		}).done(function(obj) {
 			$('#popupNote').find($('.button.b-close')).click();
 		});
-	}
+	} ;
 		
-	// gestion des �v�nements 
+	// gestion des evenements 
 	
 	$( document ).on( "click", '.addNote',function() {
-		ajouterNote() ;
+		displayPopupNoteWithEffect() ;
 	});
+	
+	$( document ).on( "click", '#ajoutNote',function() {
+		ajouterNotes();
+	});
+	
 
 	$( document ).on( "click", '.button.deleteProduit',function() {
 		supprimerProduitDuPanier( $(this).parent('td').parent('tr').index() );
@@ -212,9 +175,9 @@ $(document).ready(function() {
 		afficherPopupRemise($(this).parent('td').parent('tr').index());
 	});
 	
-	$( document ).on( "click", '.calculette',function() {
-		saisirMontantRemise($(this).attr('title'));
-	});
+//	$( document ).on( "click", '.calculette',function() {
+//		saisirMontantRemise($(this).attr('title'));
+//	});
 	
 	$( document ).on( "click", '.calculette.effacer',function() {
 		effacerMontantRemise();
@@ -230,13 +193,10 @@ $(document).ready(function() {
 	
 
 	$( document ).on( "click", '#terminer',function() {
-		sauvegarderCommande();
+		sauvegarderCommande($('#modePaiement').text());
 	});
 	
 
-	$( document ).on( "click", '#ajoutNote',function() {
-		ajouterNotes();
-	});
 	
 	viderPanierModePaiement();
 });

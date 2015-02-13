@@ -46,8 +46,11 @@ $(document).ready(
 			
 			//gestion des evenements
 			
-			$( document ).on( "click", '.addCl',function() {
-				afficherFormulaireClient() ;
+			$( document ).on( "keyup", '#idTelephone',function(e) {
+				if(e.keyCode == 13) {
+					afficherFormulaireClient() ;
+		       }
+				
 			});
 			
 			$( document ).on( "click", '#ajoutClient',function() {

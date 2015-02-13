@@ -78,7 +78,7 @@
 					En pr&eacute;paration
 				</div>
 				&nbsp;
-				<div id ="paiement" class="button float-left red menu-opener" style="z-index: 2;height: 37px;width: 136px;">
+				<div id ="paiementCommande" class="button float-left red menu-opener" style="z-index: 2;height: 37px;width: 136px;">
 					Paiement
 				</div>
 			</div>
@@ -120,7 +120,7 @@
 		<#include "modules/product/remise.ftl"/>
 		<#include "modules/nouvelleClient.ftl"/>
 		<#include "modules/note.ftl"/>
-		
+		<#include "modules/popup_modeVente.ftl"/>
 
 	</footer>
 
