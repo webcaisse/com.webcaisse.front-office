@@ -17,6 +17,7 @@ import com.webcaisse.mvc.bean.CommandeDump;
 import com.webcaisse.mvc.bean.LignePanier;
 import com.webcaisse.service.CustomUser;
 import com.webcaisse.ws.interfaces.CaisseManagerService;
+import com.webcaisse.ws.interfaces.CommandeManagerService;
 import com.webcaisse.ws.interfaces.LivreurManagerService;
 import com.webcaisse.ws.model.ClientIn;
 import com.webcaisse.ws.model.CommandeIn;
@@ -36,6 +37,10 @@ public class CommandeProjetController {
 
 	@Autowired
 	private CommandeDump commandeDump;
+	
+	@Autowired
+	CommandeManagerService commandeManagerService ;
+	
 
 	@RequestMapping("/loadLivreurs")
 	@ResponseBody
@@ -69,6 +74,8 @@ public class CommandeProjetController {
 		populateClient(commande);
 	
 		populateCommandeLines(commande);
+		
+	
 		
 		return caisseManagerService.sauvegarderCommande(commande);
 	}
@@ -108,7 +115,7 @@ public class CommandeProjetController {
 	}
 
 
-	private void populateModePaiement(String modeVente, CustomUser customUser,	CommandeIn commande) {
+	private void populateModePaiement(String modeVente, CustomUser customUser,	CommandeIn commande ) {
 		commande.setRegCB(commandeDump.getModePaiement().getCb());
 		commande.setRegCarteFidelite(commandeDump.getModePaiement().getFidelite());
 		commande.setRegCheque(commandeDump.getModePaiement().getCheque());
@@ -117,6 +124,21 @@ public class CommandeProjetController {
 		commande.setIdSession(customUser.getSessionId());
 		commande.setNotes(commandeDump.getPanier().getMessage());
 		commande.setMode(modeVente);
+		//commande.setEtat(etatCommande);
+		
 	}
 
-}
+	@RequestMapping(value = "/affecterEtat/{etatCommande}/{idCommande}", method = RequestMethod.GET)
+	@ResponseBody
+	public void affecterEtatToCommmande(@PathVariable("etatCommande") String etatCommande ,@PathVariable("idCommande") Long idCommande ) {
+		
+		
+		commandeManagerService.affecterEtatToCommande(etatCommande, idCommande);
+		
+		
+	}
+		
+		
+	}
+	
+

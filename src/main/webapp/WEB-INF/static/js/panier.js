@@ -124,15 +124,18 @@ $(document).ready(function() {
 
 		
 	
-	sauvegarderCommande=function(modeVente){
+	sauvegarderCommande=function(modeVente,etatCommande){
 		$.ajax({
 			type : "GET",
 			url : "ajax/commandes/sauvegarderCommande/"+modeVente 
-		}).done(function() {
+		}).success(function(data) {
+			var idCommande=parseInt($("#idCommande").html(data).text());
+			$.get("ajax/commandes/affecterEtat/"+ etatCommande+"/"+idCommande);
 			location.reload();
 		});
 	} ;
 		
+	
 	viderPanierModePaiement = function() {
 		$.get("ajax/product/viderPanierModePaiement");
 	};
@@ -193,8 +196,13 @@ $(document).ready(function() {
 	
 
 	$( document ).on( "click", '#terminer',function() {
-		sauvegarderCommande($('#modePaiement').text());
+		sauvegarderCommande($('#modePaiement').text(),"PAYEE");
 	});
+	
+	$( document ).on( "click", '#en_preparation',function() {
+		sauvegarderCommande(null,"EN PREP");
+	});
+	
 	
 
 	

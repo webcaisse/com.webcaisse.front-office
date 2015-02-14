@@ -264,58 +264,58 @@ public class ProductPageController {
 		commandeDump.getModePaiement().empty();
 	}
 
-	@RequestMapping(value = "/sauvegarderCommande/{modeVente}", method = RequestMethod.GET)
-	@ResponseBody
-	public Long sauvegarderCommande(@PathVariable("modeVente") String modeVente) {
-
-		CustomUser customUser = (CustomUser) SecurityContextHolder.getContext()
-				.getAuthentication().getPrincipal();
-
-		Long idCommande = null;
-		CommandeIn commande = new CommandeIn();
-
-		commande.setRegCB(commandeDump.getModePaiement().getCb());
-		commande.setRegCarteFidelite(commandeDump.getModePaiement().getFidelite());
-		commande.setRegCheque(commandeDump.getModePaiement().getCheque());
-		commande.setRegEspece(commandeDump.getModePaiement().getEspece());
-		commande.setRegTicketRestau(commandeDump.getModePaiement().getTicketRestau());
-		commande.setIdSession(customUser.getSessionId());
-		commande.setMontant(commandeDump.getPanier().getPrixTtc());
-		commande.setNotes(commandeDump.getPanier().getMessage());
-		commande.setMode(modeVente);
-
-		ClientIn clientIn = new ClientIn();
-		// clientIn.setId(client.getIdClient());
-		clientIn.setNom(commandeDump.getClient().getNom());
-		clientIn.setPrenom(commandeDump.getClient().getPrenom());
-		clientIn.setEtage(commandeDump.getClient().getEtage());
-		clientIn.setImmeuble(commandeDump.getClient().getImmeuble());
-		clientIn.setInterphone(commandeDump.getClient().getInterphone());
-		clientIn.setNomRue(commandeDump.getClient().getNomRue());
-		clientIn.setNumeroRue(commandeDump.getClient().getNumeroRue());
-		commande.setClientIn(clientIn);
-
-		List<LigneCommandeIn> commandeIns = new ArrayList<LigneCommandeIn>();
-		commande.setLignesCommandesIn(commandeIns);
-
-		// faire un boucle sur panier.getLignePanier pour construire les
-		// LigneCOmmandeIn
-		if (!CollectionUtils.isEmpty(commandeDump.getPanier().getLignesPanier())) {
-			for (LignePanier lignePanier : commandeDump.getPanier().getLignesPanier()) {
-				LigneCommandeIn in = new LigneCommandeIn();
-				in.setIdProduit(lignePanier.getIdProduit());
-				in.setPrix(lignePanier.getPrix());
-				in.setQuantite(lignePanier.getQuantite());
-				in.setTotal(lignePanier.getPrix() * lignePanier.getQuantite());
-
-				commandeIns.add(in);
-			}
-		}
-
-		idCommande = caisseManagerService.sauvegarderCommande(commande);
-
-		return idCommande;
-	}
+//	@RequestMapping(value = "/sauvegarderCommande/{modeVente}", method = RequestMethod.GET)
+//	@ResponseBody
+//	public Long sauvegarderCommande(@PathVariable("modeVente") String modeVente) {
+//
+//		CustomUser customUser = (CustomUser) SecurityContextHolder.getContext()
+//				.getAuthentication().getPrincipal();
+//
+//		Long idCommande = null;
+//		CommandeIn commande = new CommandeIn();
+//
+//		commande.setRegCB(commandeDump.getModePaiement().getCb());
+//		commande.setRegCarteFidelite(commandeDump.getModePaiement().getFidelite());
+//		commande.setRegCheque(commandeDump.getModePaiement().getCheque());
+//		commande.setRegEspece(commandeDump.getModePaiement().getEspece());
+//		commande.setRegTicketRestau(commandeDump.getModePaiement().getTicketRestau());
+//		commande.setIdSession(customUser.getSessionId());
+//		commande.setMontant(commandeDump.getPanier().getPrixTtc());
+//		commande.setNotes(commandeDump.getPanier().getMessage());
+//		commande.setMode(modeVente);
+//
+//		ClientIn clientIn = new ClientIn();
+//		// clientIn.setId(client.getIdClient());
+//		clientIn.setNom(commandeDump.getClient().getNom());
+//		clientIn.setPrenom(commandeDump.getClient().getPrenom());
+//		clientIn.setEtage(commandeDump.getClient().getEtage());
+//		clientIn.setImmeuble(commandeDump.getClient().getImmeuble());
+//		clientIn.setInterphone(commandeDump.getClient().getInterphone());
+//		clientIn.setNomRue(commandeDump.getClient().getNomRue());
+//		clientIn.setNumeroRue(commandeDump.getClient().getNumeroRue());
+//		commande.setClientIn(clientIn);
+//
+//		List<LigneCommandeIn> commandeIns = new ArrayList<LigneCommandeIn>();
+//		commande.setLignesCommandesIn(commandeIns);
+//
+//		// faire un boucle sur panier.getLignePanier pour construire les
+//		// LigneCOmmandeIn
+//		if (!CollectionUtils.isEmpty(commandeDump.getPanier().getLignesPanier())) {
+//			for (LignePanier lignePanier : commandeDump.getPanier().getLignesPanier()) {
+//				LigneCommandeIn in = new LigneCommandeIn();
+//				in.setIdProduit(lignePanier.getIdProduit());
+//				in.setPrix(lignePanier.getPrix());
+//				in.setQuantite(lignePanier.getQuantite());
+//				in.setTotal(lignePanier.getPrix() * lignePanier.getQuantite());
+//
+//				commandeIns.add(in);
+//			}
+//		}
+//
+//		idCommande = caisseManagerService.sauvegarderCommande(commande);
+//
+//		return idCommande;
+//	}
 
 	@RequestMapping(value = "/afficherNotes")
 	@ResponseBody

@@ -47,7 +47,7 @@
 	<article class="container_12" id="contentD">
 
 		<div class="clearfix"></div>
-		
+		<input type="hidden" id="idCommande">
 		<div class="container_12">
 			<div class="indexAutocomplete grid_8">
 				<div class="ui-widget float-left">
