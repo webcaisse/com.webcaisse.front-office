@@ -80,8 +80,16 @@
 						<a href="#" title="Sort up" class="sort-up"></a>
 						<a href="#" title="Sort down" class="sort-down"></a>
 					</span>
+					Mode
+				</th>
+				<th scope="col" style="width: 99.400001525879px;" class="sorting">
+					<span class="column-sort">
+						<a href="#" title="Sort up" class="sort-up"></a>
+						<a href="#" title="Sort down" class="sort-down"></a>
+					</span>
 					Etat
 				</th>
+				
 				<th scope="col" style="width: 149.400001525879px;" class="sorting">
 					<span class="column-sort">
 						<a href="#" title="Sort up" class="sort-up"></a>
@@ -114,18 +122,26 @@
 		       		</#if>
 		       	</td>
 		       <td>
-		       		<#if commande.etat??>
-		       			<#if commande.etat="L">
+		       		<#if commande.mode??>
+		       			<#if commande.mode="L">
 		       				Livraison
-						<#elseif commande.etat="E">
+						<#elseif commande.mode="E">
 		       				A emporter
-			       		<#else>
+			       		<#elseif commande.mode="P">
 			       			Sur place
 			       		</#if>
 		       		<#else>
 		       			Inconnu
 		       		</#if>
 		       </td>
+		       <td>
+		       		<#if commande.etatCommandeOut??>
+		       			${commande.etatCommandeOut.libelle}
+		       		<#else>
+		       			Inconnu
+		       		</#if>
+		       </td>
+		       
 		       <td>${commande.libelleProduit}</td>
 		       <td>
 		       <#if commande.nomLivreur??>

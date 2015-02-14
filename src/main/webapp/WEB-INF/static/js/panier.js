@@ -130,11 +130,19 @@ $(document).ready(function() {
 			url : "ajax/commandes/sauvegarderCommande/"+modeVente 
 		}).success(function(data) {
 			var idCommande=parseInt($("#idCommande").html(data).text());
-			$.get("ajax/commandes/affecterEtat/"+ etatCommande+"/"+idCommande);
+			affecterEtatALaCommande(idCommande, etatCommande);
 			location.reload();
 		});
 	} ;
 		
+	/**
+	 * affecter un etat à la commande
+	 * @param idCommande
+	 * @param etatCommande
+	 */
+	affecterEtatALaCommande = function (idCommande, etatCommande){
+		$.get("ajax/commandes/affecterEtat/"+ etatCommande+"/"+idCommande);
+	}
 	
 	viderPanierModePaiement = function() {
 		$.get("ajax/product/viderPanierModePaiement");

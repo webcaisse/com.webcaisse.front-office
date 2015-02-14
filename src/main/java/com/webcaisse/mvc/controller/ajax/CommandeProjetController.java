@@ -131,14 +131,10 @@ public class CommandeProjetController {
 	@RequestMapping(value = "/affecterEtat/{etatCommande}/{idCommande}", method = RequestMethod.GET)
 	@ResponseBody
 	public void affecterEtatToCommmande(@PathVariable("etatCommande") String etatCommande ,@PathVariable("idCommande") Long idCommande ) {
-		
-		
 		commandeManagerService.affecterEtatToCommande(etatCommande, idCommande);
-		
-		
 	}
 		
 		
-	}
+}
 	
 
