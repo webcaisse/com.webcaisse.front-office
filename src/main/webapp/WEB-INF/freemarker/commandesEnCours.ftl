@@ -112,7 +112,7 @@
 	<tbody id="commandesTbody">
 	   <#if commandes??>
 		   <#list commandes as commande>
-	
+	     
 		     <tr class="odd">
 		       <td>
 		       		<#if commande.dateCommande??>
@@ -151,10 +151,14 @@
 		       		</#if>
 		       
 		       </td>
-		        <td>
-		        <a href="${rc.getContextPath()}/commandes/details/${commande.id}" title="details">details</a> 
-		        <a href="javascript:;" title="Affecter Livreur" class="affecterLivreur" data-idcmd="${commande.id}">affecter livreur </a>
-		        
+		     
+               
+		        <td style="width:20%">
+			        <a href="${rc.getContextPath()}/commandes/details/${commande.id}" title="Afficher details " rel="4083" prix="2" type="1" libre="1" taux="20" nb="-1" style="margin-left: 5px;"><img src="${rc.getContextPath()}/images/icons/fugue/detailsCommande.png" width="35"></a>
+	                <a href="javascript:;" title="Affecter Livreur " class="affecterLivreur" data-idcmd="${commande.id}" rel="4083" prix="2" type="1" libre="1" taux="20" nb="-1" style="margin-left: 5px;"><img src="${rc.getContextPath()}/images/icons/fugue/livreur.png" width="35"></a>
+	                <#if commande.etatCommandeOut?? && commande.etatCommandeOut.code="PREP">
+		            	<a href="javascript:;" title="changer etat Commande " class="changerEtatCommande" data-idcmd="${commande.id}" rel="4083" prix="2" type="1" libre="1" taux="20" nb="-1" style="margin-left: 5px;"><img src="${rc.getContextPath()}/images/icons/fugue/changerEtatCommande.png" width="35"></a>
+					</#if>
 		        </td>
 		        
 		      </tr>

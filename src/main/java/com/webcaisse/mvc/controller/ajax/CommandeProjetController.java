@@ -26,7 +26,7 @@ import com.webcaisse.ws.model.LigneCommandeIn;
 
 
 @Controller
-@RequestMapping("/ajax/commandes")
+@RequestMapping("/commandes/ajax")
 public class CommandeProjetController {
 	
 	@Autowired
@@ -42,7 +42,7 @@ public class CommandeProjetController {
 	CommandeManagerService commandeManagerService ;
 	
 
-	@RequestMapping("/loadLivreurs")
+	@RequestMapping(value="/loadLivreurs")
 	@ResponseBody
 	public JsonLivreurResponse loadLivreurs() {
 		

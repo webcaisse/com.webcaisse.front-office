@@ -127,7 +127,7 @@ $(document).ready(function() {
 	sauvegarderCommande=function(modeVente,etatCommande){
 		$.ajax({
 			type : "GET",
-			url : "ajax/commandes/sauvegarderCommande/"+modeVente 
+			url : "commandes/ajax/sauvegarderCommande/"+modeVente 
 		}).success(function(data) {
 			var idCommande=parseInt($("#idCommande").html(data).text());
 			affecterEtatALaCommande(idCommande, etatCommande);
@@ -141,7 +141,8 @@ $(document).ready(function() {
 	 * @param etatCommande
 	 */
 	affecterEtatALaCommande = function (idCommande, etatCommande){
-		$.get("ajax/commandes/affecterEtat/"+ etatCommande+"/"+idCommande);
+		
+		$.get("commandes/ajax/affecterEtat/"+ etatCommande+"/"+idCommande);
 	}
 	
 	viderPanierModePaiement = function() {
@@ -211,8 +212,6 @@ $(document).ready(function() {
 		sauvegarderCommande(null,"EN PREP");
 	});
 	
-	
-
 	
 	viderPanierModePaiement();
 });

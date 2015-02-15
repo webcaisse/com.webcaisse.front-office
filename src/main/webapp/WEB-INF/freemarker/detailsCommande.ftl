@@ -4,7 +4,7 @@
 </head>
 
 <body>
-	
+	 
 	<#include "common/nav.ftl" >	
 	</br></br>
 	<fieldset style="border:solid 1px black; padding:50px; width:300px; color:midnightblue;margin:20px; font-family:verdana;"> 
