@@ -6,8 +6,7 @@
   <script src="//code.jquery.com/jquery-1.10.2.js"></script>
   <script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
   <script type="text/javascript"	src="<@spring.url '/js/jquery.bpopup.min.js' />"></script>
-	
-    <script type="text/javascript" src="<@spring.url '/js/commande.js' />"></script>
+  <script type="text/javascript" src="<@spring.url '/js/commande.js' />"></script>
   	<script>
   $(function() {
     $( "#datepicker" ).datepicker({ dateFormat: "dd-mm-yy" });
@@ -151,16 +150,19 @@
 		       		</#if>
 		       
 		       </td>
-		     
-               
+		                   
 		        <td style="width:20%">
 			        <a href="${rc.getContextPath()}/commandes/details/${commande.id}" title="Afficher details " rel="4083" prix="2" type="1" libre="1" taux="20" nb="-1" style="margin-left: 5px;"><img src="${rc.getContextPath()}/images/icons/fugue/detailsCommande.png" width="35"></a>
 	                <a href="javascript:;" title="Affecter Livreur " class="affecterLivreur" data-idcmd="${commande.id}" rel="4083" prix="2" type="1" libre="1" taux="20" nb="-1" style="margin-left: 5px;"><img src="${rc.getContextPath()}/images/icons/fugue/livreur.png" width="35"></a>
 	                <#if commande.etatCommandeOut?? && commande.etatCommandeOut.code="PREP">
 		            	<a href="javascript:;" title="changer etat Commande " class="changerEtatCommande" data-idcmd="${commande.id}" rel="4083" prix="2" type="1" libre="1" taux="20" nb="-1" style="margin-left: 5px;"><img src="${rc.getContextPath()}/images/icons/fugue/changerEtatCommande.png" width="35"></a>
 					</#if>
+                   <#if commande.etatCommandeOut?? && commande.etatCommandeOut.code="PRETE">
+                   <a href="javascript:;" title="paiement Commande " class="paiementCommande" data-montant="${commande.montant!}" data-idcmd="${commande.id}"  rel="4083" prix="2" type="1" libre="1" taux="20" nb="-1" style="margin-left: 5px;"><img src="${rc.getContextPath()}/images/icons/fugue/paiement.png" width="35"></a>
+		            </#if>
+            
 		        </td>
-		        
+		          
 		      </tr>
 			</#list>   
 	   </#if>	
@@ -175,5 +177,8 @@
 	<footer>
 	</footer>
    <#include "modules/popupLivreur.ftl"/>
+   <#include "modules/popup_modeVente.ftl"/>
+   <#include "modules/paiement.ftl"/>
+   <#include "modules/product/popup_paiement.ftl"/> 
 </body>
 </html>

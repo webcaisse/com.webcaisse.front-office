@@ -1,6 +1,19 @@
+
+
 $(document).ready(
+		
+		
 		function() {
 	
+			
+			$.getScript('/js/paiement.js', function()
+					{
+					    // script is now loaded and executed.
+					    // put your dependent JS here.
+					    // what if the JS code is dependent on multiple JS files? 
+					});
+			
+			
 			
 			displayPopupWithEffect = function() {
 				$('#popupLivreur').bPopup({
@@ -15,13 +28,62 @@ $(document).ready(
 			};
 			
 			
+			afficherpopupModeVenteParCommande=function(){
+				
+				$('#popupModeVente').bPopup({
+					easing : 'easeOutBack',
+					speed : 450,
+					transition : 'slideDown'
+				});
+			};
+			
+			afficherPopupPaiementParCommande=function(modeVente){
+				
+				$.ajax({
+						type : "GET",
+						url : "ajax/afficherPopupPaiement/"+modeVente
+					}).done(function(data) {
+						
+						//var obj = jQuery.parseJSON(data);
+						
+						// renseignement sur le prix de panier
+						$('#solde').html($('#montantCommande').text());
+						$('#totalTTC').html($('#montantCommande').text());
+						
+						// affichage de popup
+						$('#tab-paiements').bPopup({
+							easing : 'easeOutBack',
+							speed : 450,
+							transition : 'slideDown'
+						});
+						
+					});;
+				
+				};
+			
+			afficherPopupModePaiementParCommande = function(mode){
+				$.ajax({
+					type : "GET",
+					url : "ajax/afficherPopupModePaiement/"+mode
+				}).done(function(montant) {
+					$('#prixPopupModePaiement').val(montant);
+					$('#modePaiement').val(mode);
+					$('#popup_paiement').bPopup({
+						easing : 'easeOutBack',
+						speed : 450,
+						transition : 'slideDown'
+					});
+				});;
+				
+			};
+			
 			chargerLivreurs= function (idCommande) {
 			
 				$.ajax({
 				       url : "ajax/loadLivreurs",
 				       type : "GET",
 				       success : function(livreur){
-				    	// cr�ation de popup
+				    	// creation de popup
 							createPopup(livreur, idCommande);
 							// display popup
 							displayPopupWithEffect();           
@@ -31,13 +93,25 @@ $(document).ready(
 				
 			};
 			
-			affecterEtatALaCommande = function (idCommande, etatCommande){
+			affecterEtatALaCommandeParCommande = function (idCommande, etatCommande){
 				
 				$.ajax({
 					type : "GET",
 					url : "ajax/affecterEtat/"+ etatCommande+"/"+idCommande
 				}).success(function() {
-					
+		
+					location.reload();
+				});
+				
+			} ;
+			
+            affecterEtatALaCommandeAvecMode = function (idCommande, etatCommande,mode){
+				
+				$.ajax({
+					type : "GET",
+					url : "ajax/affecterEtatAvecMode/"+ etatCommande+"/"+idCommande+"/"+mode
+				}).success(function() {
+		
 					location.reload();
 				});
 				
@@ -69,6 +143,107 @@ $(document).ready(
 				 });
 			};
 			
+			
+			saisirMontant =  function (value, inputVal){
+				if (!value){
+					return ;
+				}
+				if (pattern.test(value)==false && value.indexOf('%')!=-1 && value!='%'){
+					inputVal.val(value);
+				}else {
+				   if (pattern.test(value)){
+					   if (pattern.test(inputVal.val())){
+						   inputVal.val(inputVal.val() + value);				   
+					   }else{
+						   inputVal.val(value);
+					   }
+				   }else{
+					   inputVal.val(inputVal.val() + value);
+				   }
+				}
+			};
+			
+			
+			/**
+			 * payer en plusieurs forme
+			 * 
+			 */ 
+			PayerEnPlusieursForme= function(valeur){
+				var mode  = $('#modePaiement').val();
+				$.ajax({
+					type : "GET",
+					url : "ajax/payerEnPlusieursForme/"+valeur+"/"+mode,
+					success :function(data) {
+						
+						afficherLignePaiement(data, mode) ;
+						calculerSoldePaiement () ;
+						$('#closePopupPaiement').click();
+					}
+				});
+			};
+			
+// A METTRE A PART			
+			afficherLignePaiement = function(modePaiement, mode) {
+
+				var  tr= $('.table.tablePaiement > tbody tr:eq(0)')    ;
+				var trClone= tr.clone();
+					
+				//ESPECE(1),CB(2), CHEQUE(3), FIDELITE(4), TR(5);
+				if (mode==1){
+					trClone.find(("td:eq(0)")).html('Especes') ;
+					trClone.find(("td:eq(1)")).html(modePaiement.espece);
+				}else if (mode==2){
+					trClone.find(("td:eq(0)")).html('Carte bancaire') ;
+					trClone.find(("td:eq(1)")).html(modePaiement.cb);
+				}else if (mode==3){
+					trClone.find(("td:eq(0)")).html('Cheque') ;
+					trClone.find(("td:eq(1)")).html(modePaiement.cheque);
+				}else if (mode==4){
+					trClone.find(("td:eq(0)")).html('Carte fidelite') ;
+					trClone.find(("td:eq(1)")).html(modePaiement.fidelite);
+				}else if (mode==5){
+					trClone.find(("td:eq(0)")).html('Ticket restaurent') ;
+					trClone.find(("td:eq(1)")).html(modePaiement.ticketRestau);
+				}
+
+				// rendre le TR visible
+				trClone.removeAttr("style");
+			
+				$('.table.tablePaiement > tbody').append(trClone);
+				
+			
+	};
+			
+			deletePaiement= function(index){
+				
+				var mode  = $('#modePaiement').val() ;
+				if (index<0){
+					return ;
+				}
+				 $.ajax({
+				       url : 'ajax/deletePaiement/'+mode,
+				       type : 'GET',
+				       success : function(){
+							$('.table.tablePaiement tbody tr:eq(' + index + ')').remove();
+							calculerSoldePaiement();         
+				       } 
+				 });
+			};	
+		
+			//A METTRE A PART
+			
+			 calculerSoldePaiement = function() {		
+				var montantSaisie=0;
+				$('.montant').each(function(){
+					 if ($(this).html() && $(this).html()!==''){
+						 montantSaisie+=parseFloat($(this).html());
+					 }			 
+				});
+				$('#solde').html(parseFloat($('#totalTTC').html())-montantSaisie);
+			 } ;
+			
+			
+			 
 			//gestion des evenements
 			
 			$( document ).on( "click", ".affecterLivreur",function() {
@@ -80,7 +255,47 @@ $(document).ready(
 			});		
 			
 			$( document ).on( "click", '.changerEtatCommande',function() {
-				
-				affecterEtatALaCommande($(this).data('idcmd'),"PRETE")  ;
+				affecterEtatALaCommandeParCommande($(this).data('idcmd'),"PRETE")  ;
 			});
-	}) ;
+			
+			$( document ).on( "click", '.paiementCommande',function() {
+				$('#montantCommande').html($(this).data('montant'))
+				$('#commandeID').html($(this).data('idcmd'))
+				 afficherpopupModeVenteParCommande() ;
+				 
+			});
+			
+			$( document ).on( "click", '#popupModeVente ul  li:eq(0)',function() {
+				afficherPopupPaiementParCommande('E') ;
+				$('#modePaiement').html('E') ;
+			});
+			$( document ).on( "click", '#popupModeVente ul  li:eq(1)',function() {
+				afficherPopupPaiementParCommande('L') ;
+				$('#modePaiement').html('L') ;
+			});
+			$( document ).on( "click", '#popupModeVente ul  li:eq(2)',function() {
+				afficherPopupPaiementParCommande('P') ;
+				$('#modePaiement').html('P') ;
+			});
+			
+			$( document ).on( "click", '.paiement',function() {
+				afficherPopupModePaiementParCommande($(this).data('mode'));
+			});
+			
+			$( document ).on( "click", '.calculette.calculettePaiement',function() {
+				saisirMontant($(this).data('montant'), $('input[id="prixPopupModePaiement"]'));
+			});
+			
+			$( document ).on( "click", '#validerPopupPaiement',function() {
+				PayerEnPlusieursForme($('input[id="prixPopupModePaiement"]').val()) ;
+			});
+			
+			$( document ).on( "click", '.deletePaiement',function() {
+				deletePaiement($(this).parent('td').parent('tr').index() ) ;
+			}) ;
+				$( document ).on( "click", '#terminer',function() {
+					//sauvegarderCommande($('#modePaiement').text(),"PAYEE",parseInt($('#commandeID').text()));
+					affecterEtatALaCommandeAvecMode(parseInt($('#commandeID').text()),"PAYEE",$('#modePaiement').text());
+				});		
+	});
+	

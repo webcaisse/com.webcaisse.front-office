@@ -281,6 +281,8 @@ $(document).ready(function() {
 			
 	$( document ).on( "click", '.deletePaiement',function() {
 				deletePaiement($(this).parent('td').parent('tr').index() ) ;
-			});
+	});
+	
+	
 });
 

@@ -13,8 +13,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.webcaisse.mvc.EnumModePaiement;
 import com.webcaisse.mvc.bean.CommandeDump;
 import com.webcaisse.mvc.bean.LignePanier;
+import com.webcaisse.mvc.bean.ModePaiement;
 import com.webcaisse.service.CustomUser;
 import com.webcaisse.ws.interfaces.CaisseManagerService;
 import com.webcaisse.ws.interfaces.CommandeManagerService;
@@ -130,11 +132,79 @@ public class CommandeProjetController {
 
 	@RequestMapping(value = "/affecterEtat/{etatCommande}/{idCommande}", method = RequestMethod.GET)
 	@ResponseBody
-	public void affecterEtatToCommmande(@PathVariable("etatCommande") String etatCommande ,@PathVariable("idCommande") Long idCommande ) {
+	public void affecterEtatToCommmande(@PathVariable("etatCommande") String etatCommande ,@PathVariable("idCommande") Long idCommande  ) {
 		commandeManagerService.affecterEtatToCommande(etatCommande, idCommande);
 	}
-		
-		
-}
+	
+	@RequestMapping(value = "/affecterEtatAvecMode/{etatCommande}/{idCommande}/{modeCommande}", method = RequestMethod.GET)
+	@ResponseBody
+	public void affecterEtatToCommmande(@PathVariable("etatCommande") String etatCommande ,@PathVariable("idCommande") Long idCommande ,@PathVariable("modeCommande") String modeCommande ) {
+		commandeManagerService.affecterEtatToCommandeAvecMode(etatCommande, idCommande,modeCommande);
+	}
+	
+	
+	@RequestMapping(value = "/afficherPopupPaiement/{modeVente}", method = RequestMethod.GET)
+	@ResponseBody
+	public String afficherPopupPaiement(@PathVariable("modeVente") String modeVente) {
+		return "{\"total_ttc\":" + commandeDump.getPanier().getPrixTtc() + ",\"total_ht\":"
+				+ commandeDump.getPanier().getPrixHt() + "}";
+	}
 	
 
+	@RequestMapping(value = "/afficherPopupModePaiement/{modePaiement}", method = RequestMethod.GET)
+	@ResponseBody
+	public String afficherPopupModePaiement(@PathVariable("modePaiement") Integer idModePaiement) {
+
+		Double montant = 0D;
+		if (EnumModePaiement.CB.getMode().equals(idModePaiement)){
+			montant = commandeDump.getModePaiement().getCb();
+		}else if (EnumModePaiement.CHEQUE.getMode().equals(idModePaiement)){
+			montant = commandeDump.getModePaiement().getCheque();
+		}else if (EnumModePaiement.ESPECE.getMode().equals(idModePaiement)){
+			montant = commandeDump.getModePaiement().getEspece();
+		}else if (EnumModePaiement.FIDELITE.getMode().equals(idModePaiement)){
+			montant = commandeDump.getModePaiement().getFidelite();
+		}else if (EnumModePaiement.TR.getMode().equals(idModePaiement)){
+			montant = commandeDump.getModePaiement().getTicketRestau();
+		}
+		return montant != null ? montant.toString() : "";
+	}
+
+	@RequestMapping(value = "/payerEnPlusieursForme/{valeur}/{mode}", method = RequestMethod.GET)
+	@ResponseBody
+	public ModePaiement payerEnPlusieursForme(@PathVariable("valeur") Double valeur,@PathVariable("mode") Integer mode) {
+
+		if (EnumModePaiement.CB.getMode().equals(mode)) {
+			commandeDump.getModePaiement().setCb(valeur);
+		} else if (EnumModePaiement.CHEQUE.getMode().equals(mode)) {
+			commandeDump.getModePaiement().setCheque(valeur);
+		} else if (EnumModePaiement.ESPECE.getMode().equals(mode)) {
+			commandeDump.getModePaiement().setEspece(valeur);
+		} else if (EnumModePaiement.FIDELITE.getMode().equals(mode)) {
+			commandeDump.getModePaiement().setFidelite(valeur);
+		} else if (EnumModePaiement.TR.getMode().equals(mode)) {
+			commandeDump.getModePaiement().setTicketRestau(valeur);
+		}
+
+		return commandeDump.getModePaiement();
+	}
+	
+	@RequestMapping(value = "/deletePaiement/{mode}", method = RequestMethod.GET)
+	@ResponseBody
+	public void deletePaiement(@PathVariable("mode") Integer mode) {
+
+		if (EnumModePaiement.CB.getMode().equals(mode)) {
+			commandeDump.getModePaiement().setCb(0D);
+		} else if (EnumModePaiement.CHEQUE.getMode().equals(mode)) {
+			commandeDump.getModePaiement().setCheque(0D);
+		} else if (EnumModePaiement.ESPECE.getMode().equals(mode)) {
+			commandeDump.getModePaiement().setEspece(0D);
+		} else if (EnumModePaiement.FIDELITE.getMode().equals(mode)) {
+			commandeDump.getModePaiement().setFidelite(0D);
+		} else if (EnumModePaiement.TR.getMode().equals(mode)) {
+			commandeDump.getModePaiement().setTicketRestau(0D);
+
+		}
+	}
+	
+}

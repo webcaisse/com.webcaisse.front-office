@@ -1,5 +1,6 @@
-<div id="tab-paiements" style="left: 433px; position: absolute; top: 302px; z-index: 9999; opacity: 1;">
+<div id="tab-paiements" style=" display:none ;left: 433px; position: absolute; top: 302px; z-index: 9999; opacity: 1;">
  	<span class="button b-close" style="z-index: 88"><span>X</span></span>
+ 	<input id="commandeID" type="hidden"/>
  	<ul class="grid dark-grey-gradient" style="height: 300px; overflow: auto; position: relative;background-color: white; padding-top: 26px">
     	<div class="container_12">
 	        <div class="grid_6">
@@ -28,7 +29,7 @@
 							<td class="montant"></td>
 							<td class="table-actions">
 								<a href="javascript:;" title="Supprimer" class="with-tip deletePaiement" rel="CB">
-									<img src="images/icons/fugue/cross-circle.png" width="16" height="16">
+									<img src="${rc.getContextPath()}/images/icons/fugue/cross-circle.png" width="16" height="16">
 								</a>
 							</td>
 						</tr>
@@ -60,7 +61,7 @@
 				</table>
 	 			<div class="clearfix"></div>
 				<br><br><br>
-			 	<button id="terminer" class="float-right"><img src="images/icons/fugue/tick-circle.png"> Terminer</button>
+			 	<button id="terminer" class="float-right"><img src="${rc.getContextPath()}/images/icons/fugue/tick-circle.png"> Terminer</button>
 				<button class="saveDevis float-right red" style="margin-right: 30px;">Devis</button>
 				<div class="clearfix"></div> 		
 				</div>

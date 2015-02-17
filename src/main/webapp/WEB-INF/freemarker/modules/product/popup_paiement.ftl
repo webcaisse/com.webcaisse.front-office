@@ -1,10 +1,10 @@
-	<div id="popup_paiement" style="left: 433px; position: absolute; top: 302px; z-index: 9999; opacity: 1;">
+	<div id="popup_paiement" style="display:none ;left: 433px; position: absolute; top: 302px; z-index: 9999; opacity: 1;">
 		
 	<input type="hidden" id="modePaiement">
 	<ul class="action-tabs right">
 		<li><span class="b-close">
 		<a href="#" title="Close window">
-		<img src="images/icons/fugue/cross-circle.png" width="16" height="16">
+		<img src="rc.getContextPath()}images/icons/fugue/cross-circle.png" width="16" height="16">
 		</a></span>
 		</li>
 	</ul>
@@ -36,10 +36,10 @@
 	</div>
 	<div class="block-footer align-right">
 		<button type="button" id="closePopupPaiement" class="red b-close">
-			<img src="images/icons/fugue/cross-circle.png" width="16" height="16" title="Fermer"> Fermer
+			<img src="${rc.getContextPath()}/images/icons/fugue/cross-circle.png" width="16" height="16" title="Fermer"> Fermer
 		</button>&nbsp;
 		<button type="button" class="validerMontant grey" id="validerPopupPaiement">
-			<img src="images/icons/fugue/tick-circle.png" width="16" height="16" title="Valider"> Valider
+			<img src="${rc.getContextPath()}/images/icons/fugue/tick-circle.png" width="16" height="16" title="Valider"> Valider
 		</button>
 	</div>
 	</div>

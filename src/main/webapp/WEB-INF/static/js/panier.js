@@ -209,7 +209,7 @@ $(document).ready(function() {
 	});
 	
 	$( document ).on( "click", '#en_preparation',function() {
-		sauvegarderCommande(null,"EN PREP");
+		sauvegarderCommande(null,"PREP");
 	});
 	
 	
