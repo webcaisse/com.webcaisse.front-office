@@ -28,7 +28,6 @@ $(document).ready(function() {
 			};
 	
 	
-	
 	afficherPopupModePaiement = function(mode){
 		$.ajax({
 			type : "GET",
@@ -103,15 +102,10 @@ $(document).ready(function() {
 		});
 	};
 
-	effacerMontantRemise = function (){
-		$('input[id="prixPopupModePaiement"]').html("0");
-	};
 	
 	saisirMontant =  function (value, inputVal){
-		if (!value){
-			return ;
-		}
-		if (pattern.test(value)==false && value.indexOf('%')!=-1 && value!='%'){
+		//value.indexOf('%')!=-1 
+		if (pattern.test(value)==false && value!='%'){
 			inputVal.val(value);
 		}else {
 		   if (pattern.test(value)){
@@ -149,7 +143,6 @@ $(document).ready(function() {
 			type : "GET",
 			url : "ajax/product/payerEnPlusieursForme/"+valeur+"/"+mode,
 			success :function(data) {
-				
 				afficherLignePaiement(data, mode) ;
 				calculerSoldePaiement () ;
 				$('#closePopupPaiement').click();
@@ -236,7 +229,7 @@ $(document).ready(function() {
 		saisirMontant($(this).data('montant'), $('input[id="prixPopupModePaiement"]'));
 	});
 	
-	$( document ).on( "click", '.calculetteEffacer',function() {
+	$( document ).on( "click", '#Effacer',function() {
 		$('input[id="prixPopupModePaiement"]').html("0");
 	});
 	
@@ -247,11 +240,6 @@ $(document).ready(function() {
 	$( document ).on( "click", '.produitOffert',function() {
 		offrirLignePanier($(this).parent('td').parent('tr').index());
 	});
-
-
-//	$( document ).on( "click", '.validerMontant.grey',function() {
-//		doSubmitModePaiement($('#prixPopupModePaiement').val(), $('#modePaiement').val());
-//	});
 
 	$( document ).on( "click", '#paiementCommande',function() {
 		 afficherpopupModeVente() ;
@@ -276,11 +264,11 @@ $(document).ready(function() {
 	});
 	
 	$( document ).on( "click", '#validerPopupPaiement',function() {
-			PayerEnPlusieursForme($('input[id="prixPopupModePaiement"]').val()) ;
-		});
+		PayerEnPlusieursForme($('input[id="prixPopupModePaiement"]').val()) ;
+	});
 			
 	$( document ).on( "click", '.deletePaiement',function() {
-				deletePaiement($(this).parent('td').parent('tr').index() ) ;
+		 deletePaiement($(this).parent('td').parent('tr').index() ) ;
 	});
 	
 	

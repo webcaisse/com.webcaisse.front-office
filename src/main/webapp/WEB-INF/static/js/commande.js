@@ -1,19 +1,6 @@
-
-
-$(document).ready(
-		
-		
-		function() {
+$(document).ready(function() {
 	
-			
-			$.getScript('/js/paiement.js', function()
-					{
-					    // script is now loaded and executed.
-					    // put your dependent JS here.
-					    // what if the JS code is dependent on multiple JS files? 
-					});
-			
-			
+			var pattern = /^\d{0,2}(\.\d{0,2}){0,1}$/;
 			
 			displayPopupWithEffect = function() {
 				$('#popupLivreur').bPopup({
@@ -43,9 +30,6 @@ $(document).ready(
 						type : "GET",
 						url : "ajax/afficherPopupPaiement/"+modeVente
 					}).done(function(data) {
-						
-						//var obj = jQuery.parseJSON(data);
-						
 						// renseignement sur le prix de panier
 						$('#solde').html($('#montantCommande').text());
 						$('#totalTTC').html($('#montantCommande').text());
@@ -99,7 +83,6 @@ $(document).ready(
 					type : "GET",
 					url : "ajax/affecterEtat/"+ etatCommande+"/"+idCommande
 				}).success(function() {
-		
 					location.reload();
 				});
 				
@@ -111,7 +94,6 @@ $(document).ready(
 					type : "GET",
 					url : "ajax/affecterEtatAvecMode/"+ etatCommande+"/"+idCommande+"/"+mode
 				}).success(function() {
-		
 					location.reload();
 				});
 				
@@ -143,12 +125,11 @@ $(document).ready(
 				 });
 			};
 			
+		// Amettre a part
 			
 			saisirMontant =  function (value, inputVal){
-				if (!value){
-					return ;
-				}
-				if (pattern.test(value)==false && value.indexOf('%')!=-1 && value!='%'){
+				//value.indexOf('%')!=-1 
+				if (pattern.test(value)==false && value!='%'){
 					inputVal.val(value);
 				}else {
 				   if (pattern.test(value)){
@@ -162,12 +143,9 @@ $(document).ready(
 				   }
 				}
 			};
+
 			
 			
-			/**
-			 * payer en plusieurs forme
-			 * 
-			 */ 
 			PayerEnPlusieursForme= function(valeur){
 				var mode  = $('#modePaiement').val();
 				$.ajax({
@@ -285,6 +263,9 @@ $(document).ready(
 			$( document ).on( "click", '.calculette.calculettePaiement',function() {
 				saisirMontant($(this).data('montant'), $('input[id="prixPopupModePaiement"]'));
 			});
+			$( document ).on( "click", '#Effacer',function() {
+				$('input[id="prixPopupModePaiement"]').html("0");
+			});
 			
 			$( document ).on( "click", '#validerPopupPaiement',function() {
 				PayerEnPlusieursForme($('input[id="prixPopupModePaiement"]').val()) ;
@@ -293,9 +274,8 @@ $(document).ready(
 			$( document ).on( "click", '.deletePaiement',function() {
 				deletePaiement($(this).parent('td').parent('tr').index() ) ;
 			}) ;
-				$( document ).on( "click", '#terminer',function() {
-					//sauvegarderCommande($('#modePaiement').text(),"PAYEE",parseInt($('#commandeID').text()));
-					affecterEtatALaCommandeAvecMode(parseInt($('#commandeID').text()),"PAYEE",$('#modePaiement').text());
-				});		
+			$( document ).on( "click", '#terminer',function() {
+			   affecterEtatALaCommandeAvecMode(parseInt($('#commandeID').text()),"PAYEE",$('#modePaiement').text());
+			});		
 	});
 	

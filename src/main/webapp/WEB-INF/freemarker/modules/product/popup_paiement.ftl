@@ -4,7 +4,7 @@
 	<ul class="action-tabs right">
 		<li><span class="b-close">
 		<a href="#" title="Close window">
-		<img src="rc.getContextPath()}images/icons/fugue/cross-circle.png" width="16" height="16">
+		<img src="${rc.getContextPath()}/images/icons/fugue/cross-circle.png" width="16" height="16">
 		</a></span>
 		</li>
 	</ul>
@@ -23,7 +23,7 @@
 		<div class="clearfix"></div>
 		<a class="calculettePaiement calculette" href="javascript:;" title="0" data-montant="0">0</a>
 		<a class="calculettePaiement calculette" href="javascript:;" title="." data-montant=".">.</a>
-		<a class="calculettePaiement calculette" href="javascript:;" title="Effacer"><img src="images/icons/web-app/24/Back.png" width="24" height="24" style="vertical-align: middle;"></a>
+		<a class="calculettePaiement calculette" href="javascript:;" title="Effacer" id="Effacer"><img src="${rc.getContextPath()}/images/icons/web-app/24/Back.png" width="24" height="24" style="vertical-align: middle;"></a>
 		
 	<div class="clearfix"></div>
 	<br>
