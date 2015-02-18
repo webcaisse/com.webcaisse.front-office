@@ -1,7 +1,5 @@
 <head>
-<link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.5/css/jquery.dataTables.min.css">
- <script type="text/javascript" language="javascript" src="//cdn.datatables.net/1.10.5/js/jquery.dataTables.min.js"></script>
- 
+
   <script>
 
   $( document ).ready(function() {
