@@ -24,13 +24,14 @@
 	<link rel="stylesheet" type="text/css"	href="<@spring.url '/css/calendars.css' />">
 	<link rel="stylesheet" type="text/css"	href="<@spring.url '/css/redmond.datepick.css' />">
 	<link rel="stylesheet" type="text/css"	href="<@spring.url '/css/table.css' />">
-	<link rel="stylesheet" type="text/css"	href="<@spring.url '/css/960.gs.fluid.css' />">
-	
 	
 	<!-- Favicon -->
 	<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
 	<script src="//code.jquery.com/jquery-1.10.2.js"></script>
 	<script src="//code.jquery.com/ui/1.11.1/jquery-ui.js"></script>
+  
+   
+ 
 	<script type="text/javascript"	src="<@spring.url '/js/jquery.bpopup.min.js' />"></script>
 	<script type="text/javascript" src="<@spring.url '/js/main.js' />"></script>
 	<script type="text/javascript" src="<@spring.url '/js/panier.js' />"></script>
@@ -56,9 +57,9 @@
 						style="vertical-align: middle;"> Client : </label>
 						<input type="text" id="idTelephone">
 				</div>
-				<button class="addCl float-left"
+				<button class="addClient float-left"
 					style="font-size: 14px; margin: 2px 0 0 50px;">
-					<img src="images/icons/fugue/plus-circle.png" width="16" height="16"> Nouveau
+					<img src="images/icons/fugue/plus-circle.png" width="16" height="16"> Ajouter Client
 				</button>
 				<div class="clientInfos">
 				</div>
@@ -121,6 +122,7 @@
 		<#include "modules/nouvelleClient.ftl"/>
 		<#include "modules/note.ftl"/>
 		<#include "modules/popup_modeVente.ftl"/>
+         <#include "modules/popup_client.ftl"/>
 
 	</footer>
 

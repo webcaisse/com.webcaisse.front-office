@@ -159,6 +159,49 @@ $(document).ready(function() {
 		});
 	} ;
 		
+	
+	chargerClients=function(){
+		$.ajax({
+		type : "GET",
+		url : "ajax/client/afficherListClient"
+		}).success(function(client) {
+			createPopupClient(client);
+			displayPopupClient() ;
+					
+		});
+			
+	}
+	
+	
+	displayPopupClient = function() {		
+		$('#popupListClient').bPopup({
+			easing : 'easeOutBack',
+			speed : 450,
+			transition : 'slideDown'
+		});
+	
+	};
+	
+	createPopupClient = function(client){
+		var  tr= $('#popupListClient tbody tr:eq(0)')    ;
+		
+		
+		$.each(client.clientsOut, function(index, cl) {
+			
+			var trClone= tr.clone();
+			trClone.find(("td:eq(0)")).html(cl.nom + " "+ cl.prenom) ;
+			trClone.find(("td:eq(1)")).html(cl.telephone) ;
+			trClone.find(("td:eq(2)")).html(cl.numeroRue+" "+cl.nomRue) ;
+			$('#popupListClient  tbody').append(trClone);
+		});
+		//trClone.removeAttr("style");
+		
+	
+	
+	};
+	
+	
+	
 	// gestion des evenements 
 	
 	$( document ).on( "click", '.addNote',function() {
@@ -212,6 +255,9 @@ $(document).ready(function() {
 		sauvegarderCommande(null,"PREP");
 	});
 	
+	$( document ).on( "click", '.addClient',function() {
+		chargerClients();
+	});
 	
 	viderPanierModePaiement();
 });

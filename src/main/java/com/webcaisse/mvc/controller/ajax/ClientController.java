@@ -4,7 +4,9 @@ package com.webcaisse.mvc.controller.ajax;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -12,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.webcaisse.mvc.bean.CommandeDump;
+import com.webcaisse.service.CustomUser;
 import com.webcaisse.ws.interfaces.ClientManagerService;
 import com.webcaisse.ws.model.ClientOut;
 
@@ -60,6 +63,17 @@ public class ClientController {
 		commandeDump.getClient().setNumeroRue(clientOut.getNumeroRue());
 		commandeDump.getClient().setNomRue(clientOut.getNomRue());
 		commandeDump.getClient().setTelephone(clientOut.getTelephone());
+	}
+	
+	@RequestMapping("/afficherListClient")
+	@ResponseBody
+	public JsonClientResponse afficherListClients() {
+
+		CustomUser customUser = (CustomUser) SecurityContextHolder.getContext()
+				.getAuthentication().getPrincipal();
+		return new JsonClientResponse( clientManagerService.rechercherClient(customUser.getSocieteId()));
+
+		
 	}
 	
 }
