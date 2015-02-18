@@ -1,12 +1,7 @@
 package com.webcaisse.mvc.controller.ajax;
 
 import java.text.DecimalFormat;
-import java.util.ArrayList;
-import java.util.List;
 
-import javax.servlet.http.HttpServletRequest;
-
-import org.apache.cxf.common.util.CollectionUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -23,13 +18,8 @@ import com.webcaisse.mvc.bean.LignePanier;
 import com.webcaisse.mvc.bean.ModePaiement;
 import com.webcaisse.mvc.bean.Paiement;
 import com.webcaisse.mvc.bean.RemiseProduit;
-import com.webcaisse.mvc.in.NoteIn;
 import com.webcaisse.service.CustomUser;
 import com.webcaisse.ws.interfaces.CaisseManagerService;
-import com.webcaisse.ws.model.ClientIn;
-import com.webcaisse.ws.model.CommandeIn;
-import com.webcaisse.ws.model.EtatCommandeIn;
-import com.webcaisse.ws.model.LigneCommandeIn;
 import com.webcaisse.ws.model.ProduitOut;
 
 @Controller

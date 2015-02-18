@@ -127,98 +127,98 @@ $(document).ready(function() {
 			
 		// Amettre a part
 			
-			saisirMontant =  function (value, inputVal){
-				//value.indexOf('%')!=-1 
-				if (pattern.test(value)==false && value!='%'){
-					inputVal.val(value);
-				}else {
-				   if (pattern.test(value)){
-					   if (pattern.test(inputVal.val())){
-						   inputVal.val(inputVal.val() + value);				   
-					   }else{
-						   inputVal.val(value);
-					   }
-				   }else{
-					   inputVal.val(inputVal.val() + value);
-				   }
-				}
-			};
+//			saisirMontant =  function (value, inputVal){
+//				//value.indexOf('%')!=-1 
+//				if (pattern.test(value)==false && value!='%'){
+//					inputVal.val(value);
+//				}else {
+//				   if (pattern.test(value)){
+//					   if (pattern.test(inputVal.val())){
+//						   inputVal.val(inputVal.val() + value);				   
+//					   }else{
+//						   inputVal.val(value);
+//					   }
+//				   }else{
+//					   inputVal.val(inputVal.val() + value);
+//				   }
+//				}
+//			};
 
 			
 			
-			PayerEnPlusieursForme= function(valeur){
-				var mode  = $('#modePaiement').val();
-				$.ajax({
-					type : "GET",
-					url : "ajax/payerEnPlusieursForme/"+valeur+"/"+mode,
-					success :function(data) {
-						
-						afficherLignePaiement(data, mode) ;
-						calculerSoldePaiement () ;
-						$('#closePopupPaiement').click();
-					}
-				});
-			};
+//			PayerEnPlusieursForme= function(valeur){
+//				var mode  = $('#modePaiement').val();
+//				$.ajax({
+//					type : "GET",
+//					url : "ajax/payerEnPlusieursForme/"+valeur+"/"+mode,
+//					success :function(data) {
+//						
+//						afficherLignePaiement(data, mode) ;
+//						calculerSoldePaiement () ;
+//						$('#closePopupPaiement').click();
+//					}
+//				});
+//			};
 			
 // A METTRE A PART			
-			afficherLignePaiement = function(modePaiement, mode) {
-
-				var  tr= $('.table.tablePaiement > tbody tr:eq(0)')    ;
-				var trClone= tr.clone();
-					
-				//ESPECE(1),CB(2), CHEQUE(3), FIDELITE(4), TR(5);
-				if (mode==1){
-					trClone.find(("td:eq(0)")).html('Especes') ;
-					trClone.find(("td:eq(1)")).html(modePaiement.espece);
-				}else if (mode==2){
-					trClone.find(("td:eq(0)")).html('Carte bancaire') ;
-					trClone.find(("td:eq(1)")).html(modePaiement.cb);
-				}else if (mode==3){
-					trClone.find(("td:eq(0)")).html('Cheque') ;
-					trClone.find(("td:eq(1)")).html(modePaiement.cheque);
-				}else if (mode==4){
-					trClone.find(("td:eq(0)")).html('Carte fidelite') ;
-					trClone.find(("td:eq(1)")).html(modePaiement.fidelite);
-				}else if (mode==5){
-					trClone.find(("td:eq(0)")).html('Ticket restaurent') ;
-					trClone.find(("td:eq(1)")).html(modePaiement.ticketRestau);
-				}
-
-				// rendre le TR visible
-				trClone.removeAttr("style");
-			
-				$('.table.tablePaiement > tbody').append(trClone);
-				
-			
-	};
-			
-			deletePaiement= function(index){
-				
-				var mode  = $('#modePaiement').val() ;
-				if (index<0){
-					return ;
-				}
-				 $.ajax({
-				       url : 'ajax/deletePaiement/'+mode,
-				       type : 'GET',
-				       success : function(){
-							$('.table.tablePaiement tbody tr:eq(' + index + ')').remove();
-							calculerSoldePaiement();         
-				       } 
-				 });
-			};	
-		
+//			afficherLignePaiement = function(modePaiement, mode) {
+//
+//				var  tr= $('.table.tablePaiement > tbody tr:eq(0)')    ;
+//				var trClone= tr.clone();
+//					
+//				//ESPECE(1),CB(2), CHEQUE(3), FIDELITE(4), TR(5);
+//				if (mode==1){
+//					trClone.find(("td:eq(0)")).html('Especes') ;
+//					trClone.find(("td:eq(1)")).html(modePaiement.espece);
+//				}else if (mode==2){
+//					trClone.find(("td:eq(0)")).html('Carte bancaire') ;
+//					trClone.find(("td:eq(1)")).html(modePaiement.cb);
+//				}else if (mode==3){
+//					trClone.find(("td:eq(0)")).html('Cheque') ;
+//					trClone.find(("td:eq(1)")).html(modePaiement.cheque);
+//				}else if (mode==4){
+//					trClone.find(("td:eq(0)")).html('Carte fidelite') ;
+//					trClone.find(("td:eq(1)")).html(modePaiement.fidelite);
+//				}else if (mode==5){
+//					trClone.find(("td:eq(0)")).html('Ticket restaurent') ;
+//					trClone.find(("td:eq(1)")).html(modePaiement.ticketRestau);
+//				}
+//
+//				// rendre le TR visible
+//				trClone.removeAttr("style");
+//			
+//				$('.table.tablePaiement > tbody').append(trClone);
+//				
+//			
+//	};
+//			
+//			deletePaiement= function(index){
+//				
+//				var mode  = $('#modePaiement').val() ;
+//				if (index<0){
+//					return ;
+//				}
+//				 $.ajax({
+//				       url : 'ajax/deletePaiement/'+mode,
+//				       type : 'GET',
+//				       success : function(){
+//							$('.table.tablePaiement tbody tr:eq(' + index + ')').remove();
+//							calculerSoldePaiement();         
+//				       } 
+//				 });
+//			};	
+//		
 			//A METTRE A PART
 			
-			 calculerSoldePaiement = function() {		
-				var montantSaisie=0;
-				$('.montant').each(function(){
-					 if ($(this).html() && $(this).html()!==''){
-						 montantSaisie+=parseFloat($(this).html());
-					 }			 
-				});
-				$('#solde').html(parseFloat($('#totalTTC').html())-montantSaisie);
-			 } ;
+//			 calculerSoldePaiement = function() {		
+//				var montantSaisie=0;
+//				$('.montant').each(function(){
+//					 if ($(this).html() && $(this).html()!==''){
+//						 montantSaisie+=parseFloat($(this).html());
+//					 }			 
+//				});
+//				$('#solde').html(parseFloat($('#totalTTC').html())-montantSaisie);
+//			 } ;
 			
 			
 			 
