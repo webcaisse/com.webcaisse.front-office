@@ -182,26 +182,6 @@ $(document).ready(function() {
 	
 	};
 	
-	createPopupClient = function(client){
-		var  tr= $('#popupListClient tbody tr:eq(0)')    ;
-		
-		
-		$.each(client.clientsOut, function(index, cl) {
-			
-			var trClone= tr.clone();
-			trClone.find(("td:eq(0)")).html(cl.nom + " "+ cl.prenom) ;
-			trClone.find(("td:eq(1)")).html(cl.telephone) ;
-			trClone.find(("td:eq(2)")).html(cl.numeroRue+" "+cl.nomRue) ;
-			$('#popupListClient  tbody').append(trClone);
-		});
-		//trClone.removeAttr("style");
-		
-	
-	
-	};
-	
-	
-	
 	// gestion des evenements 
 	
 	$( document ).on( "click", '.addNote',function() {
@@ -256,7 +236,7 @@ $(document).ready(function() {
 	});
 	
 	$( document ).on( "click", '.addClient',function() {
-		chargerClients();
+		displayPopupClient();
 	});
 	
 	viderPanierModePaiement();

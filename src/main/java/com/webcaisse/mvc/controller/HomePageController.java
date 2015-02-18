@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.webcaisse.service.CustomUser;
 import com.webcaisse.ws.interfaces.CaisseManagerService;
+import com.webcaisse.ws.interfaces.ClientManagerService;
+import com.webcaisse.ws.model.ClientOut;
 import com.webcaisse.ws.model.FamilleOut;
 import com.webcaisse.ws.model.ProduitOut;
 
@@ -19,6 +21,9 @@ public class HomePageController {
 
 	@Autowired
 	CaisseManagerService caisseManagerService;
+	
+	@Autowired
+	ClientManagerService clientManagerService;
 
 	@RequestMapping({"/loginSuccess","/"})
 	public String home(ModelMap model) {
@@ -32,6 +37,9 @@ public class HomePageController {
 
 		model.put("familles", familles);
 
+		List<ClientOut> clientOuts = clientManagerService.rechercherClient(customUser.getSocieteId());
+		model.put("clients", clientOuts);
+		
 		return "acceuil";
 	}
 

@@ -1,3 +1,4 @@
+
 <#import "spring.ftl" as spring />
 <!doctype html>
 <!--[if lt IE 8 ]><html lang="fr" class="no-js ie ie7"><![endif]-->
@@ -43,6 +44,13 @@
 	<script type="text/javascript" src="<@spring.url '/js/onglets.js' />"></script>
 	<script type="text/javascript" src="<@spring.url '/js/paiement.js' />"></script>
 	<script type="text/javascript" src="<@spring.url '/js/client.js' />"></script>
+	
+	  <script>
+
+  $( document ).ready(function() {
+	$('#listClient').dataTable();
+  });
+  </script>
 	
 </head>
 
