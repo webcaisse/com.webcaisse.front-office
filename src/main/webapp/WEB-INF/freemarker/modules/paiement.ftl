@@ -1,4 +1,5 @@
-<div id="tab-paiements" style=" display:none ;left: 433px; position: absolute; top: 302px; z-index: 9999; opacity: 1;">
+
+<div id="tab-paiements" style="display:none ; block; left: 330px; position: absolute; top: 256.5px; z-index: 9999; opacity: 1; border: 5px solid rgb(90, 158, 181); background-color: white;  width:810px">
  	<span class="button b-close" style="z-index: 88"><span>X</span></span>
  	<input id="commandeID" type="hidden"/>
  	<ul class="grid dark-grey-gradient" style="height: 300px; overflow: auto; position: relative;background-color: white; padding-top: 26px">

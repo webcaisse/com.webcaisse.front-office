@@ -42,7 +42,11 @@ public class ClientController {
 		if (clientOut!=null){
 			updateInMemoryClient(clientOut);
 		}
+		System.out.println(clientOut.getId());
+		System.out.println(clientOut.getNom()) ;
 		return clientOut;
+		
+	
 	}
 
 	/**

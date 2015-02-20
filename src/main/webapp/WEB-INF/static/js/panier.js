@@ -182,6 +182,18 @@ $(document).ready(function() {
 	
 	};
 	
+	
+	MajClientEnMemoire= function(id){
+		
+		$.ajax({
+			type : "GET",
+			url : "ajax/client/selectClient/"+id 
+			}).success(function() {
+				location.reload();
+			});
+		
+	}
+	
 	// gestion des evenements 
 	
 	$( document ).on( "click", '.addNote',function() {
@@ -237,6 +249,10 @@ $(document).ready(function() {
 	
 	$( document ).on( "click", '.addClient',function() {
 		displayPopupClient();
+	});
+	
+	$( document ).on( "click", "#maj",function() {
+		MajClientEnMemoire($(this).data('idclient'));
 	});
 	
 	viderPanierModePaiement();

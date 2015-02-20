@@ -26,13 +26,14 @@
 	<link rel="stylesheet" type="text/css"	href="<@spring.url '/css/redmond.datepick.css' />">
 	<link rel="stylesheet" type="text/css"	href="<@spring.url '/css/table.css' />">
 	<link rel="stylesheet" type="text/css"	href="<@spring.url '/css/960.gs.fluid.css' />">
+	<link rel="stylesheet" type="text/css"	href="<@spring.url '/css/dataTable.css' />">
 	
 	<!-- Favicon -->
 	<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
 	<script src="//code.jquery.com/jquery-1.10.2.js"></script>
 	<script src="//code.jquery.com/ui/1.11.1/jquery-ui.js"></script>
-	<link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.5/css/jquery.dataTables.min.css">
-    <script type="text/javascript" language="javascript" src="//cdn.datatables.net/1.10.5/js/jquery.dataTables.min.js"></script>
+
+    
  
   
    
@@ -44,6 +45,7 @@
 	<script type="text/javascript" src="<@spring.url '/js/onglets.js' />"></script>
 	<script type="text/javascript" src="<@spring.url '/js/paiement.js' />"></script>
 	<script type="text/javascript" src="<@spring.url '/js/client.js' />"></script>
+    <script type="text/javascript"  charset="utf-8" src="<@spring.url '/js/dist/dataTables.min.js' />"></script>
 	
 	  <script>
 
