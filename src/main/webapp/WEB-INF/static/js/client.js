@@ -2,8 +2,16 @@ $(document).ready(
 		function() {
 	
 			
-			displayPopupWithEffect = function() {
+			afficherFormulaireClient = function() {
 				$('#popupClient').bPopup({
+					easing : 'easeOutBack',
+					speed : 450,
+					transition : 'slideDown'
+				});
+			};
+			
+			afficherPopupAjoutNouveauClient = function() {
+				$('#popupNouveauClient').bPopup({
 					easing : 'easeOutBack',
 					speed : 450,
 					transition : 'slideDown'
@@ -15,30 +23,23 @@ $(document).ready(
 			};
 			
 			
-			afficherFormulaireClient= function () {
-				
-						// display popup
-						displayPopupWithEffect();	
 			
-			};
 			
-			ajouterClient = function(nomClient, prenomClient,numeroRue,nomRue,etage,immeuble,interphone,codePostale) {
+			ajouterNouveauClient = function(nomClient, prenomClient,telephoneClient,numeroRue,nomRue) {
 				var clientObj = {
 					nom : nomClient,
 					prenom : prenomClient,
+					telephone:telephoneClient,
 					numeroRue: numeroRue, 
 					nomRue:nomRue ,
-					etage:etage,
-					immeuble:immeuble,
-					interphone:interphone,
-					codePostale:codePostale 
+					
 				};
 				$.ajax({
-					type : "POST",
-					url : "ajax/client/ajouterClient",
+					type : "GET",
+					url : "ajax/client/ajouterNouveauClient",
 					data : clientObj
 				}).done(function() {
-					location.reload();
+					//location.reload();
 				});
 				
 			
@@ -53,11 +54,13 @@ $(document).ready(
 				
 			});
 			
-			$( document ).on( "click", '#ajoutClient',function() {
-				ajouterClient($('input[id="nom"]').val(),$('input[id="prenom"]').val(),$('input[id="numeroRue"]').val(),$('input[id="nomRue"]').val(),$('input[id="etage"]').val(),$('input[id="immeuble"]').val(),$('input[id="interphone"]').val(),$('input[id="codePostale"]').val());
+			$( document ).on( "click", '#ajouterNouveauClient',function() {
+				ajouterNouveauClient($('input[id="nomClient"]').val(),$('input[id="prenomClient"]').val(),$('input[id="telephoneClient"]').val(),$('input[id="numeroRueClient"]').val(),$('input[id="nomRueClient"]').val());
 				//closePopup();
 			});
 			
 			
-			
+			$( document ).on( "click", '.dataTables_empty',function() {
+				afficherPopupAjoutNouveauClient() ;
+			});
 	}) ;

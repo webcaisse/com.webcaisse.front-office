@@ -4,7 +4,10 @@ package com.webcaisse.mvc.controller.ajax;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -12,7 +15,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.webcaisse.mvc.bean.CommandeDump;
+import com.webcaisse.service.CustomUser;
 import com.webcaisse.ws.interfaces.ClientManagerService;
+import com.webcaisse.ws.model.ClientIn;
 import com.webcaisse.ws.model.ClientOut;
 
 @Controller
@@ -65,5 +70,22 @@ public class ClientController {
 		commandeDump.getClient().setNomRue(clientOut.getNomRue());
 		commandeDump.getClient().setTelephone(clientOut.getTelephone());
 	}
+	
+	@RequestMapping(value = "/ajouterNouveauClient", method = RequestMethod.GET)
+	@ResponseBody
+	public void ajouterNouveauClient(@ModelAttribute("clientIn") ClientIn client) {
+		
+
+		CustomUser customUser = (CustomUser) SecurityContextHolder.getContext()
+				.getAuthentication().getPrincipal();
+
+		client.setIdSociete(customUser.getSocieteId());
+
+		
+			clientManagerService.ajouterClient(client);
+
+			
+	}
+
 	
 }

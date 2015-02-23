@@ -137,6 +137,7 @@
 		<#include "modules/note.ftl"/>
 		<#include "modules/popup_modeVente.ftl"/>
          <#include "modules/popup_client.ftl"/>
+         <#include "modules/popup_nouveauClient.ftl"/>
 
 	</footer>
 
