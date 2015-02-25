@@ -11,6 +11,7 @@ $(document).ready(
 			};
 			
 			afficherPopupAjoutNouveauClient = function() {
+				$("#popupListClient").find("span[class='button b-close']").click();
 				$('#popupNouveauClient').bPopup({
 					easing : 'easeOutBack',
 					speed : 450,
@@ -22,28 +23,22 @@ $(document).ready(
 				$('.button.b-close').click(); 
 			};
 			
-			
-			
-			
-			ajouterNouveauClient = function(nomClient, prenomClient,telephoneClient,numeroRue,nomRue) {
-				var clientObj = {
-					nom : nomClient,
-					prenom : prenomClient,
-					telephone:telephoneClient,
-					numeroRue: numeroRue, 
-					nomRue:nomRue ,
-					
-				};
-				$.ajax({
-					type : "GET",
-					url : "ajax/client/ajouterNouveauClient",
-					data : clientObj
-				}).done(function() {
-					//location.reload();
-				});
-				
-			
-			};
+			ajouterClient = function  (form, e){
+				 e.preventDefault();
+				 $.ajax({
+			            url: form.attr('action'),
+			            type: 'post',
+			            data: form.serialize(),
+			            success: function(data) {
+			            	// close the popup 
+			            	closePopup();
+			            },
+			            error: function() {
+			                alert('Veuillez corriger les erreurs dans votre saisie svp !');
+			                return false;
+			            }
+			        });
+			}
 			
 			//gestion des evenements
 			
@@ -54,13 +49,12 @@ $(document).ready(
 				
 			});
 			
-			$( document ).on( "click", '#ajouterNouveauClient',function() {
-				ajouterNouveauClient($('input[id="nomClient"]').val(),$('input[id="prenomClient"]').val(),$('input[id="telephoneClient"]').val(),$('input[id="numeroRueClient"]').val(),$('input[id="nomRueClient"]').val());
-				//closePopup();
-			});
-			
-			
 			$( document ).on( "click", '.dataTables_empty',function() {
 				afficherPopupAjoutNouveauClient() ;
+			});
+			
+			$("#addClientForm").submit(function(event) {
+				debugger;
+				ajouterClient ($(this), event);
 			});
 	}) ;

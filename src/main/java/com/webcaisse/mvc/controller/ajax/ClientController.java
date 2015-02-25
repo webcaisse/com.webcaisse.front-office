@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.webcaisse.mvc.bean.CommandeDump;
+import com.webcaisse.mvc.bean.States;
 import com.webcaisse.service.CustomUser;
 import com.webcaisse.ws.interfaces.ClientManagerService;
 import com.webcaisse.ws.model.ClientIn;
@@ -70,22 +71,22 @@ public class ClientController {
 		commandeDump.getClient().setNomRue(clientOut.getNomRue());
 		commandeDump.getClient().setTelephone(clientOut.getTelephone());
 	}
+
 	
-	@RequestMapping(value = "/ajouterNouveauClient", method = RequestMethod.GET)
+	@RequestMapping(value = "/ajouterClient", method = RequestMethod.POST)
 	@ResponseBody
-	public void ajouterNouveauClient(@ModelAttribute("clientIn") ClientIn client) {
+	public String ajouterClient(@ModelAttribute("clientIn") ClientIn client, BindingResult result) {
 		
-
-		CustomUser customUser = (CustomUser) SecurityContextHolder.getContext()
-				.getAuthentication().getPrincipal();
-
-		client.setIdSociete(customUser.getSocieteId());
-
-		
+		try {
+			CustomUser customUser = (CustomUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+			
+			client.setIdSociete(customUser.getSocieteId());
 			clientManagerService.ajouterClient(client);
 
-			
+			return States.SAVE_OK.getCode();
+		} catch (Exception e) {
+			return States.SAVE_KO.getCode();
+		}
 	}
 
-	
 }
