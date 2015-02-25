@@ -46,14 +46,7 @@
 	<script type="text/javascript" src="<@spring.url '/js/paiement.js' />"></script>
 	<script type="text/javascript" src="<@spring.url '/js/client.js' />"></script>
     <script type="text/javascript"  charset="utf-8" src="<@spring.url '/js/dist/dataTables.min.js' />"></script>
-	
-	  <script>
-
-  $( document ).ready(function() {
-	$('#listClient').dataTable();
-  });
-  </script>
-	
+		
 </head>
 
 <body>
@@ -136,7 +129,6 @@
 		<#include "modules/nouvelleClient.ftl"/>
 		<#include "modules/note.ftl"/>
 		<#include "modules/popup_modeVente.ftl"/>
-         <#include "modules/popup_client.ftl"/>
          <#include "modules/popup_nouveauClient.ftl"/>
 
 	</footer>

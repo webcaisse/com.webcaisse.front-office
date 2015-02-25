@@ -164,16 +164,23 @@ $(document).ready(function() {
 		$.ajax({
 		type : "GET",
 		url : "ajax/client/afficherListClient"
-		}).success(function(client) {
-			createPopupClient(client);
-			displayPopupClient() ;
-					
+		}).success(function(data) {
+			var data_html_popup = $(data).filter('#popupListClient') ;
+			
+			
+			data_html_popup.bPopup({
+				easing : 'easeOutBack',
+				speed : 450,
+				transition : 'slideDown'
+			});
+
+			$(data).filter($('#listClient')).dataTable();
 		});
 			
 	}
 	
 	
-	displayPopupClient = function() {		
+	displayPopupClient = function() {
 		$('#popupListClient').bPopup({
 			easing : 'easeOutBack',
 			speed : 450,
@@ -248,7 +255,7 @@ $(document).ready(function() {
 	});
 	
 	$( document ).on( "click", '.addClient',function() {
-		displayPopupClient();
+		chargerClients();
 	});
 	
 	$( document ).on( "click", "#maj",function() {

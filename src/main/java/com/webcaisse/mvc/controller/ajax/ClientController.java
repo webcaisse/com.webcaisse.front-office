@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -89,4 +90,15 @@ public class ClientController {
 		}
 	}
 
+	@RequestMapping(value="/afficherListClient", method=RequestMethod.GET)
+	public String afficherListClient(ModelMap model){
+		
+		CustomUser customUser = (CustomUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		
+		List<ClientOut> clients  = clientManagerService.rechercherClient(customUser.getSocieteId());
+		model.put("clients", clients);
+		
+		return "modules/popup_client";
+	}
+	
 }

@@ -54,7 +54,6 @@ $(document).ready(
 			});
 			
 			$("#addClientForm").submit(function(event) {
-				debugger;
 				ajouterClient ($(this), event);
 			});
 	}) ;
