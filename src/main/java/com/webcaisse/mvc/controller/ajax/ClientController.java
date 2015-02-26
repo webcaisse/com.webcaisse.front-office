@@ -91,14 +91,13 @@ public class ClientController {
 	}
 
 	@RequestMapping(value="/afficherListClient", method=RequestMethod.GET)
-	public String afficherListClient(ModelMap model){
+	@ResponseBody
+	public List<ClientOut> afficherListClient(ModelMap model){
 		
 		CustomUser customUser = (CustomUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		
 		List<ClientOut> clients  = clientManagerService.rechercherClient(customUser.getSocieteId());
-		model.put("clients", clients);
-		
-		return "modules/popup_client";
+		return clients;
 	}
 	
 }

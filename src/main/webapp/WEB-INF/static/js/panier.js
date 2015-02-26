@@ -146,6 +146,7 @@ $(document).ready(function() {
 	}
 	
 	viderPanierModePaiement = function() {
+		debugger;
 		$.get("ajax/product/viderPanierModePaiement");
 	};
 	
@@ -161,21 +162,37 @@ $(document).ready(function() {
 		
 	
 	chargerClients=function(){
-		$.ajax({
-		type : "GET",
-		url : "ajax/client/afficherListClient"
-		}).success(function(data) {
-			var data_html_popup = $(data).filter('#popupListClient') ;
-			
-			
-			data_html_popup.bPopup({
-				easing : 'easeOutBack',
-				speed : 450,
-				transition : 'slideDown'
-			});
-
-			$(data).filter($('#listClient')).dataTable();
+		debugger;
+		$('#listClient').dataTable( {
+		         "ajax": { "url": "ajax/client/afficherListClient", "dataSrc": "noticeArray" }, 
+		         "columns": [ { "data": "prenom" }, 
+                                { "data": "nom" }, 
+                                { "data": "telephone" }, 
+                                { "data": "immeuble" }
+		                    ]
+		} );
+		
+		$("#popupListClient").bPopup({
+			easing : 'easeOutBack',
+			speed : 450,
+			transition : 'slideDown'
 		});
+			
+//		$.ajax({
+//		type : "GET",
+//		url : "ajax/client/afficherListClient"
+//		}).success(function(data) {
+//			var data_html_popup = $(data).filter('#popupListClient') ;
+//			
+//			$(data).filter($('#listClient')).dataTable();
+//			
+//			data_html_popup.bPopup({
+//				easing : 'easeOutBack',
+//				speed : 450,
+//				transition : 'slideDown'
+//			});
+//
+//		});
 			
 	}
 	

@@ -30,7 +30,7 @@
 	
 	<!-- Favicon -->
 	<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
-	<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+	<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 	<script src="//code.jquery.com/ui/1.11.1/jquery-ui.js"></script>
 
     
@@ -129,7 +129,8 @@
 		<#include "modules/nouvelleClient.ftl"/>
 		<#include "modules/note.ftl"/>
 		<#include "modules/popup_modeVente.ftl"/>
-         <#include "modules/popup_nouveauClient.ftl"/>
+        <#include "modules/popup_nouveauClient.ftl"/>
+        <#include "modules/popup_client.ftl"/>
 
 	</footer>
 
