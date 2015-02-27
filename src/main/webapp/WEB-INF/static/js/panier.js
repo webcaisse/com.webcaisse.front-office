@@ -161,14 +161,33 @@ $(document).ready(function() {
 	} ;
 		
 	
+	
+	
+	
+	
+	
 	chargerClients=function(){
 		debugger;
 		$('#listClient').dataTable( {
-		         "ajax": { "url": "ajax/client/afficherListClient", "dataSrc": "noticeArray" }, 
-		         "columns": [ { "data": "prenom" }, 
+		         "ajax": {  "url": "ajax/client/afficherListClient", "dataSrc": "noticeArray" }, 
+		         
+		         retrieve: true,
+		         paging: false,
+		         "columns": [   { "data": "prenom" }, 
                                 { "data": "nom" }, 
                                 { "data": "telephone" }, 
-                                { "data": "immeuble" }
+                                { "data": "id" },
+                                { "data": "code1" },
+                                { "data": "code2" },
+                                { "data": "code3" },
+                                { "data": "immeuble" },
+                                { "data": "interphone" },
+                                { "data": "etage" },
+                                { "data": "numeroRue" },
+                                { "data": "nomRue" },
+                                { "data": "ville" },
+                                { "data": "email" },
+                                { "data": "codePostale" }
 		                    ]
 		} );
 		

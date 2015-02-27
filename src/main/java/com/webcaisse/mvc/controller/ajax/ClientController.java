@@ -97,6 +97,7 @@ public class ClientController {
 		CustomUser customUser = (CustomUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		
 		List<ClientOut> clients  = clientManagerService.rechercherClient(customUser.getSocieteId());
+	
 		return clients;
 	}
 	
