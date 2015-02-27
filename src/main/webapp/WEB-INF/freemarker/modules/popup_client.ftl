@@ -5,10 +5,9 @@
 		<table cellpadding="0" cellspacing="0" border="0" class="display" id="listClient">
 			<thead>
 				<tr>
-		
 					<th>Prénom</th>
 					<th>Nom</th>
-					<th>Téléphone</th>
+					<th>Telephone</th>
 					<th>Adresse</th>
 				</tr>
 			</thead>

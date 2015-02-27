@@ -146,7 +146,6 @@ $(document).ready(function() {
 	}
 	
 	viderPanierModePaiement = function() {
-		debugger;
 		$.get("ajax/product/viderPanierModePaiement");
 	};
 	
@@ -164,12 +163,13 @@ $(document).ready(function() {
 	chargerClients=function(){
 		debugger;
 		$('#listClient').dataTable( {
-		         "ajax": { "url": "ajax/client/afficherListClient", "dataSrc": "noticeArray" }, 
-		         "columns": [ { "data": "prenom" }, 
-                                { "data": "nom" }, 
-                                { "data": "telephone" }, 
-                                { "data": "immeuble" }
-		                    ]
+	         "ajax": "ajax/client/afficherListClient",
+	         "columns": [
+	                     { "data": "prenom" },
+	                     { "data": "nom" },
+	                     { "data": "telephone" },
+	                     { "data": "nomRue" }
+	                 ]
 		} );
 		
 		$("#popupListClient").bPopup({
