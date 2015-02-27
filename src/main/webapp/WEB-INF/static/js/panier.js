@@ -166,15 +166,21 @@ $(document).ready(function() {
 	
 	
 	chargerClients=function(){
-		$('#listClient').dataTable( {
-	         "ajax": "ajax/client/afficherListClient",
-	         "columns": [
-	                     { "data": "prenom" },
-	                     { "data": "nom" },
-	                     { "data": "telephone" },
-	                     { "data": "nomRue" }
-	                 ]
-		} );
+		
+		if ( $.fn.dataTable.isDataTable( '#listClient' ) ) {
+		    table = $('#listClient').dataTable();
+		}
+		else {
+		    table = $('#listClient').dataTable( {
+		    	 "ajax": "ajax/client/afficherListClient",
+		         "columns": [
+		                     { "data": "prenom" },
+		                     { "data": "nom" },
+		                     { "data": "telephone" },
+		                     { "data": "nomRue" }
+		                 ]
+		    } );
+		}
 		
 		$("#popupListClient").bPopup({
 			easing : 'easeOutBack',
