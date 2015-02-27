@@ -160,6 +160,11 @@ $(document).ready(function() {
 	} ;
 		
 	
+	
+	
+	
+	
+	
 	chargerClients=function(){
 		debugger;
 		$('#listClient').dataTable( {
@@ -177,22 +182,6 @@ $(document).ready(function() {
 			speed : 450,
 			transition : 'slideDown'
 		});
-			
-//		$.ajax({
-//		type : "GET",
-//		url : "ajax/client/afficherListClient"
-//		}).success(function(data) {
-//			var data_html_popup = $(data).filter('#popupListClient') ;
-//			
-//			$(data).filter($('#listClient')).dataTable();
-//			
-//			data_html_popup.bPopup({
-//				easing : 'easeOutBack',
-//				speed : 450,
-//				transition : 'slideDown'
-//			});
-//
-//		});
 			
 	}
 	

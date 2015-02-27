@@ -127,26 +127,27 @@ $(document).ready(function() {
 			
 		// Amettre a part
 			
-//			saisirMontant =  function (value, inputVal){
-//				//value.indexOf('%')!=-1 
-//				if (pattern.test(value)==false && value!='%'){
-//					inputVal.val(value);
-//				}else {
-//				   if (pattern.test(value)){
-//					   if (pattern.test(inputVal.val())){
-//						   inputVal.val(inputVal.val() + value);				   
-//					   }else{
-//						   inputVal.val(value);
-//					   }
-//				   }else{
-//					   inputVal.val(inputVal.val() + value);
-//				   }
-//				}
-//			};
+			saisirMontantParCommande =  function (value, inputVal){
+				//value.indexOf('%')!=-1 
+				if (pattern.test(value)==false && value!='%'){
+					inputVal.val(value);
+				}else {
+				   if (pattern.test(value)){
+					   if (pattern.test(inputVal.val())){
+						   inputVal.val(inputVal.val() + value);				   
+					   }else{
+						   inputVal.val(value);
+					   }
+				   }else{
+					   inputVal.val(inputVal.val() + value);
+				   }
+				}
+			};
+
 
 			
 			
-		PayerEnPlusieursForme= function(valeur){
+		PayerEnPlusieursFormeParCommande= function(valeur){
 				var mode  = $('#modePaiement').val();
 				$.ajax({
 					type : "GET",
@@ -261,14 +262,14 @@ $(document).ready(function() {
 			});
 			
 			$( document ).on( "click", '.calculette.calculettePaiement',function() {
-				saisirMontant($(this).data('montant'), $('input[id="prixPopupModePaiement"]'));
+				saisirMontantParCommande($(this).data('montant'), $('input[id="prixPopupModePaiement"]'));
 			});
 			$( document ).on( "click", '#Effacer',function() {
 				$('input[id="prixPopupModePaiement"]').html("0");
 			});
 			
 			$( document ).on( "click", '#validerPopupPaiement',function() {
-				PayerEnPlusieursForme($('input[id="prixPopupModePaiement"]').val()) ;
+				PayerEnPlusieursFormeParCommande($('input[id="prixPopupModePaiement"]').val()) ;
 			});
 			
 			$( document ).on( "click", '.deletePaiement',function() {
