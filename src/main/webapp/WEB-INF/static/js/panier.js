@@ -166,7 +166,6 @@ $(document).ready(function() {
 	
 	
 	chargerClients=function(){
-		debugger;
 		$('#listClient').dataTable( {
 	         "ajax": "ajax/client/afficherListClient",
 	         "columns": [

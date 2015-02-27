@@ -40,7 +40,7 @@
 	<script type="text/javascript" src="<@spring.url '/js/onglets.js' />"></script>
 	<script type="text/javascript" src="<@spring.url '/js/paiement.js' />"></script>
 	<script type="text/javascript" src="<@spring.url '/js/client.js' />"></script>
-    <script type="text/javascript"  charset="utf-8" src="<@spring.url '/js/dist/jquery.dataTables.js' />"></script>
+    <script type="text/javascript"  charset="utf-8" src="<@spring.url '/js/dist/dataTables.min.js' />"></script>
 		
 </head>
 
