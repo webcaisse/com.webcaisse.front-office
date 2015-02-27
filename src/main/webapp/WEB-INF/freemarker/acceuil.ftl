@@ -32,11 +32,6 @@
 	<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
 	<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 	<script src="//code.jquery.com/ui/1.11.1/jquery-ui.js"></script>
-
-    
- 
-  
-   
  
 	<script type="text/javascript"	src="<@spring.url '/js/jquery.bpopup.min.js' />"></script>
 	<script type="text/javascript" src="<@spring.url '/js/main.js' />"></script>

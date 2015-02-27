@@ -146,7 +146,6 @@ $(document).ready(function() {
 	}
 	
 	viderPanierModePaiement = function() {
-		debugger;
 		$.get("ajax/product/viderPanierModePaiement");
 	};
 	
@@ -169,26 +168,13 @@ $(document).ready(function() {
 	chargerClients=function(){
 		debugger;
 		$('#listClient').dataTable( {
-		         "ajax": {  "url": "ajax/client/afficherListClient", "dataSrc": "noticeArray" }, 
-		         
-		         retrieve: true,
-		         paging: false,
-		         "columns": [   { "data": "prenom" }, 
-                                { "data": "nom" }, 
-                                { "data": "telephone" }, 
-                                { "data": "id" },
-                                { "data": "code1" },
-                                { "data": "code2" },
-                                { "data": "code3" },
-                                { "data": "immeuble" },
-                                { "data": "interphone" },
-                                { "data": "etage" },
-                                { "data": "numeroRue" },
-                                { "data": "nomRue" },
-                                { "data": "ville" },
-                                { "data": "email" },
-                                { "data": "codePostale" }
-		                    ]
+	         "ajax": "ajax/client/afficherListClient",
+	         "columns": [
+	                     { "data": "prenom" },
+	                     { "data": "nom" },
+	                     { "data": "telephone" },
+	                     { "data": "nomRue" }
+	                 ]
 		} );
 		
 		$("#popupListClient").bPopup({
@@ -196,22 +182,6 @@ $(document).ready(function() {
 			speed : 450,
 			transition : 'slideDown'
 		});
-			
-//		$.ajax({
-//		type : "GET",
-//		url : "ajax/client/afficherListClient"
-//		}).success(function(data) {
-//			var data_html_popup = $(data).filter('#popupListClient') ;
-//			
-//			$(data).filter($('#listClient')).dataTable();
-//			
-//			data_html_popup.bPopup({
-//				easing : 'easeOutBack',
-//				speed : 450,
-//				transition : 'slideDown'
-//			});
-//
-//		});
 			
 	}
 	

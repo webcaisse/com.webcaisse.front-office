@@ -1,7 +1,9 @@
 package com.webcaisse.mvc.controller.ajax;
 
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -92,13 +94,15 @@ public class ClientController {
 
 	@RequestMapping(value="/afficherListClient", method=RequestMethod.GET)
 	@ResponseBody
-	public List<ClientOut> afficherListClient(ModelMap model){
+	public Map<String, List<ClientOut>> afficherListClient(ModelMap model){
 		
+		Map<String, List<ClientOut>> map = new HashMap<String, List<ClientOut>>();
 		CustomUser customUser = (CustomUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		
 		List<ClientOut> clients  = clientManagerService.rechercherClient(customUser.getSocieteId());
-	
-		return clients;
+		
+		map.put("data", clients);
+		return map;
 	}
 	
 }

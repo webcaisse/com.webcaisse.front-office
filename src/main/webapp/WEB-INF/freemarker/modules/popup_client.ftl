@@ -6,10 +6,9 @@
 			<thead>
 			
 				<tr>
-		
 					<th>Prénom</th>
 					<th>Nom</th>
-					<th>Téléphone</th>
+					<th>Telephone</th>
 					<th>Adresse</th>
 					
 				</tr>
