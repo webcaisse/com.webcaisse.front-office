@@ -19,8 +19,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.webcaisse.beans.csv.ObjectCSV;
-import com.webcaisse.mvc.utils.CsvUtils;
 import com.webcaisse.service.CustomUser;
+import com.webcaisse.utils.CsvUtils;
 import com.webcaisse.ws.interfaces.CommandeManagerService;
 import com.webcaisse.ws.interfaces.LivreurManagerService;
 import com.webcaisse.ws.model.CommandeOut;
