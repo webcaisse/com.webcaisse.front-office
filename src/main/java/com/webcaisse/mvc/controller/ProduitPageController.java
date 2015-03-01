@@ -15,9 +15,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.webcaisse.mvc.bean.CommandeDump;
-import com.webcaisse.mvc.bean.Panier;
-import com.webcaisse.mvc.in.NoteIn;
+import com.webcaisse.beans.commande.CommandeDump;
+import com.webcaisse.beans.commande.NoteIn;
 import com.webcaisse.service.CustomUser;
 import com.webcaisse.ws.interfaces.CaisseManagerService;
 import com.webcaisse.ws.model.FamilleIn;

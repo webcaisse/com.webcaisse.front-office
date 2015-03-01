@@ -17,11 +17,11 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.webcaisse.mvc.CsvUtils;
-import com.webcaisse.mvc.ObjectCSV;
-import com.webcaisse.mvc.bean.CommandeDump;
+import com.webcaisse.beans.commande.CommandeDump;
+import com.webcaisse.beans.csv.ObjectCSV;
+import com.webcaisse.mvc.utils.CsvUtils;
+import com.webcaisse.mvc.validator.ClientValidator;
 import com.webcaisse.service.CustomUser;
-import com.webcaisse.validator.ClientValidator;
 import com.webcaisse.ws.interfaces.ClientManagerService;
 import com.webcaisse.ws.model.ClientIn;
 import com.webcaisse.ws.model.ClientOut;

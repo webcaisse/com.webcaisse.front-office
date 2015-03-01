@@ -38,8 +38,6 @@ public class HomePageController {
 
 		model.put("familles", familles);
 
-		List<ClientOut> clientOuts = clientManagerService.rechercherClient(customUser.getSocieteId());
-		model.put("clients", clientOuts);
 		model.put("clientIn", new ClientIn());
 		return "acceuil";
 	}

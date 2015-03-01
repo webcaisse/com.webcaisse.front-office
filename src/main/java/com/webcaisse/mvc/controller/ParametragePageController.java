@@ -11,10 +11,10 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.webcaisse.mvc.bean.ParametrageCaisseEnum;
-import com.webcaisse.mvc.bean.ParametrageTVAEnum;
-import com.webcaisse.mvc.bean.ParametreCaisseIn;
-import com.webcaisse.mvc.bean.ParametreTVAIn;
+import com.webcaisse.beans.parametrage.ParametreCaisseIn;
+import com.webcaisse.beans.parametrage.ParametreTVAIn;
+import com.webcaisse.enums.commande.ParametrageTVAEnum;
+import com.webcaisse.enums.parametrage.ParametrageCaisseEnum;
 import com.webcaisse.service.CustomUser;
 import com.webcaisse.ws.interfaces.LivreurManagerService;
 import com.webcaisse.ws.interfaces.ParametreManagerService;

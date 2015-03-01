@@ -18,8 +18,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.webcaisse.mvc.CsvUtils;
-import com.webcaisse.mvc.ObjectCSV;
+import com.webcaisse.beans.csv.ObjectCSV;
+import com.webcaisse.mvc.utils.CsvUtils;
 import com.webcaisse.service.CustomUser;
 import com.webcaisse.ws.interfaces.CommandeManagerService;
 import com.webcaisse.ws.interfaces.LivreurManagerService;
