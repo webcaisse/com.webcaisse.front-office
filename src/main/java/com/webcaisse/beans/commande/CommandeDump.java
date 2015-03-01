@@ -2,12 +2,9 @@ package com.webcaisse.beans.commande;
 
 import java.io.Serializable;
 
-import org.springframework.stereotype.Component;
-
 import com.webcaisse.beans.client.Client;
 import com.webcaisse.beans.commande.panier.Panier;
 
-@Component
 public class CommandeDump implements Serializable{
 
 	/**
