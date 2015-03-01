@@ -77,7 +77,8 @@ $(document).ready(
 					type : "GET",
 					url : "ajax/client/selectClient/"+id 
 					}).success(function() {
-						location.reload();
+						// on ferme le popup
+						closePopup();
 					});
 				
 			}
@@ -105,7 +106,8 @@ $(document).ready(
 				
 			});
 			
-			$( document ).on( "click", "#maj",function() {
-				MajClientEnMemoire($('.sorting_1').html());
+			$( document ).on( "click", "#listClient >tbody >tr",function() {
+				var idClient  = $(this).find("td:eq(0)").html();
+				MajClientEnMemoire(idClient);
 			});
 	}) ;
