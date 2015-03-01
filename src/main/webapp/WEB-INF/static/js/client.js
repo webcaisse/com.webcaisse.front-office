@@ -1,7 +1,6 @@
 $(document).ready(
 		function() {
 	
-			
 			afficherFormulaireClient = function() {
 				$('#popupClient').bPopup({
 					easing : 'easeOutBack',
@@ -23,6 +22,33 @@ $(document).ready(
 				$('.button.b-close').click(); 
 			};
 			
+			
+			chargerClients=function(){
+				
+				if ( $.fn.dataTable.isDataTable( '#listClient' ) ) {
+				    table = $('#listClient').dataTable();
+				}
+				else {
+				    table = $('#listClient').dataTable( {
+				    	 "ajax": "ajax/client/afficherListClient",
+				         "columns": [
+                                     { "data": "id" },
+				                     { "data": "prenom" },
+				                     { "data": "nom" },
+				                     { "data": "telephone" },
+				                     { "data": "nomRue"}
+				                 ]
+				    } );
+				}
+				
+				$("#popupListClient").bPopup({
+					easing : 'easeOutBack',
+					speed : 450,
+					transition : 'slideDown'
+				});
+					
+			}
+			
 			ajouterClient = function  (form, e){
 				 e.preventDefault();
 				 $.ajax({
@@ -32,6 +58,9 @@ $(document).ready(
 			            success: function(data) {
 			            	// close the popup 
 			            	closePopup();
+			            	var idClient=parseInt($("#idClient").html(data).text());
+			            	MajClientEnMemoire(idClient)
+			            
 			            },
 			            error: function() {
 			                alert('Veuillez corriger les erreurs dans votre saisie svp !');
@@ -39,6 +68,20 @@ $(document).ready(
 			            }
 			        });
 			}
+			
+			
+			
+			MajClientEnMemoire= function(id){
+				
+				$.ajax({
+					type : "GET",
+					url : "ajax/client/selectClient/"+id 
+					}).success(function() {
+						location.reload();
+					});
+				
+			}
+	
 			
 			//gestion des evenements
 			
@@ -53,7 +96,16 @@ $(document).ready(
 				afficherPopupAjoutNouveauClient() ;
 			});
 			
+			$( document ).on( "click", '.addClient',function() {
+				chargerClients();
+			});
+			
 			$("#addClientForm").submit(function(event) {
 				ajouterClient ($(this), event);
+				
+			});
+			
+			$( document ).on( "click", "#maj",function() {
+				MajClientEnMemoire($('.sorting_1').html());
 			});
 	}) ;

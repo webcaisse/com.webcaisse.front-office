@@ -162,55 +162,7 @@ $(document).ready(function() {
 	
 	
 	
-	
-	
-	
-	chargerClients=function(){
-		
-		if ( $.fn.dataTable.isDataTable( '#listClient' ) ) {
-		    table = $('#listClient').dataTable();
-		}
-		else {
-		    table = $('#listClient').dataTable( {
-		    	 "ajax": "ajax/client/afficherListClient",
-		         "columns": [
-		                     { "data": "prenom" },
-		                     { "data": "nom" },
-		                     { "data": "telephone" },
-		                     { "data": "nomRue" }
-		                 ]
-		    } );
-		}
-		
-		$("#popupListClient").bPopup({
-			easing : 'easeOutBack',
-			speed : 450,
-			transition : 'slideDown'
-		});
-			
-	}
-	
-	
-	displayPopupClient = function() {
-		$('#popupListClient').bPopup({
-			easing : 'easeOutBack',
-			speed : 450,
-			transition : 'slideDown'
-		});
-	
-	};
-	
-	
-	MajClientEnMemoire= function(id){
-		
-		$.ajax({
-			type : "GET",
-			url : "ajax/client/selectClient/"+id 
-			}).success(function() {
-				location.reload();
-			});
-		
-	}
+
 	
 	// gestion des evenements 
 	
@@ -265,13 +217,6 @@ $(document).ready(function() {
 		sauvegarderCommande(null,"PREP");
 	});
 	
-	$( document ).on( "click", '.addClient',function() {
-		chargerClients();
-	});
-	
-	$( document ).on( "click", "#maj",function() {
-		MajClientEnMemoire($(this).data('idclient'));
-	});
-	
+
 	viderPanierModePaiement();
 });

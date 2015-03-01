@@ -1,9 +1,8 @@
 <div id="popupNouveauClient"
 	style="display: none; block; left: 330px; position: absolute; top: 256.5px; z-index: 9999; opacity: 1; border: 5px solid rgb(90, 158, 181); background-color: white; width: 500px">
 	<span class="button b-close" style="z-index: 88"><span>X</span></span>
-
-	<form action="${rc.getContextPath()}/ajax/client/ajouterClient" id="addClientForm"
-		modelAttribute="clientIn"  method="POST">
+    <input type="hidden" id="idClient"/>
+	<form action="${rc.getContextPath()}/ajax/client/ajouterClient" id="addClientForm" modelAttribute="clientIn"  method="POST">
 
 		<fieldset style="margin-bottom: 15px; padding: 10px;">
 			<legend

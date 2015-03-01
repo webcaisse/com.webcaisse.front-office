@@ -78,18 +78,18 @@ public class ClientController {
 	
 	@RequestMapping(value = "/ajouterClient", method = RequestMethod.POST)
 	@ResponseBody
-	public String ajouterClient(@ModelAttribute("clientIn") ClientIn client, BindingResult result) {
+	public Long ajouterClient(@ModelAttribute("clientIn") ClientIn client, BindingResult result) {
 		
-		try {
+		//try {
 			CustomUser customUser = (CustomUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 			
 			client.setIdSociete(customUser.getSocieteId());
-			clientManagerService.ajouterClient(client);
+			return clientManagerService.ajouterClient(client);
 
-			return States.SAVE_OK.getCode();
-		} catch (Exception e) {
-			return States.SAVE_KO.getCode();
-		}
+			//return States.SAVE_OK.getCode();
+		//} catch (Exception e) {
+			//return States.SAVE_KO.getCode();
+		//}
 	}
 
 	@RequestMapping(value="/afficherListClient", method=RequestMethod.GET)
