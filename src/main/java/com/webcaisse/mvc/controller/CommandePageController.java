@@ -19,13 +19,16 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.webcaisse.beans.csv.ObjectCSV;
+import com.webcaisse.enums.parametrage.ParametrageCaisseEnum;
 import com.webcaisse.service.CustomUser;
 import com.webcaisse.utils.CsvUtils;
 import com.webcaisse.ws.interfaces.CommandeManagerService;
 import com.webcaisse.ws.interfaces.LivreurManagerService;
+import com.webcaisse.ws.interfaces.ParametreManagerService;
 import com.webcaisse.ws.model.CommandeOut;
 import com.webcaisse.ws.model.LigneCommandeOut;
 import com.webcaisse.ws.model.LivreurOut;
+import com.webcaisse.ws.model.ParametreOut;
 
 @Controller
 @RequestMapping("/commandes")
@@ -36,6 +39,10 @@ public class CommandePageController {
 	
 	@Autowired
 	LivreurManagerService livreurManagerService ;
+	
+	@Autowired
+	ParametreManagerService  parametreManagerService ;
+	
 
 	@RequestMapping(value = "/enCours", method = RequestMethod.GET)
 	public String afficherCommandeEnCours(ModelMap model) {
@@ -130,5 +137,28 @@ public class CommandePageController {
 		return "/commandesEnCours";
 		
 		
+	}
+	
+	@RequestMapping(value="/impressionCommande/{idCommande}",  method = RequestMethod.GET)
+	public String impressionCommande(Model model, @PathVariable("idCommande") Long idCommande ){
+		
+		CustomUser customUser = (CustomUser) SecurityContextHolder.getContext()
+				.getAuthentication().getPrincipal();
+		
+		CommandeOut commandeOut = commandeManagerService.loadCommandeById(idCommande);
+		List <LigneCommandeOut> ligneComandeOuts= commandeOut.getLigneCommandeOut() ;
+		//ParametreOut paramatreOut= parametreManagerService.getReferenceByName(ParametrageCaisseEnum.entete1.getValeur()) ;
+		
+	   List<ParametreOut> referencesHeader=parametreManagerService.getHeaderReferences(customUser.getSocieteId()) ;
+	   List<ParametreOut> referencesFooter=parametreManagerService.getFootersReferences(customUser.getSocieteId()) ;
+		
+	   model.addAttribute ("commandeOut",commandeOut) ;
+		model.addAttribute ("ligneComandeOuts",ligneComandeOuts) ;
+		model.addAttribute("referencesHeader",referencesHeader) ;
+		model.addAttribute("referencesFooter",referencesFooter) ;
+		
+		
+		
+		return "/impressionCommande" ;
 	}
 }

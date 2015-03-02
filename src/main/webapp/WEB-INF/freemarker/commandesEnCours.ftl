@@ -161,12 +161,14 @@
                    <#if commande.etatCommandeOut?? && commande.etatCommandeOut.code="PRETE">
                    <a href="javascript:;" title="paiement Commande " class="paiementCommande" data-montant="${commande.montant!}" data-idcmd="${commande.id}"  rel="4083" prix="2" type="1" libre="1" taux="20" nb="-1" style="margin-left: 5px;"><img src="${rc.getContextPath()}/images/icons/fugue/paiement.png" width="35"></a>
 		            </#if>
-            
+                  <#if commande.etatCommandeOut?? && commande.etatCommandeOut.code="PAYEE">
+                     <a href="${rc.getContextPath()}/commandes/impressionCommande/${commande.id}"  onclick="javascript:$('impCommande').print()" title="impression Commande " class="impressionCommande" data-montant="${commande.montant!}" data-idcmd="${commande.id}"  rel="4083" prix="2" type="1" libre="1" taux="20" nb="-1" style="margin-left: 5px;"><img src="${rc.getContextPath()}/images/icons/fugue/impression.png" width="35"></a>
+		          </#if>
 		        </td>
 		          
 		      </tr>
 			</#list>   
-	   </#if>	
+	  </#if>>	
 	 </tbody>
 	 </table>
 	 <div class="message no-margin">Affichage de l'élement 0 à 0 sur 0 éléments</div></div>
@@ -181,5 +183,6 @@
    <#include "modules/popup_modeVente.ftl"/>
    <#include "modules/paiement.ftl"/>
    <#include "modules/product/popup_paiement.ftl"/> 
+    
 </body>
 </html>

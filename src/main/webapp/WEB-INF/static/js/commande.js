@@ -221,6 +221,18 @@ $(document).ready(function() {
 				$('#solde').html(parseFloat($('#totalTTC').html())-montantSaisie);
 			 } ;
 			
+			 
+//		impressionCommande=function(idCommande){
+//			
+//			$.ajax({
+//				type : "GET",
+//				url : "commandes/impressionCommande/"+idCommande,
+//				success : function(){
+//					windows.print() ;     
+//			       }
+//				
+//			});	
+//		}	 
 			
 			 
 			//gestion des evenements
@@ -277,6 +289,13 @@ $(document).ready(function() {
 			}) ;
 			$( document ).on( "click", '#terminer',function() {
 			   affecterEtatALaCommandeAvecMode(parseInt($('#commandeID').text()),"PAYEE",$('#modePaiement').text());
-			});		
+			});	
+			
+			
+			
+		//	$( document ).on( "click", '.impressionCommande',function() {
+			//	impressionCommande($(this).data('idcmd')) ;
+				 
+			//});
 	});
 	
