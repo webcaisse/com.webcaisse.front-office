@@ -2,6 +2,10 @@ $(document).ready(function() {
 	
 			var pattern = /^\d{0,2}(\.\d{0,2}){0,1}$/;
 			
+			var contextPath  = function getContextPath() {
+				return window.location.pathname.substring(0, window.location.pathname.indexOf("/",2));
+			}
+			
 			displayPopupWithEffect = function() {
 				$('#popupLivreur').bPopup({
 					easing : 'easeOutBack',
@@ -28,7 +32,7 @@ $(document).ready(function() {
 				
 				$.ajax({
 						type : "GET",
-						url : "ajax/afficherPopupPaiement/"+modeVente
+						url : contextPath()+"/ajax/commandes/afficherPopupPaiement/"+modeVente
 					}).done(function(data) {
 						// renseignement sur le prix de panier
 						$('#solde').html($('#montantCommande').text());
@@ -48,7 +52,7 @@ $(document).ready(function() {
 			afficherPopupModePaiementParCommande = function(mode){
 				$.ajax({
 					type : "GET",
-					url : "ajax/afficherPopupModePaiement/"+mode
+					url : contextPath()+"/ajax/commandes/afficherPopupModePaiement/"+mode
 				}).done(function(montant) {
 					$('#prixPopupModePaiement').val(montant);
 					$('#modePaiement').val(mode);
@@ -62,9 +66,8 @@ $(document).ready(function() {
 			};
 			
 			chargerLivreurs= function (idCommande) {
-			
 				$.ajax({
-				       url : "ajax/loadLivreurs",
+				       url : contextPath()+"/ajax/commandes/loadLivreurs",
 				       type : "GET",
 				       success : function(livreur){
 				    	// creation de popup
@@ -78,10 +81,9 @@ $(document).ready(function() {
 			};
 			
 			affecterEtatALaCommandeParCommande = function (idCommande, etatCommande){
-				
 				$.ajax({
 					type : "GET",
-					url : "ajax/affecterEtat/"+ etatCommande+"/"+idCommande
+					url : contextPath()+"/ajax/commandes/affecterEtat/"+ etatCommande+"/"+idCommande
 				}).success(function() {
 					location.reload();
 				});
@@ -92,7 +94,7 @@ $(document).ready(function() {
 				
 				$.ajax({
 					type : "GET",
-					url : "ajax/affecterEtatAvecMode/"+ etatCommande+"/"+idCommande+"/"+mode
+					url : contextPath()+"/ajax/commandes/affecterEtatAvecMode/"+ etatCommande+"/"+idCommande+"/"+mode
 				}).success(function() {
 					location.reload();
 				});
@@ -117,7 +119,7 @@ $(document).ready(function() {
 			affecterLivreur = function( idCommande,idLivreur) {
 
 				 $.ajax({
-				       url : 'ajax/affecter/'+idCommande+'/'+idLivreur,
+				       url : contextPath()+'/ajax/commandes/affecter/'+idCommande+'/'+idLivreur,
 				       type : 'GET',
 				       success : function(data){
 							location.reload();           
@@ -127,99 +129,36 @@ $(document).ready(function() {
 			
 		// Amettre a part
 			
-			saisirMontantParCommande =  function (value, inputVal){
-				//value.indexOf('%')!=-1 
-				if (pattern.test(value)==false && value!='%'){
-					inputVal.val(value);
-				}else {
-				   if (pattern.test(value)){
-					   if (pattern.test(inputVal.val())){
-						   inputVal.val(inputVal.val() + value);				   
-					   }else{
-						   inputVal.val(value);
-					   }
+		saisirMontantParCommande =  function (value, inputVal){
+			//value.indexOf('%')!=-1 
+			if (pattern.test(value)==false && value!='%'){
+				inputVal.val(value);
+			}else {
+			   if (pattern.test(value)){
+				   if (pattern.test(inputVal.val())){
+					   inputVal.val(inputVal.val() + value);				   
 				   }else{
-					   inputVal.val(inputVal.val() + value);
+					   inputVal.val(value);
 				   }
-				}
-			};
+			   }else{
+				   inputVal.val(inputVal.val() + value);
+			   }
+			}
+		};
 
-
-			
-			
-		PayerEnPlusieursFormeParCommande= function(valeur){
-				var mode  = $('#modePaiement').val();
-				$.ajax({
-					type : "GET",
-					url : "ajax/payerEnPlusieursForme/"+valeur+"/"+mode,
-					success :function(data) {
-						
-						afficherLignePaiement(data, mode) ;
-						calculerSoldePaiement () ;
-						$('#closePopupPaiement').click();
-					}
-				});
-			};
-			
-// A METTRE A PART			
-			afficherLignePaiement = function(modePaiement, mode) {
-
-				var  tr= $('.table.tablePaiement > tbody tr:eq(0)')    ;
-				var trClone= tr.clone();
+		payerEnPlusieursFormeParCommande= function(valeur){
+			var mode  = $('#modePaiement').val();
+			$.ajax({
+				type : "GET",
+				url : contextPath()+ "/ajax/commandes/payerEnPlusieursForme/"+valeur+"/"+mode,
+				success :function(data) {
 					
-				//ESPECE(1),CB(2), CHEQUE(3), FIDELITE(4), TR(5);
-				if (mode==1){
-					trClone.find(("td:eq(0)")).html('Especes') ;
-					trClone.find(("td:eq(1)")).html(modePaiement.espece);
-				}else if (mode==2){
-					trClone.find(("td:eq(0)")).html('Carte bancaire') ;
-					trClone.find(("td:eq(1)")).html(modePaiement.cb);
-				}else if (mode==3){
-					trClone.find(("td:eq(0)")).html('Cheque') ;
-				trClone.find(("td:eq(1)")).html(modePaiement.cheque);
-				}else if (mode==4){
-					trClone.find(("td:eq(0)")).html('Carte fidelite') ;
-					trClone.find(("td:eq(1)")).html(modePaiement.fidelite);
-				}else if (mode==5){
-					trClone.find(("td:eq(0)")).html('Ticket restaurent') ;
-					trClone.find(("td:eq(1)")).html(modePaiement.ticketRestau);
+					afficherLignePaiement(data, mode) ;
+					calculerSoldePaiement () ;
+					$('#closePopupPaiement').click();
 				}
-
-//				// rendre le TR visible
-				trClone.removeAttr("style");
-			
-				$('.table.tablePaiement > tbody').append(trClone);
-				
-			
-	};
-			
-			deletePaiement= function(index){
-//				
-			var mode  = $('#modePaiement').val() ;
-				if (index<0){
-					return ;
-				}
-				 $.ajax({
-				       url : 'ajax/deletePaiement/'+mode,
-				       type : 'GET',
-				       success : function(){
-						$('.table.tablePaiement tbody tr:eq(' + index + ')').remove();
-							calculerSoldePaiement();         
-				       } 
-				 });
-			};	
-//		
-			//A METTRE A PART
-			
-			 calculerSoldePaiement = function() {		
-				var montantSaisie=0;
-				$('.montant').each(function(){
-					 if ($(this).html() && $(this).html()!==''){
-						 montantSaisie+=parseFloat($(this).html());
-					 }			 
 			});
-				$('#solde').html(parseFloat($('#totalTTC').html())-montantSaisie);
-			 } ;
+		};
 			
 			 
 //		impressionCommande=function(idCommande){
@@ -281,7 +220,7 @@ $(document).ready(function() {
 			});
 			
 			$( document ).on( "click", '#validerPopupPaiement',function() {
-				PayerEnPlusieursFormeParCommande($('input[id="prixPopupModePaiement"]').val()) ;
+				payerEnPlusieursFormeParCommande($('input[id="prixPopupModePaiement"]').val()) ;
 			});
 			
 			$( document ).on( "click", '.deletePaiement',function() {

@@ -7,7 +7,6 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.util.CollectionUtils;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,18 +22,14 @@ import com.webcaisse.service.CustomUser;
 import com.webcaisse.ws.interfaces.CaisseManagerService;
 import com.webcaisse.ws.interfaces.CommandeManagerService;
 import com.webcaisse.ws.interfaces.LivreurManagerService;
-import com.webcaisse.ws.interfaces.ParametreManagerService;
 import com.webcaisse.ws.model.ClientIn;
 import com.webcaisse.ws.model.CommandeIn;
-import com.webcaisse.ws.model.CommandeOut;
 import com.webcaisse.ws.model.LigneCommandeIn;
-import com.webcaisse.ws.model.LigneCommandeOut;
-import com.webcaisse.ws.model.ParametreOut;
 
 
 
 @Controller
-@RequestMapping("/commandes/ajax")
+@RequestMapping("/ajax/commandes")
 public class AjaxCommandeProjetController {
 	
 	@Autowired

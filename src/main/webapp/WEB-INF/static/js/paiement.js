@@ -2,12 +2,15 @@ $(document).ready(function() {
 
 	var pattern = /^\d{0,2}(\.\d{0,2}){0,1}$/;
 	
+	var contextPath  = function getContextPath() {
+		return window.location.pathname.substring(0, window.location.pathname.indexOf("/",2));
+	}
 	
 	afficherPopupPaiement=function(modeVente){
 			
 			$.ajax({
 					type : "GET",
-					url : "ajax/product/afficherPopupPaiement/"+modeVente
+					url : contextPath()+"/ajax/product/afficherPopupPaiement/"+modeVente
 				}).done(function(data) {
 					
 					var obj = jQuery.parseJSON(data);
@@ -31,7 +34,7 @@ $(document).ready(function() {
 	afficherPopupModePaiement = function(mode){
 		$.ajax({
 			type : "GET",
-			url : "ajax/product/afficherPopupModePaiement/"+mode
+			url : contextPath()+"/ajax/product/afficherPopupModePaiement/"+mode
 		}).done(function(montant) {
 			$('#prixPopupModePaiement').val(montant);
 			$('#modePaiement').val(mode);
@@ -47,7 +50,7 @@ $(document).ready(function() {
 	saisirModePaiement=function(montant,modePaiement){
 		$.ajax({
 			type : "GET",
-			url : "ajax/product/saisirModePaiement",
+			url : contextPath()+"/ajax/product/saisirModePaiement",
 			data :{montant : montant, idModePaiement:modePaiement} 
 		});
 	};
@@ -55,7 +58,7 @@ $(document).ready(function() {
 	doSubmitModePaiement =  function (valeur, mode){
 		$.ajax({
 			type : "GET",
-			url : "ajax/product/saisirMontantParModePaiement",
+			url : contextPath()+"/ajax/product/saisirMontantParModePaiement",
 			data :{montant : valeur, idModePaiement:mode} 
 		}).done(function() {
 			$('#closePopupPaiement').click();
@@ -92,7 +95,7 @@ $(document).ready(function() {
 
 		$.ajax({
 			type : "GET",
-			url : "ajax/product/remiseProduit",
+			url : contextPath()+"/ajax/product/remiseProduit",
 			data :{indexLignePanier : idxLignePanier, remiseValue:formatterValeurRemise(valueRemise)} 
 		}).done(function(nouveauPrix) {
 			if (nouveauPrix!='PAS_DE_REMISE'){
@@ -141,7 +144,7 @@ $(document).ready(function() {
 		var mode  = $('#modePaiement').val();
 		$.ajax({
 			type : "GET",
-			url : "ajax/product/payerEnPlusieursForme/"+valeur+"/"+mode,
+			url : contextPath()+"/ajax/product/payerEnPlusieursForme/"+valeur+"/"+mode,
 			success :function(data) {
 				afficherLignePaiement(data, mode) ;
 				calculerSoldePaiement () ;
@@ -188,7 +191,7 @@ $(document).ready(function() {
 			return ;
 		}
 		 $.ajax({
-		       url : 'ajax/product/deletePaiement/'+mode,
+		       url : contextPath()+'/ajax/product/deletePaiement/'+mode,
 		       type : 'GET',
 		       success : function(){
 					$('.table.tablePaiement tbody tr:eq(' + index + ')').remove();

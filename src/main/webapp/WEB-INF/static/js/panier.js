@@ -125,6 +125,7 @@ $(document).ready(function() {
 		
 	
 	sauvegarderCommande=function(modeVente,etatCommande){
+		debugger;
 		$.ajax({
 			type : "GET",
 			url : "ajax/commandes/sauvegarderCommande/"+modeVente 
