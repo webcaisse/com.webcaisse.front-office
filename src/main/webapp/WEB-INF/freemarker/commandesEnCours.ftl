@@ -3,15 +3,24 @@
 <#include "modules/head.ftl">
 <link rel="stylesheet" href="<@spring.url '/css/themes/default/style.min.css' />" />
 <link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css">
+ <link rel="stylesheet" type="text/css"	href="<@spring.url '/css/dataTable.css' />">
+
   <script src="//code.jquery.com/jquery-1.10.2.js"></script>
   <script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
   <script type="text/javascript"	src="<@spring.url '/js/jquery.bpopup.min.js' />"></script>
   <script type="text/javascript" src="<@spring.url '/js/paiement.js' />"></script>
   <script type="text/javascript" src="<@spring.url '/js/commande.js' />"></script>
+  <script type="text/javascript"  charset="utf-8" src="<@spring.url '/js/dist/dataTables.min.js' />"></script>
   	<script>
   $(function() {
     $( "#datepicker" ).datepicker({ dateFormat: "dd-mm-yy" });
   });
+  </script>
+   <script>
+
+ $( document ).ready(function() {
+	$('#dataTableCommandeEnCours').dataTable() ;
+ });
   </script>
 </head>
 
@@ -27,35 +36,19 @@
 	</#if>
 	<h1>Liste des commandes <a href="${rc.getContextPath()}/commandes/exporterCommande/${dateExport!}/" class="exporter"> exporter</a></h1>
 	
-	<div class="no-margin last-child">
-		<div class="block-controls">
-			<div class="controls-buttons">
-				<div class="sub-hover paging_two_button">
-					<div class="control-prev disabled" title="Précédent">
-				</div>
-				<div class="control-next disabled" title="Suivant"></div>
-			</div>
-		</div>
-	</div>
+	
 	<div class="block-footer clearfix filter">
-		<div class="float-left">Afficher 
-			<select size="1">
-				<option value="10">10</option>
-				<option value="25">25</option>
-				<option value="50">50</option>
-				<option value="100" selected="selected">100</option>
-			</select> éléments
-		</div>
+		
 		<div class="float-right">
 			<form action="${rc.getContextPath()}/commandes/rechercherCommandeParLivreur">Livreurs : 
 				   <select name="idLivreur">
 				  <#if livreurs??>
 		              <#list livreurs as livreur>
 		              <option  value=""> </option> 
-  					<option  value="${livreur.id}">${livreur.nom}</option> 
+  					  <option  value="${livreur.id}">${livreur.nom}</option> 
   					 </#list>
 		           </#if>  
-				</select> 
+				    </select> 
 				<input type="submit" value="Actualiser">
 			 </form>				
 		            
@@ -65,7 +58,8 @@
 		 	</form> 
 		</div>
 	</div>
-	<table class="table sortable" cellspacing="0" width="100%">
+    </br></br> 
+    <table class="table sortable" cellspacing="0" width="100%" id="dataTableCommandeEnCours">
 		<thead>
 			<tr>
 				<th scope="col" style="width: 149.400001525879px;" class="sorting_desc">
@@ -171,9 +165,9 @@
 	  </#if>>	
 	 </tbody>
 	 </table>
-	 <div class="message no-margin">Affichage de l'élement 0 à 0 sur 0 éléments</div></div>
+	 </div>
 	<iframe id="ifrImpression" name="ifrImpression" style="width: 0; height: 0; margin: auto; border: 0;"></iframe>
-</section>
+    </section>
 		<div class="clear"></div>
 
 	</article>
