@@ -97,6 +97,7 @@ public class Panier implements Serializable{
 	}
 
 	/**
+	 * @return 
 	 * 
 	 */
 	public void empty() {
@@ -104,6 +105,11 @@ public class Panier implements Serializable{
 		setLignesPanier(new ArrayList<LignePanier>());
 	}
 	
+	//test si le panier est vide
+	public boolean isEmpty()
+	{
+		return lignesPanier.isEmpty() ;
+	}
 	/**
 	 * 
 	 * @param prixHt

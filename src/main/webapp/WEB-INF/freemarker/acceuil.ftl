@@ -27,6 +27,7 @@
 	<link rel="stylesheet" type="text/css"	href="<@spring.url '/css/table.css' />">
 	<link rel="stylesheet" type="text/css"	href="<@spring.url '/css/960.gs.fluid.css' />">
 	<link rel="stylesheet" type="text/css"	href="<@spring.url '/css/dataTable.css' />">
+	<link rel="stylesheet" type="text/css"	href="<@spring.url '/css/jquery.toastmessage.css' />">
 	
 	<!-- Favicon -->
 	<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
@@ -41,7 +42,7 @@
 	<script type="text/javascript" src="<@spring.url '/js/paiement.js' />"></script>
 	<script type="text/javascript" src="<@spring.url '/js/client.js' />"></script>
     <script type="text/javascript"  charset="utf-8" src="<@spring.url '/js/dist/dataTables.min.js' />"></script>
-		
+	<script type="text/javascript"  charset="utf-8" src="<@spring.url '/js/dist/jquery.toastmessage.js' />"></script>	
 </head>
 
 <body>
@@ -51,6 +52,7 @@
 
 		<div class="clearfix"></div>
 		<input type="hidden" id="idCommande">
+		
 		<div class="container_12">
 			<div class="indexAutocomplete grid_8">
 				<div class="ui-widget float-left">

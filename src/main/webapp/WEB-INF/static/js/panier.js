@@ -161,10 +161,36 @@ $(document).ready(function() {
 	} ;
 		
 	
+	ExistanceProduitDansPanier=function(){
+		
+		$.ajax({
+			
+			type : "GET",
+			url : "ajax/product/existanceProduitDansPanier" 
+		}).success(function(data) {					
+			if (data==true){
+				sauvegarderCommande(null,"PREP");
+				}else {
+					displayMessageNotice();
+				}
+		});
+			
+	}
+	
+	displayMessageNotice= function(){
+	
+		$().toastmessage('showToast', {
+		    text     : 'Merci de saisir des produit dans votre panier',
+		    sticky   : true,
+		    position:  'top-center',
+		    type     : 'notice'
+		});
+		
+	}
+
 	
 	
 
-	
 	// gestion des evenements 
 	
 	$( document ).on( "click", '.addNote',function() {
@@ -215,7 +241,8 @@ $(document).ready(function() {
 	});
 	
 	$( document ).on( "click", '#en_preparation',function() {
-		sauvegarderCommande(null,"PREP");
+		
+		ExistanceProduitDansPanier();
 	});
 	
 

@@ -308,5 +308,23 @@ public class AjaxProductPageController {
 		return commandeDump.getPanier().getMessage();
 	}
 
+ 	@RequestMapping(value = "/existanceProduitDansPanier", method = RequestMethod.GET)
+	@ResponseBody
+	public Boolean existanceProduitDansPanier() {
+
+ 		boolean existanceProduit= false;
+ 		
+		if (commandeDump.getPanier().isEmpty()){
+			
+		 existanceProduit=false ;
+		}else{
+			
+		  existanceProduit=true ;
+		}
+		
+		return existanceProduit ;
+	}
+ 	
+ 	
 }
 
