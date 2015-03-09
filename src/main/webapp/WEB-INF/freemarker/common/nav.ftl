@@ -14,21 +14,21 @@
 			<li class="tip-bottom commandes">
 				<a href="${rc.getContextPath()}/commandes/enCours" title="Commandes en cours">Commandes</a>
 			</li>
-			<li class="tip-bottom planningNav">
+			<!-- <li class="tip-bottom planningNav">
 				<a href="#" title="Gestion du planning">Planning</a>
-			</li>
+			</li> -->
 			<li class="tip-bottom users">
 				<a href="${rc.getContextPath()}/clients/afficher" title="Gestion des clients">Clients</a>
 			</li>
-			<li class="tip-bottom fournisseurs">
+			<!-- <li class="tip-bottom fournisseurs">
 				<a href="#" title="Gestion des fournisseurs">Fournisseurs</a>
-			</li>
+			</li> -->
 			<li class="tip-bottom products">
 				<a href="${rc.getContextPath()}/produits/afficher" title="Gestion des produits">Produits</a>
 			</li>
-			<li class="tip-bottom promotions">
+			<!-- <li class="tip-bottom promotions">
 				<a href="#" title="Gestion des promotions">Promotions</a>
-			</li>
+			</li> -->
 			<li class="tip-bottom settings margin-left">
 				<a href="${rc.getContextPath()}/parametrage/afficher" title="Paramètres">Paramètres</a>
 			</li>
