@@ -13,7 +13,6 @@ import com.webcaisse.service.CustomUser;
 import com.webcaisse.ws.interfaces.CaisseManagerService;
 import com.webcaisse.ws.interfaces.ClientManagerService;
 import com.webcaisse.ws.model.ClientIn;
-import com.webcaisse.ws.model.ClientOut;
 import com.webcaisse.ws.model.FamilleOut;
 import com.webcaisse.ws.model.ProduitOut;
 

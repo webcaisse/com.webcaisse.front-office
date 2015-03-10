@@ -44,8 +44,8 @@
 				   <select name="idLivreur">
 				  <#if livreurs??>
 		              <#list livreurs as livreur>
-		              <option  value=""> </option> 
-  					  <option  value="${livreur.id}">${livreur.nom}</option> 
+			              <option  value=""> </option> 
+	  					  <option  value="${livreur.id}">${livreur.nom}</option> 
   					 </#list>
 		           </#if>  
 				    </select> 
@@ -137,20 +137,13 @@
 		       </td>
 		       
 		       <td>
-
-          
-	       <#list commande.ligneCommandeOut as ligneCommandeOut>
-			   
-			
-					${ligneCommandeOut.quantite} 	${ligneCommandeOut.libelle}
-		             </br></br>
-		       
-		   </#list>
-		
-			
-			
-              
-              </td>
+					 <#if commande.ligneCommandeOut??>
+					       <#list commande.ligneCommandeOut as ligneCommandeOut>
+								${ligneCommandeOut.quantite} 	${ligneCommandeOut.libelle}
+					             </br></br>
+						   </#list>
+			   		</#if>
+              	</td>
 		       <td>
 		       <#if commande.nomLivreur??>
 			       		${commande.nomLivreur!}
