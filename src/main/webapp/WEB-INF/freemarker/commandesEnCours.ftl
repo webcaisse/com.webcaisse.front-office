@@ -136,7 +136,21 @@
 		       		</#if>
 		       </td>
 		       
-		       <td>${commande.libelleProduit}</td>
+		       <td>
+
+          
+	       <#list commande.ligneCommandeOut as ligneCommandeOut>
+			   
+			
+					${ligneCommandeOut.quantite} 	${ligneCommandeOut.libelle}
+		             </br></br>
+		       
+		   </#list>
+		
+			
+			
+              
+              </td>
 		       <td>
 		       <#if commande.nomLivreur??>
 			       		${commande.nomLivreur!}

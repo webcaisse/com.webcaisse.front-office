@@ -52,6 +52,7 @@ public class CommandePageController {
         List<LivreurOut> livreurs= livreurManagerService.rechercherLivreur(customUser.getSocieteId()) ;
 		model.put("commandes", commandes);
 		model.put("livreurs",livreurs) ;
+	
 
 		return "/commandesEnCours";
 	}
