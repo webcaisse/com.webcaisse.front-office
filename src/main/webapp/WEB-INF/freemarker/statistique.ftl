@@ -34,15 +34,15 @@
 	<#include "common/nav.ftl" >
 	<article class="container_12" id="contentD">
 		<br>
-		<form action="${rc.getContextPath()}/statistique/">
+		<form action="${rc.getContextPath()}/statistique/modePaiement">
 			<label style="display: block; width: 190px; float: left;"
 				for="libelle">Date Début </label>
 				
-			<input type="text" id="dateDebut" name="dateDebut" value=""
+			<input type="text" id="dateDebut" name="dateDebut" value="${dateDebut!}"
 				style="position: relative; z-index: 10000;"> 
 				
 			 <label	style="display: block; width: 150px; float: left;" for="libelle">Date Fin</label>
-			<input	type="text" id="dateFin" name="dateFin" value=""
+			<input	type="text" id="dateFin" name="dateFin" value="${dateFin!}"
 				style="position: relative; z-index: 1000;">
 			<input type="submit" value="Rechercher">
 		</form>

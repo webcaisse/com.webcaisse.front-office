@@ -58,20 +58,14 @@ public class CommandePageController {
 	}
 
 	@RequestMapping(value = "/rechercherCommande", method = RequestMethod.GET)
-	public String rechercherCommandes(
-			@RequestParam(value = "dateCommande") String dateCommande,
-			ModelMap model) throws ParseException {
+	public String rechercherCommandes(@RequestParam(value = "dateCommande") String dateCommande,ModelMap model) throws ParseException {
 
 		CustomUser customUser = (CustomUser) SecurityContextHolder.getContext()
 				.getAuthentication().getPrincipal();
 
 		model.addAttribute("dateCommande", dateCommande);
 		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MM-yyyy");
-		model.put(
-				"commandes",
-				commandeManagerService.rechercherCommandeParDate(
-						customUser.getSocieteId(),
-						simpleDateFormat.parse(dateCommande)));
+		model.put("commandes",commandeManagerService.rechercherCommandeParDate(customUser.getSocieteId(),simpleDateFormat.parse(dateCommande)));
 
 		return "/commandesEnCours";
 	}
