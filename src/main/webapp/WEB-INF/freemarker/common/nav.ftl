@@ -33,7 +33,7 @@
 				<a href="${rc.getContextPath()}/parametrage/afficher" title="Paramètres">Paramètres</a>
 			</li>
 			<li class="tip-bottom stats">
-				<a href="${rc.getContextPath()}/statistique/afficher" title="Statistiques">Statistiques</a>
+				<a href="${rc.getContextPath()}/statistique/" title="Statistiques">Statistiques</a>
 			</li>
 		</ul>
 	<div class="pull-right" style="padding-top: 5px; padding-right: 15px;">
