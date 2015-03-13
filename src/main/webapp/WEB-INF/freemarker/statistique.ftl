@@ -34,15 +34,15 @@
 	<#include "common/nav.ftl" >
 	<article class="container_12" id="contentD">
 		<br>
-		<form action="${rc.getContextPath()}/statistique/modePaiement">
+		<form action="${rc.getContextPath()}/statistique/chercherStatistique" modelAttribute="rechercheStatsIn">
 			<label style="display: block; width: 190px; float: left;"
 				for="libelle">Date Début </label>
 				
-			<input type="text" id="dateDebut" name="dateDebut" value="${dateDebut!}"
+			<input type="text" name="startDate" value="${dateDebut!}"
 				style="position: relative; z-index: 10000;"> 
 				
 			 <label	style="display: block; width: 150px; float: left;" for="libelle">Date Fin</label>
-			<input	type="text" id="dateFin" name="dateFin" value="${dateFin!}"
+			<input	type="text" name="endDate" value="${dateFin!}"
 				style="position: relative; z-index: 1000;">
 			<input type="submit" value="Rechercher">
 		</form>
@@ -51,7 +51,7 @@
 		<table style="width: 70%">
 			<tr>
 				<td width="50%">
-					<img alt="" src="${rc.getContextPath()}/statistique/modePaiement">			
+					<img alt="" src="${rc.getContextPath()}/statistique/modePaiement/${dateDebut!}/${dateFin!}">			
 				</td>
 			</tr>
 		</table>
